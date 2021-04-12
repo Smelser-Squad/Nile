@@ -1,6 +1,8 @@
 package com.tp.Nile.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,7 +20,9 @@ public class Product implements Serializable {
     @Column(name = "vendor_id",nullable = false)
     private Integer vendorId;
 
-    @Column(name ="type",nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    @JsonBackReference
     private String type;
 
     @Column(name = "price",nullable = false)
