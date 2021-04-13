@@ -60,6 +60,8 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Feature> features = new HashSet<>();
 
+    
+
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
@@ -76,8 +78,10 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
+
     public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
-        this.productId = productId;
+
+        this.productId=productId;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
         this.type = type;
