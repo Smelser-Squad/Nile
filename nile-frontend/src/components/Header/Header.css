@@ -30,7 +30,8 @@ z-index: 100;
     width: 100%;
 }
 .hearder_searchIcon{
-    height: 22px !important;
+    height: 34px !important;
+    width: 45px !important;
     background-color: #cd9042;
 }
 
