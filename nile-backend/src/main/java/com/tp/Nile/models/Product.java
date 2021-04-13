@@ -64,10 +64,18 @@ public class Product implements Serializable {
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
+
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Order> orders;
     
+
+    @OneToMany(mappedBy = "product")
+    private Set<OrderProduct> orderProducts = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductFeature> productFeatures = new HashSet<>();
+
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -75,7 +83,6 @@ public class Product implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
-
 
 
 }
