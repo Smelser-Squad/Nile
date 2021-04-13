@@ -1,12 +1,21 @@
 package com.tp.Nile.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "category")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 public class Category implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
@@ -14,25 +23,5 @@ public class Category implements Serializable {
 
     @Column(name ="name",nullable = false)
     private String name;
-
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }
