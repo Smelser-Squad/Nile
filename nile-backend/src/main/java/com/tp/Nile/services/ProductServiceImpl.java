@@ -2,14 +2,20 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
+import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
+import com.tp.Nile.models.Type;
+import com.tp.Nile.models.Vendor;
 import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductServiceImpl implements ProductService {
+
     @Autowired
     ProductRepository repo;
     @Override
@@ -23,17 +29,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByCategory(String category) {
-        return repo.getProductsByCategory(category);
+    public List<Product> getProductsByCategory(Category categoryId) {
+        return repo.getProductsByCategory(categoryId);
     }
 
     @Override
-    public List<Product> getProductsByVendor(Integer vendorId) {
+    public List<Product> getProductsByVendor(Vendor vendorId) {
         return repo.getProductsByVendor(vendorId);
     }
 
     @Override
-    public List<Product> getProductsByType(String type) {
+    public List<Product> getProductsByType(Type type) {
         return repo.getProductsByType(type);
     }
 
@@ -55,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProduct(Product newProduct) {
-        
+
         return repo.saveAndFlush(newProduct);
     }
 
