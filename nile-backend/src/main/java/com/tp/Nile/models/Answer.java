@@ -1,9 +1,18 @@
 package com.tp.Nile.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "answer")
 public class Answer implements Serializable {
     @Id
@@ -22,35 +31,4 @@ public class Answer implements Serializable {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    public Integer getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(Integer answerId) {
-        this.answerId = answerId;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public Question getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Question questionId) {
-        this.questionId = questionId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
 }
