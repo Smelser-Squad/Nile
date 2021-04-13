@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -24,8 +26,7 @@ public class Feature implements Serializable {
     @Column(name ="name",nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name = "product_feature", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = { @JoinColumn(name = "feature_id") })
-    private List<Order> orders;
+    @OneToMany(mappedBy = "feature")
+    private Set<ProductFeature> productFeatures = new HashSet<>();
 
 }
