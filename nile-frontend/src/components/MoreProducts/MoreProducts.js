@@ -1,4 +1,5 @@
 import './MoreProducts.css';
+import ReactStars from "react-rating-stars-component";
 
 function MoreProducts() {
     return (
@@ -17,6 +18,27 @@ function MoreProducts() {
             </div>
 
             <div class="products-container">
+                <div class="image-container">
+                    <img class="image" src="" alt="product_image"></img>
+                </div>
+                <div class="link">
+                    <div class="name-container">
+                        <a href="#productPage">Product name here</a>
+                    </div>
+                    <div class="rating-container">
+                        <ReactStars
+                            count={5}
+                            edit={false}
+                            value={4}
+                        />
+                    </div>
+                    <div class="price-container">
+                        <p>$10.00</p>
+                    </div>
+                    <div class="prime-eligible-container">
+                        <p>Prime eligible here</p>
+                    </div>
+                </div>
                 
             </div>
             
