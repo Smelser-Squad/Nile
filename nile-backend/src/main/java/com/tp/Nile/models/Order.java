@@ -1,21 +1,32 @@
 package com.tp.Nile.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "order_")
 public class Order implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Integer orderId;
 
-    @Column(name = "user_id",nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name="purchase_date", nullable = false)
     private LocalDate purchaseDate;
@@ -26,8 +37,8 @@ public class Order implements Serializable {
     @ManyToMany(mappedBy = "orders")
     private List<Product> products;
 
-    public Order(Integer userId, LocalDate purchaseDate, String status) {
-        this.userId = userId;
+    public Order(User user, LocalDate purchaseDate, String status) {
+        this.user = user;
         this.purchaseDate = purchaseDate;
         this.status = status;
     }
@@ -40,12 +51,12 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDate getPurchaseDate() {

@@ -1,12 +1,13 @@
 package com.tp.Nile.controllers;
 
+
 import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
-import com.tp.Nile.services.ProductService;
+import com.tp.Nile.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
+
     @Autowired
-    ProductService service;
+    ProductServiceImpl service;
 
     @PostMapping("/addProduct")
     public ResponseEntity addProduct(@RequestBody Product product){

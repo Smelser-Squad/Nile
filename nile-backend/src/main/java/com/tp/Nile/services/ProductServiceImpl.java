@@ -18,16 +18,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository repo;
-    @Override
+
     public List<Product> getAllProducts() {
         return repo.findAll();
     }
 
-    @Override
     public List<Product> getProductByBrand(String brand) {
-        return repo.getProductsByBrand(brand);
+        return repo.findByBrand(brand);
     }
-
     @Override
     public List<Product> getProductsByCategory(Category categoryId) {
         return repo.getProductsByCategory(categoryId);
@@ -43,7 +41,6 @@ public class ProductServiceImpl implements ProductService {
         return repo.getProductsByType(type);
     }
 
-    @Override
     public Product getProductById(Integer productId) throws NullProductIdException,InvaildProductIdException {
         if(productId==null){
             throw new NullProductIdException("Cannot get product with null id");
@@ -59,19 +56,16 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    @Override
     public Product addProduct(Product newProduct) {
 
         return repo.saveAndFlush(newProduct);
     }
 
-    @Override
     public Product updateProduct(Product updatedProduct) {
 
         return repo.saveAndFlush(updatedProduct);
     }
 
-    @Override
     public boolean deleteProduct(Integer productId) throws NullProductIdException, InvaildProductIdException {
         if(productId==null){
             throw new NullProductIdException("Cannot delete product with null id");
