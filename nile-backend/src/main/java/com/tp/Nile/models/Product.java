@@ -3,11 +3,13 @@ package com.tp.Nile.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -45,13 +47,9 @@ public class Product implements Serializable {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
-
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private Set<Photo> photos = new HashSet<>();
+    private List<ProductPhoto> photoList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -61,8 +59,6 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Feature> features = new HashSet<>();
 
-    
-
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
@@ -70,7 +66,6 @@ public class Product implements Serializable {
 
     @JsonManagedReference
     private Set<Order> orders = new HashSet<>();
-
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -89,7 +84,6 @@ public class Product implements Serializable {
         this.name = name;
         this.description = description;
         this.brand = brand;
-        this.photos=photos;
         this.features = features;
         this.orders = orders;
         this.questions = questions;
@@ -159,13 +153,6 @@ public class Product implements Serializable {
         this.brand = brand;
     }
 
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-    }
 
     public Set<Feature> getFeatures() {
         return features;
