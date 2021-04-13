@@ -14,10 +14,11 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "question")
 public class Question implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
@@ -31,7 +32,7 @@ public class Question implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    private Product productId;
+    private Product product;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,

@@ -1,10 +1,19 @@
 package com.tp.Nile.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "specification")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 public class Specification implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,23 +23,4 @@ public class Specification implements Serializable {
     @Column(name = "spec_name")
     private String specName;
 
-    public Specification(String specName) {
-        this.specName = specName;
-    }
-
-    public Integer getSpecId() {
-        return specId;
-    }
-
-    public void setSpecId(Integer specId) {
-        this.specId = specId;
-    }
-
-    public String getSpecName() {
-        return specName;
-    }
-
-    public void setSpecName(String specName) {
-        this.specName = specName;
-    }
 }

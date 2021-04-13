@@ -15,6 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Table(name = "answer")
 public class Answer implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
@@ -25,10 +26,10 @@ public class Answer implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
-    private Question questionId;
+    private Question question;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
 }
