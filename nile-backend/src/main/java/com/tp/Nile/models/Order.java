@@ -34,8 +34,9 @@ public class Order implements Serializable {
     @Column(name="status", nullable = false)
     private String status;
 
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    private List<Order> productOrders;
 
     public Order(User user, LocalDate purchaseDate, String status) {
         this.user = user;
