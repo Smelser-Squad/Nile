@@ -45,6 +45,9 @@ public class Product implements Serializable {
     @Column(name = "brand", nullable = false)
     private String brand;
 
+    @Column(name = "prime_eligible", nullable = false)
+    private Boolean primeEligible;
+
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
@@ -79,7 +82,7 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
-    public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
+    public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Boolean primeEligible, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
 
         this.productId=productId;
         this.categoryId = categoryId;
@@ -89,6 +92,7 @@ public class Product implements Serializable {
         this.name = name;
         this.description = description;
         this.brand = brand;
+        this.primeEligible = primeEligible;
         this.photos=photos;
         this.features = features;
         this.orders = orders;
@@ -157,6 +161,14 @@ public class Product implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public Boolean getPrimeEligible() {
+        return primeEligible;
+    }
+
+    public void setPrimeEligible(Boolean primeEligible) {
+        this.primeEligible = primeEligible;
     }
 
     public Set<Photo> getPhotos() {
