@@ -13,8 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
-
-    @Query("select p from Product p where p.category_id=:category")
+    
     List<Product> getProductsByCategory(@Param("category") Category category);
 
     List<Product> findByCategory(Category category);
