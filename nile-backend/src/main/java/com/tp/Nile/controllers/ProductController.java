@@ -27,6 +27,7 @@ public class ProductController {
     public ResponseEntity getProducts(){
         return ResponseEntity.ok(service.getAllProducts());
     }
+
     @GetMapping("/products/{productId}")
     public ResponseEntity getProductById(@PathVariable Integer productId) {
         try {
@@ -35,19 +36,19 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/products/{category}")
+    @GetMapping("/products/category/{category}")
     public ResponseEntity getProductByCategory(@PathVariable String category){
         return ResponseEntity.ok(service.getProductsByCategory(category));
     }
-    @GetMapping("/products/{brand}")
+    @GetMapping("/products/brand/{brand}")
     public ResponseEntity getProductByBrand(@PathVariable String brand){
         return ResponseEntity.ok(service.getProductByBrand(brand));
     }
-    @GetMapping("/products/{type}")
+    @GetMapping("/products/type/{type}")
     public ResponseEntity getProductByType(@PathVariable Type type){
         return ResponseEntity.ok(service.getProductsByType(type));
     }
-    @GetMapping("/products/{vendorId}")
+    @GetMapping("/products/vendor/{vendorId}")
     public ResponseEntity getProductByVendor(@PathVariable Integer vendorId){
         return ResponseEntity.ok(service.getProductsByVendor(vendorId));
     }
