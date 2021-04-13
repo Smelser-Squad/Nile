@@ -27,5 +27,8 @@ public class ProductPhoto implements Serializable {
     @Column(name = "image_src", nullable = false)
     private String imageSrc;
 
+    @Column(name = "color", nullable = false)
+    private String color;
+
 
 }

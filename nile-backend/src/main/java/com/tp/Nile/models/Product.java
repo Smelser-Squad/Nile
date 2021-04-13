@@ -84,7 +84,6 @@ public class Product implements Serializable {
         this.name = name;
         this.description = description;
         this.brand = brand;
-        this.photos=photos;
         this.features = features;
         this.orders = orders;
         this.questions = questions;
@@ -154,13 +153,6 @@ public class Product implements Serializable {
         this.brand = brand;
     }
 
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-    }
 
     public Set<Feature> getFeatures() {
         return features;
