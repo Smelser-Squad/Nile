@@ -59,20 +59,12 @@ public class Product implements Serializable {
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    private List<Order> orders;
 
-    @JsonManagedReference
-    private Set<Feature> features = new HashSet<>();
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
-
-    @JsonManagedReference
-    private Set<Order> orders = new HashSet<>();
+    @ManyToMany(mappedBy = "products")
+    private List<Feature> features;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -81,7 +73,7 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
-    public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
+    public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, List<Feature> features, List<Order> orders, Set<Question> questions) {
 
         this.productId=productId;
         this.categoryId = categoryId;
@@ -161,19 +153,19 @@ public class Product implements Serializable {
     }
 
 
-    public Set<Feature> getFeatures() {
+    public List<Feature> getFeatures() {
         return features;
     }
 
-    public void setFeatures(Set<Feature> features) {
+    public void setFeatures(List<Feature> features) {
         this.features = features;
     }
 
-    public Set<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
