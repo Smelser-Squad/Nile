@@ -17,37 +17,66 @@ public class Product implements Serializable {
     @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name = "category_id", nullable = false)
-    private Integer categoryId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    private Category categoryId;
 
-    @Column(name = "vendor_id",nullable = false)
-    private Integer vendorId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vendor_id")
+    @JsonBackReference
+    private Vendor vendorId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     @JsonBackReference
     private Type type;
 
-    @Column(name = "price",nullable = false)
+    @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name ="name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description",nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "brand",nullable = false)
+    @Column(name = "brand", nullable = false)
     private String brand;
 
     @OneToMany(fetch = FetchType.EAGER,
-        cascade = CascadeType.ALL,
-        mappedBy = "product",
-        orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            mappedBy = "product",
+            orphanRemoval = true)
+
+    @JsonManagedReference
+    private Set<Photo> photos = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "product",
+            orphanRemoval = true)
+
+    @JsonManagedReference
+    private Set<Feature> features = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "product",
+            orphanRemoval = true)
+
+    @JsonManagedReference
+    private Set<Order> orders = new HashSet<>();
+
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "product",
+            orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
-    public Product(Integer productId, Integer categoryId, Integer vendorId, Type type, Double price, String name, String description, String brand) {
+    public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
         this.productId = productId;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
@@ -56,6 +85,10 @@ public class Product implements Serializable {
         this.name = name;
         this.description = description;
         this.brand = brand;
+        this.photos=photos;
+        this.features = features;
+        this.orders = orders;
+        this.questions = questions;
     }
 
     public Integer getProductId() {
@@ -66,19 +99,19 @@ public class Product implements Serializable {
         this.productId = productId;
     }
 
-    public Integer getCategoryId() {
+    public Category getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
     }
 
-    public Integer getVendorId() {
+    public Vendor getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(Integer vendorId) {
+    public void setVendorId(Vendor vendorId) {
         this.vendorId = vendorId;
     }
 
@@ -120,5 +153,37 @@ public class Product implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public Set<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(Set<Feature> features) {
+        this.features = features;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
     }
 }

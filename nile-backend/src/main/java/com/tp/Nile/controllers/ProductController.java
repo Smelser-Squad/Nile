@@ -2,8 +2,10 @@ package com.tp.Nile.controllers;
 
 import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
+import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
+import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +38,9 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/products/category/{category}")
-    public ResponseEntity getProductByCategory(@PathVariable String category){
-        return ResponseEntity.ok(service.getProductsByCategory(category));
+    @GetMapping("/products/category/{categoryId}")
+    public ResponseEntity getProductByCategory(@PathVariable Category categoryId){
+        return ResponseEntity.ok(service.getProductsByCategory(categoryId));
     }
     @GetMapping("/products/brand/{brand}")
     public ResponseEntity getProductByBrand(@PathVariable String brand){
@@ -49,7 +51,7 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductsByType(type));
     }
     @GetMapping("/products/vendor/{vendorId}")
-    public ResponseEntity getProductByVendor(@PathVariable Integer vendorId){
+    public ResponseEntity getProductByVendor(@PathVariable Vendor vendorId){
         return ResponseEntity.ok(service.getProductsByVendor(vendorId));
     }
     @PutMapping("/update")
