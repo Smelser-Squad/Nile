@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     @JsonBackReference
-    private String type;
+    private Type type;
 
     @Column(name = "price",nullable = false)
     private Double price;
@@ -47,7 +47,11 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
-    public Product(Integer productId, Integer categoryId, Integer vendorId, String type, Double price, String name, String description, String brand) {
+    public Product(){
+
+    }
+
+    public Product(Integer productId, Integer categoryId, Integer vendorId, Type type, Double price, String name, String description, String brand) {
         this.productId = productId;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
@@ -82,11 +86,11 @@ public class Product implements Serializable {
         this.vendorId = vendorId;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
