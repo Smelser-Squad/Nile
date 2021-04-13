@@ -24,6 +24,14 @@ public class Feature implements Serializable {
         this.name = name;
     }
 
+    public Integer getFeatureId() {
+        return featureId;
+    }
+
+    public void setFeatureId(Integer featureId) {
+        this.featureId = featureId;
+    }
+
     public String getName() {
         return name;
     }
