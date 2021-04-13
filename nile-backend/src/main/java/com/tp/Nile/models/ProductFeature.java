@@ -27,6 +27,10 @@ public class ProductFeature implements Serializable {
     @MapsId("productId")
     private Product product;
 
+    @ManyToOne
+    @MapsId("reviewId")
+    private Review review;
+
     @Column(name="rating", nullable = false)
     private Integer rating;
 
