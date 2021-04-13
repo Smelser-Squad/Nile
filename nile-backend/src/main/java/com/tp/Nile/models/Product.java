@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,6 +47,10 @@ public class Product implements Serializable {
         orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    private List<Order> orders;
 
     public Product(){
 

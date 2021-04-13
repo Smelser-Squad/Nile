@@ -4,6 +4,7 @@ package com.tp.Nile.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -21,6 +22,9 @@ public class Order implements Serializable {
 
     @Column(name="status", nullable = false)
     private String status;
+
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products;
 
     public Order(Integer userId, LocalDate purchaseDate, String status) {
         this.userId = userId;
