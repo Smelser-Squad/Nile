@@ -59,7 +59,7 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
-
+  
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
@@ -71,10 +71,18 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Order> orders = new HashSet<>();
 
+    @OneToMany(mappedBy = "product")
+    private Set<OrderProduct> orderProducts = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductFeature> productFeatures = new HashSet<>();
+
+
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
+
 }

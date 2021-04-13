@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+
+import java.util.List;
+
 import java.util.Set;
 
 @Entity
@@ -26,7 +29,12 @@ public class Feature implements Serializable {
     @Column(name ="name",nullable = false)
     private String name;
 
+
     @ManyToOne
     private Product product;
+
+    @OneToMany(mappedBy = "feature")
+    private Set<ProductFeature> productFeatures = new HashSet<>();
+
 
 }
