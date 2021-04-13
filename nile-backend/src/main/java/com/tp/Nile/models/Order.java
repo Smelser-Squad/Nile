@@ -9,7 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,12 +30,11 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name="purchase_date", nullable = false)
+    @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
 
-    @Column(name="status", nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
-
     @ManyToMany(mappedBy = "orders")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 }
