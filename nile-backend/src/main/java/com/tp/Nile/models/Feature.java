@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table
 public class Feature implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feature_id")

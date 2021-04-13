@@ -31,6 +31,7 @@ public class Product implements Serializable {
     @Column(name = "product_id")
     private Integer productId;
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)
     @JsonBackReference
@@ -66,8 +67,7 @@ public class Product implements Serializable {
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Order> orders;
-
-
+    
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
