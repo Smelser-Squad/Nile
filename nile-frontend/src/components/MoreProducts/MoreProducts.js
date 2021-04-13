@@ -15,8 +15,9 @@ function MoreProducts() {
                     </svg>
                 </button>
             </div>
-            
+
             <div class="products-container">
+                
             </div>
             
             <div class="right-nav">
