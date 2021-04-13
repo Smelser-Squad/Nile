@@ -1,16 +1,19 @@
 package com.tp.Nile.models;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "feature")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 public class Feature implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,25 +22,5 @@ public class Feature implements Serializable {
 
     @Column(name ="name",nullable = false)
     private String name;
-
-    public Feature(String name) {
-        this.name = name;
-    }
-
-    public Integer getFeatureId() {
-        return featureId;
-    }
-
-    public void setFeatureId(Integer featureId) {
-        this.featureId = featureId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }
