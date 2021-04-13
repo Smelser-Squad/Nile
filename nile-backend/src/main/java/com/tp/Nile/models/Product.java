@@ -47,6 +47,10 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
+    public Product(){
+
+    }
+
     public Product(Integer productId, Integer categoryId, Integer vendorId, Type type, Double price, String name, String description, String brand) {
         this.productId = productId;
         this.categoryId = categoryId;
