@@ -2,9 +2,12 @@ package com.tp.Nile.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -36,6 +39,10 @@ public class Product implements Serializable {
 
     @Column(name = "brand",nullable = false)
     private String brand;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ProductPhoto> photoList = new ArrayList<>();
 
     public Product(Integer productId, Integer categoryId, Integer vendorId, String type, Double price, String name, String description, String brand) {
         this.productId = productId;
