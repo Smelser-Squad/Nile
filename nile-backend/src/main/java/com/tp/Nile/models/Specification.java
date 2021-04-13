@@ -1,5 +1,7 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,8 +16,14 @@ public class Specification implements Serializable {
     @Column(name = "spec_name")
     private String specName;
 
-    public Specification(String specName) {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    @JsonBackReference
+    private Type type;
+
+    public Specification(String specName, Type type) {
         this.specName = specName;
+        this.type = type;
     }
 
     public Integer getSpecId() {
@@ -32,5 +40,13 @@ public class Specification implements Serializable {
 
     public void setSpecName(String specName) {
         this.specName = specName;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }
