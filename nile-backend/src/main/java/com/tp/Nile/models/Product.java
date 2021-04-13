@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,30 +17,33 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "product")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 public class Product implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     @JsonBackReference
-    private Category categoryId;
+    private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_vendor_id", referencedColumnName = "vender_id")
+    @JoinColumn(name = "vendor_id", nullable = false)
     @JsonBackReference
-    private Vendor vendorId;
+    private Vendor vendor;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_type_id", referencedColumnName = "type_id")
+    @JoinColumn(name = "type_id", nullable = false)
     @JsonBackReference
     private Type type;
 
@@ -59,21 +63,11 @@ public class Product implements Serializable {
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    private List<Order> orders;
 
-    @JsonManagedReference
-    private Set<Feature> features = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
-
-    @JsonManagedReference
-    private Set<Order> orders = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -81,6 +75,7 @@ public class Product implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
+
 
 
 }

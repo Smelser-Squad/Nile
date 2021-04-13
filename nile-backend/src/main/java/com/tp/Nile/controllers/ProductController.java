@@ -1,12 +1,13 @@
 package com.tp.Nile.controllers;
 
+
 import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
-import com.tp.Nile.services.ProductService;
+import com.tp.Nile.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
+
     @Autowired
-    ProductService service;
+    ProductServiceImpl service;
 
     @PostMapping("/addProduct")
     public ResponseEntity addProduct(@RequestBody Product product){
@@ -39,8 +41,8 @@ public class ProductController {
         }
     }
     @GetMapping("/products/category/{categoryId}")
-    public ResponseEntity getProductByCategory(@PathVariable Category categoryId){
-        return ResponseEntity.ok(service.getProductsByCategory(categoryId));
+    public ResponseEntity getProductByCategory(@PathVariable Category category){
+        return ResponseEntity.ok(service.getProductsByCategory(category));
     }
     @GetMapping("/products/brand/{brand}")
     public ResponseEntity getProductByBrand(@PathVariable String brand){
@@ -51,8 +53,8 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductsByType(type));
     }
     @GetMapping("/products/vendor/{vendorId}")
-    public ResponseEntity getProductByVendor(@PathVariable Vendor vendorId){
-        return ResponseEntity.ok(service.getProductsByVendor(vendorId));
+    public ResponseEntity getProductByVendor(@PathVariable Vendor vendor){
+        return ResponseEntity.ok(service.getProductsByVendor(vendor));
     }
     @PutMapping("/update")
     public ResponseEntity updateProduct(@RequestBody Product updateProduct){
