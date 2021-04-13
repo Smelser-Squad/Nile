@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -77,7 +78,6 @@ public class Product implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
-
 
     public Product(Integer productId, Category categoryId, Vendor vendorId, Type type, Double price, String name, String description, String brand, Set<Photo> photos, Set<Feature> features, Set<Order> orders, Set<Question> questions) {
 
