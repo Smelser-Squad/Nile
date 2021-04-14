@@ -1,6 +1,5 @@
 package com.tp.Nile.models;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,5 +37,6 @@ public class Order implements Serializable {
 
     @OneToMany(mappedBy = "order")
     private Set<OrderProduct> orderProducts = new HashSet<>();
+
 
 }
