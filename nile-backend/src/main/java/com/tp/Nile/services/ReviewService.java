@@ -5,9 +5,11 @@ import com.tp.Nile.exceptions.InvalidUserIdException;
 import com.tp.Nile.exceptions.NullReviewIdException;
 import com.tp.Nile.exceptions.NullUserIdException;
 import com.tp.Nile.models.Review;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ReviewService {
 
     List<Review> getAllReviews();
