@@ -26,12 +26,8 @@ public class Feature implements Serializable {
     @Column(name ="name",nullable = false)
     private String name;
 
-
-    @ManyToOne
-    private Product product;
-
-    @OneToMany(mappedBy = "feature")
-    private Set<ProductFeature> productFeatures = new HashSet<>();
+    @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
+    private Set<Product> products;
 
 
 }
