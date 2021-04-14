@@ -7,7 +7,7 @@ pipeline {
             cd nile-backend
             ./gradlew assemble
             cd ../nile-frontend
-            npm build
+            npm i && npm run build
            '''
       }
     }
@@ -18,7 +18,7 @@ pipeline {
             cd nile-backend
             ./gradlew test
             cd ../nile-frontend
-            npm test
+            npm run test
            '''
       }
     }
