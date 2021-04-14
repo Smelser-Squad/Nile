@@ -22,6 +22,12 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     VendorServiceImpl vendorService;
 
+    @Autowired
+    CategoryServiceImpl categoryService;
+
+   @Autowired
+   FeatureServiceImpl featureService;
+
     public List<Product> getAllProducts() {
         return repo.findAll();
     }
@@ -81,7 +87,12 @@ public class ProductServiceImpl implements ProductService {
         }
         Product newProduct=new Product();
 
-        Category category=categoryService.getCategoryById(product.getCategoryId());
+        Category category= null;
+        try {
+            category = categoryService.getCategoryById(product.getCategoryId());
+        } catch (NullCategoryIdException | InvalidCategoryIdException e) {
+            e.getMessage();
+        }
         Type type= null;
         try {
             type = typeService.getTypeById(product.getTypeId());
@@ -95,18 +106,22 @@ public class ProductServiceImpl implements ProductService {
                 e.getMessage();
             }
 
-            Set<ProductFeature> features = new HashSet<>();
+            Set<Feature> features = new HashSet<>();
         for(Integer id:product.getFeatureId()){
-            features.add(featureService.getFeatureById(id));
+            try {
+                features.add(featureService.getFeatureById(id));
+            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
+                e.getMessage();
+            }
         }
 
-        List<ProductPhoto> photos=new ArrayList<>();
-        for(Integer id:product.getPhotoId()){
-            photos.add(photoService.getPhotoById(id));
-        }
+//        List<ProductPhoto> photos=new ArrayList<>();
+//        for(Integer id:product.getPhotoId()){
+//            photos.add(photoService.getPhotoById(id));
+//        }
 
-        newProduct.setPhotoList(photos);
-        newProduct.setProductFeatures(features);
+//        newProduct.setPhotoList(photos);
+        newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);
