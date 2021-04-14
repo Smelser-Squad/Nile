@@ -1,64 +1,30 @@
 package com.tp.Nile.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductSpecification implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_spec_id")
-    private Integer productSpecId;
+    @EmbeddedId
+    private ProductSpecificationId id = new ProductSpecificationId();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @ManyToOne
+    @MapsId("productId")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "spec_id")
-    @JsonBackReference
+    @ManyToOne
+    @MapsId("specId")
     private Specification spec;
 
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private String value;
-
-    public ProductSpecification(Product product, Specification spec, String value) {
-        this.product = product;
-        this.spec = spec;
-        this.value = value;
-    }
-
-    public Integer getProductSpecId() {
-        return productSpecId;
-    }
-
-    public void setProductSpecId(Integer productSpecId) {
-        this.productSpecId = productSpecId;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Specification getSpec() {
-        return spec;
-    }
-
-    public void setSpec(Specification spec) {
-        this.spec = spec;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }
