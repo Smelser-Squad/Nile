@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,6 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table
 public class Feature implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feature_id")
@@ -22,5 +25,9 @@ public class Feature implements Serializable {
 
     @Column(name ="name",nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
+    private Set<Product> products;
+
 
 }
