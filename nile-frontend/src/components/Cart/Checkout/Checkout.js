@@ -8,12 +8,16 @@ function Checkout() {
 
                 <h2 className="checkout_title">
                     Shopping Cart
+                </h2>
 
-            </h2>
+                {/* ProductItem */}
+                {/* ProductItem */}
+                {/* ProductItem */}
+
             </div>
 
             <div className="checkout_right">
-                <h2> Subtotal</h2>
+                <Subtotal />
             </div>
         </div>
     )
