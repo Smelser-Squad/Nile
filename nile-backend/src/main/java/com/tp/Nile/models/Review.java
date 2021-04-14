@@ -24,7 +24,7 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
