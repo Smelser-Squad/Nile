@@ -14,13 +14,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Specification implements Serializable {
+public class Feature implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "spec_id")
-    private Integer specId;
+    @Column(name = "feature_id")
+    private Integer featureId;
 
-    @Column(name = "spec_name")
-    private String specName;
+    @Column(name ="name",nullable = false)
+    private String name;
 
 }
