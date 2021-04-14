@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -25,41 +26,68 @@ public class ReviewTest {
     @Autowired
     private ReviewRepository repo;
 
+    @BeforeEach
+    public void setup() {
+        Review setupReview = new Review();
+        setupReview.setReviewId(8);
+        setupReview.setReviewDate(LocalDate.of(2020, 4, 14));
+        setupReview.setTitle("This is a test title");
+        setupReview.setSummary("This is a test summary");
+        setupReview.setUser(new User(100, null, null));
+
+        repo.save(setupReview);
+    }
+
     @Test
     @Rollback(false)
     public void testCreateReview() {
         Review newReview = new Review();
-        newReview.setReviewId(1);
+        newReview.setReviewId(2);
         newReview.setReviewDate(LocalDate.of(2020, 4, 14));
         newReview.setTitle("This is a test title");
         newReview.setSummary("This is a test summary");
-        newReview.setUser(new User(10, null, null));
+        newReview.setUser(new User(100, null, null));
 
         Review savedReview = repo.save(newReview);
 
         assertNotNull(savedReview);
     }
 
-//    @Test
-//    public void findReviewById() {
-//
-//        int id = 1;
-//        LocalDate testDate = LocalDate.of(2020, 4, 14);
-//        String testTitle = "This is a test title";
-//        String testSummary = "This is a test summary";
-//        int userId = 10;
-//
-//        Review testReview = repo.findByReviewId(id);
-//
-//        assertEquals(testReview.getReviewId(), id);
-//
-//        assertEquals(testReview.getTitle(), testTitle);
-//
-//        assertEquals(testReview.getSummary(), testSummary);
-//
-//        assertEquals(testReview.getUser().getUserId(), userId);
-//
-//    }
+    @Test
+    public void findReviewById() {
+
+        int id = 8;
+        LocalDate testDate = LocalDate.of(2020, 4, 14);
+        String testTitle = "This is a test title";
+        String testSummary = "This is a test summary";
+        int userId = 100;
+
+        Optional<Review> testReview = repo.findById(id);
+
+        assertEquals(testReview.get().getReviewId(), id);
+
+        assertEquals(testReview.get().getTitle(), testTitle);
+
+        assertEquals(testReview.get().getSummary(), testSummary);
+
+        assertEquals(testReview.get().getUser().getUserId(), userId);
+
+    }
+
+    @Test
+    public void findReviewByUser() {
+
+    }
+
+    @Test
+    public void deleteReview() {
+
+    }
+
+    @Test
+    public void findAllReviews() {
+        
+    }
 
 
 
