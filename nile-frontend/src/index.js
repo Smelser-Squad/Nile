@@ -5,11 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Tag from './components/ReviewTag/Tag';
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    < React.StrictMode >
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 

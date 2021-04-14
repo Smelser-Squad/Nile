@@ -1,6 +1,5 @@
 package com.tp.Nile.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +14,22 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Specification implements Serializable {
+public class Answer implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "spec_id")
-    private Integer specId;
+    @Column(name = "answer_id")
+    private Integer answerId;
 
-    @Column(name = "spec_name")
-    private String specName;
+    @Column(name = "answer")
+    private String answer;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "type_id")
-    @JsonBackReference
-    private Type type;
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
