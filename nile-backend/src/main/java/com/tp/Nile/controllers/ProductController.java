@@ -1,6 +1,7 @@
 package com.tp.Nile.controllers;
 
 
+import com.tp.Nile.controllers.requests.AddProductRequest;
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
@@ -23,7 +24,7 @@ public class ProductController {
     ProductServiceImpl service;
 
     @PostMapping("/addProduct")
-    public ResponseEntity addProduct(@RequestBody Product product) {
+    public ResponseEntity addProduct(@RequestBody AddProductRequest product) {
         try {
             return ResponseEntity.ok(service.addProduct(product));
         } catch (NullProductObjectException | NullBrandException | NullNameException | NullDescriptionException | NullPriceException | InvalidPriceException e) {

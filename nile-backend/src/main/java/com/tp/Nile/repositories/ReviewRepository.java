@@ -7,13 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    List<Review> getReviewsByUserId(@Param("user_id") Integer userId);
-
-    Review getReviewById(@Param("review_id") Integer reviewId);
+    List<Review> findByUser(Integer userId);
 
 }

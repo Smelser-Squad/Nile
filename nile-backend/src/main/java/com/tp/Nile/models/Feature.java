@@ -29,11 +29,6 @@ public class Feature implements Serializable {
     @Column(name ="name",nullable = false)
     private String name;
 
-
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name = "product_feature", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = { @JoinColumn(name = "feature_id") })
-    private List<Order> orders;
-
     @OneToMany(mappedBy = "feature")
     private Set<ProductFeature> productFeatures = new HashSet<>();
 
