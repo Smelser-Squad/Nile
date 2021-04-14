@@ -17,12 +17,12 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query("select p from Product p where p.category=:category")
     List<Product> getProductsByCategory(@Param("category") Category category);
 
-    List<Product> findByCategory(Category category);
-
     List<Product> findByBrand(String brand);
-    @Query("select p from Product p where p.vendor=:vendorId")
-    List<Product> getProductsByVendor(@Param("vendorId") Vendor vendorId);
+
+    @Query("select p from Product p where p.vendor=:vendor")
+    List<Product> getProductsByVendor(@Param("vendor") Vendor vendor);
 
     @Query("select p from Product p where p.type=:type")
-    List<Product> getProductsByType(@Param("type") Type Type);
+    List<Product> getProductsByType(@Param("type") Type type);
+
 }

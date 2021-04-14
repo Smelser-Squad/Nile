@@ -27,13 +27,13 @@ public class ProductServiceImpl implements ProductService {
         return repo.findByBrand(brand);
     }
     @Override
-    public List<Product> getProductsByCategory(Category categoryId) {
-        return repo.getProductsByCategory(categoryId);
+    public List<Product> getProductsByCategory(Category category) {
+        return repo.getProductsByCategory(category);
     }
 
     @Override
-    public List<Product> getProductsByVendor(Vendor vendorId) {
-        return repo.getProductsByVendor(vendorId);
+    public List<Product> getProductsByVendor(Vendor vendor) {
+        return repo.getProductsByVendor(vendor);
     }
 
     @Override
