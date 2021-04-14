@@ -40,26 +40,26 @@ public class ReviewTest {
         assertNotNull(savedReview);
     }
 
-    @Test
-    public void findReviewById() {
-
-        int id = 1;
-        LocalDate testDate = LocalDate.of(2020, 4, 14);
-        String testTitle = "This is a test title";
-        String testSummary = "This is a test summary";
-        int userId = 10;
-
-        Review testReview = repo.findByReviewId(id);
-
-        assertEquals(testReview.getReviewId(), id);
-
-        assertEquals(testReview.getTitle(), testTitle);
-
-        assertEquals(testReview.getSummary(), testSummary);
-
-        assertEquals(testReview.getUser().getUserId(), userId);
-
-    }
+//    @Test
+//    public void findReviewById() {
+//
+//        int id = 1;
+//        LocalDate testDate = LocalDate.of(2020, 4, 14);
+//        String testTitle = "This is a test title";
+//        String testSummary = "This is a test summary";
+//        int userId = 10;
+//
+//        Review testReview = repo.findByReviewId(id);
+//
+//        assertEquals(testReview.getReviewId(), id);
+//
+//        assertEquals(testReview.getTitle(), testTitle);
+//
+//        assertEquals(testReview.getSummary(), testSummary);
+//
+//        assertEquals(testReview.getUser().getUserId(), userId);
+//
+//    }
 
 
 
