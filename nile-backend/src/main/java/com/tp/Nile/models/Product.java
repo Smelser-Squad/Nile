@@ -57,20 +57,17 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
-  
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "product",
-            orphanRemoval = true)
-    @JsonManagedReference
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "product_feature",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "feature_id"))
     private Set<Feature> features = new HashSet<>();
 
 
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductFeature> productFeatures = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
