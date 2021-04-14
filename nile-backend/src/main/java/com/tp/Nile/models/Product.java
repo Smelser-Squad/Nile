@@ -84,5 +84,4 @@ public class Product implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
-
 }

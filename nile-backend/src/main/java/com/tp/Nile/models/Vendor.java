@@ -22,3 +22,4 @@ public class Vendor {
     @Column(name = "name", nullable = false)
     private String name;
 }
+
