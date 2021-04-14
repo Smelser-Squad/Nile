@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,11 +34,6 @@ public class Order implements Serializable {
 
     @Column(name = "status", nullable = false)
     private String status;
-
-
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Order> productOrders;
 
     @OneToMany(mappedBy = "order")
     private Set<OrderProduct> orderProducts = new HashSet<>();
