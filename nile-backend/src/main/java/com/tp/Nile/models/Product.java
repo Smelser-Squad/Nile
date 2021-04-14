@@ -66,18 +66,11 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Feature> features = new HashSet<>();
 
-    @ManyToMany(mappedBy = "productOrders")
-    @JsonManagedReference
-    private Set<Order> orders = new HashSet<>();
-
-
     @OneToMany(mappedBy = "product")
     private Set<ProductOrder> productOrders = new HashSet<>();
 
-
     @OneToMany(mappedBy = "product")
     private Set<ProductFeature> productFeatures = new HashSet<>();
-
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
