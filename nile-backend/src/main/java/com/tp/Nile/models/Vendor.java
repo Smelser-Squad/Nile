@@ -21,8 +21,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "vendor")
-
-
 public class Vendor implements Serializable {
 
     @Id

@@ -6,12 +6,12 @@ import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
-import org.springframework.stereotype.Service;
+
 
 
 import java.util.List;
 
-@Service
+
 public interface ProductService {
 
     List<Product> getAllProducts();

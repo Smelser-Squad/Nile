@@ -58,6 +58,8 @@ public class Product implements Serializable {
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
+
+
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "product_feature",
             joinColumns = @JoinColumn(name = "product_id"),
