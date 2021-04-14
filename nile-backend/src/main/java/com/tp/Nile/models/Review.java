@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -34,6 +36,9 @@ public class Review implements Serializable {
 
     @Column(name = "review_date", nullable = false)
     private LocalDate reviewDate;
+
+    @OneToMany(mappedBy = "review")
+    private Set<ProductFeature> productFeatures = new HashSet<>();
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)
