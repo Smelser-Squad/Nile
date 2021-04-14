@@ -40,7 +40,7 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/products/category/{categoryId}")
+    @GetMapping("/products/category/{category}")
     public ResponseEntity getProductByCategory(@PathVariable Category category){
         return ResponseEntity.ok(service.getProductsByCategory(category));
     }
@@ -52,7 +52,7 @@ public class ProductController {
     public ResponseEntity getProductByType(@PathVariable Type type){
         return ResponseEntity.ok(service.getProductsByType(type));
     }
-    @GetMapping("/products/vendor/{vendorId}")
+    @GetMapping("/products/vendor/{vendor}")
     public ResponseEntity getProductByVendor(@PathVariable Vendor vendor){
         return ResponseEntity.ok(service.getProductsByVendor(vendor));
     }
