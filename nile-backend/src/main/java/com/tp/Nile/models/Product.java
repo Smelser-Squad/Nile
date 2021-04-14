@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -30,17 +31,15 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id")
-    @JsonBackReference
     private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonBackReference
+    @JsonIgnoreProperties("products")
     private Type type;
 
     @Column(name = "price", nullable = false)
@@ -63,13 +62,15 @@ public class Product implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("product")
     private Set<Feature> features = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties("product")
     private Set<ProductOrder> productOrders = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties("product")
     private Set<ProductFeature> productFeatures = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,

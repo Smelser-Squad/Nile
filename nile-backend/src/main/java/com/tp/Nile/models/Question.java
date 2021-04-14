@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +39,7 @@ public class Question implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "question",
             orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("question")
     private Set<Answer> answers = new HashSet<>();
 
 }
