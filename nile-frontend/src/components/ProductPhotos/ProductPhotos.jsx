@@ -1,24 +1,40 @@
-function ProductPhotos() {
-    
-    
+import './ProductPhotos.css';
+
+function ProductPhotos(props) {
+
     return(
-        <div>
-            <img id="myImg" src="https://media.reformclothing.com/design_lab/ysd-products/C1005_T-Shirt/C1005_T_Shirt_Front_A_800.png" onmouseover="displayModal"></img>
+        <div className="PhotoContainer">
+            <img id="myImg" src={props.imgSrc} 
+
+                onMouseEnter={displayModal}
+                onMouseLeave={hideModal}
+                alt="product">
+            </img>
+            
             <div id="myModal" class="modal">
-                <img class="modal-content" id="img01"></img>    
+                <img class="modal-content" id="img01" alt="" src={props.imgSrc}></img>    
             </div>
+
         </div>
+        
     );
-    let modal = document.getElementById("myModal");
-    let img = document.getElementById('myImg');
-    let modalImg = document.getElementById("img01");
-    img.onClick = function() {
+    function displayModal() {
+        let modal = document.getElementById("myModal");
         modal.style.display = "block";
-        modalImg.src = this.src;
-
+        }
     
-
+    function hideModal() {
+        let modal = document.getElementById("myModal");
+        modal.style.display = "none";
     }
+    
+    }
+
+
+  
+
+ProductPhotos.defaultProps = {
+    imgSrc: "https://media.reformclothing.com/design_lab/ysd-products/C1005_T-Shirt/C1005_T_Shirt_Front_A_800.png"
 }
 
 export default ProductPhotos;
