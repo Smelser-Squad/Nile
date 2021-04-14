@@ -1,0 +1,58 @@
+#customer-bought {
+    color: #C45500;
+}
+
+.header h3,
+.header p {
+    line-height: 28px;  
+}
+
+/* .header h3 {
+    float: left;
+}
+.header p {
+    float: right;
+} */
+
+button:hover {
+    cursor: pointer;
+}
+
+.left-nav button,
+.right-nav button {
+    display: block;
+    height: 30px;
+}
+
+.left-nav button {
+    margin-left: 20px;
+    float: left;
+}
+
+.right-nav button {
+    margin-right: 20px;
+    float: right;
+}
+
+#price-tag {
+    color: #B12805;
+    font-weight: bold;
+    font-size: large;
+}
+
+#prime-img{
+    height: 25px;
+    width: 60px;
+}
+
+#product-name {
+    text-decoration: none;
+    color: #067186;
+}
+
+.link a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #C8501F;
+}
+
