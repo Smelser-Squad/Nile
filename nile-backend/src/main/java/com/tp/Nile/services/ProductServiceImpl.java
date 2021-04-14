@@ -81,10 +81,7 @@ public class ProductServiceImpl implements ProductService {
         for(Integer id:product.getFeatureId()){
             features.add(featureService.getFeatureById(id));
         }
-        Set<Question>questions=new HashSet<>();
-        for(Integer id:product.getQuestionId()){
-            questions.add(questionService.getQuestionById(id));
-        }
+
         List<ProductPhoto> photos=new ArrayList<>();
         for(Integer id:product.getPhotoId()){
             photos.add(photoService.getPhotoById(id));
@@ -92,7 +89,6 @@ public class ProductServiceImpl implements ProductService {
 
         newProduct.setPhotoList(photos);
         newProduct.setProductFeatures(features);
-        newProduct.setQuestions(questions);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);

@@ -11,10 +11,10 @@ public class AddProductRequest {
 
     private Integer productId;
     private Integer categoryId;
+    private Integer questionId;
     private Integer typeId;
     private Integer orderId;
     private Integer vendorId;
-    private List<Integer> questionId;
     private List<Integer> photoId;
     private List<Integer> featureId;
 
