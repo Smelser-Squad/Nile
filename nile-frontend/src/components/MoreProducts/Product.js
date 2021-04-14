@@ -30,7 +30,7 @@ function Product() {
                     <a id="price-tag" href="#productPage">$10.00</a>
 
                     <Link to="/">
-                        <img id="prime-img" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
+                        <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
                     </Link>
                 </div>
 

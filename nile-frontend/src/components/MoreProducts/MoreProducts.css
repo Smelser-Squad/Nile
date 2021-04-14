@@ -2,34 +2,36 @@
     color: #C45500;
 }
 
-.header h3,
-.header p {
+hr {
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color:rgb(233, 230, 230);
+}
+
+.row .header h3 {
+    float: left;
+    margin-left: 20px;
     line-height: 28px;  
 }
 
-.header h3 {
-    float: left;
-}
-.header p {
+.pages {
     float: right;
+    margin-right: 20px;   
+    line-height: 28px;  
 }
 
-button:hover {
+#right-nav {
+    float:right;
+}
+
+#left-nav {
+    float:left;
+}
+
+.nav-button:hover {
     cursor: pointer;
 }
 
-.left-nav button,
-.right-nav button {
-    display: block;
-    height: 30px;
-}
-
-.left-nav button {
-    margin-left: 20px;
-    float: left;
-}
-
-.right-nav button {
-    margin-right: 20px;
-    float: right;
+.row {
+    display: flex;
 }
