@@ -1,0 +1,37 @@
+#customer-bought {
+    color: #C45500;
+}
+
+hr {
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color:rgb(233, 230, 230);
+}
+
+.row .header h3 {
+    float: left;
+    margin-left: 20px;
+    line-height: 28px;  
+}
+
+.pages {
+    float: right;
+    margin-right: 20px;   
+    line-height: 28px;  
+}
+
+#right-nav {
+    float:right;
+}
+
+#left-nav {
+    float:left;
+}
+
+.nav-button:hover {
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+}
