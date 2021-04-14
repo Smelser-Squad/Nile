@@ -14,6 +14,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,11 +22,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "vendor")
 
+
 public class Vendor implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vendor_id")
     private Integer vendorId;
+
     @Column(name = "name", nullable = false)
     private String name;
 }

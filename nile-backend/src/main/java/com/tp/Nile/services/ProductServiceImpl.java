@@ -23,8 +23,8 @@ public class ProductServiceImpl implements ProductService {
         return repo.findProductsByBrand(brand);
     }
     @Override
-    public List<Product> getProductsByCategory(Category categoryId) {
-        return repo.getProductsByCategory(categoryId);
+    public List<Product> getProductsByCategory(Category category) {
+        return repo.getProductsByCategory(category);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
         }
         List<ProductPhoto> photos=new ArrayList<>();
         for(Integer id:product.getPhotoId()){
-            questions.add(photoService.getPhotoById(id));
+            photos.add(photoService.getPhotoById(id));
         }
 
         newProduct.setPhotoList(photos);
