@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -67,18 +66,11 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Feature> features = new HashSet<>();
 
-    @ManyToMany(mappedBy = "productOrders")
-    @JsonManagedReference
-    private Set<Order> orders = new HashSet<>();
-
-
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
-
     @OneToMany(mappedBy = "product")
     private Set<ProductFeature> productFeatures = new HashSet<>();
-
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
