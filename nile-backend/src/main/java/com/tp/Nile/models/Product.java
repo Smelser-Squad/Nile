@@ -31,12 +31,12 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     @JsonBackReference
-    private Category categoryId;
+    private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id")
     @JsonBackReference
-    private Vendor vendorId;
+    private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
@@ -71,8 +71,4 @@ public class Product implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
-
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Order> orders;
 }
