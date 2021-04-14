@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import MoreProducts from '../MoreProducts/MoreProducts.js';
+import ProductPhotos from '../ProductPhotos/ProductPhotos';
 
 function Home() {
     return (
@@ -19,6 +20,7 @@ function Home() {
                 <br>
                 </br>
                 <MoreProducts />
+                <ProductPhotos/>
 
             </div >
         </div>
