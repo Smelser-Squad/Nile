@@ -1,7 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvaildProductIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
@@ -20,7 +19,7 @@ public interface ProductService {
     List<Product> getProductsByVendor(Vendor vendorId);
     List<Product> getProductsByType(Type Type);
     Product getProductById(Integer productId) throws NullProductIdException, InvaildProductIdException;
-    Product addProduct(Product newProduct);
+    Product addProduct(Product newProduct) throws NullProductObjectException, NullBrandException, NullNameException,NullDescriptionException,NullPriceException,InvalidPriceException;
     Product updateProduct(Product updatedProduct);
     boolean deleteProduct(Integer productId) throws NullProductIdException,InvaildProductIdException;
 

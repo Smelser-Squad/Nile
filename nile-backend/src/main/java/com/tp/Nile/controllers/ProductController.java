@@ -1,8 +1,7 @@
 package com.tp.Nile.controllers;
 
 
-import com.tp.Nile.exceptions.InvaildProductIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
@@ -24,8 +23,12 @@ public class ProductController {
     ProductServiceImpl service;
 
     @PostMapping("/addProduct")
-    public ResponseEntity addProduct(@RequestBody Product product){
-        return ResponseEntity.ok(service.addProduct(product));
+    public ResponseEntity addProduct(@RequestBody Product product) {
+        try {
+            return ResponseEntity.ok(service.addProduct(product));
+        } catch (NullProductObjectException | NullBrandException | NullNameException | NullDescriptionException | NullPriceException | InvalidPriceException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     @GetMapping("/products")
     public ResponseEntity getProducts(){
