@@ -37,10 +37,6 @@ public class Order implements Serializable {
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Order> productOrders;
-
-    @OneToMany(mappedBy = "order")
-    private Set<OrderProduct> orderProducts = new HashSet<>();
-
+    private Set<Order> productOrders;
 
 }

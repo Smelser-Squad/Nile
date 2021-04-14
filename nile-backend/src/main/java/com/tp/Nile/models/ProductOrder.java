@@ -13,10 +13,10 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderProduct implements Serializable {
+public class ProductOrder implements Serializable {
 
     @EmbeddedId
-    private OrderProductId id = new OrderProductId();
+    private ProductOrderId id = new ProductOrderId();
 
     @ManyToOne
     @MapsId("orderId")
