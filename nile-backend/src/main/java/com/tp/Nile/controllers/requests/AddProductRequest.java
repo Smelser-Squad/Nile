@@ -15,6 +15,7 @@ public class AddProductRequest {
     private Integer typeId;
     private Integer orderId;
     private Integer vendorId;
+    private Integer reviewId;
     private List<Integer> photoId;
     private List<Integer> featureId;
 

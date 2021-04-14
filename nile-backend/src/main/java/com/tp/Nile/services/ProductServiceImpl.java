@@ -5,6 +5,7 @@ import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.*;
 import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,6 +15,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository repo;
+
+    @Autowired
+    TypeServiceImpl typeService;
+
+    @Autowired
+    VendorServiceImpl vendorService;
 
     public List<Product> getAllProducts() {
         return repo.findAll();
@@ -69,15 +76,26 @@ public class ProductServiceImpl implements ProductService {
         if(product.getPrice()==null){
             throw new NullPriceException("Cannot add with null price");
         }
-        if(product.getPrice()<0){
-            throw new InvalidPriceException("Cannot add with price less than 0");
+        if(product.getPrice()<=0 || product.getPrice()>2000){
+            throw new InvalidPriceException("Cannot add with price less than/equal to 0 or more than 2 grand" );
         }
         Product newProduct=new Product();
-        Category category=categoryService.getCategoryById(product.getCategoryId());
-        Type type=typeService.getTypeById(product.getTypeId());
-        Vendor vendor=vendorService.getVendorById(product.getVendorId());
 
-        Set<ProductFeature> features = new HashSet<>();
+        Category category=categoryService.getCategoryById(product.getCategoryId());
+        Type type= null;
+        try {
+            type = typeService.getTypeById(product.getTypeId());
+        } catch (NullTypeIdException | InvalidTypeIdException e) {
+            e.getMessage();
+        }
+            Vendor vendor= null;
+            try {
+                vendor = vendorService.getVendorById(product.getVendorId());
+            } catch (NullVendorIdException | InvalidVendorIdException e) {
+                e.getMessage();
+            }
+
+            Set<ProductFeature> features = new HashSet<>();
         for(Integer id:product.getFeatureId()){
             features.add(featureService.getFeatureById(id));
         }

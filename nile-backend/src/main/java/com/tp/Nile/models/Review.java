@@ -40,6 +40,9 @@ public class Review implements Serializable {
     @OneToMany(mappedBy = "review")
     private Set<ProductFeature> productFeatures = new HashSet<>();
 
+    @Column(name = "helpful")
+    private boolean helpful;
+
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)
 //    private User user;

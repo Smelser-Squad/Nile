@@ -72,6 +72,8 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private Set<ProductFeature> productFeatures = new HashSet<>();
 
+
+
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
