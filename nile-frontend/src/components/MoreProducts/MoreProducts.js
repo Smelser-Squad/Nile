@@ -1,5 +1,7 @@
 import './MoreProducts.css';
-import Product from "./Product.js"
+import Product from "./Product.js";
+import { Link } from "react-router-dom";
+
 
 function MoreProducts() {
     return (
@@ -18,11 +20,13 @@ function MoreProducts() {
                     </svg>
                 </button>
                 
+                <Link to="/productPage">
+                    <Product/>
+                </Link>
+                <Product/>
+                <Product/>
+                <Product/>
 
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
                 
                 <button class="nav-button" id="right-nav">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import MoreProducts from '../MoreProducts/MoreProducts.js';
-import ProductPhotos from '../ProductPhotos/ProductPhotos';
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -19,8 +19,12 @@ function Home() {
 
                 <br>
                 </br>
-                <MoreProducts />
-                <ProductPhotos/>
+                
+                <Link to="/singleProductListing">
+                <img id="myImg" src="https://media.reformclothing.com/design_lab/ysd-products/C1005_T-Shirt/C1005_T_Shirt_Front_A_800.png"
+                    alt="product">
+                </img>
+                </Link>
 
             </div >
         </div>
