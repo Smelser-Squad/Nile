@@ -1,18 +1,18 @@
 function MoreProducts() {
     return (
-        <div class="container">
-            <div class="header">
+        <div className="container">
+            <div className="header">
                 <h2>Customers also bought these products</h2>
-                <p class="pages">Page 1 of 2</p>
+                <p className="pages">Page 1 of 2</p>
             </div>
 
-            <div class="left-nav">
-            </div>
-            
-            <div class="products-container">
+            <div className="left-nav">
             </div>
 
-            <div class="right-nav">
+            <div className="products-container">
+            </div>
+
+            <div className="right-nav">
             </div>
         </div>
     );

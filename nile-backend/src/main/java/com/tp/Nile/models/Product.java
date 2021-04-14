@@ -72,4 +72,7 @@ public class Product implements Serializable {
     @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    private List<Order> orders;
 }

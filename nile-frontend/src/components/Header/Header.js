@@ -2,12 +2,16 @@ import React from 'react'
 import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from "react-router-dom";
 function Header() {
     return (
         <div className='nav_header' >
+            <Link to="/">
+                <img className="header_logo"
+                    src="https://cdn10.bigcommerce.com/s-yhxhf/products/20469/images/75383/STMTD028_4x4__62255.1535837059.1080.1080.jpg?c=2" />
 
-            <img className="header_logo"
-                src="https://cdn10.bigcommerce.com/s-yhxhf/products/20469/images/75383/STMTD028_4x4__62255.1535837059.1080.1080.jpg?c=2" />
+            </Link>
+
 
             <div className="header_search" >
                 <input className="hearder_searchInput" type="text" />
@@ -32,11 +36,13 @@ function Header() {
                     <span className="header_optionTwo" > Prime </span>
                 </div >
 
-                <div class="header_cart">
-                    <ShoppingCartIcon />
-                    <span className="header_optionTwo header_cartCount" > 0 </span>
+                <Link to="/checkout">
+                    <div class="header_cart">
+                        <ShoppingCartIcon />
+                        <span className="header_optionTwo header_cartCount" > 0 </span>
+                    </div>
+                </Link>
 
-                </div>
             </div>
         </div >
     )
