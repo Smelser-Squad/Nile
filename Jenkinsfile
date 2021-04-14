@@ -18,7 +18,7 @@ pipeline {
             cd nile-backend
             ./gradlew test
             cd ../nile-frontend
-            CI=true npm test
+            CI=true npm test --passWithNoTests
            '''
       }
     }
