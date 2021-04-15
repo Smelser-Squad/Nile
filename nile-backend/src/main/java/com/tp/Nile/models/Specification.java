@@ -24,8 +24,10 @@ public class Specification implements Serializable {
     @Column(name = "spec_name")
     private String specName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")
-//    @JsonBackReference
+
+
     private Type type;
 }

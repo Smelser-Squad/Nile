@@ -34,7 +34,7 @@ public class Type implements Serializable {
             mappedBy = "type",
             orphanRemoval = true)
 
-  @JsonManagedReference(value = "product-type")
-   private Set<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
+
 
 }
