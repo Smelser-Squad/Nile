@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Product implements Serializable {
 
     @Id
@@ -29,17 +32,18 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
+
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id")
-    @JsonBackReference
     private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonBackReference
+
+    @JsonIgnoreProperties(value = {"products"})
+
     private Type type;
 
     @Column(name = "price", nullable = false)
@@ -54,9 +58,17 @@ public class Product implements Serializable {
     @Column(name = "brand", nullable = false)
     private String brand;
 
+
+    @Column(name = "stock", nullable = false)
+    private  Integer stock;
+
+    @Column(name = "primeEligible", nullable = false)
+    private boolean primeEligible;
+
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
+
+
 
 
 
@@ -67,9 +79,14 @@ public class Product implements Serializable {
     private Set<Feature> features = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "product")
-    private Set<OrderProduct> orderProducts = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+    private Set<ProductOrder> productOrders = new HashSet<>();
+
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+
+    private Set<Review> reviews=new HashSet<>();
 
 
 
@@ -77,6 +94,9 @@ public class Product implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    @JsonManagedReference
+
     private Set<Question> questions = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductSpecification> productSpecs = new HashSet<>();
 }

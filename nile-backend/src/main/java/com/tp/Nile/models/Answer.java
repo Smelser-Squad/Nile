@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,10 +29,17 @@ public class Answer implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
+
+
+    @JsonIgnoreProperties(value = {"answers"})
+
     private Question question;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+
+    @JsonIgnoreProperties(value = {"answers"})
+
     private User user;
 
 }

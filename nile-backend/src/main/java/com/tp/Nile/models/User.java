@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,6 @@ public class User implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
-    @JsonManagedReference
     private Set<Answer> answers = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
