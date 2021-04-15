@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/api/specs")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class SpecificationController {
@@ -17,17 +17,17 @@ public class SpecificationController {
     @Autowired
     SpecificationService service;
 
-    @PostMapping("/addSpec")
+    @PostMapping()
     public ResponseEntity addSpec(@RequestBody Specification newSpec) {
         return ResponseEntity.ok(service.addSpec(newSpec));
     }
 
-    @GetMapping("/specs")
+    @GetMapping()
     public ResponseEntity getSpecs() {
         return ResponseEntity.ok(service.getAllSpecs());
     }
 
-    @GetMapping("/specs/{specId}")
+    @GetMapping("/{specId}")
     public ResponseEntity getSpecById(@PathVariable Integer specId) {
         try {
             return ResponseEntity.ok(service.getSpecById(specId));
@@ -36,7 +36,7 @@ public class SpecificationController {
         }
     }
 
-    @PutMapping("/updateSpec/{specId}")
+    @PutMapping("/{specId}")
     public ResponseEntity updateSpec(@PathVariable Integer specId, @RequestBody Specification updatedSpec) {
         try {
             return ResponseEntity.ok(service.updateSpec(specId, updatedSpec));
@@ -45,7 +45,7 @@ public class SpecificationController {
         }
     }
 
-    @DeleteMapping("/delete/spec/{specId}")
+    @DeleteMapping("/{specId}")
     public ResponseEntity deleteSpec(@PathVariable Integer specId) {
         try {
             if (service.deleteSpec(specId)) {
