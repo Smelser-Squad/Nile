@@ -1,6 +1,5 @@
 import React from 'react'
 import './Home.css'
-import MoreProducts from '../MoreProducts/MoreProducts.js';
 import { Link } from "react-router-dom";
 
 function Home() {
