@@ -25,19 +25,19 @@ function MoreProducts() {
                 </Grid>
 
 
-                <Grid item md={2} style={{textAlign: "center"}}>
+                <Grid item md={2}>
                     <Product/>
                 </Grid>
-                <Grid item md={2} style={{textAlign: "center"}}>
+                <Grid item md={2}>
                     <Product/>
                 </Grid>
-                <Grid item md={2} style={{textAlign: "center"}}>
+                <Grid item md={2}>
                     <Product/>
                 </Grid>
-                <Grid item md={2} style={{textAlign: "center"}}>
+                <Grid item md={2}>
                     <Product/>
                 </Grid>
-                <Grid item md={2} style={{textAlign: "center"}}>
+                <Grid item md={2}>
                     <Product/>
                 </Grid>
 
