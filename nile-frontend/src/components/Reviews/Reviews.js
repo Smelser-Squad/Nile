@@ -3,7 +3,7 @@ import SingleReview from './SingleReview';
 
 function Reviews() {
     return (
-        <div class="container">
+        <div class="reviews-container">
 
 
         <SingleReview/>
