@@ -48,6 +48,9 @@ public class Review implements Serializable {
     @Column(name="rating", nullable = false)
     private Integer rating;
 
+    @Column(name = "helpful")
+    private boolean helpful;
+
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)
 //    private User user;

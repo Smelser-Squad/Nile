@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -29,17 +30,15 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id")
-    @JsonBackReference
     private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonBackReference
+    @JsonIgnoreProperties(value = {"products"})
     private Type type;
 
     @Column(name = "price", nullable = false)
@@ -55,7 +54,6 @@ public class Product implements Serializable {
     private String brand;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -66,13 +64,14 @@ public class Product implements Serializable {
 
 
     @OneToMany(mappedBy = "product")
-    private Set<OrderProduct> orderProducts = new HashSet<>();
-
+    private Set<ProductOrder> productOrders = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductSpecification> productSpecs = new HashSet<>();
 }

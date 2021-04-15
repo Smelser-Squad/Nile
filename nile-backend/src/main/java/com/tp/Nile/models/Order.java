@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties(value = {"orders"})
     private User user;
 
     @Column(name = "purchase_date", nullable = false)
@@ -36,7 +38,5 @@ public class Order implements Serializable {
     private String status;
 
     @OneToMany(mappedBy = "order")
-    private Set<OrderProduct> orderProducts = new HashSet<>();
-
-
+    private Set<ProductOrder> orderProducts = new HashSet<>();
 }
