@@ -4,6 +4,7 @@ import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.InvalidTypeIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
+import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.TypeRepository;
@@ -38,5 +39,9 @@ public class TypeServiceImpl implements TypeService {
             throw new InvalidTypeIdException("Type with that id does not exist");
         }
 
+    }
+    @Override
+    public Type addType(Type newType) {
+        return repo.saveAndFlush(newType);
     }
 }

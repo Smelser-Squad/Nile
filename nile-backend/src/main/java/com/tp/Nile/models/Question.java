@@ -35,7 +35,10 @@ public class Question implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
+
+
     @JsonIgnoreProperties(value = {"questions"})
+
     private Product product;
 
     @OneToMany(fetch = FetchType.EAGER,
