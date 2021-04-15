@@ -18,7 +18,7 @@ public class OrderController {
     @Autowired
     OrderServiceImpl service;
 
-    @PostMapping("/addOrder")
+    @PostMapping("/orders")
     public ResponseEntity addOrder(@RequestBody Order order){
         return ResponseEntity.ok(service.addOrder(order));
     }
@@ -36,11 +36,11 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/updateOrder")
+    @PutMapping("/orders")
     public ResponseEntity updateOrder(@RequestBody Order updatedOrder){
         return ResponseEntity.ok(service.updateOrder(updatedOrder));
     }
-    @DeleteMapping("delete/order/{orderId}")
+    @DeleteMapping("/orders/{orderId}")
     public String deleteOrder(@PathVariable Integer orderId){
         {
             String toReturn="";
