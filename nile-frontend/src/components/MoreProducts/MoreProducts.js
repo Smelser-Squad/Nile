@@ -1,12 +1,12 @@
 import './MoreProducts.css';
 import Product from "./Product.js";
-import {Grid, Paper} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 
 function MoreProducts() {
     return (
         <div class="container">
             <hr/>
-            <Grid container justify="center">
+            <Grid container justify="center" alignItems = "center">
                 <Grid item xs={12} md={12}>
                     <div class="header">
                         <span>
@@ -25,19 +25,19 @@ function MoreProducts() {
                 </Grid>
                 
 
-                <Grid item md={2}>
+                <Grid item md={2} style={{textAlign: "center"}}>
                     <Product/>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={2} style={{textAlign: "center"}}>
                     <Product/>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={2} style={{textAlign: "center"}}>
                     <Product/>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={2} style={{textAlign: "center"}}>
                     <Product/>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={2} style={{textAlign: "center"}}>
                     <Product/>
                 </Grid>
                 
