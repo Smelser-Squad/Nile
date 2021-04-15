@@ -2,7 +2,6 @@ import './MoreProducts.css';
 import Product from "./Product.js";
 import {Grid, Paper} from '@material-ui/core';
 
-
 function MoreProducts() {
     return (
         <div class="container">
