@@ -12,4 +12,6 @@ public interface TypeService {
     List<Type> getAllTypes();
 
     Type getTypeById(Integer typeId) throws NullTypeIdException, InvalidTypeIdException;
+
+    Type addType(Type newType);
 }

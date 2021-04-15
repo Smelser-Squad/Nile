@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class OrderProductId implements Serializable {
+public class ProductOrderId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

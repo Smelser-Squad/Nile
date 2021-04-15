@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 @AllArgsConstructor
@@ -16,12 +18,12 @@ public class ProductPhoto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_id")
-    @JsonBackReference
     private Integer photoId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
-    @JsonBackReference
+    @JsonIgnoreProperties(value = {"photoList"})
+
     private Product product;
 
     @Column(name = "image_src", nullable = false)
