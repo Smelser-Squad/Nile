@@ -22,6 +22,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Product implements Serializable {
 
     @Id
@@ -31,17 +32,17 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
+   @JsonBackReference
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id")
-    @JsonBackReference
+   @JsonBackReference
     private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonBackReference
+   @JsonBackReference(value = "product-type")
     private Type type;
 
     @Column(name = "price", nullable = false)
@@ -86,6 +87,6 @@ public class Product implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    @JsonManagedReference
+   @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 }

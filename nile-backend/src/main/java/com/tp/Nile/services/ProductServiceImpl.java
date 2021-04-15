@@ -108,26 +108,26 @@ public class ProductServiceImpl implements ProductService {
                 e.getMessage();
             }
 
-//            Set<Feature> features = new HashSet<>();
-//        for(Integer id:product.getFeatureId()){
-//            try {
-//                features.add(featureService.getFeatureById(id));
-//            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
-//                e.getMessage();
-//            }
-//        }
-//
-//        List<ProductPhoto> photos=new ArrayList<>();
-//        for(Integer id:product.getPhotoId()){
-//            try {
-//                photos.add(photoService.getPhotoById(id));
-//            } catch (NullPhotoIdException | InvalidPhotoIdException e) {
-//                e.getMessage();
-//            }
-//        }
-//
-//        newProduct.setPhotoList(photos);
-//        newProduct.setFeatures(features);
+            Set<Feature> features = new HashSet<>();
+        for(Integer id:product.getFeatureId()){
+            try {
+                features.add(featureService.getFeatureById(id));
+            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
+                e.getMessage();
+            }
+        }
+
+        List<ProductPhoto> photos=new ArrayList<>();
+        for(Integer id:product.getPhotoId()){
+            try {
+                photos.add(photoService.getPhotoById(id));
+            } catch (NullPhotoIdException | InvalidPhotoIdException e) {
+                e.getMessage();
+            }
+        }
+
+        newProduct.setPhotoList(photos);
+        newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);

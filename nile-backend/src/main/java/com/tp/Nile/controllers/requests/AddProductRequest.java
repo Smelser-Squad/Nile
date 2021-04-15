@@ -1,5 +1,6 @@
 package com.tp.Nile.controllers.requests;
 
+import com.tp.Nile.models.ProductPhoto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +15,8 @@ public class AddProductRequest {
     private Integer orderId;
     private Integer vendorId;
     private Integer reviewId;
-//    private List<Integer> photoId;
-//    private List<Integer> featureId;
+    private List<Integer> photoId;
+    private List<Integer> featureId;
 
     private String name;
     private String description;
