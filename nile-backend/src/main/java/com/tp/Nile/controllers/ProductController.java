@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/products")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
@@ -20,7 +20,7 @@ public class ProductController {
     @Autowired
     ProductServiceImpl service;
 
-    @PostMapping("/addProduct")
+    @PostMapping()
     public ResponseEntity addProduct(@RequestBody AddProductRequest product) {
         try {
             return ResponseEntity.ok(service.addProduct(product));
@@ -28,12 +28,12 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/products")
+    @GetMapping()
     public ResponseEntity getProducts(){
         return ResponseEntity.ok(service.getAllProducts());
     }
 
-    @GetMapping("/products/{productId}")
+    @GetMapping("/{productId}")
     public ResponseEntity getProductById(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getProductById(productId));
@@ -41,27 +41,27 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/products/category/{category}")
-    public ResponseEntity getProductByCategory(@PathVariable Category category){
+    @GetMapping("/category")
+    public ResponseEntity getProductByCategory(@RequestBody Category category){
         return ResponseEntity.ok(service.getProductsByCategory(category));
     }
-    @GetMapping("/products/brand/{brand}")
-    public ResponseEntity getProductByBrand(@PathVariable String brand){
+    @GetMapping("/brand")
+    public ResponseEntity getProductByBrand(@RequestBody String brand){
         return ResponseEntity.ok(service.getProductByBrand(brand));
     }
-    @GetMapping("/products/type/{type}")
-    public ResponseEntity getProductByType(@PathVariable Type type){
+    @GetMapping("/type")
+    public ResponseEntity getProductByType(@RequestBody Type type){
         return ResponseEntity.ok(service.getProductsByType(type));
     }
-    @GetMapping("/products/vendor/{vendor}")
-    public ResponseEntity getProductByVendor(@PathVariable Vendor vendor){
+    @GetMapping("/vendor")
+    public ResponseEntity getProductByVendor(@RequestBody Vendor vendor){
         return ResponseEntity.ok(service.getProductsByVendor(vendor));
     }
-    @PutMapping("/updateProduct")
+    @PutMapping()
     public ResponseEntity updateProduct(@RequestBody Product updateProduct){
         return ResponseEntity.ok(service.updateProduct(updateProduct));
     }
-    @DeleteMapping("delete/product/{productId}")
+    @DeleteMapping("/{productId}")
     public String deleteProduct(@PathVariable Integer productId){
         {
             String toReturn="";

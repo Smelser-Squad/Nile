@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/features")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class FeatureController {
@@ -18,16 +18,16 @@ public class FeatureController {
     @Autowired
     FeatureServiceImpl service;
 
-    @PostMapping("/addFeature")
+    @PostMapping()
     public ResponseEntity addFeature(@RequestBody Feature feature){
         return ResponseEntity.ok(service.addFeature(feature));
     }
-    @GetMapping("/features")
+    @GetMapping()
     public ResponseEntity getFeatures(){
         return ResponseEntity.ok(service.getAllFeatures());
     }
 
-    @GetMapping("/features/{featureId}")
+    @GetMapping("/{featureId}")
     public ResponseEntity getFeatureById(@PathVariable Integer featureId) {
         try {
             return ResponseEntity.ok(service.getFeatureById(featureId));
@@ -36,11 +36,11 @@ public class FeatureController {
         }
     }
 
-    @PutMapping("/updateFeature")
+    @PutMapping()
     public ResponseEntity updateFeature(@RequestBody Feature updatedFeature){
         return ResponseEntity.ok(service.updateFeature(updatedFeature));
     }
-    @DeleteMapping("delete/feature/{featureId}")
+    @DeleteMapping("/{featureId}")
     public String deleteFeature(@PathVariable Integer featureId){
         {
             String toReturn="";

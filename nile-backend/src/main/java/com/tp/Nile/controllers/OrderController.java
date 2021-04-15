@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/orders")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class OrderController {
@@ -18,16 +18,16 @@ public class OrderController {
     @Autowired
     OrderServiceImpl service;
 
-    @PostMapping("/addOrder")
+    @PostMapping()
     public ResponseEntity addOrder(@RequestBody Order order){
         return ResponseEntity.ok(service.addOrder(order));
     }
-    @GetMapping("/orders")
+    @GetMapping()
     public ResponseEntity getOrders(){
         return ResponseEntity.ok(service.getAllOrders());
     }
 
-    @GetMapping("/orders/{orderId}")
+    @GetMapping("/{orderId}")
     public ResponseEntity getOrderById(@PathVariable Integer orderId) {
         try {
             return ResponseEntity.ok(service.getOrderById(orderId));
@@ -36,11 +36,11 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/updateOrder")
+    @PutMapping()
     public ResponseEntity updateOrder(@RequestBody Order updatedOrder){
         return ResponseEntity.ok(service.updateOrder(updatedOrder));
     }
-    @DeleteMapping("delete/order/{orderId}")
+    @DeleteMapping("/{orderId}")
     public String deleteOrder(@PathVariable Integer orderId){
         {
             String toReturn="";
