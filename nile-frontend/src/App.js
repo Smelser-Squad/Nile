@@ -1,7 +1,8 @@
 import './App.css';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import Checkout from './components/Checkout/Checkout';
+import Checkout from './components/Cart/Checkout/Checkout';
+import SingleProductListing from './components/ProductListing/SingleProductListing';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 function App() {
@@ -12,6 +13,10 @@ function App() {
                 <Header />
 
                 <Switch>
+                    <Route path="/singleProductListing">
+                        <SingleProductListing />
+                    </Route>
+
                     <Route path="/checkout">
                         <Checkout />
                     </Route>

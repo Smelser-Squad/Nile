@@ -2,8 +2,10 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Review;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface ReviewService {
 

@@ -24,13 +24,14 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public List<Review> getReviewsByUserId(Integer userId)
             throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException {
+
         if(userId==null){
             throw new NullUserIdException("Cannot get reviews with null user id");
         }
 
         List<Review> retrieved=null;
 
-        List<Review> review=repo.findAll();
+        List<Review> review=repo.findByUser(userId);
 
         if(!review.isEmpty()){
             retrieved = review;
