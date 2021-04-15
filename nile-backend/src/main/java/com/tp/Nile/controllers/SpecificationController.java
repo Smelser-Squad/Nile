@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RequestMapping("/api/specs")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -17,15 +18,18 @@ public class SpecificationController {
     @Autowired
     SpecificationService service;
 
+
     @PostMapping()
     public ResponseEntity addSpec(@RequestBody Specification newSpec) {
         return ResponseEntity.ok(service.addSpec(newSpec));
     }
 
+
     @GetMapping()
     public ResponseEntity getSpecs() {
         return ResponseEntity.ok(service.getAllSpecs());
     }
+
 
     @GetMapping("/{specId}")
     public ResponseEntity getSpecById(@PathVariable Integer specId) {
@@ -36,6 +40,7 @@ public class SpecificationController {
         }
     }
 
+
     @PutMapping("/{specId}")
     public ResponseEntity updateSpec(@PathVariable Integer specId, @RequestBody Specification updatedSpec) {
         try {
@@ -44,6 +49,7 @@ public class SpecificationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
+
 
     @DeleteMapping("/{specId}")
     public ResponseEntity deleteSpec(@PathVariable Integer specId) {
