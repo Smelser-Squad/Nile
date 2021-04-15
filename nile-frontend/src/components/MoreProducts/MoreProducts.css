@@ -8,30 +8,30 @@ hr {
     background-color:rgb(233, 230, 230);
 }
 
-.row .header h3 {
+#customer-bought{
     float: left;
-    margin-left: 20px;
+    margin-left: 25px;
     line-height: 28px;  
 }
 
 .pages {
     float: right;
-    margin-right: 20px;   
-    line-height: 28px;  
-}
-
-#right-nav {
-    float:right;
-}
-
-#left-nav {
-    float:left;
+    margin-right: 25px;
+    line-height: 28px;
 }
 
 .nav-button:hover {
     cursor: pointer;
 }
 
-.row {
-    display: flex;
+.nav-button {
+    margin-top: 150px;
+    height: 30px;
 }
+
+#left-nav {
+    margin-left: 25px;
+}
+
+
+
