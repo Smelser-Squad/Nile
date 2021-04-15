@@ -37,7 +37,7 @@ public class ProductController {
     public ResponseEntity getProductById(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getProductById(productId));
-        } catch (NullProductIdException | InvaildProductIdException e) {
+        } catch (NullProductIdException | InvalidProductIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -71,7 +71,7 @@ public class ProductController {
                 }else{
                     toReturn="Product " + productId + "not found";
                 }
-            }catch (InvaildProductIdException | NullProductIdException ex){
+            }catch (InvalidProductIdException | NullProductIdException ex){
                 ex.getMessage();
             }
             return  toReturn;
