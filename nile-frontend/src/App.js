@@ -16,6 +16,7 @@ function App() {
                 <Switch>
                     <Route exact path="/singleProductListing">
                         <SingleProductListing />
+                        <Tag />
                     </Route>
 
                     <Route exact path="/checkout">
@@ -24,11 +25,12 @@ function App() {
 
                     <Route exact path="/">
                         <Home />
+              
                     </Route>
-
                 </Switch>
             </div>
         </Router>
+        
     );
 }
 
