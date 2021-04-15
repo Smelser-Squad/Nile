@@ -27,6 +27,9 @@ public class ProductServiceImpl implements ProductService {
    @Autowired
    FeatureServiceImpl featureService;
 
+   @Autowired
+   PhotoServiceImpl photoService;
+
     public List<Product> getAllProducts() {
         return repo.findAll();
     }
@@ -98,29 +101,33 @@ public class ProductServiceImpl implements ProductService {
         } catch (NullTypeIdException | InvalidTypeIdException e) {
             e.getMessage();
         }
-            Vendor vendor= null;
+        Vendor vendor= null;
             try {
                 vendor = vendorService.getVendorById(product.getVendorId());
             } catch (NullVendorIdException | InvalidVendorIdException e) {
                 e.getMessage();
             }
 
-            Set<Feature> features = new HashSet<>();
-        for(Integer id:product.getFeatureId()){
-            try {
-                features.add(featureService.getFeatureById(id));
-            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
-                e.getMessage();
-            }
-        }
-
+//            Set<Feature> features = new HashSet<>();
+//        for(Integer id:product.getFeatureId()){
+//            try {
+//                features.add(featureService.getFeatureById(id));
+//            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
+//                e.getMessage();
+//            }
+//        }
+//
 //        List<ProductPhoto> photos=new ArrayList<>();
 //        for(Integer id:product.getPhotoId()){
-//            photos.add(photoService.getPhotoById(id));
+//            try {
+//                photos.add(photoService.getPhotoById(id));
+//            } catch (NullPhotoIdException | InvalidPhotoIdException e) {
+//                e.getMessage();
+//            }
 //        }
-
+//
 //        newProduct.setPhotoList(photos);
-        newProduct.setFeatures(features);
+//        newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);
@@ -129,6 +136,8 @@ public class ProductServiceImpl implements ProductService {
         newProduct.setDescription(product.getDescription());
         newProduct.setBrand(product.getBrand());
         newProduct.setPrice(product.getPrice());
+        newProduct.setStock(product.getStock());
+        newProduct.setPrimeEligible(product.isPrimeEligible());
 
 
 

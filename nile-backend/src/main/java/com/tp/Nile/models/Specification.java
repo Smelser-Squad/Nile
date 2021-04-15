@@ -26,6 +26,6 @@ public class Specification implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Type type;
 }

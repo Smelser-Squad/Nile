@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 
     @Id
@@ -54,11 +56,15 @@ public class Product implements Serializable {
     @Column(name = "brand", nullable = false)
     private String brand;
 
+    @Column(name = "stock", nullable = false)
+    private  Integer stock;
+
+    @Column(name = "primeEligible", nullable = false)
+    private boolean primeEligible;
+
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
-
-
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "product_feature",
@@ -67,9 +73,12 @@ public class Product implements Serializable {
     private Set<Feature> features = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+    private Set<Review> reviews=new HashSet<>();
 
 
 

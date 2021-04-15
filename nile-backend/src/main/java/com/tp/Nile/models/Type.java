@@ -31,7 +31,7 @@ public class Type implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "type",
             orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Product> products = new HashSet<>();
+
+   private Set<Product> products = new HashSet<>();
 
 }

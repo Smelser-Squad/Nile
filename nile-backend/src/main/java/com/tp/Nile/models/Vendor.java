@@ -30,5 +30,7 @@ public class Vendor implements Serializable {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+
 }
 
