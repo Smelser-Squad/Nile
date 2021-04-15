@@ -1,11 +1,7 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvaildProductIdException;
 import com.tp.Nile.exceptions.InvalidTypeIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
-import com.tp.Nile.models.Category;
-import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
