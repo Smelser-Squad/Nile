@@ -1,23 +1,44 @@
 import './HomeProduct.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../../StateProvider";
 
-function HomeProduct() {
+
+function HomeProduct({ productId, image, name, price }) {
+    const [{ cart }, dispatch] = useStateValue();
+    console.log(cart);
+
+    const addToCart = () => {
+        // dispatch the item into the data layer
+        dispatch({
+            type: "ADD_TO_CART",
+            product: {
+                productId: productId,
+                name: name,
+                image: image,
+                price: price,
+                // rating: rating,
+            },
+        });
+    };
+
     return (
         <div className="product">
             <div className="product_info"></div>
-            <Link to="/singleProductListing">
 
-                <p id="product_name">Product name here</p>
-            </Link>
             <Link to="/singleProductListing">
-                <img class="image" id="product-image" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdna.lystit.com%2Fphotos%2Fmacys%2F6f2f2c3b%2Fchampion-Black-Vapor-Select-Training-Pants.jpeg&f=1&nofb=1" alt="product_image"></img>
+                <p id="product_name">{name}</p>
+            </Link>
+
+            <Link to="/singleProductListing">
+                <img id="product-image" src={image} alt="" />
             </Link>
 
             <Link to="/singleProductListing">
                 <p id="price_tag">
-                    <small> $ </small>
-                    <strong>10.00</strong>
+                    <small>$</small>
+                    <strong>{price}</strong>
+
                 </p>
             </Link>
 
@@ -34,7 +55,7 @@ function HomeProduct() {
             <Link to="/singleProductListing">
                 <img id="prime_img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1" />
             </Link>
-            <button>Add to Cart</button>
+            <button onClick={addToCart}>Add to Cart</button>
 
         </div >
     );

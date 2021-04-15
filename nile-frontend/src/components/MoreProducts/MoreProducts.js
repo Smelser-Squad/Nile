@@ -1,5 +1,5 @@
 import './MoreProducts.css';
-import Product from "./Product"
+import Product from "./Product.js"
 
 function MoreProducts() {
     return (
