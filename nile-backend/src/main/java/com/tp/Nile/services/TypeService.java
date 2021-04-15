@@ -14,4 +14,8 @@ public interface TypeService {
     Type getTypeById(Integer typeId) throws NullTypeIdException, InvalidTypeIdException;
 
     Type addType(Type newType);
+
+    Type updateType(Integer typeId, Type updatedType) throws NullTypeIdException, InvalidTypeIdException;
+
+    boolean deleteType(Integer typeId) throws NullTypeIdException;
 }
