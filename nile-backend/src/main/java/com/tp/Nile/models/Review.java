@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,8 +38,20 @@ public class Review implements Serializable {
     @Column(name = "review_date", nullable = false)
     private LocalDate reviewDate;
 
-    @OneToMany(mappedBy = "review")
-    private Set<ProductFeature> productFeatures = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    @JsonBackReference
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "feature_id")
+    private Feature feature;
+
+    @Column(name="rating", nullable = false)
+    private Integer rating;
+
+    @Column(name = "helpful")
+    private boolean helpful;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)

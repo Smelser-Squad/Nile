@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Getter
@@ -26,12 +29,8 @@ public class Feature implements Serializable {
     @Column(name ="name",nullable = false)
     private String name;
 
-
-    @ManyToOne
-    private Product product;
-
-    @OneToMany(mappedBy = "feature")
-    private Set<ProductFeature> productFeatures = new HashSet<>();
+    @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
+    private Set<Product> products;
 
 
 }
