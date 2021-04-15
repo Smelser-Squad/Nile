@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+@JsonIgnoreProperties(value = {"products"}, allowSetters = true)
 public class Type implements Serializable {
 
     @Id
@@ -31,7 +33,8 @@ public class Type implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "type",
             orphanRemoval = true)
-    @JsonManagedReference
+
     private Set<Product> products = new HashSet<>();
+
 
 }
