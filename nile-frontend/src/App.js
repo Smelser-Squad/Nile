@@ -14,15 +14,15 @@ function App() {
                 <Header />
 
                 <Switch>
-                    <Route path="/singleProductListing">
+                    <Route exact path="/singleProductListing">
                         <SingleProductListing />
                     </Route>
 
-                    <Route path="/checkout">
+                    <Route exact path="/checkout">
                         <Checkout />
                     </Route>
 
-                    <Route path="/">
+                    <Route exact path="/">
                         <Home />
                     </Route>
 
