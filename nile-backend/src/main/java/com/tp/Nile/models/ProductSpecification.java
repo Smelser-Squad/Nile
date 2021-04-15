@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,9 @@ public class ProductSpecification implements Serializable {
 
     @ManyToOne
     @MapsId("productId")
+
+    @JsonIgnoreProperties(value = {"productSpecs"})
+
     private Product product;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,13 +35,16 @@ public class Question implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
+
+
+    @JsonIgnoreProperties(value = {"questions"})
+
     private Product product;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "question",
             orphanRemoval = true)
-    @JsonManagedReference
     private Set<Answer> answers = new HashSet<>();
 
 }
