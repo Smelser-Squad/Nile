@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/api/reviews")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ReviewController {
@@ -16,7 +16,7 @@ public class ReviewController {
     @Autowired
     ReviewServiceImpl service;
 
-    @PostMapping("/addReview")
+    @PostMapping
     public ResponseEntity addReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.addReview(review));
@@ -26,7 +26,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/reviews")
+    @GetMapping
     public ResponseEntity getReviews() {
         try {
             return ResponseEntity.ok(service.getAllReviews());
@@ -37,7 +37,7 @@ public class ReviewController {
 
     }
 
-    @GetMapping("/review/{reviewId}")
+    @GetMapping("/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
         try {
             return ResponseEntity.ok(service.getReviewById(reviewId));
@@ -46,7 +46,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/reviews/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
             return ResponseEntity.ok(service.getReviewsByUserId(userId));
@@ -55,7 +55,7 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/updateReview")
+    @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.updateReview(review));
@@ -66,7 +66,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/deleteReview/{reviewId}")
+    @DeleteMapping("/{reviewId}")
     public String deleteReview(@PathVariable Integer reviewId) {
         {
             String toReturn="";

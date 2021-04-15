@@ -19,6 +19,7 @@
 //
 //@DataJpaTest
 //@AutoConfigureTestDatabase(replace = Replace.NONE)
+//@ActiveProfiles("test")
 //public class ReviewTest {
 //
 //    @Autowired
