@@ -25,7 +25,7 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -53,9 +53,6 @@ public class Review implements Serializable {
     @Column(name = "helpful")
     private boolean helpful;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)
-//    private User user;
 //
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_product_id", nullable = false)

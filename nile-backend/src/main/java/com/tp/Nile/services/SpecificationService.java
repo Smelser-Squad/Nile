@@ -12,6 +12,6 @@ public interface SpecificationService {
     List<Specification> getSpecsByType(Type type);
     Specification getSpecById(Integer specId) throws NullSpecIdException, InvalidSpecIdException;
     Specification addSpec(Specification newSpec);
-    Specification updateSpec(Specification updatedSpec);
+    Specification updateSpec(Integer specId, Specification updatedSpec) throws NullSpecIdException, InvalidSpecIdException;
     boolean deleteSpec(Integer specId) throws NullSpecIdException;
 }

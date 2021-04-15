@@ -25,13 +25,18 @@ hr {
 }
 
 .nav-button {
-    margin-top: 150px;
+    margin-top: 10px;
     height: 30px;
+}
+
+.nav-button:active {
+    border: solid 1px #C45500;
 }
 
 #left-nav {
     margin-left: 25px;
 }
+
 
 
 
