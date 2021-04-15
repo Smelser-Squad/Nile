@@ -1,11 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidOrderIdException;
-import com.tp.Nile.exceptions.InvalidPhotoIdException;
-import com.tp.Nile.exceptions.NullOrderIdException;
-import com.tp.Nile.exceptions.NullPhotoIdException;
-import com.tp.Nile.models.Order;
-import com.tp.Nile.models.Product;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.repositories.ProductPhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +35,41 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public List<ProductPhoto> getPhotosByProduct(Product product) {return repo.getPhotosByProduct(product);}
+    public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException
+        {return repo.getPhotosByProduct(productId);}
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto) {return repo.saveAndFlush(newPhoto);}
 
     @Override
-    public ProductPhoto updatePhoto(ProductPhoto update) {return repo.saveAndFlush(update);}
+    public ProductPhoto updatePhoto(ProductPhoto photo) {
+        ProductPhoto updated = repo.findById(photo.getPhotoId()).get();
+
+        if (updated != null) {
+            updated.setColor(photo.getColor());
+            updated.setImageSrc(photo.getImageSrc());
+            updated.setProduct(photo.getProduct());
+        }
+        return repo.saveAndFlush(photo);
+    }
+
+    @Override
+    public boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException {
+        if (photoId == null) {
+            throw new NullPhotoIdException("Can not delete photo with an ID of null.");
+        }
+        ProductPhoto retrieved = repo.findById(photoId).get();
+        if (retrieved != null){
+            repo.delete(retrieved);
+            return true;
+        } else {
+            throw new InvalidPhotoIdException("Photo with that ID does not exist.");
+        }
+    }
+
+
+
+
+
+
 }
