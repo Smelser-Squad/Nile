@@ -31,7 +31,6 @@ public class User implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
-    @JsonIgnoreProperties("user")
     private Set<Answer> answers = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

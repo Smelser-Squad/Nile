@@ -38,6 +38,5 @@ public class Order implements Serializable {
     private String status;
 
     @OneToMany(mappedBy = "order")
-    @JsonIgnoreProperties("order")
     private Set<ProductOrder> orderProducts = new HashSet<>();
 }

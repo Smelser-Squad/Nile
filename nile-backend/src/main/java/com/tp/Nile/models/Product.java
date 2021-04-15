@@ -54,7 +54,6 @@ public class Product implements Serializable {
     private String brand;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<ProductPhoto> photoList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -65,14 +64,12 @@ public class Product implements Serializable {
 
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnoreProperties("product")
     private Set<ProductOrder> productOrders = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    @JsonManagedReference
     private Set<Question> questions = new HashSet<>();
 
     @OneToMany(mappedBy = "product")

@@ -35,13 +35,13 @@ public class Question implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
+    @JsonIgnoreProperties("questions")
     private Product product;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "question",
             orphanRemoval = true)
-    @JsonIgnoreProperties("question")
     private Set<Answer> answers = new HashSet<>();
 
 }
