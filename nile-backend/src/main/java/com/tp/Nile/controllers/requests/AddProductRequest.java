@@ -1,5 +1,6 @@
 package com.tp.Nile.controllers.requests;
 
+import com.tp.Nile.models.ProductPhoto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +10,7 @@ import java.util.List;
 @Getter
 public class AddProductRequest {
 
-    private Integer productId;
     private Integer categoryId;
-    private Integer questionId;
     private Integer typeId;
     private Integer orderId;
     private Integer vendorId;
@@ -23,6 +22,8 @@ public class AddProductRequest {
     private String description;
     private Double price;
     private String brand;
+    private Integer stock;
+    private boolean primeEligible;
 
 
 }

@@ -27,6 +27,9 @@ public class ProductServiceImpl implements ProductService {
    @Autowired
    FeatureServiceImpl featureService;
 
+   @Autowired
+   PhotoServiceImpl photoService;
+
     public List<Product> getAllProducts() {
         return repo.findAll();
     }
@@ -98,7 +101,7 @@ public class ProductServiceImpl implements ProductService {
         } catch (NullTypeIdException | InvalidTypeIdException e) {
             e.getMessage();
         }
-            Vendor vendor= null;
+        Vendor vendor= null;
             try {
                 vendor = vendorService.getVendorById(product.getVendorId());
             } catch (NullVendorIdException | InvalidVendorIdException e) {
@@ -114,12 +117,16 @@ public class ProductServiceImpl implements ProductService {
             }
         }
 
-//        List<ProductPhoto> photos=new ArrayList<>();
-//        for(Integer id:product.getPhotoId()){
-//            photos.add(photoService.getPhotoById(id));
-//        }
+        List<ProductPhoto> photos=new ArrayList<>();
+        for(Integer id:product.getPhotoId()){
+            try {
+                photos.add(photoService.getPhotoById(id));
+            } catch (NullPhotoIdException | InvalidPhotoIdException e) {
+                e.getMessage();
+            }
+        }
 
-//        newProduct.setPhotoList(photos);
+        newProduct.setPhotoList(photos);
         newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
@@ -129,6 +136,8 @@ public class ProductServiceImpl implements ProductService {
         newProduct.setDescription(product.getDescription());
         newProduct.setBrand(product.getBrand());
         newProduct.setPrice(product.getPrice());
+        newProduct.setStock(product.getStock());
+        newProduct.setPrimeEligible(product.isPrimeEligible());
 
 
 
