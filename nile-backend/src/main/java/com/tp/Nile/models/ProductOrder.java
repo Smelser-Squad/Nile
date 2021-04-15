@@ -1,5 +1,6 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,17 +14,21 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderProduct implements Serializable {
+public class ProductOrder implements Serializable {
 
     @EmbeddedId
-    private OrderProductId id = new OrderProductId();
+    private ProductOrderId id = new ProductOrderId();
 
     @ManyToOne
     @MapsId("orderId")
+    @JsonIgnoreProperties(value = {"orderProducts"})
     private Order order;
 
     @ManyToOne
     @MapsId("productId")
+
+    @JsonIgnoreProperties(value = {"productOrders"})
+
     private Product product;
 
     @Column(name="quantity", nullable = false)

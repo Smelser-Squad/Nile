@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NileApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NileApplication.class, args);
+		SpringApplication app = new SpringApplication(NileApplication.class);
+		app.setAdditionalProfiles("dev");
+		app.run();
 	}
 
 }
