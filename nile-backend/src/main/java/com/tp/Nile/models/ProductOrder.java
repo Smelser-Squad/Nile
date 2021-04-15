@@ -21,11 +21,14 @@ public class ProductOrder implements Serializable {
 
     @ManyToOne
     @MapsId("orderId")
+    @JsonIgnoreProperties(value = {"orderProducts"})
     private Order order;
 
     @ManyToOne
     @MapsId("productId")
-    @JsonIgnoreProperties("productOrders")
+
+    @JsonIgnoreProperties(value = {"productOrders"})
+
     private Product product;
 
     @Column(name="quantity", nullable = false)

@@ -28,6 +28,5 @@ public class Specification implements Serializable {
             cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")
 
-
     private Type type;
 }

@@ -22,7 +22,8 @@ public class ProductPhoto implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
-    @JsonIgnoreProperties("photoList")
+    @JsonIgnoreProperties(value = {"photoList"})
+
     private Product product;
 
     @Column(name = "image_src", nullable = false)

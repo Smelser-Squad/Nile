@@ -29,12 +29,17 @@ public class Answer implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
-    @JsonIgnoreProperties("answers")
+
+
+    @JsonIgnoreProperties(value = {"answers"})
+
     private Question question;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("answers")
+
+    @JsonIgnoreProperties(value = {"answers"})
+
     private User user;
 
 }
