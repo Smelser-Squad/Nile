@@ -20,12 +20,18 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.20'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.postgresql:postgresql'
 	runtimeOnly 'org.postgresql:postgresql'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 }
 
 test {
