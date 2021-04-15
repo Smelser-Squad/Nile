@@ -20,9 +20,11 @@
     text-decoration: none;
     color: #067186;
 }
+
 #product-name:active {
     text-decoration: none;
 }
+
 #product-name:hover {
     cursor: pointer;
     text-decoration: underline;
