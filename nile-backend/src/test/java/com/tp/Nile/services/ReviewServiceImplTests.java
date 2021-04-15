@@ -1,17 +1,24 @@
 //package com.tp.Nile.services;
 //
+//import com.tp.Nile.exceptions.InvalidReviewIdException;
+//import com.tp.Nile.exceptions.NullReviewAttributeException;
+//import com.tp.Nile.exceptions.NullReviewIdException;
 //import com.tp.Nile.models.Product;
 //import com.tp.Nile.models.Review;
 //import com.tp.Nile.models.Type;
+//import com.tp.Nile.models.User;
 //import org.junit.Before;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.extension.*;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 //import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.ActiveProfiles;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
 //import org.springframework.test.context.junit4.SpringRunner;
 //
 //import java.time.LocalDate;
@@ -21,59 +28,76 @@
 //import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 //import static org.junit.jupiter.api.Assertions.*;
 //
-//@RunWith(SpringRunner.class)
+//@ExtendWith(SpringExtension.class)
 //@DataJpaTest
+//@ActiveProfiles("test")
 //public class ReviewServiceImplTests {
 //
 //    @Autowired
-//    private TestEntityManager entityManager;
+//    ReviewServiceImpl service;
 //
-//    private Review review1;
-//    private List<Review> reviewList;
+//    @Test
+//    public void addReviewNullIdAttribute() {
 //
-//    @Before
-//    public void setup() {
+//        Review test = new Review();
+//        test.setReviewId(null);
+//        test.setRating(4);
+//        test.setReviewDate(LocalDate.of(2020, 4, 14));
+//        test.setTitle("Title");
+//        test.setSummary("Summary");
+//        test.setUser(new User());
+//        try {
+//            service.addReview(test);
+//            fail();
+//        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException ex) {
+//            ex.getMessage();
+//            fail();
+//        }
+//    }
 //
-//        review1 = new Review();
-//        review1.setReviewId(1);
-//        review1.setReviewDate(LocalDate.of(2017,5,15));
-//        review1.setSummary("This is a test summary");
-//        review1.setTitle("This Product Is Awesome!");
-//        review1.setUserId(2);
-//        reviewList.add(review1);
+//    @Test
+//    public void addReviewNonNullableAttribute() {
+//
+//        Review newTest = new Review();
+//        newTest.setReviewId(5);
+//        newTest.setRating(null);
+//        newTest.setReviewDate(LocalDate.of(2020, 4, 14));
+//        newTest.setTitle("Title");
+//        newTest.setSummary("Summary");
+//        newTest.setUser(new User());
+//        try {
+//            service.addReview(newTest);
+//            fail();
+//        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException ex) {
+//            ex.getMessage();
+//            fail();
+//        }
 //
 //    }
 //
 //    @Test
-//    public void addReviewTest() {
+//    public void addReviewGoldenPath() throws NullReviewAttributeException, NullReviewIdException, InvalidReviewIdException {
+//        Review newTest = new Review();
+//        newTest.setReviewId(5);
+//        newTest.setRating(5);
+//        newTest.setReviewDate(LocalDate.of(2020, 4, 14));
+//        newTest.setTitle("Title");
+//        newTest.setSummary("Summary");
+//        newTest.setUser(new User());
+//        try {
+//            service.addReview(newTest);
+//            System.out.println(service.getReviewById(5).getReviewId());
 //
-//        Review newReview = new Review();
-//        newReview.setReviewId(2);
-//        review1.setReviewDate(LocalDate.of(2018,1,12));
-//        review1.setSummary("This is a test 2 summary");
-//        review1.setTitle("This Product Is Not Good!");
-//        review1.setUserId(2);
+//        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException ex) {
+//            ex.getMessage();
+//            fail();
+//        }
 //
-//        Review savedReview = this.entityManager.persistAndFlush(newReview);
-//
-//        assertEquals(savedReview.getReviewId(), 2);
-//        assertEquals(savedReview.getUserId(), 2);
-//        assertEquals(savedReview.getSummary(), "This is a test 2 summary");
-//        assertEquals(savedReview.getTitle(), "This Product Is Not Good!");
-//        assertEquals(savedReview.getReviewDate(), LocalDate.of(2018,1,12));
-//
-//    }
-//
-//    @Test
-//    public void editReviewTest() {
-//
-//
-//
-//    }
-//
-//    @Test
-//    public void deleteReviewTest() {
-//
+//        assertEquals(5, service.getReviewById(5).getReviewId());
+//        assertEquals(LocalDate.of(2020,4,14), service.getReviewById(5));
+//        assertEquals("Summary", service.getReviewById(5).getSummary());
+//        assertEquals(5, service.getReviewById(5).getRating());
+//        assertEquals("Title", service.getReviewById(5).getTitle());
 //    }
 //
 //}
