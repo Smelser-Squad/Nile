@@ -38,7 +38,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    @JsonIgnoreProperties("products")
+    @JsonIgnoreProperties(value = {"products"})
     private Type type;
 
     @Column(name = "price", nullable = false)
