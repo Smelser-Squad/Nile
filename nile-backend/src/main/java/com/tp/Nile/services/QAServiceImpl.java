@@ -1,7 +1,7 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvaildProductIdException;
-import com.tp.Nile.exceptions.InvaildQAIdException;
+import com.tp.Nile.exceptions.InvalidProductIdException;
+import com.tp.Nile.exceptions.InvalidQAIdException;
 import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.exceptions.NullQAIdException;
 import com.tp.Nile.models.Answer;
@@ -29,14 +29,14 @@ public class QAServiceImpl implements QAService{
 
 
     @Override
-    public Question addQuestion(Question question, Integer productId) throws NullProductIdException, InvaildProductIdException {
+    public Question addQuestion(Question question, Integer productId) throws NullProductIdException, InvalidProductIdException {
         Product pro = pRepo.getProductById(productId);
         question.setProduct(pro);
         return qRepo.saveAndFlush(question);
     }
 
     @Override
-    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvaildQAIdException, NullQAIdException {
+    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException {
         Question que = this.getQuestionById(questionId);
         //TODO: NEED USER SERVICE
         answer.setQuestion(que);
@@ -45,7 +45,7 @@ public class QAServiceImpl implements QAService{
     }
 
     @Override
-    public Set<Question> getQuestions(Integer productId) throws NullProductIdException, InvaildProductIdException {
+    public Set<Question> getQuestions(Integer productId) throws NullProductIdException, InvalidProductIdException {
         Product pro = pRepo.getProductById(productId);
         Set<Question> que = qRepo.findByProduct(pro);
         if(!que.isEmpty()){
@@ -55,13 +55,13 @@ public class QAServiceImpl implements QAService{
     }
 
     @Override
-    public Set<Answer> getAnswers(Integer questionId) throws InvaildQAIdException, NullQAIdException {
+    public Set<Answer> getAnswers(Integer questionId) throws InvalidQAIdException, NullQAIdException {
         Question que = this.getQuestionById(questionId);
         return aRepo.findByQuestion(que);
     }
 
     @Override
-    public Question updateVote(Integer questionId, Integer votes) throws InvaildQAIdException, NullQAIdException {
+    public Question updateVote(Integer questionId, Integer votes) throws InvalidQAIdException, NullQAIdException {
         Question que = this.getQuestionById(questionId);
         que.setVotes(votes);
         return qRepo.saveAndFlush(que);
@@ -69,14 +69,14 @@ public class QAServiceImpl implements QAService{
     }
 
     @Override
-    public Boolean deleteQue(Integer questionId) throws InvaildQAIdException, NullQAIdException {
+    public Boolean deleteQue(Integer questionId) throws InvalidQAIdException, NullQAIdException {
         Question que = this.getQuestionById(questionId);
         qRepo.deleteById(questionId);
         return true;
     }
 
     @Override
-    public Boolean deleteAnswer(Integer answerId) throws NullQAIdException, InvaildQAIdException {
+    public Boolean deleteAnswer(Integer answerId) throws NullQAIdException, InvalidQAIdException {
         if(answerId == null){
             throw new NullQAIdException("Cannot delete Answer with null id");
         }
@@ -85,11 +85,11 @@ public class QAServiceImpl implements QAService{
             aRepo.deleteById(answerId);
             return true;
         }
-        throw new InvaildQAIdException("Cannot delete answer");
+        throw new InvalidQAIdException("Cannot delete answer");
     }
 
     @Override
-    public Question getQuestionById(Integer questionId) throws InvaildQAIdException, NullQAIdException {
+    public Question getQuestionById(Integer questionId) throws InvalidQAIdException, NullQAIdException {
         if(questionId==null){
             throw new NullQAIdException("Cannot get question with null id");
         }
@@ -99,7 +99,7 @@ public class QAServiceImpl implements QAService{
             toReturn = question.get();
             return toReturn;
         }else{
-            throw new InvaildQAIdException("Question with that id does not exist");
+            throw new InvalidQAIdException("Question with that id does not exist");
         }
     }
 }
