@@ -21,9 +21,20 @@ function Home() {
                 {/* <br>
                 </br> */}
                 <div className="home_row">
-                    <HomeProduct />
-                    <HomeProduct />
-                </div>
+                    <HomeProduct
+                        productId="12321341"
+                        name="Gift for Mom"
+                        price={80.99}
+                        // rating={4}
+                        image="https://i.etsystatic.com/5584756/r/il/7d61bd/2957120029/il_1588xN.2957120029_kefx.jpg" />
+
+
+                    <HomeProduct
+                        productId="12321341"
+                        name="Wood Tabletop"
+                        price={10.99}
+                        // rating={4}
+                        image="https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg" />                </div>
 
                 <div className="home_row">
                     <HomeProduct />
@@ -35,13 +46,6 @@ function Home() {
                 <div className="home_row">
                     <HomeProduct />
                 </div>
-
-                {/* <Link to="/singleProductListing">
-                    <img id="myImg" src="https://media.reformclothing.com/design_lab/ysd-products/C1005_T-Shirt/C1005_T_Shirt_Front_A_800.png"
-                        alt="product">
-                    </img>
-                </Link> */}
-
             </div >
         </div>
     )
