@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
         return repo.getProductsByType(type);
     }
 
-    public Product getProductById(Integer productId) throws NullProductIdException,InvaildProductIdException {
+    public Product getProductById(Integer productId) throws NullProductIdException, InvalidProductIdException {
         if(productId==null){
             throw new NullProductIdException("Cannot get product with null id");
         }
@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
             retrieved=product.get();
             return retrieved;
         }else{
-            throw new InvaildProductIdException("Product with that id does not exist");
+            throw new InvalidProductIdException("Product with that id does not exist");
         }
 
     }
@@ -158,7 +158,7 @@ public class ProductServiceImpl implements ProductService {
         return repo.saveAndFlush(updatedProduct);
     }
 
-    public boolean deleteProduct(Integer productId) throws NullProductIdException, InvaildProductIdException {
+    public boolean deleteProduct(Integer productId) throws NullProductIdException, InvalidProductIdException {
         if(productId==null){
             throw new NullProductIdException("Cannot delete product with null id");
         }
@@ -167,7 +167,7 @@ public class ProductServiceImpl implements ProductService {
             repo.delete(retreived);
             return true;
         }else{
-            throw new InvaildProductIdException("Product with that id does not exist");
+            throw new InvalidProductIdException("Product with that id does not exist");
         }
     }
 }
