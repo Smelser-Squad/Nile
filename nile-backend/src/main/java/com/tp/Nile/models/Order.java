@@ -28,7 +28,9 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+
     @JsonIgnoreProperties(value = {"orders"})
+
     private User user;
 
     @Column(name = "purchase_date", nullable = false)

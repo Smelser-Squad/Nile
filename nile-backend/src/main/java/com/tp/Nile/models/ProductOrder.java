@@ -26,7 +26,9 @@ public class ProductOrder implements Serializable {
 
     @ManyToOne
     @MapsId("productId")
+
     @JsonIgnoreProperties(value = {"productOrders"})
+
     private Product product;
 
     @Column(name="quantity", nullable = false)

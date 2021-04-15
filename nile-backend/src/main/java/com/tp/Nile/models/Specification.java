@@ -27,5 +27,6 @@ public class Specification implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")
+
     private Type type;
 }
