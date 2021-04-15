@@ -1,6 +1,5 @@
 package com.tp.Nile.controllers;
 
-
 import com.tp.Nile.controllers.requests.AddProductRequest;
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
@@ -11,9 +10,6 @@ import com.tp.Nile.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
-
 
 @RequestMapping("/api")
 @RestController
