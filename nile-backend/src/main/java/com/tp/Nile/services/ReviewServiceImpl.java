@@ -16,12 +16,14 @@ public class ReviewServiceImpl implements ReviewService{
     ReviewRepository repo;
 
     @Override
-    public List<Review> getAllReviews() {
+    public List<Review> getAllReviews()
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException{
         return repo.findAll();
     }
 
     @Override
-    public List<Review> getReviewsByUserId(Integer userId) throws InvalidUserIdException, NullUserIdException {
+    public List<Review> getReviewsByUserId(Integer userId)
+            throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException {
         if(userId==null){
             throw new NullUserIdException("Cannot get reviews with null user id");
         }
@@ -39,7 +41,8 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review getReviewById(Integer reviewId) throws NullReviewIdException, InvalidReviewIdException {
+    public Review getReviewById(Integer reviewId)
+            throws NullReviewIdException, InvalidReviewIdException, NullReviewAttributeException {
         if(reviewId==null){
             throw new NullReviewIdException("Cannot get review with null id");
         }
@@ -50,24 +53,30 @@ public class ReviewServiceImpl implements ReviewService{
 
         if(review.isPresent()){
             retrieved=review.get();
-            return retrieved;
+            if (retrieved == null)
+                throw new NullReviewAttributeException("All non nullable attributes must have value");
+            else
+                return retrieved;
         }else{
             throw new InvalidReviewIdException("Product with that id does not exist");
         }
     }
 
     @Override
-    public Review addReview(Review newReview) {
+    public Review addReview(Review newReview)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException {
         return repo.saveAndFlush(newReview);
     }
 
     @Override
-    public Review updateReview(Review updatedReview) {
+    public Review updateReview(Review updatedReview)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException {
         return repo.saveAndFlush(updatedReview);
     }
 
     @Override
-    public boolean deleteReview(Integer reviewId) throws NullReviewIdException, InvalidReviewIdException {
+    public boolean deleteReview(Integer reviewId)
+            throws NullReviewIdException, InvalidReviewIdException, NullReviewAttributeException {
         if(reviewId==null){
             throw new NullReviewIdException("Cannot delete review with null id");
         }

@@ -18,19 +18,30 @@ public class ReviewController {
 
     @PostMapping("/addReview")
     public ResponseEntity addReview(@RequestBody Review review) {
-        return ResponseEntity.ok(service.addReview(review));
+        try {
+            return ResponseEntity.ok(service.addReview(review));
+        }
+        catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/reviews")
     public ResponseEntity getReviews() {
-        return ResponseEntity.ok(service.getAllReviews());
+        try {
+            return ResponseEntity.ok(service.getAllReviews());
+        }
+        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/review/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
         try {
             return ResponseEntity.ok(service.getReviewById(reviewId));
-        } catch (NullReviewIdException | InvalidReviewIdException e) {
+        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -39,14 +50,20 @@ public class ReviewController {
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
             return ResponseEntity.ok(service.getReviewsByUserId(userId));
-        } catch (NullUserIdException | InvalidUserIdException e) {
+        } catch (NullUserIdException | InvalidUserIdException | NullReviewAttributeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PutMapping("/updateReview")
     public ResponseEntity updateReview(@RequestBody Review review) {
-        return ResponseEntity.ok(service.updateReview(review));
+        try {
+            return ResponseEntity.ok(service.updateReview(review));
+        }
+        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e)
+        {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/deleteReview/{reviewId}")
@@ -59,7 +76,7 @@ public class ReviewController {
                 }else{
                     toReturn="Product " + reviewId + "not found";
                 }
-            }catch (InvalidReviewIdException | NullReviewIdException ex){
+            }catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException ex){
                 ex.getMessage();
             }
             return toReturn;

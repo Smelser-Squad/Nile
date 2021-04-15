@@ -1,25 +1,28 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidReviewIdException;
-import com.tp.Nile.exceptions.InvalidUserIdException;
-import com.tp.Nile.exceptions.NullReviewIdException;
-import com.tp.Nile.exceptions.NullUserIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Review;
 
 import java.util.List;
 
 public interface ReviewService {
 
-    List<Review> getAllReviews();
+    List<Review> getAllReviews()
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    List<Review> getReviewsByUserId(Integer userId) throws InvalidUserIdException, NullUserIdException;
+    List<Review> getReviewsByUserId(Integer userId)
+            throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException;
 
-    Review getReviewById(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException;
+    Review getReviewById(Integer reviewId)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    Review addReview(Review newReview);
+    Review addReview(Review newReview)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    Review updateReview(Review updatedReview);
+    Review updateReview(Review updatedReview)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    boolean deleteReview(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException;
+    boolean deleteReview(Integer reviewId)
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
 }
