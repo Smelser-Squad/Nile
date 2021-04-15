@@ -23,7 +23,7 @@ public class FeatureController {
     public ResponseEntity addFeature(@RequestBody Feature feature){
         return ResponseEntity.ok(service.addFeature(feature));
     }
-    @GetMapping()
+    @GetMapping("/features")
     public ResponseEntity getFeatures(){
         return ResponseEntity.ok(service.getAllFeatures());
     }

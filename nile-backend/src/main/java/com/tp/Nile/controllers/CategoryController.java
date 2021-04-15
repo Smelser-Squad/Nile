@@ -23,7 +23,7 @@ public class CategoryController {
     public ResponseEntity addCategory(@RequestBody Category category){
         return ResponseEntity.ok(service.addCategory(category));
     }
-    @GetMapping()
+    @GetMapping("/categories")
     public ResponseEntity getCategories(){
         return ResponseEntity.ok(service.getAllCategories());
     }

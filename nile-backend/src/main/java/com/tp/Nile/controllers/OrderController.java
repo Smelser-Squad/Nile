@@ -23,7 +23,7 @@ public class OrderController {
     public ResponseEntity addOrder(@RequestBody Order order){
         return ResponseEntity.ok(service.addOrder(order));
     }
-    @GetMapping()
+    @GetMapping("/orders")
     public ResponseEntity getOrders(){
         return ResponseEntity.ok(service.getAllOrders());
     }
