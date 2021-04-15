@@ -19,10 +19,10 @@ public interface ProductService {
     List<Product> getProductsByCategory(Category categoryId);
     List<Product> getProductsByVendor(Vendor vendor);
     List<Product> getProductsByType(Type Type);
-    Product getProductById(Integer productId) throws NullProductIdException, InvaildProductIdException;
+    Product getProductById(Integer productId) throws NullProductIdException, InvalidProductIdException;
     Product addProduct(AddProductRequest product) throws NullProductObjectException, NullBrandException, NullNameException,NullDescriptionException,NullPriceException,InvalidPriceException;
     Product updateProduct(Product updatedProduct);
-    boolean deleteProduct(Integer productId) throws NullProductIdException,InvaildProductIdException;
+    boolean deleteProduct(Integer productId) throws NullProductIdException, InvalidProductIdException;
 
 
 
