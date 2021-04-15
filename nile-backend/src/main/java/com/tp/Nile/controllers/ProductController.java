@@ -57,6 +57,7 @@ public class ProductController {
     public ResponseEntity getProductByVendor(@RequestBody Vendor vendor){
         return ResponseEntity.ok(service.getProductsByVendor(vendor));
     }
+
     @PutMapping()
     public ResponseEntity updateProduct(@RequestBody Product updateProduct){
         return ResponseEntity.ok(service.updateProduct(updateProduct));
