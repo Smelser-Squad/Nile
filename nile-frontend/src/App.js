@@ -4,6 +4,8 @@ import Home from './components/Home/Home.js';
 import Checkout from './components/Cart/Checkout/Checkout';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ProductListing from './components/ProductListing/ProductListing';
+
 function App() {
     return (
         // eslint-disable-next-line
@@ -19,7 +21,6 @@ function App() {
                     <Route path="/">
                         <Home />
                     </Route>
-
 
                 </Switch>
 
