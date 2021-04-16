@@ -21,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Product implements Serializable {
@@ -99,6 +100,6 @@ public class Product implements Serializable {
 
     private Set<Question> questions = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private Set<ProductSpecification> productSpecs = new HashSet<>();
 }

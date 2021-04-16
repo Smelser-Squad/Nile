@@ -16,7 +16,7 @@ public class AddProductRequest {
     private Integer typeId;
     private Integer vendorId;
     private List<ProductPhoto> photos;
-    private Set<Feature> features;
+//    private Set<Feature> features;
 
     private String name;
     private String description;

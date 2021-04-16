@@ -108,9 +108,9 @@ public class ProductServiceImpl implements ProductService {
                 e.getMessage();
             }
 
-            Set<Feature> features = new HashSet<>();
-            Feature newFeature=new Feature();
-            features.add(featureService.addFeature(newFeature));
+//            Set<Feature> features = new HashSet<>();
+//            Feature newFeature=new Feature();
+//            features.add(featureService.addFeature(newFeature));
 
         List<ProductPhoto> photos=new ArrayList<>();
         ProductPhoto newPhoto=new ProductPhoto();
