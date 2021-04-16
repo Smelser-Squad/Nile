@@ -1,5 +1,5 @@
 import './MoreProducts.css';
-import Product from "./Product.js";
+import Product from "./Product";
 import {Grid} from '@material-ui/core';
 
 function MoreProducts() {
