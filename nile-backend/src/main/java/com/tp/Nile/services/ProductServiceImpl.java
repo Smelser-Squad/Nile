@@ -6,7 +6,6 @@ import com.tp.Nile.models.*;
 import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -52,10 +51,7 @@ public class ProductServiceImpl implements ProductService {
         return repo.getProductsByType(type);
     }
 
-    public Product getProductById(Integer productId) throws NullProductIdException, InvalidProductIdException {
-        if(productId==null){
-            throw new NullProductIdException("Cannot get product with null id");
-        }
+    public Product getProductById(Integer productId) throws InvalidProductIdException {
         Product retrieved=null;
         
         Optional<Product> product=repo.findById(productId);
@@ -108,18 +104,30 @@ public class ProductServiceImpl implements ProductService {
                 e.getMessage();
             }
 
-//            Set<Feature> features = new HashSet<>();
-//            Feature newFeature=new Feature();
-//            features.add(featureService.addFeature(newFeature));
+            Set<Feature> features = new HashSet<>();
+            try {
+                for(Integer id:product.getFeatureId()) {
+                    features.add(featureService.getFeatureById(id));
+                }
+            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
+                e.getMessage();
+            } catch (Exception ex) {
+
+            }
 
         List<ProductPhoto> photos=new ArrayList<>();
-        ProductPhoto newPhoto=new ProductPhoto();
-        Integer productId= newProduct.getProductId();
+        try {
+            for(Integer id:product.getPhotoId()) {
+                photos.add(photoService.getPhotoById(id));
+            }
+        } catch (NullPhotoIdException | InvalidPhotoIdException e) {
+            e.getMessage();
+        } catch (NullPointerException nullPointerException) {
 
-        photos.add(photoService.addPhoto(newPhoto,productId));
+        }
 
-        newProduct.setPhotoList(photos);
-//        newProduct.setFeatures(features);
+        newProduct.setPhotos(photos);
+        newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);
@@ -150,15 +158,10 @@ public class ProductServiceImpl implements ProductService {
         return repo.saveAndFlush(updatedProduct);
     }
 
-    public boolean deleteProduct(Integer productId) throws NullProductIdException, InvalidProductIdException {
-        if(productId==null){
-            throw new NullProductIdException("Cannot delete product with null id");
-        }
-        Product retreived=repo.findById(productId).get();
-        if(retreived!=null){
-            repo.delete(retreived);
-            return true;
-        }else{
+    public void deleteProduct(Integer productId) throws InvalidProductIdException {
+        try {
+            repo.deleteById(productId);
+        } catch(Exception e) {
             throw new InvalidProductIdException("Product with that id does not exist");
         }
     }
