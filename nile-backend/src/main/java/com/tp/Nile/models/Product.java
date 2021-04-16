@@ -21,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Product implements Serializable {
@@ -66,8 +67,8 @@ public class Product implements Serializable {
     @Column(name = "primeEligible", nullable = false)
     private boolean primeEligible;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductPhoto> photoList = new ArrayList<>();
+   @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<ProductPhoto> photoList = new ArrayList<>();
 
 
 
@@ -98,6 +99,6 @@ public class Product implements Serializable {
 
     private Set<Question> questions = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private Set<ProductSpecification> productSpecs = new HashSet<>();
 }
