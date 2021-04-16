@@ -19,7 +19,7 @@ public class CategoryController {
     CategoryServiceImpl service;
 
 
-    @PostMapping("/categories")
+    @PostMapping()
     public ResponseEntity addCategory(@RequestBody Category category){
         return ResponseEntity.ok(service.addCategory(category));
     }
@@ -38,12 +38,12 @@ public class CategoryController {
     }
 
 
-    @PutMapping("/categories")
+    @PutMapping()
     public ResponseEntity updateCategory(@RequestBody Category updatedCategory){
         return ResponseEntity.ok(service.updateCategory(updatedCategory));
     }
   
-    @DeleteMapping("/categories/{categoryId}")
+    @DeleteMapping("/{categoryId}")
     public String deleteCategory(@PathVariable Integer categoryId){
         {
             String toReturn="";

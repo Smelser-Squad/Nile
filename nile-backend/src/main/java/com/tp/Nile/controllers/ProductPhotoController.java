@@ -51,8 +51,8 @@ public class ProductPhotoController {
         return toReturn;
     }
 
-    @PostMapping("/add/photo")
-    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo) {
-        return ResponseEntity.ok(service.addPhoto(photo));
+    @PostMapping("/add/photo/{productId}")
+    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) {
+        return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
 }
