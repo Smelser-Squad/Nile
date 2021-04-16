@@ -1,6 +1,7 @@
-.products-container {
-    float: left;
+.product-container {
+    margin-left: 25px;
 }
+
 #product-image {
     margin-top: 50px;
     height: 200px;

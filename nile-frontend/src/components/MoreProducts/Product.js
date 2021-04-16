@@ -10,7 +10,7 @@ function Product() {
                 </Link>
             </div>
             <div class="row">
-                <Link to="/singleProductListing">
+                <Link to="/singleProductListing" style={{ textDecoration: 'none' }}>
                     <p id="product-name">Product name here</p>
                 </Link>
             </div>
@@ -22,12 +22,12 @@ function Product() {
                     activeColor="#FFA41C"
                     size={15}
                 />
-                <Link to="/singleProductListing">
+                <Link to="/singleProductListing" style={{ textDecoration: 'none' }}>
                     <p id="review-count">10</p>
                 </Link>
             </div>
             <div class="row">
-                <Link to="/singleProductListing">
+                <Link to="/singleProductListing" style={{ textDecoration: 'none' }}>
                     <p id="price-tag">$10.00</p>
                 </Link>
                 <Link to="/singleProductListing">
