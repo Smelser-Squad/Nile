@@ -35,7 +35,7 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException
+    public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException
         {return repo.getPhotosByProduct(productId);}
 
     @Override

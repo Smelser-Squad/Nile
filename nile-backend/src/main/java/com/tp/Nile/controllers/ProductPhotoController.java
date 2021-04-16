@@ -23,7 +23,7 @@ public class ProductPhotoController {
     public ResponseEntity getProductPhotos(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getPhotosByProduct(productId));
-        } catch (NullProductIdException | InvalidProductIdException e) {
+        } catch (InvalidProductIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
