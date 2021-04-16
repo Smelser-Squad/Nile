@@ -14,7 +14,7 @@ function SingleReview() {
             </div>
             <h4 id="title"> what an amazing shirt!</h4>
             <h6>Reviewed in the United States on (LOCALDATE)</h6>
-            <span>aslkjdhfkljashdfkjlahsdfkljhasdkljfhaskldfhkalsjdhfkjasdhfkjlashdflkjashdflkajshdflkahs</span>
+            <span>This is where the full text of the review will go.</span>
             
 
         </div>
