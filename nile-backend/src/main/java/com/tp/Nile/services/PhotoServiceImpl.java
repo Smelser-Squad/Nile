@@ -43,7 +43,7 @@ public class PhotoServiceImpl implements PhotoService{
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
         try {
             newPhoto.setProduct(productService.getProductById(productId));
-        } catch (NullProductIdException | InvalidProductIdException e) {
+        } catch (InvalidProductIdException e) {
             e.getMessage();
         }
         return repo.saveAndFlush(newPhoto);}
