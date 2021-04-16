@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Review implements Serializable {
     private String title;
 
     @Column(name = "review_date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate reviewDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
