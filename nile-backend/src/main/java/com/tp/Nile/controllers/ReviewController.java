@@ -16,7 +16,7 @@ public class ReviewController {
     @Autowired
     ReviewServiceImpl service;
 
-    @PostMapping
+    @PostMapping("/addReview")
     public ResponseEntity addReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.addReview(review));
@@ -46,7 +46,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
             return ResponseEntity.ok(service.getReviewsByUserId(userId));
@@ -55,7 +55,7 @@ public class ReviewController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/updateReview")
     public ResponseEntity updateReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.updateReview(review));
@@ -66,7 +66,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("deleteReview/{reviewId}")
     public String deleteReview(@PathVariable Integer reviewId) {
         {
             String toReturn="";
