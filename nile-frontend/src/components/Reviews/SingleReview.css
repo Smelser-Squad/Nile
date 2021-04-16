@@ -1,11 +1,10 @@
 .single-review-container {
-  /* background-color: grey; */
-  width: 50%;
-  height: 100px;
+  background-color: grey;
+  width: 30%;
 }
 
 #rating-stars {
-  /* background-color: red; */
+  background-color: red;
   display: inline;
 }
 
