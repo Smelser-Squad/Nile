@@ -48,7 +48,7 @@ public class PhotoServiceImpl implements PhotoService{
         if (updated != null) {
             updated.setColor(photo.getColor());
             updated.setImageSrc(photo.getImageSrc());
-            updated.setProduct(photo.getProduct());
+            updated.setProductId(photo.getProductId());
         }
         return repo.saveAndFlush(photo);
     }

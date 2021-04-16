@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.lang.model.type.NullType;
 
-@RequestMapping("/api")
+@RequestMapping("/api/types")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class TypeController {
@@ -22,17 +22,17 @@ public class TypeController {
     @Autowired
     TypeServiceImpl service;
 
-    @PostMapping("/addType")
+    @PostMapping()
     public ResponseEntity addType(@RequestBody Type type){
         return ResponseEntity.ok(service.addType(type));
     }
 
-    @GetMapping("/types")
+    @GetMapping()
     public ResponseEntity getAllTypes(){
         return ResponseEntity.ok(service.getAllTypes());
     }
 
-    @GetMapping("/types/{typeId}")
+    @GetMapping("/{typeId}")
     public ResponseEntity getTypeById(@PathVariable Integer typeId) {
         try {
             return ResponseEntity.ok(service.getTypeById(typeId));
