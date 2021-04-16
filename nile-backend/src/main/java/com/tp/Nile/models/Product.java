@@ -67,8 +67,8 @@ public class Product implements Serializable {
     @Column(name = "primeEligible", nullable = false)
     private boolean primeEligible;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductPhoto> photoList = new ArrayList<>();
+   @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<ProductPhoto> photoList = new ArrayList<>();
 
 
 
