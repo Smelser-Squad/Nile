@@ -13,6 +13,7 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name= "product_photo")
+
 public class ProductPhoto implements Serializable {
 
     @Id
