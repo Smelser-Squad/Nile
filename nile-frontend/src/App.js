@@ -1,4 +1,5 @@
 import './App.css';
+import Tag from './components/ReviewTag/Tag.js';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
 import Checkout from './components/Cart/Checkout/Checkout';
@@ -16,6 +17,7 @@ function App() {
                 <Switch>
                     <Route exact path="/singleProductListing">
                         <SingleProductListing />
+                        <Tag />
                     </Route>
 
                     <Route exact path="/checkout">
@@ -24,12 +26,13 @@ function App() {
 
                     <Route exact path="/">
                         <Home />
+              
                     </Route>
 
                 </Switch>
-
             </div>
         </Router>
+        
     );
 }
 

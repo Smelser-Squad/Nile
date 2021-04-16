@@ -42,7 +42,9 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
 
+
     @JsonIgnoreProperties(value = {"products"})
+
 
     private Type type;
 

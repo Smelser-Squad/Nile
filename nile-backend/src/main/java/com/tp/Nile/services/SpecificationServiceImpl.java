@@ -48,7 +48,9 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public Specification updateSpec(Specification updatedSpec) {
+    public Specification updateSpec(Integer specId, Specification updatedSpec) throws NullSpecIdException, InvalidSpecIdException {
+        Specification toUpdate = getSpecById(specId);
+        updatedSpec.setSpecId(specId);
         return repo.saveAndFlush(updatedSpec);
     }
 
