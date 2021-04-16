@@ -3,20 +3,45 @@ import axios from 'axios';
 import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
+import { withStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const BorderLinearProgress = withStyl((theme) => ({
+const BorderLinearProgress = withStyles((theme) => ({
     root: {
         height: 10,
         borderRadius: 5,
-      },
-      colorPrimary: {
+    },
+    colorPrimary: {
         backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
-      },
-      bar: {
+    },
+    bar: {
         borderRadius: 5,
         backgroundColor: '#FFA41C',
-      },
+    },
 }))(LinearProgress);
+
+function showSeeMore() {
+    var x = document.getElementById("seeMore");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function showRatingsQuestion() {
+    var x = document.getElementById("ratingsQ");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 function ReviewSummary() {
     return (
@@ -35,27 +60,95 @@ function ReviewSummary() {
                     4.7 out of 5
                 </p>
                 <br />
-                <p style="font-size: 14px; color: #565959">
-                    6,205 globat ratings
+                <p style="font-size: 14px; color: #565959 !important">
+                    6,205 global ratings
                 </p>
                 <br />
 
-                <div class = "5star_row">
-                    <BorderLinearProgress variant="determinate" value={80} />
+                <div class="5star_row">
+                    <span style="font-size: 14px ;color: #007185"> 5 star
+                    <BorderLinearProgress variant="determinate" value={80} /> 80%
+                    </span>
                 </div>
-                <div class = "4star_row">
-                    <BorderLinearProgress variant="determinate" value={70} />
+                <div class="4star_row">
+                    <span style="font-size: 14px; color: #007185"> 4 star
+                    <BorderLinearProgress variant="determinate" value={70} /> 70%
+                    </span>
                 </div>
-                <div class = "3star_row">
-                    <BorderLinearProgress variant="determinate" value={60} />
+                <div class="3star_row">
+                    <span style="font-size: 14px; color: #007185"> 3 star
+                    <BorderLinearProgress variant="determinate" value={60} /> 60%
+                    </span>
                 </div>
-                <div class = "2star_row">
-                    <BorderLinearProgress variant="determinate" value={50} />
+                <div class="2star_row">
+                    <span style="font-size: 14px; color: #007185"> 2 star
+                    <BorderLinearProgress variant="determinate" value={50} /> 50%
+                    </span>
                 </div>
-                <div class = "1star_row">
-                    <span><BorderLinearProgress variant="determinate" value={40} /></span>
+                <div class="1star_row">
+                    <span style="font-size: 14px; color: #007185"> 1 star
+                    <BorderLinearProgress variant="determinate" value={40} /> 40%
+                    </span>
+                </div>
+                <div class="ratings_question">
+                    <span style="font-size: 14px; color: #007185"> How are ratings calculated?</span>
                 </div>
             </div>
+
+            <hr class="light" />
+
+            <div class="by_feature">
+                <h3>By feature</h3>
+                <span style="font-size: 14px; color: #0F1111; display: inline-block">
+                    Feature 1
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={4.7}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+                </span>
+                <span style="font-size: 14px; color: #0F1111; display: inline-block">
+                    Feature 2
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={4.7}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+                </span>
+                <span style="font-size: 14px; color: #0F1111; display: inline-block">
+                    Feature 3
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={4.7}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+                </span>
+                <div class="see_more">
+                    <span style="font-size: 14px; color: #007185"> See more</span>
+                </div>
+            </div>
+
+            <hr class="light" />
+
+            <div class="write_a_review">
+                <h3>Review this product</h3>
+                <br />
+                <span style="font-size: 14px; color: #0F1111; display: inline-block">
+                    Share your thoughts with other customers
+                </span>
+                <br />
+                <a href="https://google.com" class="button">Write a customer review</a>
+                <br />
+            </div>
+
+            <hr class="light" />
+
         </div>
     );
 }
