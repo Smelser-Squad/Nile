@@ -4,7 +4,7 @@ import {Grid} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function MoreProducts(props) {
+function MoreProducts() {
 
     const [data, setData] = useState([]);
 
@@ -47,19 +47,49 @@ function MoreProducts(props) {
 
 
                 <Grid item md={2}>
-                    <Product/>
+                    <Product
+                    productId="12321341"
+                    name="Awesome Sweat Pants"
+                    price={20.00}
+                    avgRating={4}
+                    image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fsweatpants-png-4.png&f=1&nofb=1"
+                    reviewCount={16} />
                 </Grid>
                 <Grid item md={2}>
-                    <Product/>
+                    <Product
+                    productId="12321342"
+                    name="Awesome T-Shirt"
+                    price={15.00}
+                    avgRating={3}
+                    image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngall.com%2Fwp-content%2Fuploads%2F2016%2F04%2FT-Shirt-PNG-File.png&f=1&nofb=1"
+                    reviewCount={12}/>
                 </Grid>
                 <Grid item md={2}>
-                    <Product/>
+                    <Product
+                    productId="12321343"
+                    name="Awesome Tennis Shoes"
+                    price={60.00}
+                    avgRating={4.5}
+                    image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tension24.com.au%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F1%2Fimage%2Fab687bdc54b01ee9b7e0fb822647627d%2Fc%2Fm%2Fcm7819_ftw_virtual_side-lateral_transparent.png&f=1&nofb=1"
+                    reviewCount={23}/>
                 </Grid>
                 <Grid item md={2}>
-                    <Product/>
+                    <Product
+                    productId="12321344"
+                    name="Awesome Shorts"
+                    price={13.00}
+                    avgRating={4}
+                    image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pro-amkits.co.uk%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F1%2Fimage%2F1200x1395%2F9df78eab33525d08d6e5fb8d27136e95%2F7%2F2%2F725881-010-pv_2.png&f=1&nofb=1"
+                    reviewCount={5}/>
                 </Grid>
                 <Grid item md={2}>
-                    <Product/>
+                    <Product
+                    productId="12321345"
+                    name="Funky Socks"
+                    price={10.00}
+                    avgRating={5}
+                    image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdtmxsocks.cz%2Fwp-content%2Fuploads%2F2018%2F02%2FRocketSlider-background-2A.png&f=1&nofb=1"
+                    reviewCount={100}/>
                 </Grid>
 
 
