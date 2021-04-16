@@ -19,7 +19,7 @@ public class OrderController {
     OrderServiceImpl service;
 
 
-    @PostMapping("/orders")
+    @PostMapping()
     public ResponseEntity addOrder(@RequestBody Order order){
         return ResponseEntity.ok(service.addOrder(order));
     }
@@ -37,12 +37,12 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/orders")
+    @PutMapping()
     public ResponseEntity updateOrder(@RequestBody Order updatedOrder){
         return ResponseEntity.ok(service.updateOrder(updatedOrder));
     }
   
-    @DeleteMapping("/orders/{orderId}")
+    @DeleteMapping("/{orderId}")
     public String deleteOrder(@PathVariable Integer orderId){
         {
             String toReturn="";
