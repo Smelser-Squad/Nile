@@ -60,7 +60,6 @@ public class Product implements Serializable {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-
     @Column(name = "stock", nullable = false)
     private  Integer stock;
 
