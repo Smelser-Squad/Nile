@@ -6,15 +6,17 @@ function Tag(props)
 {
     // TODO: retrieve review data from api call
     //hardcoded for now
-    // const [reviews]= useState("");
+    const [getReviews]= useState("");
     const reviews= [];
     const url = "http://localhost:8080/api/reviews";
 
+
+    //call function
     useEffect(()=> {
         getAllReviews();
+    });
 
-    }, []);
-
+    //get the summary reviews and put into an array
     const getAllReviews = () => {
         axios.get(`${url}`)
         .then((response ) => 
@@ -30,7 +32,6 @@ function Tag(props)
        }
 
     console.log(reviews);
-    console.log(props);
     const tagArr = ["soft touch", "great length","easy to manage"];
     console.log(tagArr)
     const tagList = tagArr.map((phrase) =>
