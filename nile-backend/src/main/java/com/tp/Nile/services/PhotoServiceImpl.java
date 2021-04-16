@@ -36,14 +36,14 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException
+    public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException
         {return repo.getPhotosByProduct(productId);}
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
         try {
             newPhoto.setProduct(productService.getProductById(productId));
-        } catch (NullProductIdException | InvalidProductIdException e) {
+        } catch (InvalidProductIdException e) {
             e.getMessage();
         }
         return repo.saveAndFlush(newPhoto);}

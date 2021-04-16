@@ -31,13 +31,13 @@ function App() {
 
                     <Route exact path="/">
                         <Home />
-              
+
                     </Route>
 
                 </Switch>
             </div>
         </Router>
-        
+
     );
 }
 
