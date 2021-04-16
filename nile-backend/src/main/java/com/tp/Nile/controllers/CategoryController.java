@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/categories")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
@@ -18,16 +18,17 @@ public class CategoryController {
     @Autowired
     CategoryServiceImpl service;
 
-    @PostMapping("/addCategory")
+
+    @PostMapping()
     public ResponseEntity addCategory(@RequestBody Category category){
         return ResponseEntity.ok(service.addCategory(category));
     }
-    @GetMapping("/categories")
+    @GetMapping()
     public ResponseEntity getCategories(){
         return ResponseEntity.ok(service.getAllCategories());
     }
 
-    @GetMapping("/categories/{categoryId}")
+    @GetMapping("/{categoryId}")
     public ResponseEntity getCategoryById(@PathVariable Integer categoryId) {
         try {
             return ResponseEntity.ok(service.getCategoryById(categoryId));
@@ -36,11 +37,13 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("/updateCategory")
+
+    @PutMapping()
     public ResponseEntity updateCategory(@RequestBody Category updatedCategory){
         return ResponseEntity.ok(service.updateCategory(updatedCategory));
     }
-    @DeleteMapping("delete/category/{categoryId}")
+  
+    @DeleteMapping("/{categoryId}")
     public String deleteCategory(@PathVariable Integer categoryId){
         {
             String toReturn="";

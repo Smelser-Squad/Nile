@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/api/vendors")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class VendorController {
@@ -19,16 +19,16 @@ public class VendorController {
     @Autowired
     VendorServiceImpl service;
 
-    @PostMapping("/addVendor")
+    @PostMapping()
     public ResponseEntity addVendor(@RequestBody Vendor vendor){
         return ResponseEntity.ok(service.addVendor(vendor));
     }
-    @GetMapping("/vendors")
+    @GetMapping()
     public ResponseEntity getAllVendors(){
         return ResponseEntity.ok(service.getAllVendors());
     }
 
-    @GetMapping("/vendors/{vendorId}")
+    @GetMapping("/{vendorId}")
     public ResponseEntity getVendorById(@PathVariable Integer vendorId) {
         try {
             return ResponseEntity.ok(service.getVendorById(vendorId));
