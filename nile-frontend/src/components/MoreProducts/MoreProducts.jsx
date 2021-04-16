@@ -1,8 +1,29 @@
 import './MoreProducts.css';
 import Product from "./Product";
 import {Grid} from '@material-ui/core';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function MoreProducts() {
+function MoreProducts(props) {
+
+    const [data, setData] = useState([]);
+
+    const getProduct=async()=>{
+        await axios.get('http://localhost:80/api/products')
+        .then(res=>{
+            const product = res.data;
+            if(res.satus === 200){
+                setData(product)};
+            })
+        
+    };
+
+    useEffect(()=>{
+            getProduct();
+        },
+        []
+    );
+
     return (
         <div class="container">
             <hr/>
