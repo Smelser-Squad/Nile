@@ -1,10 +1,9 @@
 package com.tp.Nile.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -16,6 +15,7 @@ import lombok.*;
 @Table(name= "product_photo")
 
 public class ProductPhoto implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_id")
@@ -24,7 +24,7 @@ public class ProductPhoto implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
     @JsonIgnoreProperties(value = {"photoList"})
-
+    @JsonBackReference
     private Product product;
 
     @Column(name = "image_src", nullable = false)
@@ -32,6 +32,5 @@ public class ProductPhoto implements Serializable {
 
     @Column(name = "color", nullable = false)
     private String color;
-
 
 }
