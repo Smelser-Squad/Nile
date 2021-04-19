@@ -23,7 +23,7 @@ function MoreProducts() {
                         price={product.price}
                         rating={4}
                         avgRating={4}
-                        image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"
+                        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fsweatpants-png-4.png&f=1&nofb=1"
                         reviewCount={16} 
                     />
                 </Grid>
