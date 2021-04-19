@@ -17,7 +17,7 @@ function HomeProduct({ productId, image, name, price, rating }) {
                 name: name,
                 image: image,
                 price: price,
-                rating: rating,
+                rating: rating
             },
         });
     };
