@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 
 
-function HomeProduct({ productId, image, name, price }) {
+function HomeProduct({ productId, image, name, price, rating }) {
     const [{ cart }, dispatch] = useStateValue();
     console.log(cart);
 
@@ -17,7 +17,7 @@ function HomeProduct({ productId, image, name, price }) {
                 name: name,
                 image: image,
                 price: price,
-                // rating: rating,
+                rating: rating,
             },
         });
     };
@@ -41,17 +41,15 @@ function HomeProduct({ productId, image, name, price }) {
 
                 </p>
             </Link>
-
-            <div className="product_rating">
+            <div className='product_rating'>
                 <ReactStars
                     count={5}
                     edit={false}
-                    value={4}
+                    value={rating}
                     activeColor="#FFA41C"
                     size={15}
                 />
             </div>
-
             <Link to="/singleProductListing">
                 <img id="prime_img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1" />
             </Link>

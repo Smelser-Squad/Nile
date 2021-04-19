@@ -1,7 +1,7 @@
 import './SingleProductListing.css';
 
 import React from 'react'
-import MoreProducts from '../MoreProducts/MoreProducts.js';
+import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import Reviews from '../Reviews/Reviews.js';
 
