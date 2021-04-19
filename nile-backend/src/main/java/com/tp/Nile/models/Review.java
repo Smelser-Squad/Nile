@@ -52,7 +52,6 @@ public class Review implements Serializable {
 
     @Column(name = "helpful")
     private boolean helpful;
-
 //
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "fk_product_id", nullable = false)
