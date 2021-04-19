@@ -33,7 +33,6 @@ public class Type implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "type",
             orphanRemoval = true)
-
     private Set<Product> products = new HashSet<>();
 
 
