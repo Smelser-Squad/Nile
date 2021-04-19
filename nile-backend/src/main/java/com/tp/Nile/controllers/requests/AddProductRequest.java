@@ -8,12 +8,10 @@ import java.util.Set;
 @Setter
 @Getter
 public class AddProductRequest {
+
     private Integer categoryId;
     private Integer typeId;
     private Integer vendorId;
-    private Integer reviewId;
-    private List<Integer> photoId;
-    private List<Integer> featureId;
     private String name;
     private String description;
     private Double price;

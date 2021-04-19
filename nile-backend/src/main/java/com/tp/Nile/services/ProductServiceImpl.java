@@ -104,30 +104,30 @@ public class ProductServiceImpl implements ProductService {
                 e.getMessage();
             }
 
-            Set<Feature> features = new HashSet<>();
-            try {
-                for(Integer id:product.getFeatureId()) {
-                    features.add(featureService.getFeatureById(id));
-                }
-            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
-                e.getMessage();
-            } catch (Exception ex) {
+//            Set<Feature> features = new HashSet<>();
+//            try {
+//                for(Integer id:product.getFeatureId()) {
+//                    features.add(featureService.getFeatureById(id));
+//                }
+//            } catch (NullFeatureIdException | InvalidFeatureIdException e) {
+//                e.getMessage();
+//            } catch (Exception ex) {
+//
+//            }
+//
+//        List<ProductPhoto> photos=new ArrayList<>();
+//        try {
+//            for(Integer id:product.getPhotoId()) {
+//                photos.add(photoService.getPhotoById(id));
+//            }
+//        } catch (NullPhotoIdException | InvalidPhotoIdException e) {
+//            e.getMessage();
+//        } catch (NullPointerException nullPointerException) {
+//
+//        }
 
-            }
-
-        List<ProductPhoto> photos=new ArrayList<>();
-        try {
-            for(Integer id:product.getPhotoId()) {
-                photos.add(photoService.getPhotoById(id));
-            }
-        } catch (NullPhotoIdException | InvalidPhotoIdException e) {
-            e.getMessage();
-        } catch (NullPointerException nullPointerException) {
-
-        }
-
-        newProduct.setPhotos(photos);
-        newProduct.setFeatures(features);
+//        newProduct.setPhotos(photos);
+//        newProduct.setFeatures(features);
         newProduct.setCategory(category);
         newProduct.setVendor(vendor);
         newProduct.setType(type);
