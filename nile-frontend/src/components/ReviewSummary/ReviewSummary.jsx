@@ -20,6 +20,24 @@ const BorderLinearProgress = withStyles(() => ({
     },
 }))(LinearProgress);
 
+function showSeeMore() {
+    var x = document.getElementById("seeMore");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function showRatingsQuestion() {
+    var x = document.getElementById("ratingsQ");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 function ReviewSummary() {
 
     function showSeeMore() {
@@ -30,7 +48,7 @@ function ReviewSummary() {
             x.style.display = "none";
         }
     }
-    
+
     function showRatingsQuestion() {
         var x = document.getElementById("ratingsQ");
         if (x.style.display === "none") {
@@ -43,6 +61,7 @@ function ReviewSummary() {
     return (
         <div className="reviewSummary_container">
             <div className="review_row">
+                <br />
                 <h2>Customer reviews</h2>
                 <ReactStars
                     count={5}
@@ -60,27 +79,19 @@ function ReviewSummary() {
                 <br />
 
                 <span>5 star -  43%</span>
-                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={43} /></span>
-
-                <br />
+                <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={43} /></span>
 
                 <span>4 star -  30%</span>
-                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={30} /></span>
-
-                <br />
+                <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={30} /></span>
 
                 <span>3 star -  7%</span>
-                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={7} /></span>
-
-                <br />
+                <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={7} /></span>
 
                 <span>2 star -  10%</span>
-                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
-
-                <br />
+                <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
 
                 <span>1 star -  10%</span>
-                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
+                <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
 
                 <br />
 
@@ -106,8 +117,6 @@ function ReviewSummary() {
                 <div className="star_row">
                     <span>1 star <BorderLinearProgress variant="determinate" value={40} /> 40%</span>
                 </div> */}
-
-            <br />
 
             <hr className="light" />
 
@@ -146,8 +155,6 @@ function ReviewSummary() {
 
             </div>
 
-            <br />
-
             <hr className="light" />
 
             <br />
@@ -163,8 +170,6 @@ function ReviewSummary() {
                 <button className="writeReview">Write a customer review</button>
                 <br />
             </div>
-
-            <br />
 
             <hr className="light" />
 

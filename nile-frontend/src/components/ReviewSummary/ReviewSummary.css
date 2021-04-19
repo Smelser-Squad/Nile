@@ -16,6 +16,10 @@ button {
     
 }
 
+.bar {
+    margin-bottom: 5px;
+}
+
 h2, h3 {
     padding-bottom: 5px;
 }
@@ -45,6 +49,7 @@ span {
 
 .review_row, .by_feature, .write_a_review {
     margin-left: 20px;
+    padding-bottom: 40px;
 }
 
 .star_row {
@@ -74,7 +79,6 @@ span {
     color: black;
     padding: 5px;
     width: 300px;
-    margin-bottom: 5px;
 }
 
 .writeReview:hover {
