@@ -1,8 +1,10 @@
 package com.tp.Nile.services;
 
+import com.tp.Nile.exceptions.EmptyTypeNameException;
 import com.tp.Nile.exceptions.InvalidTypeIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
 
+import com.tp.Nile.exceptions.NullTypeNameException;
 import com.tp.Nile.models.Type;
 
 
@@ -13,7 +15,7 @@ public interface TypeService {
 
     Type getTypeById(Integer typeId) throws NullTypeIdException, InvalidTypeIdException;
 
-    Type addType(Type newType);
+    Type addType(Type newType) throws NullTypeNameException, EmptyTypeNameException;
 
     Type updateType(Integer typeId, Type updatedType) throws NullTypeIdException, InvalidTypeIdException;
 
