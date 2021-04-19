@@ -11,19 +11,21 @@ function MoreProducts() {
     const getProduct=async()=>{
         await axios.get('http://localhost:80/api/products')
         .then(res=>{
-            const product = res.data;
-            if(res.satus === 200){
-                setData(product)};
-            })
+            const products = res.data;
+            if(res.status === 200){
+                setData(products)
+            };
+        })
         
     };
 
     useEffect(()=>{
             getProduct();
+            console.log(data);
         },
         []
     );
-
+    
     return (
         <div class="container">
             <hr/>
