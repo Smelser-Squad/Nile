@@ -21,7 +21,6 @@ function MoreProducts() {
 
     useEffect(()=>{
             getProduct();
-            console.log(data);
         },
         []
     );
@@ -48,6 +47,15 @@ function MoreProducts() {
                 </Grid>
 
 
+                {/* <Grid item md={2}>
+                    <Product
+                    productId="12321341"
+                    name="Awesome Sweat Pants"
+                    price={20.00}
+                    avgRating={4}
+                    image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fsweatpants-png-4.png&f=1&nofb=1"
+                    reviewCount={16} />
+                </Grid> */}
                 <Grid item md={2}>
                     <Product
                     productId="12321341"
