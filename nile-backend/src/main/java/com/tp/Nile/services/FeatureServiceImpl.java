@@ -1,14 +1,15 @@
 package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.InvalidFeatureIdException;
+import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.exceptions.NullFeatureIdException;
 import com.tp.Nile.models.Feature;
+import com.tp.Nile.models.Product;
 import com.tp.Nile.repositories.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class FeatureServiceImpl implements FeatureService {
@@ -16,6 +17,8 @@ public class FeatureServiceImpl implements FeatureService {
     @Autowired
     FeatureRepository repo;
 
+    @Autowired
+    ProductServiceImpl productService;
 
     @Override
     public List<Feature> getAllFeatures() {
@@ -39,6 +42,13 @@ public class FeatureServiceImpl implements FeatureService {
 
     @Override
     public Feature addFeature(Feature newFeature) {
+
+        List<Product>features=new ArrayList<>();
+
+
+            newFeature.setProducts(features);
+
+
         return repo.saveAndFlush(newFeature);
     }
 
