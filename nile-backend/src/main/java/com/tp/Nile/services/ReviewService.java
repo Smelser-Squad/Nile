@@ -19,7 +19,7 @@ public interface ReviewService {
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
     Review addReview(Review newReview)
-            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException;
 
     Review updateReview(Review updatedReview)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
