@@ -19,7 +19,7 @@ public class FeatureController {
     FeatureServiceImpl service;
 
 
-    @PostMapping("/features")
+    @PostMapping()
     public ResponseEntity addFeature(@RequestBody Feature feature){
         return ResponseEntity.ok(service.addFeature(feature));
     }
@@ -38,12 +38,12 @@ public class FeatureController {
     }
 
 
-    @PutMapping("/features")
+    @PutMapping()
     public ResponseEntity updateFeature(@RequestBody Feature updatedFeature){
         return ResponseEntity.ok(service.updateFeature(updatedFeature));
     }
   
-    @DeleteMapping("/features/{featureId}")
+    @DeleteMapping("/{featureId}")
     public String deleteFeature(@PathVariable Integer featureId){
         {
             String toReturn="";

@@ -14,6 +14,7 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name= "product_photo")
+
 public class ProductPhoto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class ProductPhoto implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
     @JsonIgnoreProperties(value = {"photoList"})
-    private Integer productId;
+    private Product product;
 
     @Column(name = "image_src", nullable = false)
     private String imageSrc;

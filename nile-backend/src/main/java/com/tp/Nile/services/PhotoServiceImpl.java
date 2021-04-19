@@ -13,7 +13,8 @@ import java.util.Optional;
 public class PhotoServiceImpl implements PhotoService{
     @Autowired
     ProductPhotoRepository repo;
-
+    @Autowired
+    ProductServiceImpl productService;
     @Override
     public List<ProductPhoto> getAllPhotos() {
         return repo.findAll();
@@ -39,7 +40,13 @@ public class PhotoServiceImpl implements PhotoService{
         {return repo.getPhotosByProduct(productId);}
 
     @Override
-    public ProductPhoto addPhoto(ProductPhoto newPhoto) {return repo.saveAndFlush(newPhoto);}
+    public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
+        try {
+            newPhoto.setProduct(productService.getProductById(productId));
+        } catch (NullProductIdException | InvalidProductIdException e) {
+            e.getMessage();
+        }
+        return repo.saveAndFlush(newPhoto);}
 
     @Override
     public ProductPhoto updatePhoto(ProductPhoto photo) {
@@ -48,7 +55,7 @@ public class PhotoServiceImpl implements PhotoService{
         if (updated != null) {
             updated.setColor(photo.getColor());
             updated.setImageSrc(photo.getImageSrc());
-            updated.setProductId(photo.getProductId());
+            updated.setProduct(photo.getProduct());
         }
         return repo.saveAndFlush(photo);
     }
