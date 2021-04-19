@@ -16,15 +16,17 @@ function MoreProducts() {
             AllProducts.push(item)
             );
             const products = AllProducts.map((product)=>
-                <Product
-                    productId={product.productId}
-                    name={product.name}
-                    price={product.price}
-                    rating={4}
-                    avgRating={4}
-                    image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"
-                    reviewCount={16} 
-                />
+                <Grid item md={2}>
+                    <Product
+                        productId={product.productId}
+                        name={product.name}
+                        price={product.price}
+                        rating={4}
+                        avgRating={4}
+                        image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"
+                        reviewCount={16} 
+                    />
+                </Grid>
 
             );
             setProducts(products);
@@ -53,9 +55,7 @@ function MoreProducts() {
                     </button>
                 </Grid>
             
-                <div className="more_products_row">
-                    {products}
-                </div>
+                {products}
 
                 <Grid item md={1}>
                     <button class="nav-button" id="right-nav">
