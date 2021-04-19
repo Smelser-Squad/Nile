@@ -21,7 +21,7 @@ public class ReviewController {
         try {
             return ResponseEntity.ok(service.addReview(review));
         }
-        catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
+        catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException | InvalidReviewException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
