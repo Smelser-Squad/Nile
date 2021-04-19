@@ -5,13 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -28,9 +29,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-
     @JsonIgnoreProperties(value = {"orders"})
-
     private User user;
 
     @Column(name = "purchase_date", nullable = false)
@@ -40,5 +39,6 @@ public class Order implements Serializable {
     private String status;
 
     @OneToMany(mappedBy = "order")
-    private Set<ProductOrder> orderProducts = new HashSet<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<ProductOrder> orderProducts = new ArrayList<>();
 }
