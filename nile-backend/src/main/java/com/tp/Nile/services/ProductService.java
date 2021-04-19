@@ -22,7 +22,7 @@ public interface ProductService {
     Product getProductById(Integer productId) throws NullProductIdException, InvalidProductIdException;
     Product addProduct(AddProductRequest product) throws NullProductObjectException, NullBrandException, NullNameException,NullDescriptionException,NullPriceException,InvalidPriceException;
     Product updateProduct(Product updatedProduct);
-    boolean deleteProduct(Integer productId) throws NullProductIdException, InvalidProductIdException;
+    void deleteProduct(Integer productId) throws InvalidProductIdException;
 
 
 
