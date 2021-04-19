@@ -30,6 +30,7 @@ public class Feature implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
+    
 
     private Set<Product> products;
 

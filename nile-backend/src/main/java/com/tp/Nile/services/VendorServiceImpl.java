@@ -1,9 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidCategoryIdException;
-import com.tp.Nile.exceptions.InvalidVendorIdException;
-import com.tp.Nile.exceptions.NullCategoryIdException;
-import com.tp.Nile.exceptions.NullVendorIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
@@ -43,4 +40,24 @@ public class VendorServiceImpl implements VendorService {
     public Vendor addVendor(Vendor newVendor) {
         return repo.saveAndFlush(newVendor);
     }
-}
+
+    @Override
+    public Vendor upddateVendor(Vendor updatedVendor) {
+        return repo.saveAndFlush(updatedVendor);
+    }
+
+    @Override
+    public boolean deleteVendor(Integer vendorId) throws NullVendorIdException, InvalidVendorIdException {
+        if(vendorId == null){
+            throw new NullVendorIdException("Cannot delete vendor with null id");
+        }
+        Vendor retrieved = repo.findById(vendorId).get();
+        if(retrieved != null){
+            repo.delete(retrieved);
+            return true;
+        }else{
+            throw new InvalidVendorIdException("Vendor with that id does not exist");
+        }
+    }
+    }
+

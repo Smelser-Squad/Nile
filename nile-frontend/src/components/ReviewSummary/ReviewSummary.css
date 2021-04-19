@@ -1,0 +1,60 @@
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+button {
+    background-color: transparent;
+    border: transparent;
+    color: #007185;
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+h2, h3 {
+    padding-bottom: 5px;
+}
+
+span {
+    padding-bottom: 5px;
+}
+
+.head_rating {
+    font-size: 18px;
+}
+
+.global_rating {
+    font-size: 14px;
+    color: #565959 !important;
+}
+
+.share_thoughts {
+    font-size: 14px;
+    color: #0F1111; 
+    display: inline-block
+}
+
+.reviewSummary_container {
+    padding-bottom: 40px;
+}
+
+.star_row {
+    display: inline-block;
+}
+
+.light {
+    background-color: transparent;
+    display: block;
+    height: 1px;
+    border-width: 0;
+    border-top: 1px solid #e7e7e7;
+    line-height: 19px;
+}
+
+.a-icon a-icon-expand {
+    background-image: url(https://m.media-amazon.com/images/S/sash/f9Cwl2OUDVHGXk8.png);
+}
