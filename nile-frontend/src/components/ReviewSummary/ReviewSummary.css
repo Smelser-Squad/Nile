@@ -13,6 +13,7 @@ button {
     color: #007185;
     font-size: 14px;
     padding-top: 10px;
+    
 }
 
 h2, h3 {
@@ -39,7 +40,11 @@ span {
 }
 
 .reviewSummary_container {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+.review_row, .by_feature, .write_a_review {
+    margin-left: 20px;
 }
 
 .star_row {
@@ -47,14 +52,31 @@ span {
 }
 
 .light {
-    background-color: transparent;
-    display: block;
-    height: 1px;
-    border-width: 0;
-    border-top: 1px solid #e7e7e7;
-    line-height: 19px;
+    line-height: 1px;
 }
 
 .a-icon a-icon-expand {
     background-image: url(https://m.media-amazon.com/images/S/sash/f9Cwl2OUDVHGXk8.png);
+}
+
+.writeReview {
+    background: #d4d5d6;
+    border-radius: 3px;
+    border-color: #ADB1B8 #A2A6AC #8D9096;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    text-decoration: none!important;
+    vertical-align: middle;
+    color: black;
+    padding: 5px;
+    width: 300px;
+    margin-bottom: 5px;
+}
+
+.writeReview:hover {
+    background: #b7b8b9;
 }

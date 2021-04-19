@@ -4,16 +4,15 @@ import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
-import { Link } from "react-router-dom";
 
-
-const BorderLinearProgress = withStyles((theme) => ({
+const BorderLinearProgress = withStyles(() => ({
     root: {
-        height: 10,
-        borderRadius: 5,
+        height: 20,
+        borderRadius: 4,
+        maxWidth: 200,
     },
     colorPrimary: {
-        backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+        backgroundColor: 'lightgray',
     },
     bar: {
         borderRadius: 5,
@@ -21,29 +20,30 @@ const BorderLinearProgress = withStyles((theme) => ({
     },
 }))(LinearProgress);
 
-function showSeeMore() {
-    var x = document.getElementById("seeMore");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function showRatingsQuestion() {
-    var x = document.getElementById("ratingsQ");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
 function ReviewSummary() {
+
+    function showSeeMore() {
+        var x = document.getElementById("seeMore");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    
+    function showRatingsQuestion() {
+        var x = document.getElementById("ratingsQ");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
     return (
         <div className="reviewSummary_container">
-            <h2>Customer reviews</h2>
             <div className="review_row">
+                <h2>Customer reviews</h2>
                 <ReactStars
                     count={5}
                     edit={false}
@@ -59,20 +59,38 @@ function ReviewSummary() {
                 </p>
                 <br />
 
+                <span>5 star -  43%</span>
+                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={43} /></span>
+
+                <br />
+
+                <span>4 star -  30%</span>
+                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={30} /></span>
+
+                <br />
+
+                <span>3 star -  7%</span>
+                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={7} /></span>
+
+                <br />
+
+                <span>2 star -  10%</span>
+                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
+
+                <br />
+
+                <span>1 star -  10%</span>
+                <span><BorderLinearProgress className="ratings_bar" variant="determinate" value={10} /></span>
+
+                <br />
+
+                <button onClick={"showRatingsQuestion"}><span>&#709; How are ratings calculated?</span></button>
+
+                <div id="ratings_calc">
+
+                </div>
+
             </div>
-
-            <span>1 star </span>
-            <span><BorderLinearProgress variant="determinate" value={40} /></span>
-            <span> 40%</span>
-
-            <br />
-
-            <button onClick={"showRatingsQuestion"}><span>&#709; How are ratings calculated?</span></button>
-
-            <div id = "ratings_calc">
-
-            </div>
-
             {/* <div className="5star_row">
                     <BorderLinearProgress variant="determinate" value={80} />
                 </div>
@@ -141,7 +159,8 @@ function ReviewSummary() {
                     Share your thoughts with other customers
                 </span>
                 <br />
-                <Link to="/Reviews">Write a customer review</Link>
+                <br />
+                <button className="writeReview">Write a customer review</button>
                 <br />
             </div>
 
