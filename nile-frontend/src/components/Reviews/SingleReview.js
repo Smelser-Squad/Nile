@@ -3,7 +3,7 @@ import ReactStars from "react-rating-stars-component";
 
 
 
-function SingleReview() {
+function SingleReview({helpful,rating,reviewDate,summary,title}) {
     return (
         <div class="single-review-container">
             <ReactStars
@@ -22,7 +22,7 @@ function SingleReview() {
     )
 }
 
-// RATING
+//RATING
 //REVIEW DATE
 //SUMMARY
 //TITLE

@@ -1,25 +1,37 @@
 import './Reviews.css';
 import SingleReview from './SingleReview';
-import {getReviews} from './ReviewService';
+import {getReviews} from '../../service/ReviewService';
+import { useState } from 'react';
 
 function Reviews() {
 
-    const reviewList = [];
+    const[reviews,setReviews]=useState([]);
 
-    getReviews().then((list)=>
-    {
-        list.map((item)=>
-        reviewList.push(item)
-        );
-        console.log(reviewList);
+    const reviewList=[];
+
+    if(reviews.length===0){
+        getReviews().then((list)=>
+        {
+            list.map((item)=>
+            reviewList.push(item)
+            );
+            const reviews=reviewList.map((review)=>
+            <SingleReview
+                helpful={review.helpful}
+                rating={review.rating}
+                reviewDate={review.reviewDate}
+                title={review.title}
+            />
+            );
+            setReviews(reviews)
+        }
+        )
     }
-    )
 
     return (
         <div class="reviews-container">
 
-        {reviewList}
-        <SingleReview/>
+        {reviews}
 
 
 
