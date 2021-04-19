@@ -4,6 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 
 const BorderLinearProgress = withStyles((theme) => ({
@@ -40,10 +41,9 @@ function showRatingsQuestion() {
 
 function ReviewSummary() {
     return (
-        <div class="reviewSummary_container">
+        <div className="reviewSummary_container">
             <h2>Customer reviews</h2>
-            <br />
-            <div class="review_row">
+            <div className="review_row">
                 <ReactStars
                     count={5}
                     edit={false}
@@ -51,108 +51,103 @@ function ReviewSummary() {
                     activeColor="#FFA41C"
                     size={15}
                 />
-                <p style="font-size: 18px">
+                <p className="head_rating">
                     4.7 out of 5
                 </p>
-                <br />
-                <p style="font-size: 14px; color: #565959 !important">
+                <p className="global_rating">
                     6,205 global ratings
                 </p>
                 <br />
 
-                <div class="5star_row">
-                    <span style="font-size: 14px ;color: #007185"> 5 star
-                    <BorderLinearProgress variant="determinate" value={80} /> 80%
-                    </span>
-                </div>
-                <div class="4star_row">
-                    <span style="font-size: 14px; color: #007185"> 4 star
-                    <BorderLinearProgress variant="determinate" value={70} /> 70%
-                    </span>
-                </div>
-                <div class="3star_row">
-                    <span style="font-size: 14px; color: #007185"> 3 star
-                    <BorderLinearProgress variant="determinate" value={60} /> 60%
-                    </span>
-                </div>
-                <div class="2star_row">
-                    <span style="font-size: 14px; color: #007185"> 2 star
-                    <BorderLinearProgress variant="determinate" value={50} /> 50%
-                    </span>
-                </div>
-                <div class="1star_row">
-                    <span style="font-size: 14px; color: #007185"> 1 star
-                    <BorderLinearProgress variant="determinate" value={40} /> 40%
-                    </span>
-                </div>
-                <div class="ratings_question" style="display: inline-block">
-                    <button onClick="showRatingsQuestion()" style="color: #007185 !important">&#9662;</button>
-                    <span style="font-size: 14px; color: #007185"> How are ratings calculated?</span>
-                    <br />
-                    <div id ="ratingsQ">
-                        <p>More ratings here</p>
-                    </div>
-                </div>
             </div>
 
-            <hr class="light" />
+            <span>1 star </span>
+            <span><BorderLinearProgress variant="determinate" value={40} /></span>
+            <span> 40%</span>
 
-            <div class="by_feature">
+            <br />
+
+            <button onClick={"showRatingsQuestion"}><span>&#709; How are ratings calculated?</span></button>
+
+            <div id = "ratings_calc">
+
+            </div>
+
+            {/* <div className="5star_row">
+                    <BorderLinearProgress variant="determinate" value={80} />
+                </div>
+                <div className="4star_row">
+                    <BorderLinearProgress variant="determinate" value={70} />
+                </div>
+                <div className="3star_row">
+                    <BorderLinearProgress variant="determinate" value={60} />
+                </div>
+                <div className="2star_row">
+                    <BorderLinearProgress variant="determinate" value={50} />
+                </div>
+                <div className="star_row">
+                    <span>1 star <BorderLinearProgress variant="determinate" value={40} /> 40%</span>
+                </div> */}
+
+            <br />
+
+            <hr className="light" />
+
+            <br />
+
+            <div className="by_feature">
                 <h3>By feature</h3>
-                <span style="font-size: 14px; color: #0F1111; display: inline-block">
-                    Feature 1
-                    <ReactStars
-                        count={5}
-                        edit={false}
-                        value={4.7}
-                        activeColor="#FFA41C"
-                        size={15}
-                    />
-                </span>
-                <span style="font-size: 14px; color: #0F1111; display: inline-block">
-                    Feature 2
-                    <ReactStars
-                        count={5}
-                        edit={false}
-                        value={4.7}
-                        activeColor="#FFA41C"
-                        size={15}
-                    />
-                </span>
-                <span style="font-size: 14px; color: #0F1111; display: inline-block">
-                    Feature 3
-                    <ReactStars
-                        count={5}
-                        edit={false}
-                        value={4.7}
-                        activeColor="#FFA41C"
-                        size={15}
-                    />
-                </span>
-                <div class="see_more" style="display: inline-block">
-                    <button onClick="showSeeMore()" style="color: #007185 !important">&#9662;</button>
-                    <span style="font-size: 14px; color: #007185"> See more</span>
-                    <br />
-                    <div id ="seeMore">
-                        <p>The Info</p>
-                    </div>
-                </div>
+                <span>Absorbency</span>
+                <ReactStars
+                    count={5}
+                    edit={false}
+                    value={5}
+                    activeColor="#FFA41C"
+                    size={15}
+                />
+
+                <span>Fabric texture</span>
+                <ReactStars
+                    count={5}
+                    edit={false}
+                    value={2}
+                    activeColor="#FFA41C"
+                    size={15}
+                />
+
+                <span>Fit true to size</span>
+                <ReactStars
+                    count={5}
+                    edit={false}
+                    value={4}
+                    activeColor="#FFA41C"
+                    size={15}
+                />
+
+                <button onClick={"showSeeMore"}><span>&#709; See more</span></button>
+
             </div>
 
-            <hr class="light" />
+            <br />
 
-            <div class="write_a_review">
+            <hr className="light" />
+
+            <br />
+
+            <div className="write_a_review">
                 <h3>Review this product</h3>
                 <br />
-                <span style="font-size: 14px; color: #0F1111; display: inline-block">
+                <span className="share_thoughts">
                     Share your thoughts with other customers
                 </span>
                 <br />
-                <a href="https://google.com" class="button">Write a customer review</a>
+                <Link to="/Reviews">Write a customer review</Link>
                 <br />
             </div>
 
-            <hr class="light" />
+            <br />
+
+            <hr className="light" />
 
         </div>
     );
