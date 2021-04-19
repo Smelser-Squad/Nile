@@ -2,11 +2,11 @@ import "./Tag.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Tag(props)
+function Tag (props)
 {
     // TODO: retrieve review data from api call
     //hardcoded for now
-    const [getReviews]= useState("");
+    const [data, getReviews]= useState("");
     const reviews= [];
     const url = "http://localhost:8080/api/reviews";
 
@@ -40,6 +40,7 @@ function Tag(props)
     return (
         <div class= "tag-container">
             {tagList}
+            {props.summary}
         </div>
 
     );

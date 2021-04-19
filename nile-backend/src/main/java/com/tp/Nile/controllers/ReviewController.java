@@ -15,7 +15,7 @@ public class ReviewController {
     @Autowired
     ReviewServiceImpl service;
 
-    @PostMapping("/addReview")
+    @PostMapping
     public ResponseEntity addReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.addReview(review));
