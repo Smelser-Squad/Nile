@@ -6,7 +6,7 @@ import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 
-function SingleProductListing(props) {
+function SingleProductListing() {
     return(
         <div className="SingleProductListing">
             <h2>WORLD'S #1 T SHIRT!!!!!!</h2>
