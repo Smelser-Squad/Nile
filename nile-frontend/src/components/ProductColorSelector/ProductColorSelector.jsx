@@ -9,11 +9,11 @@ export function ProductColorSelector(){
         <label>Color: {color}</label>
 <ul class="radio color">
   <li class="red">
-    <input type="radio" name="color" id="color_red" checked={color === 'Red'} value="red" onClick={() => setColor('Red')} />
+    <input type="radio" name="color" id="color_red" value="red" onClick={() => setColor('Red')} />
     <label for="color_red">Red</label>
   </li>
   <li class="green">
-    <input type="radio" name="color" id="color_green" checked={color === 'Green'} value="green" onClick={() => setColor('Green')} />
+    <input type="radio" name="color" id="color_green" value="green" onClick={() => setColor('Green')} />
     <label for="color_green">Green</label>
   </li>
  

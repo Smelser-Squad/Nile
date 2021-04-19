@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import axios from 'axios'
 
 export function useProduct(id){
+    
     const[data,setData]=useState([]);
 
     const getProduct=async()=>{
