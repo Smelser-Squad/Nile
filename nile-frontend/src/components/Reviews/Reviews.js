@@ -21,6 +21,7 @@ function Reviews() {
                 rating={review.rating}
                 reviewDate={review.reviewDate}
                 title={review.title}
+                summary={review.summary}
             />
             );
             setReviews(reviews)
