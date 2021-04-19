@@ -1,13 +1,8 @@
 package com.tp.Nile.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,9 +15,10 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Table
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class Product implements Serializable {
 
     @Id
@@ -32,7 +28,6 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -41,11 +36,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-
-
     @JsonIgnoreProperties(value = {"products"})
-
-
     private Type type;
 
     @Column(name = "price", nullable = false)
@@ -67,11 +58,8 @@ public class Product implements Serializable {
     private boolean primeEligible;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductPhoto> photoList = new ArrayList<>();
-
-
-
-
+    @JsonManagedReference
+    private List<ProductPhoto> photos = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "product_feature",
@@ -79,25 +67,18 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "feature_id"))
     private Set<Feature> features = new HashSet<>();
 
-
-
-
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     private Set<ProductOrder> productOrders = new HashSet<>();
 
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-
     private Set<Review> reviews=new HashSet<>();
-
-
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-
     private Set<Question> questions = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private Set<ProductSpecification> productSpecs = new HashSet<>();
 }

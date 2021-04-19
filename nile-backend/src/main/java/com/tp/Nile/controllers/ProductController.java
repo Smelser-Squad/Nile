@@ -8,9 +8,9 @@ import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 @RequestMapping("/api/products")
 @RestController
@@ -20,15 +20,16 @@ public class ProductController {
     @Autowired
     ProductServiceImpl service;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity addProduct(@RequestBody AddProductRequest product) {
         try {
-            return ResponseEntity.ok(service.addProduct(product));
+            return new ResponseEntity<>(service.addProduct(product), HttpStatus.CREATED);
         } catch (NullProductObjectException | NullBrandException | NullNameException | NullDescriptionException | NullPriceException | InvalidPriceException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping()
+
+    @GetMapping
     public ResponseEntity getProducts(){
         return ResponseEntity.ok(service.getAllProducts());
     }
@@ -37,18 +38,15 @@ public class ProductController {
     public ResponseEntity getProductById(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getProductById(productId));
-        } catch (NullProductIdException | InvalidProductIdException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (InvalidProductIdException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/category")
     public ResponseEntity getProductByCategory(@RequestBody Category category){
         return ResponseEntity.ok(service.getProductsByCategory(category));
     }
-    @GetMapping("/brand")
-    public ResponseEntity getProductByBrand(@RequestBody String brand){
-        return ResponseEntity.ok(service.getProductByBrand(brand));
-    }
+
     @GetMapping("/type")
     public ResponseEntity getProductByType(@RequestBody Type type){
         return ResponseEntity.ok(service.getProductsByType(type));
@@ -58,24 +56,23 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductsByVendor(vendor));
     }
 
-    @PutMapping()
+    @GetMapping("/brand/{brand}")
+    public ResponseEntity getProductByBrand(@PathVariable String brand){
+        return ResponseEntity.ok(service.getProductByBrand(brand));
+    }
+
+    @PutMapping
     public ResponseEntity updateProduct(@RequestBody Product updateProduct){
         return ResponseEntity.ok(service.updateProduct(updateProduct));
     }
+
     @DeleteMapping("/{productId}")
-    public String deleteProduct(@PathVariable Integer productId){
-        {
-            String toReturn="";
-            try {
-                if (service.deleteProduct(productId)) {
-                    toReturn ="Product " + productId + "deleted";
-                }else{
-                    toReturn="Product " + productId + "not found";
-                }
-            }catch (InvalidProductIdException | NullProductIdException ex){
-                ex.getMessage();
-            }
-            return  toReturn;
+    public ResponseEntity deleteProduct(@PathVariable Integer productId) {
+        try {
+            service.deleteProduct(productId);
+            return new ResponseEntity<>("Product " + productId + " deleted", HttpStatus.NO_CONTENT);
+        } catch (InvalidProductIdException ex) {
+            return new ResponseEntity<>("Product " + productId + " not found", HttpStatus.NOT_FOUND);
         }
     }
 }

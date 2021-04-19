@@ -26,10 +26,11 @@ public class Feature implements Serializable {
     @Column(name = "feature_id")
     private Integer featureId;
 
-    @Column(name ="name",nullable = false)
+    @Column(name ="name", nullable = false)
     private String name;
 
     @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
+
     private Set<Product> products;
 
 

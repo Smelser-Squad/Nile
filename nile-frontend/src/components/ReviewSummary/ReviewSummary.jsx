@@ -8,14 +8,14 @@ const BorderLinearProgress = withStyl((theme) => ({
     root: {
         height: 10,
         borderRadius: 5,
-      },
-      colorPrimary: {
+    },
+    colorPrimary: {
         backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
-      },
-      bar: {
+    },
+    bar: {
         borderRadius: 5,
         backgroundColor: '#FFA41C',
-      },
+    },
 }))(LinearProgress);
 
 function ReviewSummary() {
@@ -40,19 +40,19 @@ function ReviewSummary() {
                 </p>
                 <br />
 
-                <div class = "5star_row">
+                <div class="5star_row">
                     <BorderLinearProgress variant="determinate" value={80} />
                 </div>
-                <div class = "4star_row">
+                <div class="4star_row">
                     <BorderLinearProgress variant="determinate" value={70} />
                 </div>
-                <div class = "3star_row">
+                <div class="3star_row">
                     <BorderLinearProgress variant="determinate" value={60} />
                 </div>
-                <div class = "2star_row">
+                <div class="2star_row">
                     <BorderLinearProgress variant="determinate" value={50} />
                 </div>
-                <div class = "1star_row">
+                <div class="1star_row">
                     <span><BorderLinearProgress variant="determinate" value={40} /></span>
                 </div>
             </div>

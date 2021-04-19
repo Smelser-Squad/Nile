@@ -23,7 +23,7 @@ public class ProductPhotoController {
     public ResponseEntity getProductPhotos(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getPhotosByProduct(productId));
-        } catch (NullProductIdException | InvalidProductIdException e) {
+        } catch (InvalidProductIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -51,8 +51,8 @@ public class ProductPhotoController {
         return toReturn;
     }
 
-    @PostMapping("/add/photo")
-    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo) {
-        return ResponseEntity.ok(service.addPhoto(photo));
+    @PostMapping("/add/photo/{productId}")
+    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) {
+        return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
 }
