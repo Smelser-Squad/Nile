@@ -7,36 +7,9 @@ function Tag (props)
 {
     const [reviews, setReviews]= useState([]);
     const allReviews= [];
+    console.log(reviews)
+    console.log(allReviews);
 
-
-    //get the summary reviews and put into an array
-    if(reviews.length===0)
-    {
-        getReviews().then((list) =>
-        {
-            list.map((review) =>
-            allReviews.push(review)
-            
-        );
-        console.log(allReviews)
-            const reviews = allReviews.map((review)=>
-         <Reviews
-            reviewId = {review.reviewId}
-            title = {review.title}
-            summary= {review.summary}
-            user = {review.user}
-            reviewDate = {review.reviewDate}
-            rating = {review.rating}
-            helpful = {review.helpful}
-            feature = {review.feature}
-            />
-            );
-            setReviews(reviews);
-         }
-        );
-    }
-    
-    console.log(reviews);
 
     const tagArr = ["soft touch", "great length","easy to manage"];
 
@@ -46,7 +19,6 @@ function Tag (props)
     return (
         <div class= "tag-container">
             {tagList}
-            {allReviews}
         </div>
 
     );
