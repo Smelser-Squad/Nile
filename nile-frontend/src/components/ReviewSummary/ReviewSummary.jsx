@@ -4,12 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
@@ -90,8 +85,13 @@ function ReviewSummary() {
                     <BorderLinearProgress variant="determinate" value={40} /> 40%
                     </span>
                 </div>
-                <div class="ratings_question">
+                <div class="ratings_question" style="display: inline-block">
+                    <button onClick="showRatingsQuestion()" style="color: #007185 !important">&#9662;</button>
                     <span style="font-size: 14px; color: #007185"> How are ratings calculated?</span>
+                    <br />
+                    <div id ="ratingsQ">
+                        <p>More ratings here</p>
+                    </div>
                 </div>
             </div>
 
@@ -129,8 +129,13 @@ function ReviewSummary() {
                         size={15}
                     />
                 </span>
-                <div class="see_more">
+                <div class="see_more" style="display: inline-block">
+                    <button onClick="showSeeMore()" style="color: #007185 !important">&#9662;</button>
                     <span style="font-size: 14px; color: #007185"> See more</span>
+                    <br />
+                    <div id ="seeMore">
+                        <p>The Info</p>
+                    </div>
                 </div>
             </div>
 

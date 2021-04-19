@@ -19,14 +19,11 @@ function App() {
                     <Route exact path="/singleProductListing">
                         <SingleProductListing />
                         <Tag />
+                        <ReviewSummary />
                     </Route>
 
                     <Route exact path="/checkout">
                         <Checkout />
-                    </Route>
-
-                    <Route exact path="/reviewSummary">
-                        <ReviewSummary />
                     </Route>
 
                     <Route exact path="/">
