@@ -1,9 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {getProducts} from '../../service/ProductService'
+
 import './Home.css'
 import HomeProduct from './HomeProduct';
 
-
 function Home() {
+ 
+    const[cards,setCards]=useState([]);
+
+    const ProductList=[];
+
+    if(cards.length===0){
+        getProducts().then((list)=>
+        {
+            list.map((item)=>
+            ProductList.push(item)
+            );
+            const cards=ProductList.map((product)=>
+                <HomeProduct
+                        productId={product.productId}
+                        name={product.name}
+                        price={product.price}
+                        rating={4}
+                        image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"/>
+                       
+
+            );
+            setCards(cards);
+        }
+        );
+    }
+
+
     return (
         <div className='home' >
             <div className="home_container">
@@ -16,7 +44,9 @@ function Home() {
 
                 {/* <img alt="Certified Refurbished; Save on like-new Amazon devices." src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/YWIyMWNkMjQt/YWIyMWNkMjQt-Nzc5NDk1N2Qt-w3000._CB660698761_.jpg" height="600px" width="1500px" ></img> */}
                 <div className="home_row">
-                    <HomeProduct
+                    {cards}
+                    </div>
+                    {/* <HomeProduct
                         productId="12321341"
                         name="Gift for Mom"
                         price={80.99}
@@ -40,7 +70,7 @@ function Home() {
 
                 <div className="home_row">
                     <HomeProduct />
-                </div>
+                </div> */}
             </div >
         </div>
     )
