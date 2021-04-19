@@ -45,7 +45,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/by/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
             return ResponseEntity.ok(service.getReviewsByUserId(userId));
