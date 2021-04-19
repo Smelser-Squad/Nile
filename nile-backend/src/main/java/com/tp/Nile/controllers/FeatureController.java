@@ -19,9 +19,9 @@ public class FeatureController {
     FeatureServiceImpl service;
 
 
-    @PostMapping("/add/feature/{productId}")
-    public ResponseEntity addFeature(@RequestBody Feature feature, @PathVariable Integer productId){
-        return ResponseEntity.ok(service.addFeature(feature,productId));
+    @PostMapping("/add/feature")
+    public ResponseEntity addFeature(@RequestBody Feature feature){
+        return ResponseEntity.ok(service.addFeature(feature));
     }
     @GetMapping()
     public ResponseEntity getFeatures(){

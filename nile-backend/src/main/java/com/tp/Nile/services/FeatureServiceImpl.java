@@ -44,16 +44,14 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
     @Override
-    public Feature addFeature(Feature newFeature,Integer productId) {
+    public Feature addFeature(Feature newFeature) {
 
         Set<Product>features=new HashSet<>();
 
-        try {
-            features.add(productService.getProductById(productId));
+     
             newFeature.setProducts(features);
-        } catch (InvalidProductIdException e) {
-            e.getMessage();
-        }
+
+
         return repo.saveAndFlush(newFeature);
     }
 

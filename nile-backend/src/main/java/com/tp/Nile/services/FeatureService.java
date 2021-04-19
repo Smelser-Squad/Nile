@@ -11,7 +11,7 @@ public interface FeatureService {
 
     List<Feature> getAllFeatures();
     Feature getFeatureById(Integer featureId) throws NullFeatureIdException, InvalidFeatureIdException;
-    Feature addFeature(Feature newFeature,Integer productId);
+    Feature addFeature(Feature newFeature);
     Feature updateFeature(Feature updatedFeature);
     boolean deleteFeature(Integer featureId) throws NullFeatureIdException, InvalidFeatureIdException;
 
