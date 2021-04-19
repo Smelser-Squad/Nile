@@ -2,6 +2,7 @@ package com.tp.Nile.controllers;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Category;
+import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.TypeServiceImpl;
@@ -42,5 +43,8 @@ public class TypeController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
+
 }
 

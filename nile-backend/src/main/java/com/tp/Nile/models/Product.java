@@ -3,12 +3,12 @@ package com.tp.Nile.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -26,15 +26,16 @@ public class Product implements Serializable {
     @Column(name = "product_id")
     private Integer productId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = { CascadeType.PERSIST })
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     @JoinColumn(name = "type_id")
     @JsonIgnoreProperties(value = {"products"})
     private Type type;
@@ -52,33 +53,39 @@ public class Product implements Serializable {
     private String brand;
 
     @Column(name = "stock", nullable = false)
-    private  Integer stock;
+    private Integer stock;
 
     @Column(name = "primeEligible", nullable = false)
     private boolean primeEligible;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
-    private List<ProductPhoto> photos = new ArrayList<>();
+    private List<ProductPhoto> photos;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "product_feature",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "feature_id"))
-    private Set<Feature> features = new HashSet<>();
+    private List<Feature> features;
 
-    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
-    private Set<ProductOrder> productOrders = new HashSet<>();
+    @OneToMany(mappedBy = "product")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<ProductOrder> productOrders;
 
-    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews=new HashSet<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference
+    private List<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "product",
             orphanRemoval = true)
-    private Set<Question> questions = new HashSet<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Question> questions;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-    private Set<ProductSpecification> productSpecs = new HashSet<>();
+    @OneToMany(mappedBy = "product")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<ProductSpecification> productSpecs;
 }

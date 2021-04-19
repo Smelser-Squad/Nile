@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
@@ -19,6 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+@JsonIgnoreProperties({ "products"})
 public class Feature implements Serializable {
 
     @Id
@@ -30,8 +31,8 @@ public class Feature implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
-
-    private Set<Product> products;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Product> products;
 
 
 }
