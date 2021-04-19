@@ -54,7 +54,7 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/updateReview")
+    @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.updateReview(review));
