@@ -71,9 +71,9 @@ public class ReviewController {
             String toReturn="";
             try {
                 if (service.deleteReview(reviewId)) {
-                    toReturn ="Product " + reviewId + "deleted";
+                    toReturn ="Review " + reviewId + " deleted";
                 }else{
-                    toReturn="Product " + reviewId + "not found";
+                    toReturn="Review " + reviewId + " not found";
                 }
             }catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException ex){
                 ex.getMessage();

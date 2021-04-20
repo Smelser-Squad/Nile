@@ -59,7 +59,7 @@ public class ReviewServiceImpl implements ReviewService{
             else
                 return retrieved;
         }else{
-            throw new InvalidReviewIdException("Product with that id does not exist");
+            throw new InvalidReviewIdException("Review with that id does not exist");
         }
     }
 
