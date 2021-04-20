@@ -53,40 +53,40 @@ public class ReviewControllerTest {
                         result.getResponse().getContentAsString()));
     }
 
-//    @Test
-//    @Order(2)
-//    public void testAddReview() throws Exception {
-//
-//        Feature feature1 = new Feature();
-//        feature1.setName("sample feature one");
-//
-//        List<Review> reviews = new ArrayList<>();
-//
-//        Review review1 = new Review();
-//        review1.setHelpful(true);
-//        review1.setRating(4);
-//        review1.setSummary("sample summary");
-//        review1.setTitle("sample title");
-//        review1.setFeature(feature1);
-//        review1.setUser(new User());
-//
-//        reviews.add(review1);
-//
-//        this.mockMvc.perform(post("/api/reviews")
-//                .content(asJsonString(review1))
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(jsonPath("$.reviews").isArray())
-//                .andExpect(jsonPath("$.reviews[0].helpful").value(true))
-//                .andExpect(jsonPath("$.reviews[0].title").value("sample title"))
-//                .andExpect(jsonPath("$.reviews[0].summary").value("sample summary"))
-//                .andExpect(jsonPath("$.reviews[0].rating").value(4))
-//                .andExpect(jsonPath("$.reviews[0].reviewDate").exists())
-//                .andExpect(jsonPath("$.reviews[0].feature.featureId").exists())
-//                .andExpect(jsonPath("$.reviews[0].user.userId").exists());
-//
-//
-//    }
+    @Test
+    @Order(2)
+    public void testAddReview() throws Exception {
+
+        Feature feature1 = new Feature();
+        feature1.setName("sample feature one");
+
+        List<Review> reviews = new ArrayList<>();
+
+        Review review1 = new Review();
+        review1.setHelpful(true);
+        review1.setRating(4);
+        review1.setSummary("sample summary");
+        review1.setTitle("sample title");
+        review1.setFeature(feature1);
+        review1.setUser(new User());
+
+        reviews.add(review1);
+
+        this.mockMvc.perform(post("/api/reviews")
+                .content(asJsonString(review1))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(jsonPath("$.reviews").isArray())
+                .andExpect(jsonPath("$.reviews[0].helpful").value(true))
+                .andExpect(jsonPath("$.reviews[0].title").value("sample title"))
+                .andExpect(jsonPath("$.reviews[0].summary").value("sample summary"))
+                .andExpect(jsonPath("$.reviews[0].rating").value(4))
+                .andExpect(jsonPath("$.reviews[0].reviewDate").exists())
+                .andExpect(jsonPath("$.reviews[0].feature.featureId").exists())
+                .andExpect(jsonPath("$.reviews[0].user.userId").exists());
+
+
+    }
 
 }

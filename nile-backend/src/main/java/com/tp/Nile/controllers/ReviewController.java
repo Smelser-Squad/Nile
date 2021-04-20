@@ -59,7 +59,7 @@ public class ReviewController {
         try {
             return ResponseEntity.ok(service.updateReview(review));
         }
-        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e)
+        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException | InvalidReviewException e)
         {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

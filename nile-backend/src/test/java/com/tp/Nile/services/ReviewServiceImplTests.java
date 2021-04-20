@@ -204,4 +204,33 @@ public class ReviewServiceImplTests {
         }
     }
 
+    @Test
+    public void testAddReviewNullId() {
+
+        Feature feature1 = new Feature();
+        feature1.setName("sample feature one");
+
+        Review newReview = new Review();
+        newReview.setReviewId(null);
+        newReview.setHelpful(true);
+        newReview.setRating(3);
+        newReview.setSummary("sample summary");
+        newReview.setTitle("sample title");
+        newReview.setFeature(feature1);
+        newReview.setUser(new User());
+
+        try {
+            service.addReview(newReview);
+            failBecauseExceptionWasNotThrown(NullReviewIdException.class);
+        } catch (InvalidReviewIdException ex) {
+            fail("Invalid review id thrown");
+        } catch (NullReviewIdException ex) {
+
+        } catch (NullReviewAttributeException ex) {
+            fail("Null review attribute thrown");
+        } catch (InvalidReviewException ex) {
+            fail("Invalid review thrown");
+        }
+    }
+
 }
