@@ -2,29 +2,22 @@ import React, { useState, useEffect } from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import StripeCheckout from "react-stripe-checkout";
+import { toast } from "react-toastify";
+
 
 import './Payment.css';
-import { CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getCartTotal } from '../../reducer';
 
 function Payment() {
-    const [{ cart }] = useStateValue();
+    const [{ cart }, dispatch] = useStateValue();
 
 
-    const [disabled, setDisabled] = useState(true);
-    const [succeeded, setSucceeded] = useState(false);
-    const [processing, setProcessing] = useState("");
-
-
-    const handleSubmit = async (event) => {
-
-
-
-    }
-    const handleChange = event => {
-
-
+    async function handleToken(token, addresses) {
+        console.log({ token, addresses });
     }
     return (
         <div className='payment'>
@@ -35,7 +28,7 @@ function Payment() {
                         <Link to='checkout'>{cart?.length} items</Link>
                     )
                 </h1>
-                <div className='payment_section'>
+                {/* <div className='payment_section'>
 
                     <div className='payment_title'>
                         <h3>
@@ -48,7 +41,7 @@ function Payment() {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
                 <div className='payment_section'>
                     <div className='payment_title'>
@@ -79,27 +72,34 @@ function Payment() {
                     </h3>
                     </div>
                     <div className='payment_details'>
-                        {/* Stripe */}
 
-                        <form onSubmit={handleSubmit}>
-                            <CardElement onChange={handleChange} />
 
-                            <div className='payment_priceContainer'>
-                                <CurrencyFormat
-                                    renderText={(value) => (
-                                        <h3> Order Total: {value} </h3>
-                                    )}
-                                    decimalScale={2}
-                                    value={getCartTotal(cart)}
-                                    displayType={"text"}
-                                    thousandSeperator={true}
-                                    prefix={"$"}
-                                />
-                                <button disabled={processing || disabled || succeeded}>
-                                    <span>{processing ? <p> Processing </p> : "Shop Now"} </span>
-                                </button>
-                            </div>
-                        </form>
+                        <div className='payment_priceContainer'>
+                            <CurrencyFormat
+                                renderText={(value) => (
+                                    <h3> Order Total: {value} </h3>
+                                )}
+                                decimalScale={2}
+                                value={getCartTotal(cart)}
+                                displayType={"text"}
+                                thousandSeperator={true}
+                                prefix={"$"}
+                            />
+
+                        </div>
+
+                        <StripeCheckout
+
+                            stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+                            token={handleToken}
+                            amount={getCartTotal * 100}
+
+                            billingAddress
+                            shippingAddress
+
+                        />
+
+
                     </div>
                 </div>
             </div>

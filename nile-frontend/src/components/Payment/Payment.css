@@ -30,8 +30,14 @@
     flex: 0.8; 
 }
 
-/* .payment_priceContainer > button {
-    color: #607477;
-    font-size: 14px;
-    padding-top: 10px;
-} */
+
+.payment_priceContainer > button{
+    background-color: #f0c14b;
+    border-radius: 2px;
+    width: 200px;
+    height: 30px; 
+    border: 1px solid; 
+    margin-top: 10px; 
+    border-color: #a88734 #9c7e31 #846a29; 
+    color: #111; 
+}
