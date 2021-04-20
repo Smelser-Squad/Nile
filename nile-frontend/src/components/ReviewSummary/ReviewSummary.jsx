@@ -141,7 +141,7 @@ function ReviewSummary() {
                     Share your thoughts with other customers
                 </span>
                 <br />
-                <Link to="/Reviews">Write a customer review</Link>
+                <Link to="/CreateReview">Write a customer review</Link>
                 <br />
             </div>
 

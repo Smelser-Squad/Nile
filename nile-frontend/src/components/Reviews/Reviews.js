@@ -31,14 +31,7 @@ function Reviews() {
 
     return (
         <div class="reviews-container">
-
-        {reviews}
-
-
-
-
-
-
+            {reviews}
         </div>
     )
 }
