@@ -26,3 +26,25 @@
 .buttonText{
     align-content: center;
 }
+.button{
+    display: inline-block;
+}
+.queAndAns{
+    padding-top: 25px;
+    text-align:left;
+    display: inline-block;
+}
+.borderlessButton{
+    border: 0px none #1C6EA4;
+}
+.borderlessButton:hover{
+    color: #1C6EA4;
+}
+.left{
+    float: left;
+    margin-right: 20px;
+}
+.right{
+    float: right;
+    
+}
