@@ -23,7 +23,7 @@ function MoreProducts() {
                         price={product.price}
                         rating={4}
                         avgRating={4}
-                        image= {product.photos[0]}
+                        image= {product.photos[0].imageSrc}
                         reviewCount={16} 
                         primeEligible={product.primeEligible}
                     />
@@ -35,6 +35,8 @@ function MoreProducts() {
         );
     }
 
+    const pages = Math.ceil((products.length / 5));
+
     return (
         <div class="container">
             <hr/>
@@ -43,7 +45,7 @@ function MoreProducts() {
                     <div class="header">
                         <span>
                             <h3 id="customer-bought">Customers also bought these products</h3>
-                            <p class="pages">Page 1 of 2</p>
+                            <p class="pages">Page 1 of {pages}</p>
                         </span>
                     </div>
                 </Grid>
