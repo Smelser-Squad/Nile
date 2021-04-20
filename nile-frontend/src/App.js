@@ -5,6 +5,7 @@ import Home from './components/Home/Home.js';
 import ReviewSummary from './components/ReviewSummary/ReviewSummary'
 import Checkout from './components/Checkout/Checkout';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
+import CreateReview from './components/Reviews/CreateReview'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 
@@ -28,6 +29,10 @@ function App() {
                     <Route exact path="/">
                         <Home />
 
+                    </Route>
+
+                    <Route exact path="/createReview">
+                        <CreateReview/>
                     </Route>
 
                 </Switch>
