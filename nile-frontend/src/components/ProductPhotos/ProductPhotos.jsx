@@ -7,6 +7,7 @@ function ProductPhotos() {
 
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
+    const [modalSrc, setModal] = useState([])
 
     const PhotoList=[];
 
@@ -32,8 +33,13 @@ function ProductPhotos() {
                 onMouseEnter={displayModal}
                 onMouseLeave={hideModal}
                 alt="product"src={photo.imageSrc}></img>)
+            const modalSrc = PhotoList.map((photo)=>
+                <img id="modalImage"
+                alt=""
+                src={photo.imageSrc}></img>)
         setData(data);
         setPhoto(photoSrc);
+        setModal(modalSrc);
     }
     );
 }
@@ -47,12 +53,10 @@ function ProductPhotos() {
             <ul className="altPhotoList">
                 {data}
             </ul>
-            
-
             {photoSrc[0]}
             
             <div id="myModal" class="modal">
-                <img class="modal-content" id="modalImage" alt="" src={data}></img>    
+                {modalSrc[0]}    
             </div>
 
         </div>
