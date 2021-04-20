@@ -43,8 +43,11 @@
 .left{
     float: left;
     margin-right: 20px;
+    font-weight: bold;
+    word-spacing: 2px;
 }
 .right{
     float: right;
-    
+    display: inline-block;
+    word-spacing: 2px;
 }

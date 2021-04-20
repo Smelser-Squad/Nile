@@ -24,18 +24,22 @@ export default function Questions(props) {
                             </div>
                             <img className="toggleVoteDown" src="https://cdn4.iconfinder.com/data/icons/neutro-award/32/downvote-512.png" onClick={downVote}></img>
                         </Grid>
+                        <Grid item xs={1}>
+                            <div className="queAndAns">
+                                <div className="left">
+                                    Question: <br></br><br></br>
+                                    Answer: 
+                                </div>
+                            </div>
+                        </Grid>
                         <Grid item xs={6}>
-                        <div className="queAndAns">
-                            <div className="left">
-                                Question: <br></br>
-                                Answer: 
+                            <div className="queAndAns">
+                                <div className="right">
+                                    {question.question}<br></br><br></br>
+                                    <Answers answers={question.answers} />
+                                </div>
+                                <br></br>
                             </div>
-                            <div className="right">
-                                {question.question}<br></br>
-                                <Answers answers={question.answers} />
-                            </div>
-                            <br></br>
-                        </div>
                         </Grid>
                     </Grid>
                     )
