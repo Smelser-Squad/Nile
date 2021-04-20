@@ -1,9 +1,6 @@
 package com.tp.Nile.repositories;
 
-import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
-import com.tp.Nile.models.Type;
-import com.tp.Nile.models.Vendor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +16,6 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query("select p from Product p where p.category.name=:category")
     List<Product> getProductsByCategory(@Param("category") String category);
 
-
     @Query("select p from Product p where p.brand=:brand")
     List<Product> findProductsByBrand(@Param("brand") String brand);
 
@@ -28,6 +24,5 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Query("select p from Product p where p.type.typeName=:type")
     List<Product> getProductsByType(@Param("type") String type);
-
 
 }
