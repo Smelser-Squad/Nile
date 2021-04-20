@@ -2,7 +2,6 @@ import './App.css';
 import Tag from './components/ReviewTag/Tag.js';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import ReviewSummary from './components/ReviewSummary/ReviewSummary'
 import Checkout from './components/Checkout/Checkout';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -16,9 +15,8 @@ function App() {
                 <Header />
 
                 <Switch>
-                    <Route exact path="/singleProductListing">
-                        <SingleProductListing />
-                        {/* <ReviewSummary /> */}
+                    <Route exact path="/singleProductListing/:productId">
+                        <SingleProductListing/>
                         <Tag />
                     </Route>
 

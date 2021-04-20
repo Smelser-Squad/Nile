@@ -42,7 +42,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Vendor upddateVendor(Vendor updatedVendor) {
+    public Vendor updateVendor(Vendor updatedVendor) {
         return repo.saveAndFlush(updatedVendor);
     }
 
@@ -59,5 +59,5 @@ public class VendorServiceImpl implements VendorService {
             throw new InvalidVendorIdException("Vendor with that id does not exist");
         }
     }
-    }
+}
 

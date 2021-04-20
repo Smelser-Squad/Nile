@@ -1,9 +1,7 @@
 package com.tp.Nile.controllers;
 
-import com.tp.Nile.exceptions.InvalidTypeIdException;
-import com.tp.Nile.exceptions.InvalidVendorIdException;
-import com.tp.Nile.exceptions.NullTypeIdException;
-import com.tp.Nile.exceptions.NullVendorIdException;
+import com.tp.Nile.exceptions.*;
+import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.VendorServiceImpl;
@@ -34,6 +32,27 @@ public class VendorController {
             return ResponseEntity.ok(service.getVendorById(vendorId));
         } catch (NullVendorIdException | InvalidVendorIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @PutMapping()
+    public ResponseEntity updateVendor(@RequestBody Vendor updatedVendor){
+        return ResponseEntity.ok(service.updateVendor(updatedVendor));
+    }
+
+    @DeleteMapping("/{vendorId}")
+    public String deleteVendor(@PathVariable Integer vendorId){
+        {
+            String toReturn="";
+            try {
+                if (service.deleteVendor(vendorId)) {
+                    toReturn ="Vendor " + vendorId + "deleted";
+                }else{
+                    toReturn="Vendor " + vendorId + "not found";
+                }
+            }catch (InvalidVendorIdException | NullVendorIdException ex){
+                ex.getMessage();
+            }
+            return  toReturn;
         }
     }
 }
