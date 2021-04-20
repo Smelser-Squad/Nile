@@ -64,7 +64,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review addReview(Review newReview)
+    public Review addReview(Review newReview, Integer product_id)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException {
         if(newReview.getRating() < 1 || newReview.getRating() > 5){
             throw new InvalidReviewException("A review's rating must be between 1 and 5");

@@ -18,7 +18,7 @@ public interface ReviewService {
     Review getReviewById(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    Review addReview(Review newReview)
+    Review addReview(Review newReview,Integer product_id)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException;
 
     Review updateReview(Review updatedReview)
