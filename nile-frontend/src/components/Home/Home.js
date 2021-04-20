@@ -1,20 +1,19 @@
-import React, {useState} from 'react'
-import {getProducts} from '../../service/ProductService'
+import React, { useState } from 'react'
+import { getProducts } from '../../service/ProductService'
 
 import './Home.css'
 import HomeProduct from './HomeProduct';
 
 function Home() {
- 
-    const[cards,setCards]=useState([]);
 
-    const ProductList=[];
+    const [cards, setCards] = useState([]);
 
-    if(cards.length===0){
-        getProducts().then((list)=>
-        {
-            list.map((item)=>
-            ProductList.push(item)
+    const ProductList = [];
+
+    if (cards.length === 0) {
+        getProducts().then((list) => {
+            list.map((item) =>
+                ProductList.push(item)
             );
             const cards=ProductList.map((product)=>
             
@@ -47,33 +46,20 @@ function Home() {
 
                 {/* <img alt="Certified Refurbished; Save on like-new Amazon devices." src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/YWIyMWNkMjQt/YWIyMWNkMjQt-Nzc5NDk1N2Qt-w3000._CB660698761_.jpg" height="600px" width="1500px" ></img> */}
                 <div className="home_row">
-                    {cards}
-                    </div>
-                    {/* <HomeProduct
-                        productId="12321341"
-                        name="Gift for Mom"
-                        price={80.99}
-                        rating={3}
-                        image="https://i.etsystatic.com/5584756/r/il/7d61bd/2957120029/il_1588xN.2957120029_kefx.jpg" />
-
-
-                    <HomeProduct
-                        productId="12321341"
-                        name="Wood Tabletop"
-                        price={10.99}
-                        rating={4}
-                        image="https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg" />                </div>
-
-                <div className="home_row">
-                    <HomeProduct />
-                    <HomeProduct />
-                    <HomeProduct />
-
+                    {cards.slice(0, 2)}
                 </div>
 
                 <div className="home_row">
-                    <HomeProduct />
-                </div> */}
+                    {cards.slice(3, 6)}
+                </div>
+
+                <div className="home_row">
+                    {cards.slice(7, 10)}
+                </div>
+
+                <div className="home_row">
+                    {cards.slice(11, 500)}
+                </div>
             </div >
         </div>
     )

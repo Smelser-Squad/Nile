@@ -5,7 +5,7 @@ import Home from './components/Home/Home.js';
 import Checkout from './components/Checkout/Checkout';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import Payment from './components/Payment/Payment';
 
 function App() {
     return (
@@ -22,6 +22,10 @@ function App() {
 
                     <Route exact path="/checkout">
                         <Checkout />
+                    </Route>
+
+                    <Route exact path="/payment">
+                        <Payment />
                     </Route>
                     <Route exact path="/">
                         <Home />
