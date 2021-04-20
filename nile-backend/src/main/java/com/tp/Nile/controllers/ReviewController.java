@@ -20,7 +20,7 @@ public class ReviewController {
         try {
             return ResponseEntity.ok(service.addReview(review));
         }
-        catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
+        catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException | InvalidReviewException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -45,7 +45,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/by/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
             return ResponseEntity.ok(service.getReviewsByUserId(userId));
@@ -82,4 +82,5 @@ public class ReviewController {
         }
     }
 }
+
 

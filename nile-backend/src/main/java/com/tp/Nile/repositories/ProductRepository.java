@@ -16,18 +16,18 @@ import java.util.List;
 @Profile({ "dev", "test" })
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
-    @Query("select p from Product p where p.category=:category")
-    List<Product> getProductsByCategory(@Param("category") Category category);
+    @Query("select p from Product p where p.category.name=:category")
+    List<Product> getProductsByCategory(@Param("category") String category);
 
 
     @Query("select p from Product p where p.brand=:brand")
     List<Product> findProductsByBrand(@Param("brand") String brand);
 
-    @Query("select p from Product p where p.vendor=:vendor")
-    List<Product> getProductsByVendor(@Param("vendor") Vendor vendor);
+    @Query("select p from Product p where p.vendor.name=:vendor")
+    List<Product> getProductsByVendor(@Param("vendor") String vendor);
 
-    @Query("select p from Product p where p.type=:type")
-    List<Product> getProductsByType(@Param("type") Type type);
+    @Query("select p from Product p where p.type.typeName=:type")
+    List<Product> getProductsByType(@Param("type") String type);
 
 
 }

@@ -1,12 +1,12 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios'
 
-export function useProduct(id){
+export function useReview(id){
     
     const[data,setData]=useState([]);
 
-    const getProduct=async()=>{
-        await axios.get('http://localhost:80/api/products/' + id)
+    const getReviews=async()=>{
+        await axios.get('http://localhost:80/api/reviews/' + id)
         .then(res=>{
             const product=res.data;
             if(res.satus===200){
@@ -15,18 +15,17 @@ export function useProduct(id){
         
     };
     useEffect(()=>{
-        getProduct();},[]);
+        getReviews();},[]);
         return(
             data
         )
 }
-async function getProducts(){
-    const products=await axios.get('http://localhost:80/api/products')
-    const data=products.data;
+async function getReviews(){
+    const reviews=await axios.get('http://localhost:80/api/reviews')
+    const data=reviews.data;
     console.log(data);
 
-    return(data);
-    
-}
-export {getProducts}
+    return data;
 
+}
+export {getReviews}

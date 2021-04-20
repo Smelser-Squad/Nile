@@ -5,6 +5,7 @@ import com.tp.Nile.exceptions.InvalidTypeIdException;
 import com.tp.Nile.exceptions.NullCategoryIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
 import com.tp.Nile.models.Category;
+import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.TypeServiceImpl;
@@ -40,5 +41,8 @@ public class TypeController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
+
 }
 
