@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -31,14 +32,16 @@ public class TypeTest {
 
     @BeforeEach
     public void setup() {
-        Type setupType = new Type(1, "test type", new HashSet<>());
+        Type setupType = new Type(1, "test type", new ArrayList<>());
         repo.save(setupType);
     }
 
     @Test
     @Rollback(true)
     public void testAddType() {
-        Type newType = new Type(2, "new type", new HashSet<>());
+        Type newType = new Type();
+        newType.setTypeName("new type");
+        newType.setProducts(new ArrayList<>());
         Type savedType = repo.save(newType);
         assertNotNull(savedType);
         assertEquals(2, savedType.getTypeId());
@@ -74,7 +77,7 @@ public class TypeTest {
 
     @Test
     public void testDeleteType() {
-        Type toDelete = new Type(1, "test type", new HashSet<>());
+        Type toDelete = new Type(1, "test type", new ArrayList<>());
         repo.delete(toDelete);
         assertEquals(0, repo.findAll().size());
     }
