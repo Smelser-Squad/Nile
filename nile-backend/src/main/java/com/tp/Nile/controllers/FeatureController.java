@@ -19,7 +19,7 @@ public class FeatureController {
     FeatureServiceImpl service;
 
 
-    @PostMapping()
+    @PostMapping("/add/feature")
     public ResponseEntity addFeature(@RequestBody Feature feature){
         return ResponseEntity.ok(service.addFeature(feature));
     }

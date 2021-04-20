@@ -20,5 +20,6 @@ public interface PhotoService {
 
     ProductPhoto updatePhoto(ProductPhoto update);
 
+
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
 }
