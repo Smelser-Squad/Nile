@@ -1,7 +1,5 @@
-package com.tp.Nile.controllers;
+package com.tp.Nile.controllers.integration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.tp.Nile.models.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
@@ -9,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,17 +20,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static com.tp.Nile.controllers.helpers.JsonStringMapper.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
-    private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     @Test
     @Order(1)
@@ -49,7 +49,7 @@ public class ProductControllerTest {
         product.setBrand("Nike");
         product.setDescription("Athletic shoes");
         product.setName("Air Jordan");
-        product.setPrice(249.99);
+        product.setPrice(new BigDecimal("249.99"));
         product.setPrimeEligible(false);
         product.setStock(2);
 
@@ -252,10 +252,10 @@ public class ProductControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
-        Product product = this.mapper.readValue(result.getResponse().getContentAsString(), Product.class);
+        Product product = mapper.readValue(result.getResponse().getContentAsString(), Product.class);
         product.setName("Predator");
         product.setDescription("Soccer cleats");
-        product.setPrice(159.99);
+        product.setPrice(new BigDecimal("159.99"));
         product.setPrimeEligible(true);
         product.setStock(3);
         product.setBrand("Adidas");
@@ -291,15 +291,5 @@ public class ProductControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(result -> assertEquals("Product " + Integer.MIN_VALUE + " not found",
                         result.getResponse().getContentAsString()));
-    }
-
-    static String asJsonString(final Object obj) {
-        try {
-            final ObjectMapper mapper = new ObjectMapper();
-            final String jsonContent = mapper.writeValueAsString(obj);
-            return jsonContent;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }
