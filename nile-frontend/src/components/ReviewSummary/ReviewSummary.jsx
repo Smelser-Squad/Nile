@@ -40,22 +40,38 @@ function showRatingsQuestion() {
 
 function ReviewSummary() {
 
-    function showSeeMore() {
+    function hideSeeMore() {
         var x = document.getElementById("seeMore");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
+        if (x.style.display = "block")
             x.style.display = "none";
+        else {
+            x.style.display = "block";
         }
     }
 
-    function showRatingsQuestion() {
-        var x = document.getElementById("ratingsQ");
-        if (x.style.display === "none") {
+    function showSeeMore() {
+        var x = document.getElementById("seeMore");
+        if (x.style.display = "none")
             x.style.display = "block";
-        } else {
+        else
             x.style.display = "none";
+    }
+
+    function hideRatingsQ() {
+        var x = document.getElementById("ratingsQ");
+        if (x.style.display = "block")
+            x.style.display = "none";
+        else {
+            x.style.display = "block";
         }
+    }
+
+    function showRatingsQ() {
+        var x = document.getElementById("ratingsQ");
+        if (x.style.display = "none")
+            x.style.display = "block";
+        else
+            x.style.display = "none";
     }
 
     return (
@@ -95,10 +111,18 @@ function ReviewSummary() {
 
                 <br />
 
-                <button onClick={"showRatingsQuestion"}><span>&#709; How are ratings calculated?</span></button>
+                <span>&#709;<button onMouseEnter={showRatingsQ}
+                    onMouseLeave={hideRatingsQ}
+                    className="calc_ratings">How are ratings calculated?</button></span>
 
-                <div id="ratings_calc">
-
+                <div id="ratingsQ">
+                    <p>To calculate the overall star rating and <br />
+                    percentage breakdown by star, we don’t use <br />
+                    a simple average. Instead, our system <br />
+                    considers things like how recent a review is <br />
+                    and if the reviewer bought the item on <br />
+                    Amazon. It also analyzes reviews to verify <br />
+                    trustworthiness.</p>
                 </div>
 
             </div>
@@ -124,14 +148,14 @@ function ReviewSummary() {
 
             <div className="by_feature">
                 <h3>By feature</h3>
-                <span>Absorbency</span>
+                <span>Absorbency
                 <ReactStars
                     count={5}
                     edit={false}
                     value={5}
                     activeColor="#FFA41C"
                     size={15}
-                />
+                /></span>
 
                 <span>Fabric texture</span>
                 <ReactStars
@@ -151,7 +175,38 @@ function ReviewSummary() {
                     size={15}
                 />
 
-                <button onClick={"showSeeMore"}><span>&#709; See more</span></button>
+                <div id="seeMore">
+                    <span>More feature #1</span>
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={1}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+
+                    <span>More feature #2</span>
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={2}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+
+                    <span>More feature #3</span>
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        value={3}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+                </div>
+
+                <span>&#709;<button className="see_more"
+                    onMouseEnter={showSeeMore}
+                    onMouseLeave={hideSeeMore}> See more</button></span>
 
             </div>
 

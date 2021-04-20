@@ -7,6 +7,15 @@ a.button {
     color: initial;
 }
 
+#ratingsQ, #seeMore {
+    display: none;
+}
+
+p {
+    font-family: "Amazon Ember",Arial,sans-serif;
+    font-size: 14px;
+}
+
 button {
     background-color: transparent;
     border: transparent;
@@ -14,6 +23,15 @@ button {
     font-size: 14px;
     padding-top: 10px;
     
+}
+
+.see_more, .calc_ratings {
+    font-family: "Amazon Ember",Arial,sans-serif;
+}
+
+.see_more:hover, .calc_ratings:hover {
+    text-decoration: underline;
+    color: rgb(189, 52, 52);
 }
 
 .bar {
