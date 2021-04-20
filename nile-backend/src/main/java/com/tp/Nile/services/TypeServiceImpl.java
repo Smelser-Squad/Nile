@@ -1,7 +1,9 @@
 package com.tp.Nile.services;
 
+import com.tp.Nile.exceptions.EmptyTypeNameException;
 import com.tp.Nile.exceptions.InvalidTypeIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
+import com.tp.Nile.exceptions.NullTypeNameException;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,13 @@ public class TypeServiceImpl implements TypeService {
 
     }
     @Override
-    public Type addType(Type newType) {
+    public Type addType(Type newType) throws NullTypeNameException, EmptyTypeNameException {
+        if (newType.getTypeName() == null) {
+            throw new NullTypeNameException("Type name cannot be null");
+        }
+        if (newType.getTypeName() == "") {
+            throw new EmptyTypeNameException("Type name cannot be empty");
+        }
         return repo.saveAndFlush(newType);
     }
 
