@@ -7,7 +7,12 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Entity
@@ -41,18 +46,24 @@ public class Product implements Serializable {
     private Type type;
 
     @Column(name = "price", nullable = false)
-    private Double price;
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 10, fraction = 2)
+    private BigDecimal price;
 
     @Column(name = "name", nullable = false)
+    @Size(min = 5)
     private String name;
 
     @Column(name = "description", nullable = false)
+    @Size(min = 10)
     private String description;
 
     @Column(name = "brand", nullable = false)
+    @Size(min = 3)
     private String brand;
 
     @Column(name = "stock", nullable = false)
+    @Min(value = 0, message = "Stock must be greater than or equal to 0")
     private Integer stock;
 
     @Column(name = "primeEligible", nullable = false)
