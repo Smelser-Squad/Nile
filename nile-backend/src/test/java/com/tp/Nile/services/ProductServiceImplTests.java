@@ -15,6 +15,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ProductServiceImplTests {
         vendor.setVendorId(1);
         vendor.setName("Best Buy");
 
-        when(repo.findAll()).thenReturn(List.of(new Product(1, category, vendor, type, 50.0, "Echo Dot", "description", "Amazon", 20, true,
+        when(repo.findAll()).thenReturn(List.of(new Product(1, category, vendor, type, BigDecimal.valueOf(50.0), "Echo Dot", "description", "Amazon", 20, true,
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
 
 
@@ -61,7 +62,7 @@ public class ProductServiceImplTests {
                     assertThat(product.getType().getTypeName()).isEqualTo("Test Type");
                     assertThat(product.getVendor().getVendorId()).isEqualTo(1);
                     assertThat(product.getVendor().getName()).isEqualTo("Best Buy");
-                    assertThat(product.getPrice()).isEqualTo(50.0);
+                    assertThat(product.getPrice()).isEqualTo(BigDecimal.valueOf(50.0));
                     assertThat(product.isPrimeEligible()).isEqualTo(true);
                     assertThat(product.getStock()).isEqualTo(20);
                 });
