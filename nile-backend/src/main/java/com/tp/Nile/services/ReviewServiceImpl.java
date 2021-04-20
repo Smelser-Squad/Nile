@@ -65,7 +65,10 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public Review addReview(Review newReview)
-            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException {
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException {
+        if(newReview.getRating() < 1 || newReview.getRating() > 5){
+            throw new InvalidReviewException("A review's rating must be between 1 and 5");
+        }
         return repo.saveAndFlush(newReview);
     }
 
