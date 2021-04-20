@@ -23,8 +23,9 @@ function MoreProducts() {
                         price={product.price}
                         rating={4}
                         avgRating={4}
-                        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fsweatpants-png-4.png&f=1&nofb=1"
+                        image= {product.photos[0]}
                         reviewCount={16} 
+                        primeEligible={product.primeEligible}
                     />
                 </Grid>
 
