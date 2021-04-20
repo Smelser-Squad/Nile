@@ -2,11 +2,10 @@ import './App.css';
 import Tag from './components/ReviewTag/Tag.js';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import ReviewSummary from './components/ReviewSummary/ReviewSummary'
 import Checkout from './components/Checkout/Checkout';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import Payment from './components/Payment/Payment';
 
 function App() {
     return (
@@ -24,6 +23,10 @@ function App() {
 
                     <Route exact path="/checkout">
                         <Checkout />
+                    </Route>
+
+                    <Route exact path="/payment">
+                        <Payment />
                     </Route>
                     <Route exact path="/">
                         <Home />
