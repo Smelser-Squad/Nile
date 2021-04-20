@@ -20,58 +20,30 @@ const BorderLinearProgress = withStyles(() => ({
     },
 }))(LinearProgress);
 
-function showSeeMore() {
-    var x = document.getElementById("seeMore");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function showRatingsQuestion() {
-    var x = document.getElementById("ratingsQ");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
 function ReviewSummary() {
 
-    function hideSeeMore() {
+    function displaySeeMore() {
         var x = document.getElementById("seeMore");
-        if (x.style.display = "block")
-            x.style.display = "none";
-        else {
+        var y  = document.getElementById("moreID");
+        if (x.style.display === "none") {
             x.style.display = "block";
+            y.innerHTML = "&#8679; See less";
+        } else {
+            x.style.display = "none";
+            y.innerHTML = "&#8681; See more";
         }
     }
 
-    function showSeeMore() {
-        var x = document.getElementById("seeMore");
-        if (x.style.display = "none")
-            x.style.display = "block";
-        else
-            x.style.display = "none";
-    }
-
-    function hideRatingsQ() {
+    function displayRatingsQ() {
         var x = document.getElementById("ratingsQ");
-        if (x.style.display = "block")
-            x.style.display = "none";
-        else {
+        var y = document.getElementById("buttonID");
+        if (x.style.display === "none") {
             x.style.display = "block";
+            y.innerHTML = "&#8679; How are ratings calculated?";
+        } else {
+            x.style.display = "none";
+            y.innerHTML = "&#8681; How are ratings calculated?";
         }
-    }
-
-    function showRatingsQ() {
-        var x = document.getElementById("ratingsQ");
-        if (x.style.display = "none")
-            x.style.display = "block";
-        else
-            x.style.display = "none";
     }
 
     return (
@@ -111,9 +83,9 @@ function ReviewSummary() {
 
                 <br />
 
-                <span>&#709;<button onMouseEnter={showRatingsQ}
-                    onMouseLeave={hideRatingsQ}
-                    className="calc_ratings">How are ratings calculated?</button></span>
+                <span><button id="buttonID"
+                    onClick={displayRatingsQ}
+                    className="calc_ratings">&#8681; How are ratings calculated?</button></span>
 
                 <div id="ratingsQ">
                     <p>To calculate the overall star rating and <br />
@@ -150,12 +122,12 @@ function ReviewSummary() {
                 <h3>By feature</h3>
                 <span>Absorbency
                 <ReactStars
-                    count={5}
-                    edit={false}
-                    value={5}
-                    activeColor="#FFA41C"
-                    size={15}
-                /></span>
+                        count={5}
+                        edit={false}
+                        value={5}
+                        activeColor="#FFA41C"
+                        size={15}
+                    /></span>
 
                 <span>Fabric texture</span>
                 <ReactStars
@@ -204,9 +176,8 @@ function ReviewSummary() {
                     />
                 </div>
 
-                <span>&#709;<button className="see_more"
-                    onMouseEnter={showSeeMore}
-                    onMouseLeave={hideSeeMore}> See more</button></span>
+                <span><button id="moreID" className="see_more"
+                    onClick={displaySeeMore}>&#8681; See more</button></span>
 
             </div>
 

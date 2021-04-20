@@ -16,6 +16,10 @@ p {
     font-size: 14px;
 }
 
+#moreID, #buttonID {
+    margin-left: -7px;
+}
+
 button {
     background-color: transparent;
     border: transparent;
