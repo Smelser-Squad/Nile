@@ -1,11 +1,14 @@
 package com.tp.Nile.controllers;
 
 
+import com.tp.Nile.exceptions.InvalidCategoryIdException;
 import com.tp.Nile.exceptions.InvalidFeatureIdException;
+import com.tp.Nile.exceptions.NullCategoryIdException;
 import com.tp.Nile.exceptions.NullFeatureIdException;
 import com.tp.Nile.models.Feature;
 import com.tp.Nile.services.FeatureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +22,13 @@ public class FeatureController {
     FeatureServiceImpl service;
 
 
-    @PostMapping("/add/feature")
+    @PostMapping()
     public ResponseEntity addFeature(@RequestBody Feature feature){
-        return ResponseEntity.ok(service.addFeature(feature));
+        try {
+            return new ResponseEntity<>(service.addFeature(feature), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     @GetMapping()
     public ResponseEntity getFeatures(){
@@ -33,7 +40,7 @@ public class FeatureController {
         try {
             return ResponseEntity.ok(service.getFeatureById(featureId));
         } catch (NullFeatureIdException | InvalidFeatureIdException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -44,19 +51,12 @@ public class FeatureController {
     }
   
     @DeleteMapping("/{featureId}")
-    public String deleteFeature(@PathVariable Integer featureId){
-        {
-            String toReturn="";
-            try {
-                if (service.deleteFeature(featureId)) {
-                    toReturn ="Feature " + featureId + "deleted";
-                }else{
-                    toReturn="Feature " + featureId + "not found";
-                }
-            }catch (InvalidFeatureIdException | NullFeatureIdException ex){
-                ex.getMessage();
-            }
-            return  toReturn;
+    public ResponseEntity deleteFeature(@PathVariable Integer featureId){
+        try {
+            service.deleteFeature(featureId);
+            return new ResponseEntity<>("Feature " + featureId + " deleted", HttpStatus.NO_CONTENT);
+        } catch (NullFeatureIdException | InvalidFeatureIdException ex) {
+            return new ResponseEntity<>("Feature " + featureId + " not found", HttpStatus.NOT_FOUND);
         }
     }
 }
