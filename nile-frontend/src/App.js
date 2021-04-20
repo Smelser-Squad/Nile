@@ -19,7 +19,6 @@ function App() {
                     <Route exact path="/singleProductListing">
                         <SingleProductListing />
                         {/* <ReviewSummary /> */}
-                        <Tag />
                     </Route>
 
                     <Route exact path="/checkout">

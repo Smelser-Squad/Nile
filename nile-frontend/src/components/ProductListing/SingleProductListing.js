@@ -6,6 +6,7 @@ import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
+import Tag from '../ReviewTag/Tag';
 
 function SingleProductListing() {
     return(
@@ -17,6 +18,7 @@ function SingleProductListing() {
             <MoreProducts/>
             <ReviewSummary />
             <Reviews/>
+            <Tag/>
 
         </div>
     )
