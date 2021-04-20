@@ -1,13 +1,31 @@
-import react from 'react';
+import React, { useState, useEffect } from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
 import { Link } from "react-router-dom";
 
 import './Payment.css';
+import { CardElement } from '@stripe/react-stripe-js';
+import CurrencyFormat from 'react-currency-format';
+import { getCartTotal } from '../../reducer';
 
 function Payment() {
-    const [{ cart }, dispatch] = useStateValue();
+    const [{ cart }] = useStateValue();
 
+
+    const [disabled, setDisabled] = useState(true);
+    const [succeeded, setSucceeded] = useState(false);
+    const [processing, setProcessing] = useState("");
+
+
+    const handleSubmit = async (event) => {
+
+
+
+    }
+    const handleChange = event => {
+
+
+    }
     return (
         <div className='payment'>
 
@@ -62,6 +80,26 @@ function Payment() {
                     </div>
                     <div className='payment_details'>
                         {/* Stripe */}
+
+                        <form onSubmit={handleSubmit}>
+                            <CardElement onChange={handleChange} />
+
+                            <div className='payment_priceContainer'>
+                                <CurrencyFormat
+                                    renderText={(value) => (
+                                        <h3> Order Total: {value} </h3>
+                                    )}
+                                    decimalScale={2}
+                                    value={getCartTotal(cart)}
+                                    displayType={"text"}
+                                    thousandSeperator={true}
+                                    prefix={"$"}
+                                />
+                                <button disabled={processing || disabled || succeeded}>
+                                    <span>{processing ? <p> Processing </p> : "Shop Now"} </span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

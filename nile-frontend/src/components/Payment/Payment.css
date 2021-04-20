@@ -26,6 +26,12 @@
     flex: 0.2;
 }
 
-.payment_address, .payment_item{
+.payment_address, .payment_item, .payment_details{
     flex: 0.8; 
 }
+
+/* .payment_priceContainer > button {
+    color: #607477;
+    font-size: 14px;
+    padding-top: 10px;
+} */
