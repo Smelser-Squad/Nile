@@ -9,7 +9,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,7 +35,7 @@ public class Type implements Serializable {
             cascade = CascadeType.ALL,
             mappedBy = "type",
             orphanRemoval = true)
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
 
 }
