@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './ProductPhotos.css';
 import { getPhotos } from '../../service/PhotoService'
+import { useParams } from 'react-router';
 
 
 function ProductPhotos() {
@@ -8,11 +9,12 @@ function ProductPhotos() {
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
     const [modalSrc, setModal] = useState([])
+    const { id } = useParams();
 
     const PhotoList = [];
 
     if (data.length === 0) {
-        getPhotos().then((list) => {
+        getPhotos(id).then((list) => {
             list.map((item) =>
                 PhotoList.push(item)
             );

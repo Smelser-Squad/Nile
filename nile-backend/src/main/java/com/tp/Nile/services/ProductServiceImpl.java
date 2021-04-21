@@ -2,6 +2,7 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.models.Product;
+import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,7 +86,11 @@ public class ProductServiceImpl implements ProductService {
 
     public void deleteProduct(Integer productId) throws InvalidProductIdException {
         try {
-            repo.deleteById(productId);
+            Product retrieved = repo.findById(productId).get();
+            if (retrieved != null) {
+                repo.delete(retrieved);
+            }
+
         } catch(Exception e) {
             throw new InvalidProductIdException("Product with that id does not exist");
         }
