@@ -3,10 +3,8 @@ package com.tp.Nile.controllers;
 import com.tp.Nile.exceptions.InvalidPhotoIdException;
 import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.exceptions.NullPhotoIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.models.ProductPhoto;
-import com.tp.Nile.services.PhotoServiceImpl;
-import org.apache.coyote.Response;
+import com.tp.Nile.services.ProductPhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductPhotoController {
 
     @Autowired
-    PhotoServiceImpl service;
+    ProductPhotoServiceImpl service;
 
     @GetMapping("/productPhotos/{productId}")
     public ResponseEntity getPhotosByProduct(@PathVariable Integer productId) {

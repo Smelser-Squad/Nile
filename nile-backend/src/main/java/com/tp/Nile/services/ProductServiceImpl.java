@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
    FeatureServiceImpl featureService;
 
    @Autowired
-   PhotoServiceImpl photoService;
+   ProductPhotoServiceImpl photoService;
 
     public List<Product> getAllProducts() {
         return repo.findAll();

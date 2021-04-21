@@ -72,7 +72,7 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
-    private List<ProductPhoto> photos;
+    private List<ProductPhoto> productPhotos = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @LazyCollection(LazyCollectionOption.FALSE)
