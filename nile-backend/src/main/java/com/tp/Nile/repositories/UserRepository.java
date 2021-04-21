@@ -1,8 +1,7 @@
 package com.tp.Nile.repositories;
 
-import com.tp.Nile.models.Category;
-import com.tp.Nile.models.Product;
-import com.tp.Nile.models.ProductPhoto;
+
+import com.tp.Nile.models.*;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,9 +12,12 @@ import java.util.List;
 
 @Repository
 @Profile({ "dev", "test" })
-public interface ProductPhotoRepository extends JpaRepository<ProductPhoto,Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("select p from ProductPhoto p where p.product.productId=:productId")
-    List<ProductPhoto> getPhotosByProduct(@Param("productId") Integer productId);
+    @Query("select c from Cart c where c.user.userId=:user_id")
+    List<Cart> getCartByUserId(@Param("user_id") Integer user_id);
+
+    @Query("select a from Answer a where a.user.userId=:user_id")
+    List<Answer> getAnswersByUserId(@Param("user_id")Integer user_id);
 
 }
