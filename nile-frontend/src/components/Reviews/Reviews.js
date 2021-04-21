@@ -2,6 +2,7 @@ import './Reviews.css';
 import SingleReview from './SingleReview';
 import {getReviews} from '../../service/ReviewService';
 import { useState } from 'react';
+import Tag from '../../components/ReviewTag/Tag';
 
 function Reviews() {
 
@@ -31,7 +32,14 @@ function Reviews() {
 
     return (
         <div class="reviews-container">
-            {reviews}
+            <Tag reviews = {reviews}/>
+        {reviews}
+
+
+
+
+
+
         </div>
     )
 }
