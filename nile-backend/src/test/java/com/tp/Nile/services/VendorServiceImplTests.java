@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class VendorServiceImplTests {
 
     @Test
     public void testGetAllVendorsGoldenPath() {
-        when(repo.findAll()).thenReturn(List.of(new Vendor(1, "Best Buy")));
+        when(repo.findAll()).thenReturn(List.of(new Vendor(1, "Best Buy",new ArrayList<>())));
         List<Vendor> vendors = service.getAllVendors();
 
         assertThat(vendors)
@@ -45,7 +46,7 @@ public class VendorServiceImplTests {
 
     @Test
     public void testGetVendorByIdGoldenPath() {
-        when(repo.findById(1)).thenReturn(Optional.of(new Vendor(1, "Best Buy")));
+        when(repo.findById(1)).thenReturn(Optional.of(new Vendor(1, "Best Buy", new ArrayList<>())));
         Vendor vendor = null;
         try {
             vendor = service.getVendorById(1);

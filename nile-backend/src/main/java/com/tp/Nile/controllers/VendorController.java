@@ -55,25 +55,5 @@ public class VendorController {
             return new ResponseEntity<>("Vendor " + vendorId + " not found", HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping()
-    public ResponseEntity updateVendor(@RequestBody Vendor updatedVendor){
-        return ResponseEntity.ok(service.updateVendor(updatedVendor));
-    }
 
-    @DeleteMapping("/{vendorId}")
-    public String deleteVendor(@PathVariable Integer vendorId){
-        {
-            String toReturn="";
-            try {
-                if (service.deleteVendor(vendorId)) {
-                    toReturn ="Vendor " + vendorId + "deleted";
-                }else{
-                    toReturn="Vendor " + vendorId + "not found";
-                }
-            }catch (InvalidVendorIdException | NullVendorIdException ex){
-                ex.getMessage();
-            }
-            return  toReturn;
-        }
-    }
 }
