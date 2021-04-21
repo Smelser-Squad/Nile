@@ -9,33 +9,65 @@ import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import { useParams } from 'react-router-dom'
-
+import { useStateValue } from "../../StateProvider";
 
 function SingleProductListing() {
 
-const {productId} = useParams()
+    const { productId } = useParams()
 
-const[Product,setProduct]=useState([]);
+    const [Product, setProduct] = useState([]);
+    console.log(Product);
+    const [{ cart }, dispatch] = useStateValue();
+    const addToCart = () => {
+        // dispatch the item into the data layer
+        dispatch({
+            type: "ADD_TO_CART",
+            product: {
+                productId: Product.productId,
+                name: Product.name,
+                image: Product.photos[0].imageSrc,
+                price: Product.price,
+                reviewCount: Product.reviews.length,
+                rating: calcRating(Product)
+            },
+        });
+    };
+
+    function calcRating(product) {
+        let sum = 0;
+        for (let i = 0; i < product.reviews.length; i++) {
+            sum += product.reviews[i].rating;
+        }
+        const avgRating = sum / product.reviews.length;
+        return avgRating;
+    }
 
 
-    useEffect(()=>{
-        axios.get(`http://localhost:80/api/products/${productId}` )
-        .then(res=>{
+    useEffect(() => {
+        axios.get(`http://localhost:80/api/products/${productId}`)
+            .then(res => {
                 setProduct(res.data);
-            
-        })
+
+            })
     }, [])
 
-    return(
+    return (
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2> 
+            <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
-            <ProductPhotos/>
-            <ProductColorSelector/>
-            <MoreProducts/>
-            <QuestionAnswer />
+            <ProductPhotos />
+            <ProductColorSelector />
+            <div className="add_toCart">
+                <button onClick={addToCart}>Add to Cart</button>
+            </div>
+
+            <br />
+            <br />
+
+            <MoreProducts />
+            {/* <QuestionAnswer /> */}
             <ReviewSummary />
-            <Reviews/>
+            <Reviews />
 
 
         </div>
