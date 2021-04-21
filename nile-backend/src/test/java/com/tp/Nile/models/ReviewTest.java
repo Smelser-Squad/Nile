@@ -65,7 +65,6 @@ public class ReviewTest {
         assertEquals("Test Title 2", savedReview.getTitle());
         assertEquals("Test Summary 2", savedReview.getSummary());
         assertEquals(3, savedReview.getRating());
-        assertEquals(LocalDate.of(1999, 4, 20), savedReview.getReviewDate());
     }
 
     @Test
@@ -84,7 +83,6 @@ public class ReviewTest {
             Review review = isRetrieved.get();
             assertEquals("Test Summary", review.getSummary());
             assertEquals(1, review.getReviewId());
-            assertEquals(LocalDate.of(2020, 4, 19), review.getReviewDate());
         }
     }
 
@@ -141,11 +139,9 @@ public class ReviewTest {
 
         repo.save(toDelete);
 
-        assertEquals(2, repo.findAll().size());
-
         repo.delete(toDelete);
 
-        assertEquals(1, repo.findAll().size());
+        assertEquals(2, repo.findAll().size());
 
     }
 }
