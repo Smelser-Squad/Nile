@@ -21,11 +21,18 @@ function Tag (props)
         {phrase}
     </button> );
 
+    //filter reviews by phrase "tag"
+    const filterClick =(tag) =>
+    {
+        
+    }
 
     return (
         <div class= "tag-container">
             <h3>Read reviews that mention</h3> 
             {tagList}
+            {/* will display the reviews  */}
+            {/* {props.reviews} */}
         </div>
 
     );
