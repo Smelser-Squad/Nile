@@ -35,10 +35,6 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-<<<<<<< HEAD
-    private List<Order> orders = new ArrayList<>();
-=======
     private List<Cart> carts = new ArrayList<>();
 
->>>>>>> 6f6c9fa27ad9d7204c6231ebfb5b1598e1988685
 }
