@@ -32,7 +32,7 @@ public class VendorServiceImplTests {
 
     @Test
     public void testGetAllVendorsGoldenPath() {
-        when(repo.findAll()).thenReturn(List.of(new Vendor(1, "Best Buy",new ArrayList<>())));
+        when(repo.findAll()).thenReturn(List.of(new Vendor(1, "Best Buy")));
         List<Vendor> vendors = service.getAllVendors();
 
         assertThat(vendors)
@@ -46,7 +46,7 @@ public class VendorServiceImplTests {
 
     @Test
     public void testGetVendorByIdGoldenPath() {
-        when(repo.findById(1)).thenReturn(Optional.of(new Vendor(1, "Best Buy", new ArrayList<>())));
+        when(repo.findById(1)).thenReturn(Optional.of(new Vendor(1, "Best Buy")));
         Vendor vendor = null;
         try {
             vendor = service.getVendorById(1);

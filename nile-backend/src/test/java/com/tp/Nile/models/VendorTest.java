@@ -27,7 +27,7 @@ public class VendorTest {
 
     @BeforeEach
     public void setUp(){
-        Vendor toTest=new Vendor(1,"Amazon",new ArrayList<>());
+        Vendor toTest=new Vendor(1,"Amazon");
         repo.save(toTest);
     }
     @Test
@@ -35,12 +35,12 @@ public class VendorTest {
     public void addVendorTest() {
         Vendor newVendor = new Vendor();
         newVendor.setName("new vendor");
-        newVendor.setProducts(new ArrayList<>());
+//        newVendor.setProducts(new ArrayList<>());
         Vendor added = repo.save(newVendor);
         assertNotNull(added);
         assertEquals(2, added.getVendorId());
         assertEquals("new vendor", added.getName());
-        assertEquals(0, added.getProducts().size());
+//        assertEquals(0, added.getProducts().size());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class VendorTest {
 
     @Test
     public void deleteVendorTest() {
-        Vendor toDelete =new Vendor(1,"Amazon",new ArrayList<>());
+        Vendor toDelete =new Vendor(1,"Amazon");
         repo.delete(toDelete);
         assertEquals(0, repo.findAll().size());
     }

@@ -33,11 +33,11 @@ public class Vendor implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "vendor",
-            orphanRemoval = true)
-    private List<Product> products = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "vendor",
+//            orphanRemoval = true)
+//    private List<Product> products = new ArrayList<>();
 
 }
 
