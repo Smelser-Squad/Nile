@@ -18,7 +18,7 @@ public class SmokeTest {
     FeatureController featureController;
 
     @Autowired
-    OrderController orderController;
+    CartController cartController;
 
     @Autowired
     ProductController productController;
@@ -33,7 +33,7 @@ public class SmokeTest {
     void contextLoads() throws Exception {
        assertThat(categoryController).isNotNull();
        assertThat(featureController).isNotNull();
-       assertThat(orderController).isNotNull();
+       assertThat(cartController).isNotNull();
        assertThat(productController).isNotNull();
        assertThat(qaController).isNotNull();
        assertThat(reviewController).isNotNull();
