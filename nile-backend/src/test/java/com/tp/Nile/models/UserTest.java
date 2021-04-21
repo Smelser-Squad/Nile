@@ -13,14 +13,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserTest {
