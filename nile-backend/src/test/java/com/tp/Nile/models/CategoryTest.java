@@ -69,7 +69,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void deleteCategoryrTest() {
+    public void deleteCategoryTest() {
         Category toDelete =new Category(1,"Electronics", new ArrayList<>());
         repo.delete(toDelete);
         assertEquals(0, repo.findAll().size());

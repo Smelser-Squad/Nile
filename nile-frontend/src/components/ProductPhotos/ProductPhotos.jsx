@@ -9,12 +9,12 @@ function ProductPhotos() {
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
     const [modalSrc, setModal] = useState([])
-    const{id}=useParams();
+     const{productId}=useParams();
 
     const PhotoList=[];
 
     if(data.length===0){
-        getPhotos(id).then((list)=>
+        getPhotos(productId).then((list)=>
         {
             list.map((item)=>
             PhotoList.push(item)
