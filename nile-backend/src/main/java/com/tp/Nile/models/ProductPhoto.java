@@ -13,7 +13,7 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name= "product_photo")
-
+@JsonIgnoreProperties(value = {"product"}, allowSetters = true)
 public class ProductPhoto implements Serializable {
 
     @Id
@@ -21,10 +21,9 @@ public class ProductPhoto implements Serializable {
     @Column(name = "photo_id")
     private Integer photoId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-//    @MapsId("product_id")
-    @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
-    @JsonIgnoreProperties(value = {"photoList"})
+    @ManyToOne( fetch = FetchType.EAGER)
+//    @MapsId("fk_product_id")
+    @JoinColumn(name = "fk_product_id")
     @JsonBackReference
     private Product product;
 
@@ -33,6 +32,7 @@ public class ProductPhoto implements Serializable {
 
     @Column(name = "color", nullable = false)
     private String color;
-    
+
+
 
 }
