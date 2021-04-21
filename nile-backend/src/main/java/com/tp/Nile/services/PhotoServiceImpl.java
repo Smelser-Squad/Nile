@@ -1,6 +1,7 @@
 package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
+import com.tp.Nile.models.Product;
 import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.repositories.ProductPhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,14 @@ public class PhotoServiceImpl implements PhotoService{
         }
     }
 
+
     @Override
     public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException
-        {return repo.getPhotosByProduct(productId);}
+        {return repo.getPhotosByProduct(productId); }
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
-        try {
-            newPhoto.setProduct(productService.getProductById(productId));
-        } catch (InvalidProductIdException e) {
-            e.getMessage();
-        }
+        newPhoto.setProduct(newPhoto.getProduct());
         return repo.saveAndFlush(newPhoto);}
 
     @Override
