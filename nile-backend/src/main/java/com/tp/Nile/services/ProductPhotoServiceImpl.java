@@ -41,11 +41,7 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
-        try {
-            newPhoto.setProduct(productService.getProductById(productId));
-        } catch (InvalidProductIdException e) {
-            e.getMessage();
-        }
+        newPhoto.setProduct(newPhoto.getProduct());
         return repo.saveAndFlush(newPhoto);}
 
     @Override
