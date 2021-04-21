@@ -12,6 +12,8 @@ import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import { Link } from 'react-router-dom'
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -69,7 +71,9 @@ function SingleProductListing() {
                     <strong>{Product.price}.00</strong>
 
                 </p>
-                <button onClick={addToCart}>Add to Cart</button>
+                <button onClick={addToCart} className="shop_button" >Add to Cart</button>
+                <Link to='/payment'><button className="shop_button ">Shop Now</button></Link>
+
             </div>
 
             <br />
