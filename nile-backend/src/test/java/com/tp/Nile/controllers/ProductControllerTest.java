@@ -13,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,7 +50,7 @@ public class ProductControllerTest {
         product.setBrand("Nike");
         product.setDescription("Athletic shoes");
         product.setName("Air Jordan");
-        product.setPrice(249.99);
+        product.setPrice(BigDecimal.valueOf(249.99));
         product.setPrimeEligible(false);
         product.setStock(2);
 
@@ -255,7 +256,7 @@ public class ProductControllerTest {
         Product product = this.mapper.readValue(result.getResponse().getContentAsString(), Product.class);
         product.setName("Predator");
         product.setDescription("Soccer cleats");
-        product.setPrice(159.99);
+        product.setPrice(BigDecimal.valueOf(159.99));
         product.setPrimeEligible(true);
         product.setStock(3);
         product.setBrand("Adidas");
