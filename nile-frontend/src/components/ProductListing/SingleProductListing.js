@@ -3,6 +3,7 @@ import './SingleProductListing.css';
 import React from 'react'
 import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
+import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
@@ -15,8 +16,10 @@ function SingleProductListing() {
             <ProductPhotos/>
             <ProductColorSelector/>
             <MoreProducts/>
+            <QuestionAnswer />
             <ReviewSummary />
             <Reviews/>
+
 
         </div>
     )
