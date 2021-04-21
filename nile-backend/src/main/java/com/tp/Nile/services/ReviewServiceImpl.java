@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService{
 
         List<Review> retrieved=null;
 
-        List<Review> review=repo.findByUser(userId);
+        List<Review> review=repo.findByUserUserId(userId);
 
         if(!review.isEmpty()){
             retrieved = review;
