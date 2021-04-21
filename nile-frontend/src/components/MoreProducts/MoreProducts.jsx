@@ -4,6 +4,15 @@ import {Grid} from '@material-ui/core';
 import { useState } from 'react';
 import {getProducts} from '../../service/ProductService'
 
+function calcRating(product)  {
+    let sum = 0;
+    for(let i = 0; i < product.reviews.length; i++) {
+        sum += product.reviews[i].rating;
+    }
+    const avgRating = sum / product.reviews.length;
+    return avgRating;
+}
+
 function MoreProducts() {
 
     const [products, setProducts] = useState([]);
@@ -21,7 +30,7 @@ function MoreProducts() {
                         productId={product.productId}
                         name={product.name}
                         price={product.price}
-                        avgRating={4}
+                        avgRating={calcRating(product)}
                         image= {product.photos[0].imageSrc}
                         reviewCount={product.reviews.length} 
                         primeEligible={product.primeEligible}
@@ -57,7 +66,7 @@ function MoreProducts() {
                     </button>
                 </Grid>
             
-                {products}
+                {products.slice(0,5)}
 
                 <Grid item md={1}>
                     <button class="nav-button" id="right-nav">
