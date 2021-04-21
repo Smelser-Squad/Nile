@@ -10,9 +10,14 @@ function Reviews() {
 
     const reviewList=[];
 
+    const test = document.URL.substring(43)
+
+    console.log(test)
+
     if(reviews.length===0){
-        getReviews().then((list)=>
+        getReviews(test).then((list)=>
         {
+            
             list.map((item)=>
             reviewList.push(item)
             );
