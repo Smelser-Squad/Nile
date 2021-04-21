@@ -10,7 +10,9 @@ import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelect
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -58,6 +60,14 @@ function SingleProductListing() {
             <ProductPhotos />
             <ProductColorSelector />
             <div className="add_toCart">
+                <RadioGroup className="button_purchase">
+                    <FormControlLabel control={<Radio />} label="One-time purchase:" />
+                </RadioGroup>
+                <p id="price_tag">
+                    <small>$</small>
+                    <strong>{Product.price}.00</strong>
+
+                </p>
                 <button onClick={addToCart}>Add to Cart</button>
             </div>
 

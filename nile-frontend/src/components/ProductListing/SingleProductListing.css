@@ -4,4 +4,11 @@
     border: 2px solid black;
     margin-left: 1200px;
 }
+.button_purchase{
+    margin-left: 2px;
+    font: bold;
+}
 
+#price_tag {
+    margin-left: 30px;
+}
