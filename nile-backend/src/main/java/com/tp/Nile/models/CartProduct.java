@@ -12,7 +12,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductCart implements Serializable {
+public class CartProduct implements Serializable {
 
     @EmbeddedId
     private ProductOrderId id = new ProductOrderId();
@@ -24,7 +24,7 @@ public class ProductCart implements Serializable {
 
     @ManyToOne
     @MapsId("productId")
-    @JsonIgnoreProperties(value = {"productCarts"})
+    @JsonIgnoreProperties(value = {"cartProducts"})
     private Product product;
 
     @Column(name="quantity", nullable = false)
