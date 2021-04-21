@@ -55,6 +55,16 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/by/{productId}")
+    public ResponseEntity getReviewsByProductId(@PathVariable Integer productId) {
+        try {
+            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+        } catch (NullUserException | NullUserIdException | InvalidUserIdException |
+                    InvalidProductIdException | NullProductIdException | NullProductObjectException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {
         try {

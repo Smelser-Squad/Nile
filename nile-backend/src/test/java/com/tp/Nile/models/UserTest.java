@@ -15,10 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -53,6 +50,8 @@ public class UserTest {
         setupUser.setAnswers(answerSet);
         setupUser.setCarts(cartList);
 
+        repo.save(setupUser);
+
     }
 
     @Test
@@ -80,7 +79,28 @@ public class UserTest {
         User savedUser = repo.save(setupUser);
 
         assertNotNull(savedUser);
+        assertEquals(2, savedUser.getUserId());
+        assertEquals(1, savedUser.getAnswers().size());
 
     }
+
+    @Test
+    public void testGetAllUsers() {
+        List<User> allUsers = repo.findAll();
+        assertEquals(1, allUsers.size());
+    }
+
+//    @Test
+//    public void testGetUserByUserIdGoldenPath() {
+//        Optional<User> isRetrieved = repo.findById(1);
+//        if(!isRetrieved.isPresent())
+//            fail();
+//        else
+//        {
+//            User user = isRetrieved.get();
+//            assertEquals(1, user.getUserId());
+//            assertEquals("Order pending", user.getCarts().get(0).getStatus());
+//        }
+//    }
 
 }
