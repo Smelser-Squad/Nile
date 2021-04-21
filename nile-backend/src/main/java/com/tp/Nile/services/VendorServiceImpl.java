@@ -31,7 +31,7 @@ public class VendorServiceImpl implements VendorService {
                 retrieved=vendor.get();
                 return retrieved;
             }else{
-                throw new InvalidVendorIdException("Category with that id does not exist");
+                throw new InvalidVendorIdException("Vendor with that id does not exist");
             }
         }
 

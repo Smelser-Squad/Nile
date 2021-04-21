@@ -4,6 +4,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
+import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
@@ -32,8 +33,10 @@ const[Product,setProduct]=useState([]);
             <ProductPhotos/>
             <ProductColorSelector/>
             <MoreProducts/>
+            <QuestionAnswer />
             <ReviewSummary />
             <Reviews/>
+
 
         </div>
     )

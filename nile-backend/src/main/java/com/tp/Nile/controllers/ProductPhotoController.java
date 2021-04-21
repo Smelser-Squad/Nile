@@ -20,7 +20,7 @@ public class ProductPhotoController {
     PhotoServiceImpl service;
 
     @GetMapping("/productPhotos/{productId}")
-    public ResponseEntity getProductPhotos(@PathVariable Integer productId) {
+    public ResponseEntity getPhotosByProduct(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getPhotosByProduct(productId));
         } catch (InvalidProductIdException e) {
