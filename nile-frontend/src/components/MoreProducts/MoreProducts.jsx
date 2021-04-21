@@ -21,10 +21,9 @@ function MoreProducts() {
                         productId={product.productId}
                         name={product.name}
                         price={product.price}
-                        rating={4}
                         avgRating={4}
                         image= {product.photos[0].imageSrc}
-                        reviewCount={16} 
+                        reviewCount={product.reviews.length} 
                         primeEligible={product.primeEligible}
                     />
                 </Grid>
