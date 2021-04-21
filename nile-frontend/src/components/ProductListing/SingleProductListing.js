@@ -11,7 +11,6 @@ import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
 
-
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -26,12 +25,22 @@ function SingleProductListing() {
             product: {
                 productId: Product.productId,
                 name: Product.name,
-                // image: Product.image,
+                image: Product.photos[0].imageSrc,
                 price: Product.price,
-                // rating: Product.rating
+                reviewCount: Product.reviews.length,
+                rating: calcRating(Product)
             },
         });
     };
+
+    function calcRating(product) {
+        let sum = 0;
+        for (let i = 0; i < product.reviews.length; i++) {
+            sum += product.reviews[i].rating;
+        }
+        const avgRating = sum / product.reviews.length;
+        return avgRating;
+    }
 
 
     useEffect(() => {
@@ -47,7 +56,7 @@ function SingleProductListing() {
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
             <ProductPhotos />
-            {/* <ProductColorSelector /> */}
+            <ProductColorSelector />
             <div className="add_toCart">
                 <button onClick={addToCart}>Add to Cart</button>
             </div>
@@ -55,10 +64,10 @@ function SingleProductListing() {
             <br />
             <br />
 
-            {/* <MoreProducts />
-            <QuestionAnswer />
+            <MoreProducts />
+            {/* <QuestionAnswer /> */}
             <ReviewSummary />
-            <Reviews /> */}
+            <Reviews />
 
 
         </div>
