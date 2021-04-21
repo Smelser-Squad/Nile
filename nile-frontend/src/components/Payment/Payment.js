@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import StripeCheckout from "react-stripe-checkout";
-import { toast } from "react-toastify";
 
 
 import './Payment.css';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getCartTotal } from '../../reducer';
 
 function Payment() {
-    const [{ cart }, dispatch] = useStateValue();
+    const [{ cart }] = useStateValue();
 
 
     async function handleToken(token, addresses) {
@@ -28,7 +25,7 @@ function Payment() {
                         <Link to='checkout'>{cart?.length} items</Link>
                     )
                 </h1>
-                {/* <div className='payment_section'>
+                <div className='payment_section'>
 
                     <div className='payment_title'>
                         <h3>
@@ -39,10 +36,8 @@ function Payment() {
                             <p> 1234 Talent Drive</p>
                             <p> Washington, D.C.</p>
                         </div>
-
                     </div>
-                </div> */}
-
+                </div>
                 <div className='payment_section'>
                     <div className='payment_title'>
                         <h3>
@@ -72,8 +67,6 @@ function Payment() {
                     </h3>
                     </div>
                     <div className='payment_details'>
-
-
                         <div className='payment_priceContainer'>
                             <CurrencyFormat
                                 renderText={(value) => (
@@ -85,21 +78,15 @@ function Payment() {
                                 thousandSeperator={true}
                                 prefix={"$"}
                             />
-
                         </div>
-
                         <StripeCheckout
 
                             stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
                             token={handleToken}
                             amount={getCartTotal * 100}
-
                             billingAddress
                             shippingAddress
-
                         />
-
-
                     </div>
                 </div>
             </div>
