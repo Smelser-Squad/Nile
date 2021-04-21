@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -28,9 +29,7 @@ public class UserTest {
     @Autowired
     private UserRepository repo;
 
-    @BeforeEach
-    public void setup() {
-        repo.deleteAll();
+    public User buildUser() {
 
         List<Cart> cartList = new ArrayList<>();
         Cart newCart = new Cart();
@@ -47,6 +46,30 @@ public class UserTest {
         User setupUser =  new User();
 
         setupUser.setUserId(1);
+        setupUser.setAnswers(answerSet);
+        setupUser.setCarts(cartList);
+        return setupUser;
+    }
+
+    @BeforeEach
+    public void setup() {
+        repo.deleteAll();
+
+        List<Cart> cartList = new ArrayList<>();
+        Cart newCart = new Cart();
+        newCart.setCartId(5);
+        newCart.setPurchaseDate(LocalDate.of(2020, 4, 21));
+        newCart.setStatus("Order pending");
+        cartList.add(newCart);
+
+        Set<Answer> answerSet = new HashSet<>();
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswerId(5);
+        answerSet.add(newAnswer);
+
+        User setupUser =  new User();
+
+        setupUser.setUserId(5);
         setupUser.setAnswers(answerSet);
         setupUser.setCarts(cartList);
 
@@ -86,18 +109,20 @@ public class UserTest {
 
     @Test
     public void testGetAllUsers() {
+        User newUser = buildUser();
         List<User> allUsers = repo.findAll();
-        assertEquals(1, allUsers.size());
+        allUsers.add(newUser);
+        assertEquals(2, allUsers.size());
     }
 
 //    @Test
 //    public void testGetUserByUserIdGoldenPath() {
-//        Optional<User> isRetrieved = repo.findById(1);
-//        if(!isRetrieved.isPresent())
+//        User thisUser = repo.findById(1).get();
+//        if(thisUser == null)
 //            fail();
 //        else
 //        {
-//            User user = isRetrieved.get();
+//            User user = thisUser;
 //            assertEquals(1, user.getUserId());
 //            assertEquals("Order pending", user.getCarts().get(0).getStatus());
 //        }
