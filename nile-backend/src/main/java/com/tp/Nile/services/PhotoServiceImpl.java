@@ -43,8 +43,9 @@ public class PhotoServiceImpl implements PhotoService{
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException {
-        Product toAdd = productService.getProductById(productId);
-        newPhoto.setProduct(newPhoto.getProduct());
+//        newPhoto.setProduct(newPhoto.getProduct());
+        Product toAssociate = productService.getProductById(productId);
+        newPhoto.setProduct(toAssociate);
         return repo.saveAndFlush(newPhoto);}
 
     @Override

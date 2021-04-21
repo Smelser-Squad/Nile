@@ -12,19 +12,19 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductOrder implements Serializable {
+public class CartProduct implements Serializable {
 
     @EmbeddedId
     private ProductOrderId id = new ProductOrderId();
 
     @ManyToOne
     @MapsId("orderId")
-    @JsonIgnoreProperties(value = {"orderProducts"})
-    private Order order;
+    @JsonIgnoreProperties(value = {"cartProducts"})
+    private Cart cart;
 
     @ManyToOne
     @MapsId("productId")
-    @JsonIgnoreProperties(value = {"productOrders"})
+    @JsonIgnoreProperties(value = {"cartProducts"})
     private Product product;
 
     @Column(name="quantity", nullable = false)
