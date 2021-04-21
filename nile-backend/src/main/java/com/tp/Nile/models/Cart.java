@@ -40,5 +40,5 @@ public class Cart implements Serializable {
 
     @OneToMany(mappedBy = "cart")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ProductCart> cartProducts = new ArrayList<>();
+    private List<CartProduct> cartProducts = new ArrayList<>();
 }
