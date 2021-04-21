@@ -1,0 +1,13 @@
+#createReviewContainer {
+  color: red;
+}
+
+.sizeReview {
+  margin-left: 50px;
+}
+
+#size-description {
+  font-size: 12px;
+  color: gray;
+  margin-left: 45px;
+}

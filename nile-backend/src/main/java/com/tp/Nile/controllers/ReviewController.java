@@ -15,10 +15,10 @@ public class ReviewController {
     @Autowired
     ReviewServiceImpl service;
 
-    @PostMapping("/{product_id}")
-    public ResponseEntity addReview(@RequestBody Review review, @PathVariable Integer product_id) {
+    @PostMapping()
+    public ResponseEntity addReview(@RequestBody Review review) {
         try {
-            return ResponseEntity.ok(service.addReview(review,product_id));
+            return ResponseEntity.ok(service.addReview(review));
         }
         catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException | InvalidReviewException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

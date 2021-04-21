@@ -1,22 +1,24 @@
 //package com.tp.Nile.services;
 //
+//import com.tp.Nile.exceptions.InvalidReviewException;
 //import com.tp.Nile.exceptions.InvalidReviewIdException;
 //import com.tp.Nile.exceptions.NullReviewAttributeException;
 //import com.tp.Nile.exceptions.NullReviewIdException;
-//import com.tp.Nile.models.Product;
-//import com.tp.Nile.models.Review;
-//import com.tp.Nile.models.Type;
-//import com.tp.Nile.models.User;
+//import com.tp.Nile.models.*;
+//import com.tp.Nile.repositories.ReviewRepository;
 //import org.junit.Before;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.*;
 //import org.junit.runner.RunWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 //import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.stereotype.Component;
 //import org.springframework.test.context.ActiveProfiles;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //import org.springframework.test.context.junit4.SpringRunner;
@@ -30,8 +32,28 @@
 //
 //@ExtendWith(SpringExtension.class)
 //@DataJpaTest
-//@ActiveProfiles("test")
+//@ActiveProfiles("dev")
 //public class ReviewServiceImplTests {
+//
+//    @Autowired
+//    ReviewRepository repo;
+//
+//    @Autowired
+//    ReviewServiceImpl service;
+//
+//    @Test
+//    void testing () throws InvalidReviewIdException, NullReviewIdException, InvalidReviewException, NullReviewAttributeException {
+//        User testUser = new User();
+//        testUser.setUserId(1);
+//        Product testProdcut = new Product();
+//        testProdcut.setProductId(1);
+//        Feature testFeature = new Feature();
+//        Review testReview = new Review(1,testUser,"summary","title",LocalDate.of(2020,4,14),testProdcut,testFeature,5,true);
+//        service.addReview(testReview);
+//
+//
+//    }
+//}
 //
 //    @Autowired
 //    ReviewServiceImpl service;
