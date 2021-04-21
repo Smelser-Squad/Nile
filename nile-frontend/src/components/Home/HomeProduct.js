@@ -6,8 +6,6 @@ import { useStateValue } from "../../StateProvider";
 
 function HomeProduct({ productId, image, name, price, rating }) {
     const [{ cart }, dispatch] = useStateValue();
-    console.log(cart);
-
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
@@ -26,15 +24,15 @@ function HomeProduct({ productId, image, name, price, rating }) {
         <div className="product">
             <div className="product_info"></div>
 
-            <Link to="/singleProductListing">
+            <Link to={`/singleProductListing/${productId}`}>
                 <p id="product_name">{name}</p>
             </Link>
 
-            <Link to="/singleProductListing">
+            <Link to={`/singleProductListing/${productId}`}>
                 <img id="product-image" src={image} alt="" />
             </Link>
 
-            <Link to="/singleProductListing">
+            <Link to={`/singleProductListing/${productId}`}>
                 <p id="price_tag">
                     <small>$</small>
                     <strong>{price}</strong>
@@ -50,7 +48,7 @@ function HomeProduct({ productId, image, name, price, rating }) {
                     size={15}
                 />
             </div>
-            <Link to="/singleProductListing">
+            <Link to={`/singleProductListing/${productId}`}>
                 <img id="prime_img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1" />
             </Link>
             <button onClick={addToCart}>Add to Cart</button>

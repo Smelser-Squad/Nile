@@ -19,17 +19,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_")
-public class Order implements Serializable {
+@Table(name = "cart")
+public class Cart implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "cart_id")
+    private Integer cartId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(value = {"orders"})
+    @JsonIgnoreProperties(value = {"carts"})
     private User user;
 
     @Column(name = "purchase_date", nullable = false)
@@ -38,7 +38,7 @@ public class Order implements Serializable {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "cart")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ProductOrder> orderProducts = new ArrayList<>();
+    private List<CartProduct> cartProducts = new ArrayList<>();
 }
