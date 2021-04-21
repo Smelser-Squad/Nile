@@ -25,7 +25,7 @@ public class ProductPhotoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    
+
     @GetMapping("/productPhotos")
     public ResponseEntity getAllPhotos() {return ResponseEntity.ok(service.getAllPhotos());}
 
