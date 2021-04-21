@@ -3,6 +3,8 @@ import Product from "./Product";
 import {Grid} from '@material-ui/core';
 import { useState } from 'react';
 import {getProducts} from '../../service/ProductService'
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+
 
 function calcRating(product)  {
     let sum = 0;
@@ -44,6 +46,17 @@ function MoreProducts() {
     }
 
     const pages = Math.ceil((products.length / 5));
+
+    const Arrow = ({ text, className }) => {
+        return (
+            <div className={className}>
+                {text}
+            </div>
+        );
+    };
+
+    const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
+    const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
 
     return (
         <div class="container">
