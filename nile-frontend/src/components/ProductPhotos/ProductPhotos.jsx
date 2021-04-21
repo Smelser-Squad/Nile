@@ -11,12 +11,16 @@ function ProductPhotos() {
     const [modalSrc, setModal] = useState([])
      const{productId}=useParams();
 
+
     const PhotoList = [];
 
-    if (data.length === 0) {
-        getPhotos(productId).then((list) => {
-            list.map((item) =>
-                PhotoList.push(item)
+
+    if(data.length===0){
+        getPhotos(productId).then((list)=>
+        {
+            list.map((item)=>
+            PhotoList.push(item)
+
             );
             const data = PhotoList.map((photo) =>
                 <li className="listedPhoto"
@@ -47,9 +51,7 @@ function ProductPhotos() {
 
 
 
-
-    return (
-        console.log(photoSrc),
+    return(
         <div className="PhotoContainer">
             <ul className="altPhotoList">
                 {data}

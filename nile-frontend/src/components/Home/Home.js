@@ -22,7 +22,9 @@ function Home() {
                         name={product.name}
                         price={product.price}
                         rating={calcRating(product)}
-                        image={product.photos[0].imageSrc}/>
+                        image={product.photos[0].imageSrc}
+                        primeEligible={product.primeEligible}
+                        />
                         
                     
                        
