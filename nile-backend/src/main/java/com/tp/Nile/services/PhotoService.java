@@ -16,6 +16,7 @@ public interface PhotoService {
     List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException;
 
 
+
     ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId);
 
     ProductPhoto updatePhoto(ProductPhoto update);

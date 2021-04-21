@@ -23,7 +23,7 @@ export function useReview(id){
 async function getReviews(){
     const reviews=await axios.get('http://localhost:80/api/reviews')
     const data=reviews.data;
-    console.log(data);
+    // console.log(data);
 
     return data;
 

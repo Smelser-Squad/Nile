@@ -40,6 +40,8 @@ dependencies {
 
 	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
 
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
+
 }
 
 test {
