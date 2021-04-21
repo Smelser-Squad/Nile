@@ -22,11 +22,11 @@ public class Specification implements Serializable {
     @Column(name = "spec_id")
     private Integer specId;
 
-    @Column(name = "spec_name")
+    @Column(name = "spec_name", nullable = false)
     private String specName;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "type_id")
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 }

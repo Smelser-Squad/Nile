@@ -1,10 +1,10 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidSpecIdException;
-import com.tp.Nile.exceptions.NullSpecIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Specification;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.SpecificationRepository;
+import com.tp.Nile.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,9 @@ public class SpecificationServiceImpl implements SpecificationService {
 
     @Autowired
     SpecificationRepository repo;
+
+    @Autowired
+    TypeServiceImpl typeService;
 
     @Override
     public List<Specification> getAllSpecs() {
@@ -43,7 +46,12 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public Specification addSpec(Specification newSpec) {
+    public Specification addSpec(Specification newSpec) throws NullTypeIdException, InvalidTypeIdException, NullTypeNameException, EmptyTypeNameException {
+        if (newSpec.getType() != null && newSpec.getType().getTypeId() != null) {
+            newSpec.setType(typeService.getTypeById(newSpec.getType().getTypeId()));
+        } else {
+            typeService.addType(newSpec.getType());
+        }
         return repo.saveAndFlush(newSpec);
     }
 
