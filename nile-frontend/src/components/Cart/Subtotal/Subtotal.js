@@ -6,7 +6,7 @@ import { getCartTotal } from '../../../reducer';
 import { useHistory } from 'react-router';
 
 function Subtotal() {
-    const [{ cart }, dispatch] = useStateValue();
+    const [{ cart }] = useStateValue();
     const history = useHistory();
 
     return (
