@@ -7,6 +7,8 @@ import Tag from '../../components/ReviewTag/Tag';
 function Reviews() {
 
     const[reviews,setReviews]=useState([]);
+    const[filterTag,setFilterTag]=useState([]);
+    const[filteredReviews,setFilteredReviews]=useState([]);
 
     const reviewList=[];
 
@@ -30,16 +32,19 @@ function Reviews() {
         )
     }
 
+    //Recieve data from Tag.js
+    const sendDataToParent = (tag) =>
+    {
+        console.log("From the parent "+ tag);
+        setFilterTag(tag);
+    }
+
+    console.log(filterTag);
+
     return (
         <div class="reviews-container">
-            <Tag reviews = {reviews}/>
-        {reviews}
-
-
-
-
-
-
+            <Tag reviews sendDataToParent={sendDataToParent} />
+            {reviews}
         </div>
     )
 }

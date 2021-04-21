@@ -6,37 +6,30 @@ import React from 'react'
 //filter by the phrases
 
 //hard coded phrases
-const tagArr = ["soft", "length", "manageable"];
-// const reviewArr = ["This is soft to the touch", "This has a great length!","This is easy to manage!", "This is soft and has a great length!", "This is a very good value",
-// "Amazing cost and very soft", "Really long and amazing. So easy to handle!"];
+const tagArr = ["soft", "length", "manageable","cheap"];
 
-//potentially can leave this out
-function Tag (props)
+const Tag = ({sendDataToParent}) =>
 {
-    console.log(props.reviews);
 
-    const tagList = tagArr.map((phrase) =>
+    //set up buttons
+   const tagList = tagArr.map((phrase) =>
     <button 
+    //send data to Review.js
+    onClick = {()=> sendDataToParent(phrase)}
     value = {phrase}>
         {phrase}
     </button> );
 
-    //filter reviews by phrase "tag"
-    const filterClick =(tag) =>
-    {
-        
-    }
 
     return (
         <div class= "tag-container">
             <h3>Read reviews that mention</h3> 
             {tagList}
-            {/* will display the reviews  */}
-            {/* {props.reviews} */}
         </div>
 
     );
 }
+
 
 
 export default Tag;
