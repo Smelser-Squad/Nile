@@ -4,4 +4,37 @@
     border: 2px solid black;
     margin-left: 1200px;
 }
+.button_purchase{
+    margin-left: 2px;
+    font: bold;
+}
+
+#price_tag {
+    margin-left: 30px;
+}
+
+/* .add_toCart > button { 
+    background: #f0c14b; 
+    border: 1px solid; 
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111; 
+} */
+
+
+.shop_button  {
+    background: #f0c14b;
+    border-radius: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    cursor: pointer;
+    color: #111;
+    padding: 5px;
+    margin-top: 10px;
+    width: 130px;
+    margin-left: 30px;
+}
+
+.shop_button :hover {
+    background: #9c7410;
+}
 
