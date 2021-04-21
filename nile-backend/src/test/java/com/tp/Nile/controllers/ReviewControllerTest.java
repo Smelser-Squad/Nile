@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -51,8 +52,7 @@ public class ReviewControllerTest {
         this.mockMvc.perform(get("/api/reviews"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(result -> assertEquals("[]",
-                        result.getResponse().getContentAsString()));
+                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
     }
 
     @Test
