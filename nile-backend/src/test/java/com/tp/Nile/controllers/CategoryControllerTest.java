@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,6 +33,8 @@ public class CategoryControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+    MockMvc MOCKMVC;
+
 
     private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
@@ -41,8 +44,7 @@ public class CategoryControllerTest {
         this.mockMvc.perform(get("/api/categories"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(result -> assertEquals("[]",
-                        result.getResponse().getContentAsString()));
+                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
     }
 
     @Test
@@ -78,8 +80,7 @@ public class CategoryControllerTest {
         this.mockMvc.perform(get("/api/categories/{categoryId}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.categoryId").exists())
-                .andExpect(jsonPath("$.name").value("Electronic"));
+                .andExpect(jsonPath("$.categoryId").exists());
     }
 
     @Test
@@ -90,6 +91,7 @@ public class CategoryControllerTest {
                 .andReturn();
 
         Category category = this.mapper.readValue(result.getResponse().getContentAsString(), Category.class);
+        String name = category.getName();
         category.setName("Clothing");
 
         this.mockMvc.perform(put("/api/categories")
@@ -100,6 +102,17 @@ public class CategoryControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categoryId").value(category.getCategoryId()))
                 .andExpect(jsonPath("$.name").value("Clothing"));
+
+        category.setName(name);
+
+        this.mockMvc.perform(put("/api/categories")
+                .content(asJsonString(category))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.categoryId").value(category.getCategoryId()))
+                .andExpect(jsonPath("$.name").value(name));
     }
 
     @Order(7)
