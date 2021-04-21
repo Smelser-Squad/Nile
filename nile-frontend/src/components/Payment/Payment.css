@@ -26,6 +26,18 @@
     flex: 0.2;
 }
 
-.payment_address, .payment_item{
+.payment_address, .payment_item, .payment_details{
     flex: 0.8; 
+}
+
+
+.payment_priceContainer > button{
+    background-color: #f0c14b;
+    border-radius: 2px;
+    width: 200px;
+    height: 30px; 
+    border: 1px solid; 
+    margin-top: 10px; 
+    border-color: #a88734 #9c7e31 #846a29; 
+    color: #111; 
 }

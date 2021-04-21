@@ -12,6 +12,6 @@ public interface VendorService {
     List<Vendor> getAllVendors();
     Vendor getVendorById(Integer typeId) throws NullVendorIdException, InvalidVendorIdException;
     Vendor addVendor(Vendor newVendor);
-    Vendor upddateVendor(Vendor updatedVendor);
+    Vendor updateVendor(Vendor updatedVendor);
     boolean deleteVendor(Integer vendorId) throws NullVendorIdException, InvalidVendorIdException;
 }
