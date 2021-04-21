@@ -1,0 +1,53 @@
+.section{
+    width: 90%;
+    height: 600px;
+    margin-left: 30px;
+}
+.search{
+    width: 60%;
+    height: 25px;
+    margin-top: 15px;
+}
+.toggleVoteUp{
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.toggleVoteDown{
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.questions{
+    margin-left: 10px;
+}
+.buttonText{
+    align-content: center;
+}
+.button{
+    display: inline-block;
+}
+.queAndAns{
+    padding-top: 25px;
+    text-align:left;
+    display: inline-block;
+}
+.borderlessButton{
+    border: 0px none #1C6EA4;
+}
+.borderlessButton:hover{
+    color: #1C6EA4;
+}
+.left{
+    float: left;
+    margin-right: 20px;
+    font-weight: bold;
+    word-spacing: 2px;
+}
+.right{
+    float: right;
+    display: inline-block;
+    word-spacing: 2px;
+}
