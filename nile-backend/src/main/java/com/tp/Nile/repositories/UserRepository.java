@@ -14,8 +14,8 @@ import java.util.List;
 @Profile({ "dev", "test" })
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("select o from Order o where o.user.userId=:user_id")
-    List<Order> getOrdersByUserId(@Param("user_id") Integer user_id);
+    @Query("select c from Cart c where c.user.userId=:user_id")
+    List<Cart> getCartByUserId(@Param("user_id") Integer user_id);
 
     @Query("select a from Answer a where a.user.userId=:user_id")
     List<Answer> getAnswersByUserId(@Param("user_id")Integer user_id);

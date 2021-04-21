@@ -2,7 +2,7 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
-import com.tp.Nile.models.Order;
+import com.tp.Nile.models.Cart;
 import com.tp.Nile.models.Review;
 import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.UserRepository;
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
         if (edited != null) {
             edited.setUserId(user.getUserId());
             edited.setAnswers(user.getAnswers());
-            edited.setOrders(user.getOrders());
+            edited.setCarts(user.getCarts());
         }
         else
             throw new NullUserException("User can not be null");
@@ -107,8 +107,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Order> getOrdersByUserId(Integer userId) throws NullUserException, NullUserIdException, InvalidUserIdException, NullOrderIdException, NullOrderException, InvalidOrderIdException {
-        return repo.getOrdersByUserId(userId);
+    public List<Cart> getCartByUserId(Integer userId) throws NullUserException, NullUserIdException, InvalidUserIdException, NullCartIdException, NullCartException, InvalidCartIdException {
+        return repo.getCartByUserId(userId);
     }
 
     @Override

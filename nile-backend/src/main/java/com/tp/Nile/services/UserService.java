@@ -2,7 +2,7 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
-import com.tp.Nile.models.Order;
+import com.tp.Nile.models.Cart;
 import com.tp.Nile.models.User;
 
 import java.util.List;
@@ -24,9 +24,9 @@ public interface UserService {
     boolean deleteUser(Integer userId) throws
             NullUserException, NullUserIdException, InvalidUserIdException;
 
-    List<Order> getOrdersByUserId(Integer userId) throws
+    List<Cart> getCartByUserId(Integer userId) throws
             NullUserException, NullUserIdException, InvalidUserIdException,
-            NullOrderIdException, NullOrderException, InvalidOrderIdException;
+            NullCartIdException, NullCartException, InvalidCartIdException;
 
     List<Answer> getAnswersByUserId(Integer userId) throws
             NullUserException, NullUserIdException, InvalidUserIdException,

@@ -62,10 +62,10 @@ public class UserController {
     @GetMapping("/orders/{userId}")
     public ResponseEntity getOrdersByUserId(@PathVariable Integer userId) {
         try {
-            return ResponseEntity.ok(service.getOrdersByUserId(userId));
+            return ResponseEntity.ok(service.getCartByUserId(userId));
         }
         catch (InvalidUserIdException | NullUserException | NullUserIdException |
-                NullOrderException | NullOrderIdException | InvalidOrderIdException e) {
+                NullCartException | NullCartIdException | InvalidCartIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
