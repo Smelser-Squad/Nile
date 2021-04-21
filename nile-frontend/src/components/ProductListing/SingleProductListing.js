@@ -1,6 +1,5 @@
 import './SingleProductListing.css';
 import axios from 'axios'
-
 import React, { useEffect, useState } from 'react'
 import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
@@ -14,7 +13,6 @@ import { useStateValue } from "../../StateProvider";
 function SingleProductListing() {
 
     const { productId } = useParams()
-
     const [Product, setProduct] = useState([]);
     console.log(Product);
     const [{ cart }, dispatch] = useStateValue();
@@ -29,9 +27,11 @@ function SingleProductListing() {
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product)
+
             },
         });
     };
+
 
     function calcRating(product) {
         let sum = 0;
@@ -41,6 +41,7 @@ function SingleProductListing() {
         const avgRating = sum / product.reviews.length;
         return avgRating;
     }
+
 
 
     useEffect(() => {
@@ -63,9 +64,8 @@ function SingleProductListing() {
 
             <br />
             <br />
-
             <MoreProducts />
-            {/* <QuestionAnswer /> */}
+            <QuestionAnswer />
             <ReviewSummary />
             <Reviews />
 
@@ -73,5 +73,4 @@ function SingleProductListing() {
         </div>
     )
 }
-
 export default SingleProductListing
