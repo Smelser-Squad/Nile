@@ -46,3 +46,9 @@
 .listedPhoto {
     padding-bottom: 10px;
 }
+
+#modalImage {
+    display: center;
+    height: 100%;
+    width: 100%;
+}

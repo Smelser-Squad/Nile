@@ -12,6 +12,6 @@ import java.util.List;
 @Profile({ "dev", "test" })
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    List<Review> findByUser(Integer userId);
+    List<Review> findByUserUserId(Integer userId);
 
 }
