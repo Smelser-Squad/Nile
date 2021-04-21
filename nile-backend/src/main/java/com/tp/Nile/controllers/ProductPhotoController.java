@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/api/productPhotos")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductPhotoController {
@@ -17,7 +17,7 @@ public class ProductPhotoController {
     @Autowired
     ProductPhotoServiceImpl service;
 
-    @GetMapping("/productPhotos/{productId}")
+    @GetMapping("/{productId}")
     public ResponseEntity getPhotosByProduct(@PathVariable Integer productId) {
         try {
             return ResponseEntity.ok(service.getPhotosByProduct(productId));
@@ -26,15 +26,15 @@ public class ProductPhotoController {
         }
     }
 
-    @GetMapping("/productPhotos")
+    @GetMapping
     public ResponseEntity getAllPhotos() {return ResponseEntity.ok(service.getAllPhotos());}
 
-    @PutMapping("/update/photos/{photoId}")
+    @PutMapping("/update/{photoId}")
     public ResponseEntity updatePhoto(@PathVariable ProductPhoto photo) {
         return ResponseEntity.ok(service.updatePhoto(photo));
     }
 
-    @DeleteMapping("/delete/photos/{photoId}")
+    @DeleteMapping("/delete/{photoId}")
     public String deletePhoto(@PathVariable Integer photoId) {
         String toReturn="";
         try {
@@ -49,8 +49,8 @@ public class ProductPhotoController {
         return toReturn;
     }
 
-    @PostMapping("/add/photo/{productId}")
-    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) {
+    @PostMapping("/add/{productId}")
+    public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) throws InvalidProductIdException {
         return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
 }

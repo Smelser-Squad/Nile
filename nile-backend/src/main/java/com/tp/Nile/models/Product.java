@@ -22,7 +22,7 @@ import java.util.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table
+@Table(name="product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 
@@ -69,7 +69,7 @@ public class Product implements Serializable {
     @Column(name = "primeEligible", nullable = false)
     private boolean primeEligible;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="product")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
     private List<ProductPhoto> photos = new ArrayList<>();

@@ -11,9 +11,10 @@ import java.util.List;
 
 public interface ProductPhotoService {
     List<ProductPhoto> getAllPhotos();
+
     ProductPhoto getPhotoById(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
     List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException;
-    ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId);
+    ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException;
     ProductPhoto updatePhoto(ProductPhoto update);
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
 }
