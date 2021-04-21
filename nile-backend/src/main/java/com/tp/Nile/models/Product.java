@@ -22,7 +22,7 @@ import java.util.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table
+@Table(name="product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 

@@ -21,10 +21,10 @@ public class ProductPhoto implements Serializable {
     @Column(name = "photo_id")
     private Integer photoId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-//    @MapsId("product_id")
+    @ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, targetEntity = Product.class)
+    @MapsId("fk_product_id")
     @JoinColumn(name = "fk_product_id", referencedColumnName = "product_id")
-    @JsonIgnoreProperties(value = {"photoList"})
+    @JsonIgnoreProperties(value = {"product"})
     @JsonBackReference
     private Product product;
 
@@ -33,6 +33,6 @@ public class ProductPhoto implements Serializable {
 
     @Column(name = "color", nullable = false)
     private String color;
-    
+
 
 }
