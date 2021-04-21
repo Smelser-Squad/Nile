@@ -10,20 +10,21 @@ import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
 
-function SingleProductListing({ productid, image, name, price, rating }) {
+function SingleProductListing() {
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
+    console.log(Product);
     const [{ cart }, dispatch] = useStateValue();
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId: productid,
-                name: name,
-                image: image,
-                price: price,
-                rating: rating
+                productId: Product.productId,
+                name: Product.name,
+                image: Product.image,
+                price: Product.price,
+                rating: Product.rating
             },
         });
     };
