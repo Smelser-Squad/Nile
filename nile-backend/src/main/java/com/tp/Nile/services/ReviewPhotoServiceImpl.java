@@ -37,7 +37,7 @@ public class ReviewPhotoServiceImpl implements ReviewPhotoService {
     public List<ReviewPhoto> getPhotosByReview(Integer reviewId)
             throws NullReviewAttributeException, NullReviewIdException, InvalidReviewIdException {
         Review review = reviewService.getReviewById(reviewId);
-        if (review != null) return review.getReviewPhotos();
+        if (review != null) return review.getPhotos();
         else return null;
     }
 

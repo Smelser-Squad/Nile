@@ -56,7 +56,7 @@ public class Review implements Serializable {
 
     @OneToMany(mappedBy = "review", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<ReviewPhoto> reviewPhotos;
+    private List<ReviewPhoto> photos;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
