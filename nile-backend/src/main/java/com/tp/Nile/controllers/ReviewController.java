@@ -45,6 +45,7 @@ public class ReviewController {
         }
     }
 
+
     @GetMapping("/by/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
         try {
@@ -65,7 +66,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("deleteReview/{reviewId}")
     public String deleteReview(@PathVariable Integer reviewId) {
         {
             String toReturn="";

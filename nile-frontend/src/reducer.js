@@ -23,7 +23,7 @@ const reducer = (state, action) => {
                 newCart.splice(index, 1);
             }
             else {
-                console.warn('cant remove ')
+                console.warn('cant remove from the card')
             }
             return {
                 ...state,
