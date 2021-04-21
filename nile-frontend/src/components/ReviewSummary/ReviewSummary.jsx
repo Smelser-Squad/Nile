@@ -176,6 +176,8 @@ function ReviewSummary() {
                     />
                 </div>
 
+                <br />
+
                 <span><button id="moreID" className="see_more"
                     onClick={displaySeeMore}>&#8681; See more</button></span>
 
