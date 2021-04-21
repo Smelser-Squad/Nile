@@ -83,7 +83,7 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ProductOrder> productOrders;
+    private List<CartProduct> cartProducts;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)

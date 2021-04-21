@@ -1,13 +1,31 @@
 #createReviewContainer {
-  color: red;
+  color: black;
 }
 
 .sizeReview {
-  margin-left: 50px;
+}
+
+#sizeDiv {
+  margin-left: 25%;
+  text-align: center;
+  width: 50%;
+}
+
+#sizeDescription {
+  color: gray;
+  font-size: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#sizeButtonDiv {
+  justify-content: space-evenly;
+  width: 100%;
+  display: flex;
 }
 
 #size-description {
   font-size: 12px;
   color: gray;
-  margin-left: 45px;
 }

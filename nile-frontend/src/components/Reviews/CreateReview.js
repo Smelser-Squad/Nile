@@ -5,12 +5,20 @@ import { Radio } from '@material-ui/core';
 
 function createReview(){
 
+    let summary = "";
+    let feature1Rating = 0;
+    let feature2Rating = 0;
+    let feature3Rating = 0;
+    let sizeRating = 0;
+
     return (
         <div id="createReviewContainer">
             Create review
-            <br/>
-            (IMAGE)(ITEM DESCRIPTION)
+            <div>
+                (IMAGE)(ITEM DESCRIPTION)
+            </div>
             <hr></hr>
+            <div>
             Overall rating
             <br/>
             <ReactStars
@@ -20,6 +28,7 @@ function createReview(){
                     activeColor="#FFA41C"
                     size={15}
                 />
+            </div>
             <hr></hr>
             Rate features
             <br/>
@@ -32,6 +41,7 @@ function createReview(){
                     size={15}
                 />
             <br/>
+            <div>
             (FEATURE 2)
             <ReactStars
                     count={5}
@@ -40,7 +50,8 @@ function createReview(){
                     activeColor="#FFA41C"
                     size={15}
                 />
-            <br/>
+            </div>
+            <div>
             (FEATURE 3)
             <ReactStars
                     count={5}
@@ -49,16 +60,22 @@ function createReview(){
                     activeColor="#FFA41C"
                     size={15}
                 />
-            <br/>
-            (HOW IT FITS)
-            <div>
-                <input type="radio" class="sizeReview" id="size1" name="size"></input>
-                <input type="radio" class="sizeReview" id="size2" name="size"></input>
-                <input type="radio" class="sizeReview" id="size3" name="size"></input>
-                <input type="radio" class="sizeReview" id="size4" name="size"></input>
-                <input type="radio" class="sizeReview" id="size5" name="size"></input>
             </div>
-            <span id="size-description">Too small - as expected - Too large</span>
+            <div id="sizeDiv">
+                <span>(HOW IT FITS)</span>
+                <div id="sizeButtonDiv">
+                    <input type="radio" class="sizeReview" id="size1" name="size"></input>
+                    <input type="radio" class="sizeReview" id="size2" name="size"></input>
+                    <input type="radio" class="sizeReview" id="size3" name="size"></input>
+                    <input type="radio" class="sizeReview" id="size4" name="size"></input>
+                    <input type="radio" class="sizeReview" id="size5" name="size"></input>
+                </div>
+                <div id="sizeDescription">
+                    <span>Too small</span>
+                    <span>as expected</span>
+                    <span>Too large</span>
+                </div>
+            </div>
             <hr></hr>
             Add a photo
             <br/>

@@ -20,9 +20,8 @@ function App() {
                 <Header />
 
                 <Switch>
-                    <Route exact path="/singleProductListing">
-                        <SingleProductListing />
-                        {/* <ReviewSummary /> */}
+                    <Route exact path="/singleProductListing/:productId">
+                        <SingleProductListing/>
                     </Route>
 
                     <Route exact path="/checkout">
