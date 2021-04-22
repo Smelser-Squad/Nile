@@ -9,11 +9,6 @@ function ProductPhotos() {
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
     const [modalSrc, setModal] = useState([])
-<<<<<<< HEAD
-    const{productId}=useParams();
-=======
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
-
     const { productId } = useParams();
 
 
