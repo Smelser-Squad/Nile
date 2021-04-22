@@ -13,29 +13,29 @@ import { useParams } from 'react-router-dom'
 
 function SingleProductListing() {
 
-const {productId} = useParams()
+    const { productId } = useParams()
 
-const[Product,setProduct]=useState([]);
+    const [Product, setProduct] = useState([]);
 
 
-    useEffect(()=>{
-        axios.get(`http://localhost:80/api/products/${productId}` )
-        .then(res=>{
+    useEffect(() => {
+        axios.get(`http://localhost:80/api/products/${productId}`)
+            .then(res => {
                 setProduct(res.data);
-            
-        })
+
+            })
     }, [])
 
-    return(
+    return (
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2> 
+            <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
-            <ProductPhotos/>
-            <ProductColorSelector/>
-            <MoreProducts/>
+            <ProductPhotos />
+            <ProductColorSelector />
+            <MoreProducts />
             <QuestionAnswer />
             <ReviewSummary />
-            <Reviews/>
+            <Reviews />
 
 
         </div>
