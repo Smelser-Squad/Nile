@@ -62,9 +62,6 @@ function Reviews() {
     }
 
 
-
-    
-
     return (
         <div class="reviews-container">
             <Tag reviews sendDataToParent={sendDataToParent} />

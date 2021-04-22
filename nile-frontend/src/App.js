@@ -7,7 +7,7 @@ import SingleProductListing from './components/ProductListing/SingleProductListi
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Payment from './components/Payment/Payment';
 import { loadStripe } from '@stripe/stripe-js';
-import { element, Elements } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -19,9 +19,8 @@ function App() {
                 <Header />
 
                 <Switch>
-                    <Route exact path="/singleProductListing">
+                    <Route exact path="/singleProductListing/:productId">
                         <SingleProductListing />
-                        {/* <ReviewSummary /> */}
                     </Route>
 
                     <Route exact path="/checkout">

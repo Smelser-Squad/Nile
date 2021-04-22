@@ -14,7 +14,7 @@ function CartProduct({ productId, image, name, price, rating }) {
 
     return (
         <div className='cartProduct'>
-            <img className='cartProduct_image' src={image} />
+            <img className='cartProduct_image' alt="" src={image} />
 
             <div className='cartProduct_info'>
                 <p className='cartProduct_name'>{name} </p>
