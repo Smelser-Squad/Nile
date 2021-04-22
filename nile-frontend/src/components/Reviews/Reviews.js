@@ -7,7 +7,6 @@ import Tag from '../../components/ReviewTag/Tag';
 function Reviews() {
 
     const[reviews,setReviews]=useState([]);
-    // const[filterTag,setFilterTag]=useState("");
     const[filteredReviews,setFilteredReviews]=useState([]);
 
     const reviewList=[];
@@ -34,14 +33,16 @@ function Reviews() {
 
     //Recieve data from Tag.js
     //filter reviews based on the tag
-    const sendDataToParent = (tag) =>
-    {
+    const sendDataToParent = (tag, selected) =>
+    {   
+        setReviews(reviews)
         console.log("From the parent "+ tag);
         for(let i = 0; i < reviews.length;i++)
         {
-            if(reviews[i].props.summary.includes(tag))
+            if(tag!=="" && reviews[i].props.summary.includes(tag))
             {
                 console.log(reviews[i].props.summary);
+                reviewList.push(reviews[i].props)
                 const filtered = reviewList.map((review)=>
                 <SingleReview
                 helpful={review.helpful}
@@ -51,12 +52,12 @@ function Reviews() {
                 summary={review.summary}
             />
                 );
-                setFilteredReviews(reviews)
+                setFilteredReviews(filtered)
             }
-            else
-            {
-                console.log("Nothing to see here");
-            }
+            // else
+            // {
+            //     setFilteredReviews(reviews)
+            // }
         }
 
     }
@@ -65,7 +66,7 @@ function Reviews() {
     return (
         <div class="reviews-container">
             <Tag reviews sendDataToParent={sendDataToParent} />
-            {reviews}
+            {filteredReviews}
         </div>
     )
 }
