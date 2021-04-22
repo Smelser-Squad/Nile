@@ -12,8 +12,10 @@ import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
 import { Link } from 'react-router-dom'
+
+
+
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -25,12 +27,14 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId: Product.productId,
-                name: Product.name,
+
+
+
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product)
+
 
             },
         });
@@ -53,8 +57,11 @@ function SingleProductListing() {
             .then(res => {
                 setProduct(res.data);
 
+
+
             })
     }, [])
+
 
     return (
         <div className="SingleProductListing">
@@ -83,8 +90,8 @@ function SingleProductListing() {
             <ReviewSummary />
             <Reviews />
 
-
         </div>
     )
 }
+
 export default SingleProductListing
