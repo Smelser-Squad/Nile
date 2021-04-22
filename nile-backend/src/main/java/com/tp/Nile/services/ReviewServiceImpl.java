@@ -87,6 +87,25 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
+    public List<Review> getReviewsByProductId(Integer productId) throws NullProductIdException, InvalidProductIdException {
+
+        if(productId==null) {
+            throw new NullProductIdException("Cannot get reviews with null product id");
+        }
+
+        List<Review> retrieved=null;
+
+        List<Review> review=repo.findByProductId(productId);
+
+        if(!review.isEmpty()){
+            retrieved = review;
+            return retrieved;
+        } else {
+            throw new InvalidProductIdException("Reviews with that product id does not exist");
+        }
+    }
+
+    @Override
     public boolean deleteReview(Integer reviewId)
             throws NullReviewIdException, InvalidReviewIdException, NullReviewAttributeException {
         if(reviewId==null){
