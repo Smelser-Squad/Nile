@@ -11,7 +11,7 @@ import { useState } from 'react';
 //filter by the phrases
 
 //hard coded phrases
-const tagArr = ["soft", "length", "manageable","cheap"];
+const tagArr = ["soft", "length", "manageable","cheap","clear"];
 
 const Tag = ({sendDataToParent}) =>
 {
@@ -26,6 +26,7 @@ const Tag = ({sendDataToParent}) =>
         <div class= "tag-container">
             <h3>Read reviews that mention</h3> 
             <ToggleButtonGroup
+            on
                 value= {selected}
                 exclusive={true}
                 onChange = {handleSelected}

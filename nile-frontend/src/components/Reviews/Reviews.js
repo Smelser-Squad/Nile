@@ -27,6 +27,7 @@ function Reviews() {
             />
             );
             setReviews(reviews)
+            setFilteredReviews(reviews)
         }
         )
     }
@@ -39,7 +40,7 @@ function Reviews() {
         console.log("From the parent "+ tag);
         for(let i = 0; i < reviews.length;i++)
         {
-            if(tag!=="" && reviews[i].props.summary.includes(tag))
+            if(tag!=="clear" && reviews[i].props.summary.includes(tag))
             {
                 console.log(reviews[i].props.summary);
                 reviewList.push(reviews[i].props)
@@ -54,10 +55,10 @@ function Reviews() {
                 );
                 setFilteredReviews(filtered)
             }
-            // else
-            // {
-            //     setFilteredReviews(reviews)
-            // }
+            else if(tag==="clear"){
+                setFilteredReviews(reviews)
+
+            }
         }
 
     }
