@@ -15,19 +15,20 @@ function Home() {
             list.map((item) =>
                 ProductList.push(item)
             );
-            const cards=ProductList.map((product)=>
-            
+            const cards = ProductList.map((product) =>
+
                 <HomeProduct
-                        productId={product.productId}
-                        name={product.name}
-                        price={product.price}
-                        rating={calcRating(product)}
-                        image={product.photos[0].imageSrc}
-                        primeEligible={product.primeEligible}
-                        />
-                        
-                    
-                       
+                    productId={product.productId}
+                    name={product.name}
+                    price={product.price}
+                    rating={calcRating(product)}
+                    image={product.photos[0].imageSrc}
+                    description={product.description}
+                    vendor={product.vendor}
+                />
+
+
+
 
             );
             setCards(cards);
@@ -59,7 +60,7 @@ function Home() {
                     {cards.slice(0, 2)}
                 </div>
 
-                {/* <div className="home_row">
+                <div className="home_row">
                     {cards.slice(3, 6)}
                 </div>
 
@@ -69,7 +70,7 @@ function Home() {
 
                 <div className="home_row">
                     {cards.slice(11, 500)}
-                </div> */}
+                </div>
             </div >
         </div>
     )
