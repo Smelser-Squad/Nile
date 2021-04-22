@@ -1,6 +1,7 @@
 package com.tp.Nile.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,10 @@ public class Specification implements Serializable {
     @Column(name = "spec_id")
     private Integer specId;
 
-    @Column(name = "spec_name")
+    @Column(name = "spec_name", nullable = false)
     private String specName;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id")
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 }
