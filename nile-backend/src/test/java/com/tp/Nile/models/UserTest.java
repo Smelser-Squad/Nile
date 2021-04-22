@@ -58,6 +58,7 @@ public class UserTest {
 
     @BeforeEach
     public void setup() {
+
         repo.deleteAll();
 
         List<Cart> cartList = new ArrayList<>();
