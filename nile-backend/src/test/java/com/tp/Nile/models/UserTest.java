@@ -17,6 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -57,23 +62,38 @@ public class UserTest {
 
         List<Cart> cartList = new ArrayList<>();
         Cart newCart = new Cart();
+
         newCart.setCartId(5);
+
+        newCart.setCartId(1);
+
         newCart.setPurchaseDate(LocalDate.of(2020, 4, 21));
         newCart.setStatus("Order pending");
         cartList.add(newCart);
 
         Set<Answer> answerSet = new HashSet<>();
         Answer newAnswer = new Answer();
+
         newAnswer.setAnswerId(5);
+
+        newAnswer.setAnswerId(1);
+
         answerSet.add(newAnswer);
 
         User setupUser =  new User();
+
 
         setupUser.setUserId(5);
         setupUser.setAnswers(answerSet);
         setupUser.setCarts(cartList);
 
         repo.save(setupUser);
+
+
+        setupUser.setUserId(1);
+        setupUser.setAnswers(answerSet);
+        setupUser.setCarts(cartList);
+
 
     }
 
@@ -102,6 +122,7 @@ public class UserTest {
         User savedUser = repo.save(setupUser);
 
         assertNotNull(savedUser);
+
         assertEquals(2, savedUser.getUserId());
         assertEquals(1, savedUser.getAnswers().size());
 
@@ -127,5 +148,6 @@ public class UserTest {
 //            assertEquals("Order pending", user.getCarts().get(0).getStatus());
 //        }
 //    }
+
 
 }
