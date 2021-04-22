@@ -22,7 +22,6 @@ public class ProductPhoto implements Serializable {
     private Integer photoId;
 
     @ManyToOne( fetch = FetchType.EAGER)
-//    @MapsId("fk_product_id")
     @JoinColumn(name = "fk_product_id")
     @JsonBackReference
     private Product product;
