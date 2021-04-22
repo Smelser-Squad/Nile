@@ -71,10 +71,13 @@ public class TypeServiceImpl implements TypeService {
         if (typeId == null) {
             throw new NullTypeIdException("Cannot get specification with null id");
         }
-        Type retrieved = repo.findById(typeId).get();
-        if (retrieved != null) {
-            repo.delete(retrieved);
+        Type retrieved = null;
+        try {
+            retrieved = getTypeById(typeId);
+        } catch (InvalidTypeIdException ex) {
+            return false;
         }
-        return retrieved != null;
+        repo.delete(retrieved);
+        return true;
     }
 }

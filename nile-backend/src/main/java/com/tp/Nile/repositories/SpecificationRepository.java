@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 @Profile({ "dev", "test" })
 public interface SpecificationRepository extends JpaRepository<Specification, Integer> {
-    @Query("select s from Specification s where s.type=:type")
-    List<Specification> getSpecsByType(@Param("type") Type type);
+    @Query("select s from Specification s where s.type.typeName=:type")
+    List<Specification> getSpecsByType(@Param("type") String type);
 }
