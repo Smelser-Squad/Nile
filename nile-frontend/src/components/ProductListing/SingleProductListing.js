@@ -55,11 +55,12 @@ function SingleProductListing() {
 
             })
     }, [])
-
+console.log(Product.photos);
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+            <h3> Brand: {Product.brand}</h3>
             <ProductPhotos />
             <ProductColorSelector />
             <div className="add_toCart">
@@ -79,9 +80,9 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            <QuestionAnswer />
+            {/* <QuestionAnswer /> */}
             <ReviewSummary />
-            <Reviews />
+            {/* <Reviews /> */}
 
 
         </div>

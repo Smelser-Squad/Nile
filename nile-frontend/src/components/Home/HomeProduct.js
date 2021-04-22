@@ -24,7 +24,7 @@ function HomeProduct({ productId, image, name, price, rating, primeEligible }) {
         const primeEligible = props.primeEligible;
         if(primeEligible) {
             return (
-                <Link to="/singleProductListing">
+                <Link to={`/singleProductListing/${productId}`}>
                     <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
                 </Link>
             );

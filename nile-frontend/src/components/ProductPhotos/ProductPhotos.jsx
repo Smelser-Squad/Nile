@@ -85,9 +85,7 @@ function ProductPhotos() {
 
 
 
-ProductPhotos.defaultProps = {
 
-}
 
 
 export default ProductPhotos;

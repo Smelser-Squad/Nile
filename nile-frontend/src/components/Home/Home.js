@@ -42,14 +42,7 @@ function Home() {
         const avgRating = sum / product.reviews.length;
         return avgRating;
     }
-    function ShowFirst(product){
-        let photo;
-        for(let i=0; i<product.photos.length;i++){
-            photo=product.photos[0].imgSrc;
-            console.log(photo);
-        }
-        return photo;
-    }
+   
 
     return (
         <div className='home' >
@@ -66,7 +59,7 @@ function Home() {
                     {cards.slice(0, 2)}
                 </div>
 
-                <div className="home_row">
+                {/* <div className="home_row">
                     {cards.slice(3, 6)}
                 </div>
 
@@ -76,7 +69,7 @@ function Home() {
 
                 <div className="home_row">
                     {cards.slice(11, 500)}
-                </div>
+                </div> */}
             </div >
         </div>
     )
