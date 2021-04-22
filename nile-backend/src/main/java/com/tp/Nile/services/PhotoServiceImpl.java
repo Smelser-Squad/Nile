@@ -42,8 +42,13 @@ public class PhotoServiceImpl implements PhotoService{
         {return repo.getPhotosByProduct(productId); }
 
     @Override
-    public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId){
-        newPhoto.setProduct(newPhoto.getProduct());
+    public List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException
+    {return repo.getPhotosByProductColor(productId, color); }
+
+    @Override
+    public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException {
+        Product toAssociate = productService.getProductById(productId);
+        newPhoto.setProduct(toAssociate);
         return repo.saveAndFlush(newPhoto);}
 
     @Override

@@ -9,7 +9,7 @@ function Header() {
     return (
         <div className='nav_header' >
             <Link to="/">
-                <img className="header_logo"
+                <img className="header_logo" alt="logo"
                     src="https://cdn10.bigcommerce.com/s-yhxhf/products/20469/images/75383/STMTD028_4x4__62255.1535837059.1080.1080.jpg?c=2" />
 
             </Link>
