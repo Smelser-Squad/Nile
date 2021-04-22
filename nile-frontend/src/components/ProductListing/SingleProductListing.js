@@ -9,18 +9,16 @@ import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelect
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
-<<<<<<< HEAD
-
-function SingleProductListing() {
-=======
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
 import { Link } from 'react-router-dom'
+
+
+
 function SingleProductListing() {
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
+
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     console.log(Product);
@@ -30,25 +28,19 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId: Product.productId,
-                name: Product.name,
-<<<<<<< HEAD
-                image: Product.image,
-                price: Product.price,
-                rating: Product.rating
-=======
+
+
+
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product)
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
+
             },
         });
     };
 
-<<<<<<< HEAD
-=======
 
     function calcRating(product) {
         let sum = 0;
@@ -61,20 +53,17 @@ function SingleProductListing() {
 
 
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-<<<<<<< HEAD
-            })
-    }, [])
-=======
+
+
 
             })
     }, [])
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
@@ -82,10 +71,7 @@ function SingleProductListing() {
             <ProductPhotos />
             <ProductColorSelector />
             <div className="add_toCart">
-<<<<<<< HEAD
-                <button onClick={addToCart}>Add to Cart</button>
-            </div>
-=======
+
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
                 </RadioGroup>
@@ -99,19 +85,16 @@ function SingleProductListing() {
 
             </div>
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
+
             <br />
             <br />
             <MoreProducts />
             <QuestionAnswer />
             <ReviewSummary />
             <Reviews />
-<<<<<<< HEAD
-=======
-
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
 
         </div>
     )
 }
+
 export default SingleProductListing
