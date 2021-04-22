@@ -2,6 +2,10 @@ import './Product.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
+function reload() {
+    window.location.reload();
+}
+
 function PrimeLogo(props) {
     const primeEligible = props.primeEligible;
     if(primeEligible) {
