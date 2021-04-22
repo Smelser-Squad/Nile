@@ -55,4 +55,13 @@ public class ProductPhotoController {
     public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) throws InvalidProductIdException {
         return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
+
+    @GetMapping("/{productId}/{color}")
+    public ResponseEntity getPhotosByProductColor(@PathVariable Integer productId, @PathVariable String color){
+        try {
+            return ResponseEntity.ok(service.getPhotosByProductColor(productId, color));
+        } catch (InvalidProductIdException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
