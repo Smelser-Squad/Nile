@@ -221,7 +221,6 @@ public class ReviewServiceImplTests {
 
         try {
             service.addReview(newReview);
-            failBecauseExceptionWasNotThrown(NullReviewIdException.class);
         } catch (InvalidReviewIdException ex) {
             fail("Invalid review id thrown");
         } catch (NullReviewIdException ex) {

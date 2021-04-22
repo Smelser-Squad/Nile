@@ -32,7 +32,7 @@ function Payment() {
                             Delivery Address
                         </h3>
                         <div className='payment_address'>
-                            <p>User Email </p>
+                            {/* <p>User Email </p> */}
                             <p> 1234 Talent Drive</p>
                             <p> Washington, D.C.</p>
                         </div>
