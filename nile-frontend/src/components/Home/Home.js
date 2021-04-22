@@ -22,11 +22,7 @@ function Home() {
                         name={product.name}
                         price={product.price}
                         rating={4}
-                        image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"/>
-                        
-                    
-                       
-
+                        image={product.photos[0].imageSrc}/>
             );
             setCards(cards);
         }
@@ -50,15 +46,15 @@ function Home() {
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(3, 6)}
+                    {cards.slice(2, 5)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(7, 10)}
+                    {cards.slice(5, 9)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(11, 500)}
+                    {cards.slice(9, 15)}
                 </div>
             </div >
         </div>
