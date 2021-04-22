@@ -127,13 +127,13 @@ public class ProductServiceImpl implements ProductService {
         Product edited=repo.findById(updatedProduct.getProductId()).get();
 
 
-        if(edited!=null){
+        /*if(edited!=null){
             edited.setName(updatedProduct.getName());
             edited.setBrand(updatedProduct.getBrand());
             edited.setPrice(updatedProduct.getPrice());
             edited.setDescription(updatedProduct.getDescription());
 
-        }
+        }*/
         return repo.saveAndFlush(updatedProduct);
     }
 
