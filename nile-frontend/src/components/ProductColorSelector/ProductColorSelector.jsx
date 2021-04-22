@@ -25,7 +25,7 @@ export function ProductColorSelector(){
     })
   })
  
-console.log(ColorList[0]);
+console.log(ColorList);
 
     return(<div>
   

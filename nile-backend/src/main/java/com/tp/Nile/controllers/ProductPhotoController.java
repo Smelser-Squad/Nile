@@ -62,4 +62,6 @@ public class ProductPhotoController {
     public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) throws InvalidProductIdException {
         return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
+
+
 }

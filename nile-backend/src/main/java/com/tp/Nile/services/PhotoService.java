@@ -21,4 +21,6 @@ public interface PhotoService {
     ProductPhoto updatePhoto(ProductPhoto update);
 
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
+
+    List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException, NullProductIdException;
 }

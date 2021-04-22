@@ -5,7 +5,7 @@ import com.tp.Nile.repositories.ProductRepository;
 import static org.junit.jupiter.api.Assertions.*;
 import com.tp.Nile.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
