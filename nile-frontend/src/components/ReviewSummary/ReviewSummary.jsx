@@ -194,6 +194,8 @@ function ReviewSummary() {
                     Share your thoughts with other customers
                 </span>
                 <br />
+                {/* In the future will pass in product ID so review gets associated correctly */}
+                {/* <Link to="/CreateReview">Write a customer review</Link> */}
                 <br />
                 <button className="writeReview">Write a customer review</button>
                 <br />

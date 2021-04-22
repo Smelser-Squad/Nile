@@ -15,7 +15,7 @@ public class ReviewController {
     @Autowired
     ReviewServiceImpl service;
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity addReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.addReview(review));
@@ -48,11 +48,20 @@ public class ReviewController {
     @GetMapping("/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
         try {
-            return ResponseEntity.ok(service.getReviewById(reviewId));
-        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
+            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+        } catch(NullProductIdException | InvalidProductIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("/{reviewId}")
+//    public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
+//        try {
+//            return ResponseEntity.ok(service.getReviewById(reviewId));
+//        } catch (NullReviewIdException | InvalidReviewIdException | NullReviewAttributeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
 
     @GetMapping("/by/{userId}")
