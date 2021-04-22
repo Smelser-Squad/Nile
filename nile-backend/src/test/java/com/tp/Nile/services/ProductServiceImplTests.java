@@ -1,5 +1,6 @@
 package com.tp.Nile.services;
 
+import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
@@ -16,8 +17,10 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
@@ -66,6 +69,92 @@ public class ProductServiceImplTests {
                     assertThat(product.isPrimeEligible()).isEqualTo(true);
                     assertThat(product.getStock()).isEqualTo(20);
                 });
+    }
+
+    @Test
+    public void testGetProductByIdGoldenPath() {
+        Category category = new Category();
+        category.setCategoryId(1);
+        category.setName("Electronic");
+        Type type = new Type();
+        type.setTypeId(1);
+        type.setTypeName("Test Type");
+        Vendor vendor = new Vendor();
+        vendor.setVendorId(1);
+        vendor.setName("Best Buy");
+
+        when(repo.findById(1)).thenReturn(Optional.of(new Product(1, category, vendor, type, BigDecimal.valueOf(50.0), "Echo Dot", "description", "Amazon", 20, true,
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
+
+
+        Product product = null;
+        try {
+            product = service.getProductById(1);
+        } catch (InvalidProductIdException ex) {
+            fail("Exception thrown");
+        }
+        assertThat(product)
+                .isNotNull()
+                .isInstanceOf(Product.class)
+                .hasFieldOrPropertyWithValue("productId", 1)
+                .hasFieldOrPropertyWithValue("name", "Echo Dot")
+                .hasFieldOrPropertyWithValue("description", "description")
+                .hasFieldOrPropertyWithValue("brand", "Amazon")
+                .hasFieldOrPropertyWithValue("stock", 20)
+                .hasFieldOrPropertyWithValue("price", BigDecimal.valueOf(50.0));
+
+    }
+
+
+    @Test
+    public void testGetProductByIdInvalidProductId() {
+        when(repo.findById(Integer.MIN_VALUE)).thenReturn(Optional.empty());
+        try {
+            Product product = service.getProductById(Integer.MIN_VALUE);
+            failBecauseExceptionWasNotThrown(InvalidProductIdException.class);
+        } catch (InvalidProductIdException ex) {
+
+        } catch (Exception ex) {
+            fail("Wrong exception thrown");
+        }
+    }
+
+    @Test
+    public void testAddProductGoldenPath() {
+        int id = 1;
+        Category category = new Category();
+        category.setCategoryId(1);
+        category.setName("Electronic");
+        Type type = new Type();
+        type.setTypeId(1);
+        type.setTypeName("Test Type");
+        Vendor vendor = new Vendor();
+        vendor.setVendorId(1);
+        vendor.setName("Best Buy");
+        Product newProduct = new Product();
+        newProduct.setName("Echo Dot");
+        newProduct.setDescription("description");
+        newProduct.setBrand("Amazon");
+        newProduct.setPrice(BigDecimal.valueOf(50.0));
+        newProduct.setStock(20);
+        newProduct.setPrimeEligible(true);
+        when(repo.saveAndFlush(newProduct)).thenReturn(newProduct);
+        Product addedProduct = null;
+        try {
+            addedProduct = service.addProduct(newProduct);
+        } catch (Exception ex) {
+            fail("Exception thrown");
+        }
+        addedProduct.setProductId(id);
+        assertThat(addedProduct)
+                .isNotNull()
+                .isInstanceOf(Product.class)
+                .hasFieldOrPropertyWithValue("productId", 1)
+                .hasFieldOrPropertyWithValue("name", "Echo Dot")
+                .hasFieldOrPropertyWithValue("description", "description")
+                .hasFieldOrPropertyWithValue("brand", "Amazon")
+                .hasFieldOrPropertyWithValue("stock", 20)
+                .hasFieldOrPropertyWithValue("price", BigDecimal.valueOf(50.0));
     }
 
 
