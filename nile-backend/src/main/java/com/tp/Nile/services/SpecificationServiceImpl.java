@@ -26,7 +26,7 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public List<Specification> getSpecsByType(Type type) {
+    public List<Specification> getSpecsByType(String type) {
         return repo.getSpecsByType(type);
     }
 
@@ -67,10 +67,13 @@ public class SpecificationServiceImpl implements SpecificationService {
         if (specId == null) {
             throw new NullSpecIdException("Cannot get specification with null id");
         }
-        Specification retrieved = repo.findById(specId).get();
-        if (retrieved != null) {
-            repo.delete(retrieved);
+        Specification retrieved = null;
+        try {
+            retrieved = getSpecById(specId);
+        } catch (InvalidSpecIdException ex) {
+            return false;
         }
-        return retrieved != null;
+        repo.delete(retrieved);
+        return true;
     }
 }

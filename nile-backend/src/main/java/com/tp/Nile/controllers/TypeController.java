@@ -44,7 +44,26 @@ public class TypeController {
         }
     }
 
+    @PutMapping("/{typeId}")
+    public ResponseEntity updateType(@PathVariable Integer typeId, @RequestBody Type updatedType) {
+        try {
+            return ResponseEntity.ok(service.updateType(typeId, updatedType));
+        } catch (NullTypeIdException | InvalidTypeIdException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 
-
+    @DeleteMapping("/{typeId}")
+    public ResponseEntity deleteType(@PathVariable Integer typeId) {
+        try {
+            if (service.deleteType(typeId)) {
+                return ResponseEntity.ok("Type " + typeId + " successfully deleted");
+            } else {
+                return ResponseEntity.ok("Type " + typeId + " not found");
+            }
+        } catch (NullTypeIdException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }
 

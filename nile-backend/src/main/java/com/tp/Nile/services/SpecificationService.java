@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SpecificationService {
     List<Specification> getAllSpecs();
-    List<Specification> getSpecsByType(Type type);
+    List<Specification> getSpecsByType(String type);
     Specification getSpecById(Integer specId) throws NullSpecIdException, InvalidSpecIdException;
     Specification addSpec(Specification newSpec) throws NullTypeIdException, InvalidTypeIdException, NullTypeNameException, EmptyTypeNameException;
     Specification updateSpec(Integer specId, Specification updatedSpec) throws NullSpecIdException, InvalidSpecIdException;

@@ -25,8 +25,7 @@ public class Specification implements Serializable {
     @Column(name = "spec_name", nullable = false)
     private String specName;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-            cascade = {CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 }
