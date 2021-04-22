@@ -69,8 +69,6 @@ public class ReviewServiceImpl implements ReviewService{
         if(newReview.getRating() < 1 || newReview.getRating() > 5){
             throw new InvalidReviewException("A review's rating must be between 1 and 5");
         }
-        if (newReview.getReviewId() == null)
-            throw new NullReviewIdException("Review id is null");
         return repo.saveAndFlush(newReview);
     }
 
@@ -80,8 +78,6 @@ public class ReviewServiceImpl implements ReviewService{
         if(updatedReview.getRating() < 1 || updatedReview.getRating() > 5){
             throw new InvalidReviewException("A review's rating must be between 1 and 5");
         }
-        if (updatedReview.getReviewId() == null)
-            throw new NullReviewIdException("Review id is null");
 
         return repo.saveAndFlush(updatedReview);
     }
