@@ -44,22 +44,12 @@ function SingleProductListing() {
         return avgRating;
     }
 
-
-
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-<<<<<<< HEAD
             })
     }, [])
-=======
-
-            })
-    }, [])
-
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
@@ -67,10 +57,6 @@ function SingleProductListing() {
             <ProductPhotos />
             <ProductColorSelector />
             <div className="add_toCart">
-<<<<<<< HEAD
-                <button onClick={addToCart}>Add to Cart</button>
-            </div>
-=======
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
                 </RadioGroup>
@@ -84,17 +70,12 @@ function SingleProductListing() {
 
             </div>
 
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
             <br />
             <br />
             <MoreProducts />
             <QuestionAnswer />
             <ReviewSummary />
             <Reviews />
-<<<<<<< HEAD
-=======
-
->>>>>>> faca243fa02624632d8aca0a07d54afeec7dc3d6
 
         </div>
     )
