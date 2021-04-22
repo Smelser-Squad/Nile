@@ -4,12 +4,8 @@ package com.tp.Nile.models;
 import static org.junit.jupiter.api.Assertions.*;
 import com.tp.Nile.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-<<<<<<< HEAD
 import org.junit.Test;
-=======
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
->>>>>>> b21310b985ce4d11f9e1d99a9c24699dc37d1f60
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
