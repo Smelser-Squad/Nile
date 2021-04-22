@@ -1,7 +1,6 @@
 package com.tp.Nile.controllers;
 
-import com.tp.Nile.exceptions.InvalidSpecIdException;
-import com.tp.Nile.exceptions.NullSpecIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Specification;
 import com.tp.Nile.services.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,11 @@ public class SpecificationController {
 
     @PostMapping()
     public ResponseEntity addSpec(@RequestBody Specification newSpec) {
-        return ResponseEntity.ok(service.addSpec(newSpec));
+        try {
+            return ResponseEntity.ok(service.addSpec(newSpec));
+        } catch (NullTypeIdException | InvalidTypeIdException | NullTypeNameException | EmptyTypeNameException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
     }
 
 
