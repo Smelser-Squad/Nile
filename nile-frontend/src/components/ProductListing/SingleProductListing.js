@@ -18,7 +18,6 @@ import { Link } from 'react-router-dom'
 
 function SingleProductListing() {
 
-
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     console.log(Product);
@@ -71,7 +70,6 @@ function SingleProductListing() {
             <ProductPhotos />
             <ProductColorSelector />
             <div className="add_toCart">
-
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
                 </RadioGroup>
@@ -84,7 +82,6 @@ function SingleProductListing() {
                 <Link to='/payment'><button className="shop_button ">Shop Now</button></Link>
 
             </div>
-
 
             <br />
             <br />
