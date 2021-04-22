@@ -39,7 +39,14 @@ public class ReviewTest {
         Review setupReview = new Review();
         setupReview.setReviewId(10);
         setupReview.setTitle("Test Title");
-        setupReview.setUser(new User());
+
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        setupReview.setUser(user);
+
         setupReview.setRating(5);
         setupReview.setSummary("Test Summary");
         setupReview.setReviewDate(LocalDate.of(2020, 4, 19));
@@ -53,7 +60,14 @@ public class ReviewTest {
         Review newReview = new Review();
         newReview.setReviewId(12);
         newReview.setTitle("Test Title 2");
-        newReview.setUser(new User());
+
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        newReview.setUser(user);
+
         newReview.setRating(3);
         newReview.setSummary("Test Summary 2");
         newReview.setReviewDate(LocalDate.of(1999, 4, 20));
@@ -98,7 +112,14 @@ public class ReviewTest {
         Review beforeUpdate = new Review();
         beforeUpdate.setReviewId(12);
         beforeUpdate.setTitle("Test Title 2");
-        beforeUpdate.setUser(new User());
+
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        beforeUpdate.setUser(user);
+
         beforeUpdate.setRating(3);
         beforeUpdate.setSummary("Test Summary 2");
         beforeUpdate.setReviewDate(LocalDate.of(1999, 4, 20));
@@ -115,7 +136,11 @@ public class ReviewTest {
         Review toUpdate = new Review();
         toUpdate.setReviewId(15);
         toUpdate.setTitle("Test Title 29");
-        toUpdate.setUser(new User());
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        toUpdate.setUser(user);
         toUpdate.setRating(4);
         toUpdate.setSummary("Test Summary 29");
         toUpdate.setReviewDate(LocalDate.of(2020, 4, 19));
@@ -132,7 +157,12 @@ public class ReviewTest {
         Review toDelete = new Review();
         toDelete.setReviewId(12);
         toDelete.setTitle("Test Title 2");
-        toDelete.setUser(new User());
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        toDelete.setUser(user);
         toDelete.setRating(3);
         toDelete.setSummary("Test Summary 2");
         toDelete.setReviewDate(LocalDate.of(1999, 4, 20));
