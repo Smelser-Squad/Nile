@@ -19,7 +19,7 @@ public interface ProductService {
     List<Product> getProductsByVendor(String vendor);
     List<Product> getProductsByType(String Type);
     Product getProductById(Integer productId) throws NullProductIdException, InvalidProductIdException;
-    Product addProduct(Product product);
+    Product addProduct(Product product) throws MissingPropertyException;
     Product updateProduct(Product updatedProduct);
     void deleteProduct(Integer productId) throws InvalidProductIdException;
 
