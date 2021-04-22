@@ -12,6 +12,7 @@ import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import LockIcon from '@material-ui/icons/Lock';
 
 import { Link } from 'react-router-dom'
 function SingleProductListing() {
@@ -30,7 +31,8 @@ function SingleProductListing() {
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product)
+                rating: calcRating(Product),
+                vendor: Product.vendor
 
             },
         });
@@ -68,12 +70,27 @@ function SingleProductListing() {
                 </RadioGroup>
                 <p id="price_tag">
                     <small>$</small>
-                    <strong>{Product.price}.00</strong>
+                    <strong>{Product.price}</strong>
 
                 </p>
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment'><button className="shop_button ">Shop Now</button></Link>
+                <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
+                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
+                <p className="ship">
+                    <small>Ships From </small>
+                    <strong>Nile</strong>
+                </p>
+                <p className="ship">
+                    <small>Sold By </small>
+                    <strong>{Product.vendor} </strong>
+                </p>
+                <small className="prime">
+                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+            </small>
+                <small className="pro_gift">
+                    <input type="checkbox" />Add a gift receipt for easy returns
+            </small>
             </div>
 
             <br />

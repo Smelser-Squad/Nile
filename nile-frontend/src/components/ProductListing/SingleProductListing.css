@@ -1,26 +1,17 @@
 .add_toCart{
-    height: 200px;
-    width: 200px;
+    height: 400px;
+    width: 220px;
     border: 2px solid black;
     margin-left: 1200px;
 }
 .button_purchase{
-    margin-left: 2px;
+    margin-left: 10px;
     font: bold;
 }
 
 #price_tag {
-    margin-left: 30px;
+    margin-left: 70px;
 }
-
-/* .add_toCart > button { 
-    background: #f0c14b; 
-    border: 1px solid; 
-    margin-top: 10px;
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111; 
-} */
-
 
 .shop_button  {
     background: #f0c14b;
@@ -29,7 +20,7 @@
     cursor: pointer;
     color: #111;
     padding: 5px;
-    margin-top: 10px;
+    margin-top: 15px;
     width: 130px;
     margin-left: 30px;
 }
@@ -38,3 +29,46 @@
     background: #9c7410;
 }
 
+.secure{
+    margin-top: 20px;
+    margin-left: 30px;
+    color:rgb(61, 59, 55); 
+    font-weight: bold;
+    display: inline-flex;
+}
+
+.lock_icon{
+    height: 18px !important;
+    width: 18px !important;
+}
+
+.ship{
+    margin-top: 10px;
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+.prime{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-weight: 500;
+
+}
+
+.prime > input{
+    margin-right: 5px;
+}
+
+.pro_gift{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+.pro_gift > input{
+    margin-right: 5px;
+}
