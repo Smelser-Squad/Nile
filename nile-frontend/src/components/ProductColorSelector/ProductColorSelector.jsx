@@ -15,16 +15,15 @@ export function ProductColorSelector() {
   const ColorList = [];
   const [cards, setCards] = useState([]);
 
-
   getPhotos(productId).then((list) => {
     list.map((item) => {
       ColorList.push(item.color)
     })
 
 
-
     const cards = ColorList.map((colorName) =>
       <div className="color_selector">
+
         <FormControlLabel value={colorName} control={<Radio name="color" checked={color === colorName} onChange={() => setColor(colorName)} />} label={colorName} />
 
       </div>
@@ -37,9 +36,6 @@ export function ProductColorSelector() {
     {cards}
   </div>);
 }
-
-
-
 
 
 
