@@ -61,6 +61,10 @@ public class UserTest {
         setupUser.setUserId(1);
         setupUser.setAnswers(answerSet);
         setupUser.setCarts(cartList);
+        setupUser.setPassword("1234");
+        setupUser.setUsername("Bdeyo");
+        setupUser.setRole("Owner");
+        setupUser.setEnabled(true);
         return setupUser;
     }
 
@@ -95,6 +99,10 @@ public class UserTest {
         setupUser.setUserId(5);
         setupUser.setAnswers(answerSet);
         setupUser.setCarts(cartList);
+        setupUser.setPassword("1234");
+        setupUser.setUsername("Bdeyo");
+        setupUser.setRole("Owner");
+        setupUser.setEnabled(true);
 
         repo.save(setupUser);
 
@@ -168,6 +176,10 @@ public class UserTest {
         setupUser.setUserId(2);
         setupUser.setAnswers(newSet);
         setupUser.setCarts(newList);
+        setupUser.setPassword("1234");
+        setupUser.setUsername("Bdeyo");
+        setupUser.setRole("Owner");
+        setupUser.setEnabled(true);
 
         User savedUser = repo.save(setupUser);
 

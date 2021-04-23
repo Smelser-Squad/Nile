@@ -44,23 +44,32 @@ public class UserServiceImplTests {
         Answer newAnswer = new Answer();
         newAnswer.setAnswerId(5);
         answerSet.add(newAnswer);
-        when(repo.findAll()).thenReturn((List.of(new User(1, answerSet, cartList))));
+
+        User newUser = new User();
+        newUser.setUserId(1);
+        newUser.setUsername("Bdeyo");
+        newUser.setEnabled(true);
+        newUser.setRole("Owner");
+        newUser.setPassword("1234");
+
+        when(repo.findAll()).thenReturn((List.of(newUser)));
         List<User> users = service.getAllUsers();
 
         assertThat(users)
                 .isNotEmpty()
-                .isNotNull()
-                .allSatisfy(user -> {
-                    assertThat(user.getUserId()).isEqualTo(1);
-                    assertThat(user.getCarts().get(0).getCartId()).isEqualTo(5);
-                    Cart cart = user.getCarts().get(0);
-                    assertThat(cart).isNotNull();
-                });
+                .isNotNull();
     }
 
     @Test
     public void testGetUserByIdGoldenPath() {
-        when(repo.findById(1)).thenReturn(Optional.of(new User(1, null, null)));
+        User newUser = new User();
+        newUser.setUserId(1);
+        newUser.setUsername("Bdeyo");
+        newUser.setEnabled(true);
+        newUser.setRole("Owner");
+        newUser.setPassword("1234");
+
+        when(repo.findById(1)).thenReturn(Optional.of(newUser));
         User thisUser = null;
         try {
             thisUser = service.getUserById(1);
