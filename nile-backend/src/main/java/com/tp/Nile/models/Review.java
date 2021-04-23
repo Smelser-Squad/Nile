@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "review")
 public class Review implements Serializable {
 
     @Id
