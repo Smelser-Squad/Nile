@@ -43,6 +43,10 @@ public class SpecificationController {
         }
     }
 
+    @GetMapping("/type/{typeName}")
+    public ResponseEntity getSpecsByType(@PathVariable String typeName) {
+        return ResponseEntity.ok(service.getSpecsByType(typeName));
+    }
 
     @PutMapping("/{specId}")
     public ResponseEntity updateSpec(@PathVariable Integer specId, @RequestBody Specification updatedSpec) {
