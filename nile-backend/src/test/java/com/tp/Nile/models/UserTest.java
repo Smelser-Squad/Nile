@@ -84,6 +84,10 @@ public class UserTest {
         setupUser.setUserId(2);
         setupUser.setAnswers(newSet);
         setupUser.setCarts(newList);
+        setupUser.setUsername("username");
+        setupUser.setPassword("password");
+        setupUser.setRole("admin");
+        setupUser.setEnabled(true);
 
         User savedUser = repo.save(setupUser);
 

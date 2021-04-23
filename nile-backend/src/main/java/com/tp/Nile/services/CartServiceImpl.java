@@ -39,7 +39,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addCart(Cart newCart) {
-        return repo.saveAndFlush(newCart);
+        Cart cart = repo.saveAndFlush(newCart);
+
+        return cart;
     }
 
     @Override
