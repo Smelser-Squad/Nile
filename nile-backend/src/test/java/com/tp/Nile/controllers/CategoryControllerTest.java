@@ -33,7 +33,6 @@ public class CategoryControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-    MockMvc MOCKMVC;
 
 
     private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
