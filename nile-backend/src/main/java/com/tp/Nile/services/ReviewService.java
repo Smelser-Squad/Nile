@@ -12,12 +12,10 @@ public interface ReviewService {
     List<Review> getAllReviews()
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
-    List<Review> getReviewsByProductId(Integer productId)
-            throws InvalidUserIdException, NullUserIdException, NullUserException,
-                    InvalidProductIdException, NullProductObjectException, NullProductIdException;
-
     List<Review> getReviewsByUserId(Integer userId)
             throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException;
+
+    List<Review> getReviewsByProductId(Integer productId) throws NullProductIdException, InvalidProductIdException, InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
     Review getReviewById(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;

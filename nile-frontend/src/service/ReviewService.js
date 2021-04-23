@@ -20,8 +20,9 @@ export function useReview(id){
             data
         )
 }
-async function getReviews(){
-    const reviews=await axios.get('http://localhost:80/api/reviews')
+async function getReviews(productId){
+    console.log("made it to function " + productId)
+    const reviews=await axios.get(`http://localhost:80/api/reviews/byproduct/${productId}`)
     const data=reviews.data;
     // console.log(data);
 

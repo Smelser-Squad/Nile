@@ -76,6 +76,7 @@ public class TypeTest {
     }
 
     @Test
+    @Rollback(true)
     public void testDeleteType() {
         Type toDelete = new Type(1, "test type", new ArrayList<>());
         repo.delete(toDelete);
