@@ -1,12 +1,12 @@
 import './MoreProducts.css';
 import Product from "./Product";
-import {Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useState } from 'react';
-import {getProducts} from '../../service/ProductService'
+import { getProducts } from '../../service/ProductService'
 
-function calcRating(product)  {
+function calcRating(product) {
     let sum = 0;
-    for(let i = 0; i < product.reviews.length; i++) {
+    for (let i = 0; i < product.reviews.length; i++) {
         sum += product.reviews[i].rating;
     }
     const avgRating = sum / product.reviews.length;
@@ -18,21 +18,20 @@ function MoreProducts() {
     const [products, setProducts] = useState([]);
     const AllProducts = [];
 
-    if(products.length === 0) {
-    getProducts().then((list)=>
-        {
-            list.map((item)=>
-            AllProducts.push(item)
+    if (products.length === 0) {
+        getProducts().then((list) => {
+            list.map((item) =>
+                AllProducts.push(item)
             );
-            const products = AllProducts.map((product)=>
+            const products = AllProducts.map((product) =>
                 <Grid item md={2}>
                     <Product
                         productId={product.productId}
                         name={product.name}
                         price={product.price}
                         avgRating={calcRating(product)}
-                        image= {product.photos[0].imageSrc}
-                        reviewCount={product.reviews.length} 
+                        image={product.photos[0].imageSrc}
+                        reviewCount={product.reviews.length}
                         primeEligible={product.primeEligible}
                     />
                 </Grid>
@@ -47,8 +46,8 @@ function MoreProducts() {
 
     return (
         <div class="container">
-            <hr/>
-            <Grid container justify="center" alignItems = "center">
+            <hr classname="hr" />
+            <Grid container justify="center" alignItems="center">
                 <Grid item xs={12} md={12}>
                     <div class="header">
                         <span>
@@ -65,8 +64,8 @@ function MoreProducts() {
                         </svg>
                     </button>
                 </Grid>
-            
-                {products.slice(0,5)}
+
+                {products.slice(0, 5)}
 
                 <Grid item md={1}>
                     <button class="nav-button" id="right-nav">

@@ -20,7 +20,7 @@ function HomeProduct({ productId, image, name, price, rating, description }) {
             },
         });
     };
-
+    
     return (
         <div className="product">
             <div className="product_info"></div>
@@ -51,8 +51,8 @@ function HomeProduct({ productId, image, name, price, rating, description }) {
                 />
             </div>
             <Link to={`/singleProductListing/${productId}`}>
-                <img id="prime_img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1" />
-            </Link>
+                    <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
+                </Link>
             <button onClick={addToCart}>Add to Cart</button>
         </div >
     );
