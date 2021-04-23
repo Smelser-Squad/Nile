@@ -27,7 +27,6 @@ function MoreProducts() {
             AllProducts.push(item)
             );
             const products = AllProducts.map((product)=>
-                <Grid item md={2} className="menu-item">
                     <Product
                         productId={product.productId}
                         name={product.name}
@@ -37,8 +36,6 @@ function MoreProducts() {
                         reviewCount={product.reviews.length} 
                         primeEligible={product.primeEligible}
                     />
-                </Grid>
-
             );
             setProducts(products);
         }
@@ -62,25 +59,21 @@ function MoreProducts() {
         <div class="container">
             <hr/>
             
+            <div class="header">
+                <span>
+                    <h3 id="customer-bought">Customers also bought these products</h3>
+                    <p class="pages">Page 1 of {pages}</p>
+                </span>
+            </div>
 
-            <Grid container justify="center" alignItems = "center">
-                <Grid item xs={12} md={12}>
-                    <div class="header">
-                        <span>
-                            <h3 id="customer-bought">Customers also bought these products</h3>
-                            <p class="pages">Page 1 of {pages}</p>
-                        </span>
-                    </div>
-                </Grid>
-
-                <ScrollMenu
-                    alignCenter={true}
-                    alignOnResize={true}
-                    data={products}
-                    arrowLeft={ArrowLeft}
-                    arrowRight={ArrowRight}
-                />
-            </Grid>
+            <ScrollMenu
+                alignCenter={true}
+                alignOnResize={true}
+                data={products}
+                arrowLeft={ArrowLeft}
+                arrowRight={ArrowRight}
+            />
+            
             <hr />
         </div>
     );

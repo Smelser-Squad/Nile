@@ -1,35 +1,36 @@
 import './ProductColorSelector.css'
-import {useState} from 'react'
-
-export function ProductColorSelector(){
+  import {useState, useEffect} from 'react'
+  import { getPhotos } from '../../service/PhotoService';
+  import Radio from '@material-ui/core/Radio';
+  import FormControlLabel from '@material-ui/core/FormControlLabel';
+  import { useParams } from 'react-router';
+  import axios from 'axios'
   
-  const [color, setColor] = useState([]);
-  const [ColorPhoto, setColorPhotos] = useState([]);
-  const {productId}=useParams();
-  const ColorList=[];
-  const [cards,setCards]=useState([]);
-  
-  const handleChange = (event) => {
-    setColor(event.target.value);
-  };
-  
-  getPhotos(productId).then((list)=>{
-    list.map((item)=>{
-      ColorList.push(item.color)
-    })
-    cards = ColorList.map((color) =>
-      <div>
-        <p>Im Here!!!!!!</p>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Color: {color}</FormLabel>
-          <RadioGroup row aria-label="color" name="color" value={color} onChange={handleChange}>
-            <FormControlLabel value={color} control={<Radio />} label={color} />
-          </RadioGroup>
-        </FormControl>
-      </div>
-    )
-    setCards(cards);
-  });
-
-}
-  
+  export function ProductColorSelector(){
+    
+    const [color, setColor] = useState([]);
+    const {productId}=useParams();
+    const ColorList=[];
+    const [cards,setCards]=useState([]);
+    
+    getPhotos(productId).then((list)=>{
+      list.map((item)=>{
+        ColorList.push(item.color)
+      })
+        
+      
+     const cards = ColorList.map((colorName) =>
+        <div>
+            
+             <FormControlLabel value={colorName} control={<Radio name="color" checked={color===colorName} onChange={()=>setColor(colorName)}/>} label={colorName}/>
+       
+        </div>
+      )
+      setCards(cards);
+    });
+    return(<div>
+      Color: {color}
+      <br/>
+      {cards}
+      </div>);
+  }
