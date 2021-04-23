@@ -75,7 +75,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("deleteReview/{reviewId}")
+    @DeleteMapping("/{reviewId}")
     public String deleteReview(@PathVariable Integer reviewId) {
         {
             String toReturn="";
