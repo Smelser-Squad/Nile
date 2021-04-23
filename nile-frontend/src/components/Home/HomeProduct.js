@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 
 
-function HomeProduct({ productId, image, name, price, rating, description, vendor }) {
+function HomeProduct({ productId, image, name, price, rating, description }) {
     const [{ cart }, dispatch] = useStateValue();
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -16,16 +16,12 @@ function HomeProduct({ productId, image, name, price, rating, description, vendo
                 image: image,
                 price: price,
                 rating: rating,
-                description: description,
-                vendor: vendor
+                description: description
             },
         });
     };
 
     return (
-
-        // <Link to={`/singleProductListing/${productId}`}>
-
         <div className="product">
             <div className="product_info"></div>
 
@@ -59,7 +55,6 @@ function HomeProduct({ productId, image, name, price, rating, description, vendo
             </Link>
             <button onClick={addToCart}>Add to Cart</button>
         </div >
-        // </Link>
     );
 }
 

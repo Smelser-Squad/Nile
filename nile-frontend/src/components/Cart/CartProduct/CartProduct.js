@@ -9,6 +9,7 @@ function CartProduct({ productId, image, name, price, rating }) {
         dispatch({
             type: 'REMOVE_FROM_CART',
             productId: productId,
+
         })
     }
 

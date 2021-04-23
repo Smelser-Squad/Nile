@@ -13,32 +13,24 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
-
 import { Link } from 'react-router-dom'
-
-
 
 function SingleProductListing() {
 
     const { productId } = useParams()
-    const [Product, setProduct] = useState([]);
-    console.log(Product);
+    const [Product, setProduct] = useState('');
+    console.log(Product)
     const [{ cart }, dispatch] = useStateValue();
+
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-
-
-
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product),
-                vendor: Product.vendor
-
-
+                rating: calcRating(Product)
             },
         });
     };
@@ -53,15 +45,10 @@ function SingleProductListing() {
         return avgRating;
     }
 
-
-
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-
-
-
             })
     }, [])
 
@@ -89,10 +76,10 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-                <p className="ship">
+                {/* <p className="ship">
                     <small>Sold By </small>
-                    {/* <strong>{Product.vendor} </strong> */}
-                </p>
+                    <strong>{Product.vendor.name} </strong>
+                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
@@ -109,6 +96,7 @@ function SingleProductListing() {
             <Reviews />
 
         </div>
+
     )
 }
 
