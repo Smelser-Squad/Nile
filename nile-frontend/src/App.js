@@ -21,7 +21,7 @@ function App() {
 
                 <Switch>
                     <Route exact path="/singleProductListing/:productId">
-                        <SingleProductListing />
+                        <SingleProductListing/>
                     </Route>
 
                     <Route exact path="/checkout">
