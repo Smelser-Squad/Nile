@@ -1,10 +1,8 @@
 import './MoreProducts.css';
 import Product from "./Product";
-import {Grid} from '@material-ui/core';
 import { useState } from 'react';
 import {getProducts} from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
-
 
 function calcRating(product)  {
     let sum = 0;
@@ -28,6 +26,7 @@ function MoreProducts() {
             );
             const products = AllProducts.map((product)=>
                     <Product
+                        key={product.productId}
                         productId={product.productId}
                         name={product.name}
                         price={product.price}
@@ -67,13 +66,13 @@ function MoreProducts() {
             </div>
 
             <ScrollMenu
-                alignCenter={true}
-                alignOnResize={true}
                 data={products}
                 arrowLeft={ArrowLeft}
                 arrowRight={ArrowRight}
+                dragging={false}
+                wheel={false}
             />
-            
+
             <hr />
         </div>
     );

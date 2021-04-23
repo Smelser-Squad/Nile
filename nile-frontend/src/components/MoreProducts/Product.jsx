@@ -2,10 +2,6 @@ import './Product.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
-function reload() {
-    window.location.reload();
-}
-
 function PrimeLogo(props) {
     const primeEligible = props.primeEligible;
     if(primeEligible) {
@@ -37,6 +33,7 @@ function Product({ productId, image, name, price, avgRating, reviewCount, primeE
                 <ReactStars
                     count={5}
                     edit={false}
+                    isHalf={true}
                     value={avgRating}
                     activeColor="#FFA41C"
                     size={15}
