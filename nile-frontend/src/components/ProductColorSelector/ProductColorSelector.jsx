@@ -22,7 +22,7 @@
         
       
      const cards = ColorList.map((colorName) =>
-        <div>
+        <div className="color_selector">
             
              <FormControlLabel value={colorName} control={<Radio name="color" checked={color===colorName} onChange={()=>setColor(colorName)}/>} label={colorName}/>
        
