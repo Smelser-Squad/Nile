@@ -61,15 +61,15 @@ function Home() {
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(3, 6)}
+                    {cards.slice(2, 5)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(7, 10)}
+                    {cards.slice(5, 9)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(11, 500)}
+                    {cards.slice(9, 15)}
                 </div>
             </div >
         </div>

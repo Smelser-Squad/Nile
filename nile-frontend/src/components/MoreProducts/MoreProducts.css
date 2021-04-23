@@ -20,21 +20,18 @@ hr {
     line-height: 28px;
 }
 
-.nav-button:hover {
+.menu-item-wrapper {
+    padding: 30px;
+}
+
+.scroll-menu-arrow {
+    padding: 20px;
     cursor: pointer;
-}
+  }
 
-.nav-button {
-    margin-top: 10px;
-    height: 30px;
-}
-
-.nav-button:active {
-    border: solid 1px #C45500;
-}
-
-#left-nav {
-    margin-left: 25px;
+    
+.horizontal-menu {
+    width: 100%;
 }
 
 

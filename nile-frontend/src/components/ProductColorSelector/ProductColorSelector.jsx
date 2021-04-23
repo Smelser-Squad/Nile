@@ -14,13 +14,11 @@
     const {productId}=useParams();
     const ColorList=[];
     const [cards,setCards]=useState([]);
-
     
     getPhotos(productId).then((list)=>{
       list.map((item)=>{
         ColorList.push(item.color)
       })
-
         
       
      const cards = ColorList.map((colorName) =>
