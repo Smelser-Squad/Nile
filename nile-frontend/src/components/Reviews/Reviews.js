@@ -7,6 +7,7 @@ import Tag from '../../components/ReviewTag/Tag';
 function Reviews() {
 
     const[reviews,setReviews]=useState([]);
+    const[filteredReviews,setFilteredReviews]=useState([]);
 
     const reviewList=[];
 
@@ -22,6 +23,7 @@ function Reviews() {
             );
             const reviews=reviewList.map((review)=>
                 <SingleReview
+                    key={review.reviewId}
                     helpful={review.helpful}
                     rating={review.rating}
                     reviewDate={review.reviewDate}
@@ -30,20 +32,49 @@ function Reviews() {
                 />
             );
             setReviews(reviews)
+            setFilteredReviews(reviews)
         }
         )
     }
 
+    //Recieve data from Tag.js
+    //filter reviews based on the tag
+    const sendDataToParent = (tag) =>
+    {   
+        setReviews(reviews)
+        console.log("From the parent "+ tag);
+        for(let i = 0; i < reviews.length;i++)
+        {
+            if(tag!=="clearSelection" && reviews[i].props.summary.includes(tag))
+            {
+                console.log(reviews[i].props.summary);
+                reviewList.push(reviews[i].props)
+                const filtered = reviewList.map((review)=>
+                <SingleReview
+                key = {review.reviewId}
+                helpful={review.helpful}
+                rating={review.rating}
+                reviewDate={review.reviewDate}
+                title={review.title}
+                summary={review.summary}
+            />
+                );
+                setFilteredReviews(filtered)
+            }
+            else if(tag==="clearSelection"){
+                setFilteredReviews(reviews)
+
+            }
+        }
+
+    }
+
+
     return (
         <div class="reviews-container">
-            <Tag reviews = {reviews}/>
-        {reviews}
-
-
-
-
-
-
+            <Tag
+            reviews sendDataToParent={sendDataToParent} />
+            {filteredReviews}
         </div>
     )
 }
