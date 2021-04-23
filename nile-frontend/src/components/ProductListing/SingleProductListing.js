@@ -30,13 +30,13 @@ function SingleProductListing() {
             type: "ADD_TO_CART",
             product: {
 
-
-
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product),
-                vendor: Product.vendor
+                vendor: Product.vendor.name
 
 
             },
@@ -91,7 +91,7 @@ function SingleProductListing() {
                 </p>
                 <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    {/* <strong>{Product.vendor.name} </strong> */}
                 </p>
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime

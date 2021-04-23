@@ -74,6 +74,8 @@ function MoreProducts() {
                 </Grid>
 
                 <ScrollMenu
+                    alignCenter={true}
+                    alignOnResize={true}
                     data={products}
                     arrowLeft={ArrowLeft}
                     arrowRight={ArrowRight}
