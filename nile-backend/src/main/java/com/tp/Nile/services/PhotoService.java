@@ -12,6 +12,8 @@ import java.util.List;
 public interface PhotoService {
     List<ProductPhoto> getAllPhotos();
 
+    List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException, NullProductIdException;
+
     ProductPhoto getPhotoById(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
 
     List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException;
@@ -24,5 +26,4 @@ public interface PhotoService {
 
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
 
-    List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException, NullProductIdException;
 }

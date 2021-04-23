@@ -1,26 +1,30 @@
 package com.tp.Nile.models;
 
 
-import com.tp.Nile.repositories.ProductRepository;
 import static org.junit.jupiter.api.Assertions.*;
 import com.tp.Nile.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@RunWith(SpringRunner.class)
+
+//@RunWith(SpringRunner.class)
+
+@ExtendWith(SpringExtension.class)
+
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserTest {
@@ -76,6 +80,10 @@ public class UserTest {
         setupUser.setUserId(2);
         setupUser.setAnswers(newSet);
         setupUser.setCarts(newList);
+        setupUser.setUsername("username");
+        setupUser.setPassword("password");
+        setupUser.setRole("admin");
+        setupUser.setEnabled(true);
 
         User savedUser = repo.save(setupUser);
 

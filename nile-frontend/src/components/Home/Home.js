@@ -15,24 +15,35 @@ function Home() {
             list.map((item) =>
                 ProductList.push(item)
             );
-            const cards=ProductList.map((product)=>
-            
+            const cards = ProductList.map((product) =>
+
                 <HomeProduct
-                        productId={product.productId}
-                        name={product.name}
-                        price={product.price}
-                        rating={4}
-                        image= "https://target.scene7.com/is/image/Target/GUEST_f3404e1d-acae-49cb-a7f0-6ce4f2b82793?wid=488&hei=488&fmt=pjpeg"/>
-                        
-                    
-                       
+                    productId={product.productId}
+                    name={product.name}
+                    price={product.price}
+                    rating={calcRating(product)}
+                    image={product.photos[0].imageSrc}
+                    description={product.description}
+                    vendor={product.vendor}
+                />
+
+
+
 
             );
             setCards(cards);
         }
         );
     }
-
+    function calcRating(product)  {
+        let sum = 0;
+        for(let i = 0; i < product.reviews.length; i++) {
+            sum += product.reviews[i].rating;
+        }
+        const avgRating = sum / product.reviews.length;
+        return avgRating;
+    }
+   
 
     return (
         <div className='home' >

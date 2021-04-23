@@ -27,7 +27,14 @@ public class ProductPhotoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @GetMapping("/{productId}/{color}")
+    public ResponseEntity getPhotosByProductColor(@PathVariable Integer productId, @PathVariable String color){
+        try {
+            return ResponseEntity.ok(service.getPhotosByProductColor(productId, color));
+        } catch (InvalidProductIdException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @GetMapping
     public ResponseEntity getAllPhotos() {return ResponseEntity.ok(service.getAllPhotos());}
 
@@ -74,4 +81,5 @@ public class ProductPhotoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }
