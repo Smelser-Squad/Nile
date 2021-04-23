@@ -105,7 +105,6 @@ function SingleProductListing() {
             <QuestionAnswer />
         
             <ReviewSummary />
-            
             <Reviews />
 
         </div>
