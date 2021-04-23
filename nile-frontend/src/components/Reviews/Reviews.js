@@ -23,6 +23,7 @@ function Reviews() {
             );
             const reviews=reviewList.map((review)=>
                 <SingleReview
+                    key={review.reviewId}
                     helpful={review.helpful}
                     rating={review.rating}
                     reviewDate={review.reviewDate}
@@ -38,7 +39,7 @@ function Reviews() {
 
     //Recieve data from Tag.js
     //filter reviews based on the tag
-    const sendDataToParent = (tag, selected) =>
+    const sendDataToParent = (tag) =>
     {   
         setReviews(reviews)
         console.log("From the parent "+ tag);
@@ -50,6 +51,7 @@ function Reviews() {
                 reviewList.push(reviews[i].props)
                 const filtered = reviewList.map((review)=>
                 <SingleReview
+                key = {review.reviewId}
                 helpful={review.helpful}
                 rating={review.rating}
                 reviewDate={review.reviewDate}
@@ -70,7 +72,8 @@ function Reviews() {
 
     return (
         <div class="reviews-container">
-            <Tag reviews sendDataToParent={sendDataToParent} />
+            <Tag
+            reviews sendDataToParent={sendDataToParent} />
             {filteredReviews}
         </div>
     )

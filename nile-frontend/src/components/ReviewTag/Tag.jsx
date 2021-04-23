@@ -25,49 +25,39 @@ const Tag = ({sendDataToParent}) =>
 
 
     const tagList = (
-    <ToggleButtonGroup
-        value= {selected}
-        exclusive={true}
-        onChange = {handleSelected}
-        >
-        {tagArr.map((phrase)=>
+
+        tagArr.map((phrase)=>
         <ToggleButton
             value = {phrase}         
             onClick = {()=> 
             sendDataToParent(phrase)}>
             {phrase}
         </ToggleButton>
-        )}
-        <ToggleButton>
+        )
+
+      )
+        
+
+    return (
+        <div class= "tag-container">
+            <h3 id="tag-header">Read reviews that mention</h3> 
+            {tagList}
+            <ToggleButton>
             <HighlightOffIcon 
             value="clearSelection"
             onClick = {()=> 
                 sendDataToParent("clearSelection")}>
             </HighlightOffIcon>
-        </ToggleButton>
-        </ToggleButtonGroup>)
-        
-
-    return (
-        <div class= "tag-container">
-            <h3>Read reviews that mention</h3> 
-            {tagList}
+            </ToggleButton>
         </div>
 
     );
 }
 
-
-// filteredReviews (){
-//     if(this.search){
-//       return this.list.filter((item)=>{
-//         return item.reviewer.description.toLowerCase().includes(this.search.toLowerCase());
-//       })
-//       }else{
-//         return this.list;
-//       }
-//     }
-//   }
-
+// {/* <ToggleButtonGroup
+// value= {selected}
+// exclusive={true}
+// onChange = {handleSelected}
+// > */}
 
 export default Tag;
