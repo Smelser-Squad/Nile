@@ -41,6 +41,7 @@ const Tag = ({sendDataToParent}) =>
     return (
         <div class= "tag-container">
             <h3 id="tag-header">Read reviews that mention</h3> 
+            <ToggleButtonGroup>
             {tagList}
             <ToggleButton>
             <HighlightOffIcon 
@@ -49,6 +50,8 @@ const Tag = ({sendDataToParent}) =>
                 sendDataToParent("clearSelection")}>
             </HighlightOffIcon>
             </ToggleButton>
+            </ToggleButtonGroup>
+
         </div>
 
     );
