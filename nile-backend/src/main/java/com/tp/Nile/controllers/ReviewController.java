@@ -40,7 +40,7 @@ public class ReviewController {
     public ResponseEntity getReviewByProductId(@PathVariable Integer productId)  {
         try {
             return ResponseEntity.ok(service.getReviewsByProductId(productId));
-        } catch(NullProductIdException | InvalidProductIdException e){
+        } catch(NullProductIdException | InvalidProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -63,6 +63,15 @@ public class ReviewController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("/by/{productId}")
+//    public ResponseEntity getReviewsByProductId(@PathVariable Integer productId) {
+//        try {
+//            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+//        } catch (InvalidProductIdException | NullProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
     @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {

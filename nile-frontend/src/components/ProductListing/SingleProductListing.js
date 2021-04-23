@@ -13,10 +13,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
-
 import { Link } from 'react-router-dom'
-
-
 
 function SingleProductListing() {
 
@@ -35,10 +32,7 @@ function SingleProductListing() {
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product),
-                vendor: Product.vendor
-
-
+                rating: calcRating(Product)
             },
         });
     };
@@ -53,15 +47,10 @@ function SingleProductListing() {
         return avgRating;
     }
 
-
-
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-
-
-
             })
     }, [])
 
@@ -104,13 +93,11 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            {/* <QuestionAnswer />
-        
+            <QuestionAnswer />
             <ReviewSummary />
-            
-            <Reviews /> */}
-
+            <Reviews />
         </div>
+
     )
 }
 
