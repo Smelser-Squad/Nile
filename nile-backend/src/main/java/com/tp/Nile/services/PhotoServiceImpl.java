@@ -36,7 +36,6 @@ public class PhotoServiceImpl implements PhotoService{
         }
     }
 
-
     @Override
     public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException
         {return repo.getPhotosByProduct(productId); }
@@ -44,6 +43,11 @@ public class PhotoServiceImpl implements PhotoService{
     @Override
     public List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException
     {return repo.getPhotosByProductColor(productId, color); }
+
+    @Override
+    public List<String> getColorsOfProduct(Integer productId) throws InvalidProductIdException {
+        return repo.getColorsOfProduct(productId);
+    }
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException {

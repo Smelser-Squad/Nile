@@ -1,32 +1,42 @@
   import './ProductColorSelector.css'
   import {useState, useEffect} from 'react'
-  import { getPhotos } from '../../service/PhotoService';
+  import { getListColors } from '../../service/PhotoService';
   import Radio from '@material-ui/core/Radio';
   import FormControlLabel from '@material-ui/core/FormControlLabel';
   import { useParams } from 'react-router';
   import axios from 'axios'
+import SingleProductListing from '../ProductListing/SingleProductListing';
+import ProductPhotos from '../ProductPhotos/ProductPhotos';
 
   
 
-  export function ProductColorSelector(){
+  export function ProductColorSelector({setProductColor}){
     
-    const [color, setColor] = useState([]);
+    const [color, setColor] = useState('');
     const {productId}=useParams();
     const ColorList=[];
     const [cards,setCards]=useState([]);
 
+    // console.log(color.colorName);
+
+    const onRadioClick=(color)=>{
+      setProductColor(color.colorName);
+      console.log(color.colorName);
+    }
+   
     
-    getPhotos(productId).then((list)=>{
+    getListColors(productId).then((list)=>{
       list.map((item)=>{
-        ColorList.push(item.color)
+        ColorList.push(item)
       })
 
-        
+   
+    
       
      const cards = ColorList.map((colorName) =>
-        <div>
+        <div className="color_selector">
             
-             <FormControlLabel value={colorName} control={<Radio name="color" checked={color===colorName} onChange={()=>setColor(colorName)}/>} label={colorName}/>
+             <FormControlLabel value={colorName} control={<Radio name="color" checked={color===colorName}  onClick={()=>onRadioClick({colorName})}/>} label={colorName}/>
        
         </div>
       )
@@ -36,7 +46,9 @@
       Color: {color}
       <br/>
       {cards}
+     
       </div>);
+
   }
   
  

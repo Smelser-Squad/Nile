@@ -7,5 +7,11 @@ async function getProducts(){
     return(data);
     
 }
-export {getProducts}
+async function getProduct(productId){
+    const products=await axios.get(`http://localhost:80/api/products/${productId}`)
+    const data=products.data;
+
+    return(data);
+}
+export {getProducts,getProduct}
 

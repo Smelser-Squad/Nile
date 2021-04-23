@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './ProductPhotos.css';
-import {getPhotos} from '../../service/PhotoService'
+import {getColorPhotos, getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
 
 
-function ProductPhotos() {
+function ProductPhotos({color}) {
 
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
@@ -16,7 +16,7 @@ function ProductPhotos() {
 
 
     if(data.length===0){
-        getPhotos(productId).then((list)=>
+        getPhotos(productId,{color}).then((list)=>
         {
             list.map((item)=>
             PhotoList.push(item)
@@ -47,6 +47,7 @@ function ProductPhotos() {
             setModal(modalSrc);
         }
         );
+       
     }
 
 
