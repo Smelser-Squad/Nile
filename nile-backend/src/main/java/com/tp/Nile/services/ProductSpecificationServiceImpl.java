@@ -7,10 +7,12 @@ import com.tp.Nile.models.Specification;
 import com.tp.Nile.repositories.ProductSpecificationRepository;
 import com.tp.Nile.services.ProductSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductSpecificationServiceImpl implements ProductSpecificationService {
 
     @Autowired
@@ -67,7 +69,9 @@ public class ProductSpecificationServiceImpl implements ProductSpecificationServ
             throw new InvalidSpecValueException("Value cannot be empty");
         }
         Product product = productService.getProductById(newProductSpec.getId().getProductId());
+        newProductSpec.setProduct(product);
         Specification spec = specService.getSpecById(newProductSpec.getId().getSpecId());
+        newProductSpec.setSpec(spec);
         return repo.saveAndFlush(newProductSpec);
     }
 
@@ -83,8 +87,8 @@ public class ProductSpecificationServiceImpl implements ProductSpecificationServ
             throw new InvalidSpecValueException("Value cannot be empty");
         }
         ProductSpecification retrieved = getProductSpecById(updatedProductSpec.getId().getProductId(), updatedProductSpec.getId().getSpecId());
-        updatedProductSpec.setId(retrieved.getId());
-        return repo.saveAndFlush(updatedProductSpec);
+        retrieved.setValue(updatedProductSpec.getValue());
+        return repo.saveAndFlush(retrieved);
     }
 
     @Override
