@@ -3,12 +3,13 @@ import '../CartProduct/CartProduct.css';
 import ReactStars from "react-rating-stars-component";
 import { useStateValue } from '../../../StateProvider';
 
-function CartProduct({ productId, image, name, price, rating }) {
+function CartProduct({ productId, image, name, price, rating, key }) {
     const [{ cart }, dispatch] = useStateValue();
     const removeFromCart = () => {
         dispatch({
             type: 'REMOVE_FROM_CART',
             productId: productId,
+            key: productId
 
         })
     }

@@ -19,6 +19,7 @@ function Home() {
             const cards = ProductList.map((product) =>
 
                 <HomeProduct
+                    key={product.productId}
                     productId={product.productId}
                     name={product.name}
                     price={product.price}
