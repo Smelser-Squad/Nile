@@ -34,7 +34,7 @@ function SingleProductListing() {
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product),
-                vendor: Product.vendor
+                vendor: Product.vendor.name
 
 
             },
@@ -69,7 +69,7 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <h3> Brand: {Product.brand}</h3>
             <ProductPhotos />
-            <ProductColorSelector />
+            {/* <ProductColorSelector /> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -102,11 +102,10 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            {/* <QuestionAnswer />
+            <QuestionAnswer />
         
             <ReviewSummary />
-            
-            <Reviews /> */}
+            <Reviews />
 
         </div>
     )
