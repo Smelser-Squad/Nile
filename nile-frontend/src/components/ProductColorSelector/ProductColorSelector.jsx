@@ -1,11 +1,13 @@
-import './ProductColorSelector.css'
+  import './ProductColorSelector.css'
   import {useState, useEffect} from 'react'
   import { getPhotos } from '../../service/PhotoService';
   import Radio from '@material-ui/core/Radio';
   import FormControlLabel from '@material-ui/core/FormControlLabel';
   import { useParams } from 'react-router';
   import axios from 'axios'
+
   
+
   export function ProductColorSelector(){
     
     const [color, setColor] = useState([]);
@@ -34,3 +36,12 @@ import './ProductColorSelector.css'
       {cards}
       </div>);
   }
+  
+ 
+ 
+
+
+  
+
+
+

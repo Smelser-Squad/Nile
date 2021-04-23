@@ -21,7 +21,7 @@ function Home() {
                     productId={product.productId}
                     name={product.name}
                     price={product.price}
-                    rating={4}
+                    rating={calcRating(product)}
                     image={product.photos[0].imageSrc}
                     description={product.description}
                     vendor={product.vendor}
@@ -35,7 +35,15 @@ function Home() {
         }
         );
     }
-
+    function calcRating(product)  {
+        let sum = 0;
+        for(let i = 0; i < product.reviews.length; i++) {
+            sum += product.reviews[i].rating;
+        }
+        const avgRating = sum / product.reviews.length;
+        return avgRating;
+    }
+   
 
     return (
         <div className='home' >

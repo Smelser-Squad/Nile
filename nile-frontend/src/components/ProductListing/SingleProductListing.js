@@ -22,16 +22,14 @@ function SingleProductListing() {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
-    console.log(Product);
     const [{ cart }, dispatch] = useStateValue();
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-
-                productId: Product.productId,
-                name: Product.name,
+                productId:Product.productId,
+                name:Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -65,11 +63,11 @@ function SingleProductListing() {
             })
     }, [])
 
-
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+            <h3> Brand: {Product.brand}</h3>
             <ProductPhotos />
             {/* <ProductColorSelector /> */}
             <div className="add_toCart">
@@ -89,10 +87,10 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-                <p className="ship">
+                {/* <p className="ship">
                     <small>Sold By </small>
-                    {/* <strong>{Product.vendor.name} </strong> */}
-                </p>
+                    <strong>{Product.vendor} </strong>
+                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
@@ -105,7 +103,9 @@ function SingleProductListing() {
             <br />
             <MoreProducts />
             <QuestionAnswer />
+        
             <ReviewSummary />
+            
             <Reviews />
 
         </div>

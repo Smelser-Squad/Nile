@@ -18,7 +18,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+//@RunWith(SpringRunner.class)
+
 @ExtendWith(SpringExtension.class)
+
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserTest {
