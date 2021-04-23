@@ -27,7 +27,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+//@RunWith(SpringRunner.class)
+
 @ExtendWith(SpringExtension.class)
+
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserTest {
@@ -123,6 +127,10 @@ public class UserTest {
         setupUser.setUserId(2);
         setupUser.setAnswers(newSet);
         setupUser.setCarts(newList);
+        setupUser.setUsername("username");
+        setupUser.setPassword("password");
+        setupUser.setRole("admin");
+        setupUser.setEnabled(true);
 
         User savedUser = repo.save(setupUser);
 
