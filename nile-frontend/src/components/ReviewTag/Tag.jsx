@@ -1,6 +1,7 @@
 import "./Tag.css";
 import React from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { ToggleButtonGroup } from '@material-ui/lab';
 import { useState } from 'react';
 
@@ -11,7 +12,7 @@ import { useState } from 'react';
 //filter by the phrases
 
 //hard coded phrases
-const tagArr = ["soft", "length", "manageable","cheap","clear"];
+const tagArr = ["soft", "length", "manageable","cheap"];
 
 const Tag = ({sendDataToParent}) =>
 {
@@ -22,26 +23,35 @@ const Tag = ({sendDataToParent}) =>
         setSelected(!selected);
     }
 
+
+    const tagList = (
+    <ToggleButtonGroup
+        value= {selected}
+        exclusive={true}
+        onChange = {handleSelected}
+        >
+        {tagArr.map((phrase)=>
+        <ToggleButton
+            value = {phrase}         
+            onClick = {()=> 
+            sendDataToParent(phrase)}>
+            {phrase}
+        </ToggleButton>
+        )}
+        <ToggleButton>
+            <HighlightOffIcon 
+            value="clearSelection"
+            onClick = {()=> 
+                sendDataToParent("clearSelection")}>
+            </HighlightOffIcon>
+        </ToggleButton>
+        </ToggleButtonGroup>)
+        
+
     return (
         <div class= "tag-container">
             <h3>Read reviews that mention</h3> 
-            <ToggleButtonGroup
-            on
-                value= {selected}
-                exclusive={true}
-                onChange = {handleSelected}
-                >
-                {tagArr.map((phrase)=>
-
-                <ToggleButton
-                    value = {phrase}         
-                    onClick = {()=> 
-                    sendDataToParent(phrase)}>
-                    {phrase}
-                </ToggleButton>
-
-                )}
-                </ToggleButtonGroup>
+            {tagList}
         </div>
 
     );

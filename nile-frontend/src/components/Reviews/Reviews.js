@@ -44,7 +44,7 @@ function Reviews() {
         console.log("From the parent "+ tag);
         for(let i = 0; i < reviews.length;i++)
         {
-            if(tag!=="clear" && reviews[i].props.summary.includes(tag))
+            if(tag!=="clearSelection" && reviews[i].props.summary.includes(tag))
             {
                 console.log(reviews[i].props.summary);
                 reviewList.push(reviews[i].props)
@@ -59,7 +59,7 @@ function Reviews() {
                 );
                 setFilteredReviews(filtered)
             }
-            else if(tag==="clear"){
+            else if(tag==="clearSelection"){
                 setFilteredReviews(reviews)
 
             }

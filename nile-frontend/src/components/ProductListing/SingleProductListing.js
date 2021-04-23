@@ -91,7 +91,7 @@ function SingleProductListing() {
                 </p>
                 <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    {/* <strong>{Product.vendor} </strong> */}
                 </p>
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
