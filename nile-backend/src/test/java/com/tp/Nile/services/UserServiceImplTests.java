@@ -107,46 +107,106 @@ public class UserServiceImplTests {
     @Test
     public void testAddUserGoldenPath() {
 
+        int userId = 10;
+        List<Cart> cartList = new ArrayList<>();
+        Cart newCart = new Cart();
+        newCart.setCartId(5);
+        newCart.setPurchaseDate(LocalDate.of(2020, 4, 21));
+        newCart.setStatus("Order pending");
+        cartList.add(newCart);
+        Set<Answer> answerSet = new HashSet<>();
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswerId(5);
+        answerSet.add(newAnswer);
+
+        User newTestUser = new User();
+        newTestUser.setUserId(userId);
+        newTestUser.setCarts(cartList);
+        newTestUser.setAnswers(answerSet);
+
+        when(repo.saveAndFlush(newTestUser)).thenReturn(newTestUser);
+
+        User addedUser = null;
+
+        try {
+            addedUser = service.addUser(newTestUser);
+        } catch (NullUserIdException | NullUserException | InvalidUserIdException ex) {
+            fail("Exception was thrown");
+        }
+
+        addedUser.setUserId(userId);
+        assertThat(addedUser)
+                .isNotNull()
+                .isInstanceOf(User.class)
+                .hasFieldOrPropertyWithValue("userId", 10);
+
+        assertThat(addedUser.getCarts().get(0))
+                .isNotNull()
+                .isInstanceOf(Cart.class);
+
     }
 
     @Test
     public void testAddUserNullId() {
+
+        List<Cart> cartList = new ArrayList<>();
+        Cart newCart = new Cart();
+        newCart.setCartId(5);
+        newCart.setPurchaseDate(LocalDate.of(2020, 4, 21));
+        newCart.setStatus("Order pending");
+        cartList.add(newCart);
+        Set<Answer> answerSet = new HashSet<>();
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswerId(5);
+        answerSet.add(newAnswer);
+
+        User newTestUser = new User();
+        newTestUser.setUserId(null);
+        newTestUser.setCarts(cartList);
+        newTestUser.setAnswers(answerSet);
+
+        User addedUser = null;
+
+        try {
+            addedUser = service.addUser(newTestUser);
+            failBecauseExceptionWasNotThrown(NullUserIdException.class);
+        } catch (NullUserException | InvalidUserIdException ex) {
+            fail("Wrong exception was thrown");
+        } catch (NullUserIdException ex) {
+
+        }
 
     }
 
     @Test
     public void testAddUserInvalidId() {
 
-    }
+        List<Cart> cartList = new ArrayList<>();
+        Cart newCart = new Cart();
+        newCart.setCartId(5);
+        newCart.setPurchaseDate(LocalDate.of(2020, 4, 21));
+        newCart.setStatus("Order pending");
+        cartList.add(newCart);
+        Set<Answer> answerSet = new HashSet<>();
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswerId(5);
+        answerSet.add(newAnswer);
 
-    @Test
-    public void testDeleteUserGoldenPath() {
+        User newTestUser = new User();
+        newTestUser.setUserId(-1);
+        newTestUser.setCarts(cartList);
+        newTestUser.setAnswers(answerSet);
 
-    }
+        User addedUser = null;
 
-    @Test
-    public void testDeleteUserNullId() {
+        try {
+            addedUser = service.addUser(newTestUser);
+            failBecauseExceptionWasNotThrown(InvalidUserIdException.class);
+        } catch (NullUserException | NullUserIdException ex) {
+            fail("Wrong exception was thrown");
+        } catch (InvalidUserIdException ex) {
 
-    }
-
-    @Test
-    public void testDeleteUserInvalidId() {
-        
-    }
-
-    @Test
-    public void testUpdateUserGoldenPath() {
-
-    }
-
-    @Test
-    public void testUpdateUserNullId() {
-
-    }
-
-    @Test
-    public void testUpdateUserInvalidId() {
+        }
 
     }
-
 }

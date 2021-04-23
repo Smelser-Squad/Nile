@@ -2,6 +2,8 @@ package com.tp.Nile.models;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.tp.Nile.exceptions.NullUserIdException;
 import com.tp.Nile.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -138,18 +141,45 @@ public class UserTest {
         assertEquals(2, allUsers.size());
     }
 
-//    @Test
-//    public void testGetUserByUserIdGoldenPath() {
-//        User thisUser = repo.findById(1).get();
-//        if(thisUser == null)
-//            fail();
-//        else
-//        {
-//            User user = thisUser;
-//            assertEquals(1, user.getUserId());
-//            assertEquals("Order pending", user.getCarts().get(0).getStatus());
-//        }
-//    }
+    @Test
+    public void testGetUserByUserIdGoldenPath() {
+        List<Cart> newList = new ArrayList<>();
+        Cart cart = new Cart();
+        cart.setCartId(10);
+        cart.setPurchaseDate(LocalDate.of(2022, 4, 21));
+        cart.setStatus("Order pending 2");
+        newList.add(cart);
+
+        Set<Answer> newSet = new HashSet<>();
+        Answer answer = new Answer();
+        answer.setAnswerId(2);
+        newSet.add(answer);
+
+        User setupUser =  new User();
+
+        setupUser.setUserId(2);
+        setupUser.setAnswers(newSet);
+        setupUser.setCarts(newList);
+
+        User savedUser = repo.save(setupUser);
+
+        User thisUser = repo.findById(savedUser.getUserId()).get();
+        if(thisUser == null)
+            fail();
+        else
+        {
+            User user = thisUser;
+            assertEquals(7, user.getUserId());
+            assertEquals("Order pending 2", user.getCarts().get(0).getStatus());
+        }
+    }
+
+    @Test
+    public void testSaveUserWithNullIdThrowsException() {
+        User thisUser = buildUser();
+        thisUser.setUserId(null);
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> repo.save(thisUser));
+    }
 
 
 }
