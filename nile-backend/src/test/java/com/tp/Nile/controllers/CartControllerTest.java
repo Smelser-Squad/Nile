@@ -38,15 +38,15 @@ public class CartControllerTest {
 
 
     private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-
-    @Test
-    @Order(1)
-    void getAllCarts() throws Exception {
-        this.mockMvc.perform(get("/api/carts"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
-    }
+//
+//    @Test
+//    @Order(1)
+//    void getAllCarts() throws Exception {
+//        this.mockMvc.perform(get("/api/carts"))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
+//    }
 
 //    @Test
 //    @Order(2)
