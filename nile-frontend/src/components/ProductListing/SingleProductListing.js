@@ -28,9 +28,8 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-
-
-
+                productId:Product.productId,
+                name:Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -103,9 +102,11 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            <QuestionAnswer />
+            {/* <QuestionAnswer />
+        
             <ReviewSummary />
-            <Reviews />
+            
+            <Reviews /> */}
 
         </div>
     )
