@@ -1,12 +1,12 @@
 import './MoreProducts.css';
 import Product from "./Product";
 import { useState } from 'react';
-import {getProducts} from '../../service/ProductService'
+import { getProducts } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 
-function calcRating(product)  {
+function calcRating(product) {
     let sum = 0;
-    for(let i = 0; i < product.reviews.length; i++) {
+    for (let i = 0; i < product.reviews.length; i++) {
         sum += product.reviews[i].rating;
     }
     const avgRating = sum / product.reviews.length;
@@ -18,23 +18,22 @@ function MoreProducts() {
     const [products, setProducts] = useState([]);
     const AllProducts = [];
 
-    if(products.length === 0) {
-    getProducts().then((list)=>
-        {
-            list.map((item)=>
-            AllProducts.push(item)
+    if (products.length === 0) {
+        getProducts().then((list) => {
+            list.map((item) =>
+                AllProducts.push(item)
             );
-            const products = AllProducts.map((product)=>
-                    <Product
-                        key={product.productId}
-                        productId={product.productId}
-                        name={product.name}
-                        price={product.price}
-                        avgRating={calcRating(product)}
-                        image= {product.photos[0].imageSrc}
-                        reviewCount={product.reviews.length} 
-                        primeEligible={product.primeEligible}
-                    />
+            const products = AllProducts.map((product) =>
+                <Product
+                    key={product.productId}
+                    productId={product.productId}
+                    name={product.name}
+                    price={product.price}
+                    avgRating={calcRating(product)}
+                    image={product.photos[0].imageSrc}
+                    reviewCount={product.reviews.length}
+                    primeEligible={product.primeEligible}
+                />
             );
             setProducts(products);
         }
@@ -56,8 +55,8 @@ function MoreProducts() {
 
     return (
         <div class="container">
-            <hr/>
-            
+            <hr />
+
             <div class="header">
                 <span>
                     <h3 id="customer-bought">Customers also bought these products</h3>
