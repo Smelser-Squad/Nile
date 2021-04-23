@@ -10,20 +10,24 @@ function Reviews() {
 
     const reviewList=[];
 
+    const test = document.URL.substring(43)
+
+    console.log(test)
+
     if(reviews.length===0){
-        getReviews().then((list)=>
+        getReviews(test).then((list)=>
         {
             list.map((item)=>
             reviewList.push(item)
             );
             const reviews=reviewList.map((review)=>
-            <SingleReview
-                helpful={review.helpful}
-                rating={review.rating}
-                reviewDate={review.reviewDate}
-                title={review.title}
-                summary={review.summary}
-            />
+                <SingleReview
+                    helpful={review.helpful}
+                    rating={review.rating}
+                    reviewDate={review.reviewDate}
+                    title={review.title}
+                    summary={review.summary}
+                />
             );
             setReviews(reviews)
         }

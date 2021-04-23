@@ -99,7 +99,12 @@ public class ProductControllerTest {
         review1.setTitle("sample title");
         review1.setFeature(feature1);
 
-        review1.setUser(new User());
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("admin");
+        user.setEnabled(true);
+        review1.setUser(user);
 
         reviews.add(review1);
         product.setReviews(reviews);
