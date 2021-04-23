@@ -36,6 +36,15 @@ public class ReviewController {
 
     }
 
+    @GetMapping("/byproduct/{productId}")
+    public ResponseEntity getReviewByProductId(@PathVariable Integer productId)  {
+        try {
+            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+        } catch(NullProductIdException | InvalidProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
         try {
@@ -44,6 +53,7 @@ public class ReviewController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
     @GetMapping("/by/{userId}")
     public ResponseEntity getReviewsByUserId(@PathVariable Integer userId) {
@@ -54,12 +64,21 @@ public class ReviewController {
         }
     }
 
+//    @GetMapping("/by/{productId}")
+//    public ResponseEntity getReviewsByProductId(@PathVariable Integer productId) {
+//        try {
+//            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+//        } catch (InvalidProductIdException | NullProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
+
     @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {
         try {
             return ResponseEntity.ok(service.updateReview(review));
         }
-        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e)
+        catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException | InvalidReviewException e)
         {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -71,9 +90,9 @@ public class ReviewController {
             String toReturn="";
             try {
                 if (service.deleteReview(reviewId)) {
-                    toReturn ="Product " + reviewId + "deleted";
+                    toReturn ="Review " + reviewId + " deleted";
                 }else{
-                    toReturn="Product " + reviewId + "not found";
+                    toReturn="Review " + reviewId + " not found";
                 }
             }catch (InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException ex){
                 ex.getMessage();

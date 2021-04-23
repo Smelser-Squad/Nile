@@ -59,5 +59,5 @@ public class VendorServiceImpl implements VendorService {
             throw new InvalidVendorIdException("Vendor with that id does not exist");
         }
     }
-    }
+}
 

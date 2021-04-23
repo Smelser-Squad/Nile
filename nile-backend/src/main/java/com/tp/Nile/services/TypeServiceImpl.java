@@ -1,9 +1,20 @@
 package com.tp.Nile.services;
 
+
+
+import com.tp.Nile.exceptions.*;
+import com.tp.Nile.models.Category;
+import com.tp.Nile.models.Product;
+import com.tp.Nile.models.Specification;
+
+import com.tp.Nile.exceptions.InvalidTypeIdException;
+import com.tp.Nile.exceptions.NullTypeIdException;
+
 import com.tp.Nile.exceptions.EmptyTypeNameException;
 import com.tp.Nile.exceptions.InvalidTypeIdException;
 import com.tp.Nile.exceptions.NullTypeIdException;
 import com.tp.Nile.exceptions.NullTypeNameException;
+
 import com.tp.Nile.models.Type;
 import com.tp.Nile.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,10 +71,13 @@ public class TypeServiceImpl implements TypeService {
         if (typeId == null) {
             throw new NullTypeIdException("Cannot get specification with null id");
         }
-        Type retrieved = repo.findById(typeId).get();
-        if (retrieved != null) {
-            repo.delete(retrieved);
+        Type retrieved = null;
+        try {
+            retrieved = getTypeById(typeId);
+        } catch (InvalidTypeIdException ex) {
+            return false;
         }
-        return retrieved != null;
+        repo.delete(retrieved);
+        return true;
     }
 }

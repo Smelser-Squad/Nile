@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class VendorServiceImplTests {
                 .allSatisfy(vendor -> {
                     assertThat(vendor.getVendorId()).isEqualTo(1);
                     assertThat(vendor.getName()).isEqualTo("Best Buy");
+
                 });
     }
 
@@ -57,6 +59,7 @@ public class VendorServiceImplTests {
                 .isInstanceOf(Vendor.class)
                 .hasFieldOrPropertyWithValue("vendorId", 1)
                 .hasFieldOrPropertyWithValue("name", "Best Buy");
+
     }
 
     @Test

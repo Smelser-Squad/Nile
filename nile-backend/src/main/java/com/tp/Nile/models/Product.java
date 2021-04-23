@@ -22,7 +22,7 @@ import java.util.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table
+@Table(name="product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 
@@ -32,15 +32,15 @@ public class Product implements Serializable {
     private Integer productId;
 
     @ManyToOne(fetch = FetchType.EAGER,
-            cascade = { CascadeType.PERSIST })
+            cascade = { CascadeType.MERGE })
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     @JoinColumn(name = "type_id")
     @JsonIgnoreProperties(value = {"products"})
     private Type type;
@@ -69,7 +69,7 @@ public class Product implements Serializable {
     @Column(name = "primeEligible", nullable = false)
     private boolean primeEligible;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="product")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
     private List<ProductPhoto> photos;
@@ -83,7 +83,7 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ProductOrder> productOrders;
+    private List<CartProduct> cartProducts;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
