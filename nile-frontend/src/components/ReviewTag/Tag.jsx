@@ -16,19 +16,14 @@ const tagArr = ["soft", "length", "manageable","cheap"];
 
 const Tag = ({reviews,sendDataToParent}) =>
 {
-    const[selected, setSelected] = useState(false); 
 
-    const emptyArr = [];
-
-    console.log(reviews.props);
-    const handleSelected = (event, newSelect) =>
-    {
-        setSelected(!selected);
-    }
+    const stringArr = [];
+    Object.entries(reviews).map(([summary,value])=>stringArr.push(value.props.summary));
+    console.log(stringArr);
 
 
     const tagList = (
-
+  
         tagArr.map((phrase)=>
         <ToggleButton
             value = {phrase}         
@@ -44,18 +39,14 @@ const Tag = ({reviews,sendDataToParent}) =>
     return (
         <div class= "tag-container">
             <h3 id="tag-header">Read reviews that mention</h3> 
-            <ToggleButtonGroup
-            value= {selected}
-            exclusive={true}
-  
-            >
+            <ToggleButtonGroup>
             {tagList}
             <ToggleButton>
             <HighlightOffIcon 
             value="clearSelection"
             onClick = {()=> 
                 sendDataToParent("clearSelection")}
-                onChange = {handleSelected}>
+                >
             </HighlightOffIcon>
             </ToggleButton>
             </ToggleButtonGroup>
@@ -65,10 +56,10 @@ const Tag = ({reviews,sendDataToParent}) =>
     );
 }
 
-// {/* <ToggleButtonGroup
-// value= {selected}
-// exclusive={true}
-// onChange = {handleSelected}
-// > */}
+// var wordCounts = { };
+// var words = str.split(/\b/);
+
+// for(var i = 0; i < words.length; i++)
+//     wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
 
 export default Tag;
