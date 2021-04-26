@@ -54,13 +54,16 @@ function SingleProductListing() {
             })
     }, [])
 
+    
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
-            <h3> Brand: {Product.brand}</h3>
-            <ProductPhotos color={color} />
-            <ProductColorSelector setProductColor={setProductColor}/>
+            <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
+            
+            
+            {/* <ProductPhotos color={color} /> */}
+            {/* <ProductColorSelector setProductColor={setProductColor}/> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
