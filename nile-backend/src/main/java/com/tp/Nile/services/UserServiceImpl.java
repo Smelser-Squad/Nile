@@ -59,11 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) throws NullUserException, NullUserIdException, InvalidUserIdException {
-        if (user.getUserId() == null)
-        {
-            throw new NullUserIdException("User id can not be null");
-        }
-        else if (user == null) {
+        if (user == null) {
             throw new NullUserException("User can not be null");
         }
         else
@@ -76,7 +72,8 @@ public class UserServiceImpl implements UserService {
 
         if (user.getUserId() == null)
             throw new NullUserIdException("User id can not be null");
-
+        else if (user.getUserId() < 0)
+            throw new InvalidUserIdException("User id can not be invalid");
         User edited = repo.findById(user.getUserId()).get();
 
         if (edited != null) {
@@ -96,6 +93,8 @@ public class UserServiceImpl implements UserService {
         if(userId==null){
             throw new NullUserIdException("Cannot delete user with null id");
         }
+        else if (userId < 0)
+            throw new InvalidUserIdException("Cannot delete user with invalid id");
         User retreived=repo.findById(userId).get();
 
         if(retreived!=null){
