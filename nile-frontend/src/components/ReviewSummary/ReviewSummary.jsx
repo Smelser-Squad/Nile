@@ -1,9 +1,9 @@
 import './ReviewSummary.css';
-import axios from 'axios';
 import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
+import {getReviews} from '../../service/ReviewService';
 
 const BorderLinearProgress = withStyles(() => ({
     root: {
@@ -44,6 +44,12 @@ function ReviewSummary() {
             x.style.display = "none";
             y.innerHTML = "&#8681; How are ratings calculated?";
         }
+    }
+
+    function getProductReviews() {
+        getReviews(res => {
+            console.log(res.data);
+        });
     }
 
     return (
