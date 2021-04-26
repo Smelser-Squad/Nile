@@ -11,7 +11,7 @@ function ProductPhotos() {
 
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
-     const{productId}=useParams();
+
 
     const PhotoList = [];
 
@@ -39,16 +39,11 @@ function ProductPhotos() {
                 </li>
 
             );
-            const photoSrc = PhotoList.map((photo) =>
-                <img id="productImg"
-                    alt="product" 
-                    src={photo.imageSrc}>
-                </img>)
         
             const magnifier = PhotoList.map((photo) =>
                 <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
             setData(data);
-            setPhoto(photoSrc);
+
             setMag(magnifier);
             
         }
