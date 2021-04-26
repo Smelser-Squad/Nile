@@ -44,47 +44,57 @@ public class UserControllerTest {
 
     static String asJsonString(final Object obj) {
         try {
-            final ObjectMapper mapper = new ObjectMapper();
+            final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());;
             final String jsonContent = mapper.writeValueAsString(obj);
             return jsonContent;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-//
-//    @Test
-//    @Order(1)
-//    public void testGetAllUsers() throws Exception {
-//        this.mockMvc.perform(get("/api/users"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
-//    }
-//
-//    @Test
-//    @Order(2)
-//    public void testAddUser() throws Exception {
-//
-//        User thisUser = new User();
-//        thisUser.setUserId(1);
-//
-//        this.mockMvc.perform(post("/api/users")
-//                .content(asJsonString(thisUser))
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(jsonPath("$.userId").value(1));
-//    }
-//
-//    @Test
-//    @Order(3)
-//    public void getUserById() throws Exception {
-//        this.mockMvc.perform(get("/api/users/{userId}", 1)
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.userId").exists())
-//                .andExpect(jsonPath("$.userId").value(1));
-//    }
-//
+
+    @Test
+    @Order(1)
+    public void testGetAllUsers() throws Exception {
+        this.mockMvc.perform(get("/api/users"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
+    }
+
+    @Test
+    @Order(2)
+    public void testAddUser() throws Exception {
+
+        User thisUser = new User();
+        thisUser.setEnabled(true);
+        thisUser.setPassword("password");
+        thisUser.setRole("admin");
+        thisUser.setUsername("username");
+
+        this.mockMvc.perform(post("/api/users")
+                .content(asJsonString(thisUser))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(jsonPath("$.userId").value(1))
+                .andExpect(jsonPath("$.enabled").value(true))
+                .andExpect(jsonPath("$.password").value("password"))
+                .andExpect(jsonPath("$.role").value("admin"))
+                .andExpect(jsonPath("$.username").value("username"));
+
+
+    }
+
+    @Test
+    @Order(3)
+    public void getUserById() throws Exception {
+        this.mockMvc.perform(get("/api/users/{userId}", 1)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId").exists())
+                .andExpect(jsonPath("$.userId").value(1));
+    }
+
 //    @Test
 //    @Order(4)
 //    public void getUserByInvalidUserId() throws Exception {
@@ -94,23 +104,26 @@ public class UserControllerTest {
 //                        result.getResponse().getContentAsString()));
 //    }
 
-//    @Test
-//    @Order(5)
-//    public void updateUser() throws Exception {
-//        MvcResult result = this.mockMvc.perform(get("/api/users/{userId}", 1 )
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andReturn();
-//
-//        User newUser = this.mapper.readValue(result.getResponse().getContentAsString(), User.class);
-//
-//        newUser.setUserId(10);
-//
-//
-//        this.mockMvc.perform(put("/api/users")
-//                .content(asJsonString(newUser))
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(jsonPath("$.userId").value(newUser.getUserId()));
-//    }
-//
+    @Test
+    @Order(5)
+    public void updateUser() throws Exception {
+        MvcResult result = this.mockMvc.perform(get("/api/users/{userId}", 1 )
+                .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        User newUser = this.mapper.readValue(result.getResponse().getContentAsString(), User.class);
+
+        newUser.setRole("user");
+        newUser.setEnabled(false);
+
+
+        this.mockMvc.perform(put("/api/users")
+                .content(asJsonString(newUser))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(jsonPath("$.userId").value(1))
+                .andExpect(jsonPath("$.role").value("user"))
+                .andExpect(jsonPath("$.enabled").value(false));
+    }
+
 }

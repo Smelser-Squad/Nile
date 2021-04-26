@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     UserServiceImpl service;
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity addUser(@RequestBody User user) {
         try {
             return ResponseEntity.ok(service.addUser(user));
@@ -28,7 +28,7 @@ public class UserController {
         }
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity getUsers() {
         try {
             return ResponseEntity.ok(service.getAllUsers());
@@ -70,7 +70,7 @@ public class UserController {
         }
     }
 
-    @PutMapping
+    @PutMapping()
     public ResponseEntity updateUser(@RequestBody User user) {
         try {
             return ResponseEntity.ok(service.updateUser(user));
