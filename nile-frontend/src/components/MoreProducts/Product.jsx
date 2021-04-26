@@ -1,6 +1,7 @@
 import './Product.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
+import { useState } from 'react';
 
 function PrimeLogo(props) {
     const primeEligible = props.primeEligible;
@@ -17,6 +18,9 @@ function PrimeLogo(props) {
 }
 
 function Product({ productId, image, name, price, avgRating, reviewCount, primeEligible}) {
+    const [url, setUrl] = useState('');
+    
+
     return (
         <div class="products-container">
             <div class="row">

@@ -41,8 +41,6 @@ function MoreProducts() {
         );
     }
 
-    const pages = Math.ceil((products.length / 5));
-
     const Arrow = ({ text, className }) => {
         return (
             <div className={className}>
@@ -61,7 +59,6 @@ function MoreProducts() {
             <div class="header">
                 <span>
                     <h3 id="customer-bought">Customers also bought these products</h3>
-                    <p class="pages">Page 1 of {pages}</p>
                 </span>
             </div>
 
