@@ -13,31 +13,25 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
-
 import { Link } from 'react-router-dom'
-
-
 
 function SingleProductListing() {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
+
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                key: Product.product,
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product),
-                vendor: Product.vendor
-
-
+                rating: calcRating(Product)
             },
         });
     };
@@ -52,15 +46,10 @@ function SingleProductListing() {
         return avgRating;
     }
 
-
-
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-
-
-
             })
     }, [])
 
@@ -70,7 +59,7 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <h3> Brand: {Product.brand}</h3>
             <ProductPhotos />
-            <ProductColorSelector />
+            {/* <ProductColorSelector /> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -90,7 +79,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.name} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
@@ -103,13 +92,11 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            <QuestionAnswer />
-        
-            <ReviewSummary />
-            
+            {/* <QuestionAnswer />
+            <ReviewSummary /> */}
             <Reviews />
-
         </div>
+
     )
 }
 

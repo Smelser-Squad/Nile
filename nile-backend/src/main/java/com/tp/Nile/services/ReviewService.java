@@ -15,7 +15,7 @@ public interface ReviewService {
     List<Review> getReviewsByUserId(Integer userId)
             throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException;
 
-    List<Review> getReviewsByProductId(Integer productId) throws NullProductIdException, InvalidProductIdException;
+    List<Review> getReviewsByProductId(Integer productId) throws NullProductIdException, InvalidProductIdException, InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
     Review getReviewById(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;

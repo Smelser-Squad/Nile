@@ -14,10 +14,13 @@ import { useState } from 'react';
 //hard coded phrases
 const tagArr = ["soft", "length", "manageable","cheap"];
 
-const Tag = ({sendDataToParent}) =>
+const Tag = ({reviews,sendDataToParent}) =>
 {
     const[selected, setSelected] = useState(false); 
 
+    const emptyArr = [];
+
+    console.log(reviews.props);
     const handleSelected = (event, newSelect) =>
     {
         setSelected(!selected);
@@ -41,13 +44,18 @@ const Tag = ({sendDataToParent}) =>
     return (
         <div class= "tag-container">
             <h3 id="tag-header">Read reviews that mention</h3> 
-            <ToggleButtonGroup>
+            <ToggleButtonGroup
+            value= {selected}
+            exclusive={true}
+  
+            >
             {tagList}
             <ToggleButton>
             <HighlightOffIcon 
             value="clearSelection"
             onClick = {()=> 
-                sendDataToParent("clearSelection")}>
+                sendDataToParent("clearSelection")}
+                onChange = {handleSelected}>
             </HighlightOffIcon>
             </ToggleButton>
             </ToggleButtonGroup>
