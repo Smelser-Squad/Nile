@@ -59,15 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) throws NullUserException, NullUserIdException, InvalidUserIdException {
-        if (user.getUserId() == null)
-        {
-            throw new NullUserIdException("User id can not be null");
-        }
-        else if (user.getUserId() < 0)
-        {
-            throw new InvalidUserIdException("User id can not be invalid");
-        }
-        else if (user == null) {
+        if (user == null) {
             throw new NullUserException("User can not be null");
         }
         else

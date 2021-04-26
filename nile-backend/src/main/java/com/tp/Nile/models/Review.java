@@ -31,7 +31,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "review")
 public class Review implements Serializable {
 
     @Id
