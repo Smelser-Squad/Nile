@@ -32,15 +32,15 @@ public class Product implements Serializable {
     private Integer productId;
 
     @ManyToOne(fetch = FetchType.EAGER,
-            cascade = { CascadeType.PERSIST })
+            cascade = { CascadeType.MERGE })
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     @JoinColumn(name = "type_id")
     @JsonIgnoreProperties(value = {"products"})
     private Type type;
@@ -72,7 +72,7 @@ public class Product implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="product")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
-    private List<ProductPhoto> photos;
+    private List<ProductPhoto> photos = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @LazyCollection(LazyCollectionOption.FALSE)

@@ -23,9 +23,21 @@ import java.util.Set;
 public class User implements Serializable {
 
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userId;
+
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "role", nullable = false)
+    private String role;
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,

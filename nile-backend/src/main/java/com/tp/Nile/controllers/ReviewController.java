@@ -36,6 +36,15 @@ public class ReviewController {
 
     }
 
+    @GetMapping("/byproduct/{productId}")
+    public ResponseEntity getReviewByProductId(@PathVariable Integer productId)  {
+        try {
+            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+        } catch(NullProductIdException | InvalidProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable Integer reviewId) {
         try {
@@ -54,6 +63,15 @@ public class ReviewController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("/by/{productId}")
+//    public ResponseEntity getReviewsByProductId(@PathVariable Integer productId) {
+//        try {
+//            return ResponseEntity.ok(service.getReviewsByProductId(productId));
+//        } catch (InvalidProductIdException | NullProductIdException | InvalidReviewIdException | NullReviewIdException | NullReviewAttributeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
     @PutMapping
     public ResponseEntity updateReview(@RequestBody Review review) {

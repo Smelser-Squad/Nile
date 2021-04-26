@@ -41,6 +41,7 @@ public class VendorServiceImplTests {
                 .allSatisfy(vendor -> {
                     assertThat(vendor.getVendorId()).isEqualTo(1);
                     assertThat(vendor.getName()).isEqualTo("Best Buy");
+
                 });
     }
 
@@ -58,6 +59,7 @@ public class VendorServiceImplTests {
                 .isInstanceOf(Vendor.class)
                 .hasFieldOrPropertyWithValue("vendorId", 1)
                 .hasFieldOrPropertyWithValue("name", "Best Buy");
+
     }
 
     @Test

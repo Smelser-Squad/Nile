@@ -12,30 +12,26 @@ import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
-
-
 
 function SingleProductListing() {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
-    console.log(Product);
     const [{ cart }, dispatch] = useStateValue();
+
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-
-
-
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product)
-
-
             },
         });
     };
@@ -50,47 +46,57 @@ function SingleProductListing() {
         return avgRating;
     }
 
-
-
     useEffect(() => {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-
-
-
             })
     }, [])
-
 
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+            <h3> Brand: {Product.brand}</h3>
             <ProductPhotos />
-            <ProductColorSelector />
+            {/* <ProductColorSelector /> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
                 </RadioGroup>
                 <p id="price_tag">
                     <small>$</small>
-                    <strong>{Product.price}.00</strong>
+                    <strong>{Product.price}</strong>
 
                 </p>
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment'><button className="shop_button ">Shop Now</button></Link>
+                <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
+                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
+                <p className="ship">
+                    <small>Ships From </small>
+                    <strong>Nile</strong>
+                </p>
+                {/* <p className="ship">
+                    <small>Sold By </small>
+                    <strong>{Product.vendor.name} </strong>
+                </p> */}
+                <small className="prime">
+                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+            </small>
+                <small className="pro_gift">
+                    <input type="checkbox" />Add a gift receipt for easy returns
+            </small>
             </div>
 
             <br />
             <br />
             <MoreProducts />
-            <QuestionAnswer />
+            {/* <QuestionAnswer />
             <ReviewSummary />
-            <Reviews />
-
+            <Reviews /> */}
         </div>
+
     )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './ProductPhotos.css';
-import { getPhotos } from '../../service/PhotoService'
+import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
 import  {GlassMagnifier, SideBySideMagnifier} from "react-image-magnifiers";
 
@@ -8,14 +8,14 @@ import  {GlassMagnifier, SideBySideMagnifier} from "react-image-magnifiers";
 function ProductPhotos() {
 
     const [data, setData] = useState([]);
-    const [photoSrc, setPhoto] = useState([])
+
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
-
+     const{productId}=useParams();
 
     const PhotoList = [];
 
-    let photoNum = 0;
+
     
 
     
@@ -80,9 +80,7 @@ function ProductPhotos() {
 
 
 
-ProductPhotos.defaultProps = {
 
-}
 
 
 export default ProductPhotos;
