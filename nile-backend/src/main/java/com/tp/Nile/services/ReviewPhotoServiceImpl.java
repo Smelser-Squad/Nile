@@ -1,7 +1,6 @@
 package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
-import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.models.Review;
 import com.tp.Nile.models.ReviewPhoto;
 import com.tp.Nile.repositories.ReviewPhotoRepository;
@@ -37,7 +36,7 @@ public class ReviewPhotoServiceImpl implements ReviewPhotoService {
     public List<ReviewPhoto> getPhotosByReview(Integer reviewId)
             throws NullReviewAttributeException, NullReviewIdException, InvalidReviewIdException {
         Review review = reviewService.getReviewById(reviewId);
-        if (review != null) return review.getPhotos();
+        if (review != null) return review.getReviewPhotos();
         else return null;
     }
 

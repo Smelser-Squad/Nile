@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './ProductPhotos.css';
-import { getPhotos } from '../../service/PhotoService'
+import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
 
 
@@ -9,8 +9,7 @@ function ProductPhotos() {
     const [data, setData] = useState([]);
     const [photoSrc, setPhoto] = useState([])
     const [modalSrc, setModal] = useState([])
-
-    const { productId } = useParams();
+     const{productId}=useParams();
 
 
     const PhotoList = [];
@@ -86,9 +85,7 @@ function ProductPhotos() {
 
 
 
-ProductPhotos.defaultProps = {
 
-}
 
 
 export default ProductPhotos;

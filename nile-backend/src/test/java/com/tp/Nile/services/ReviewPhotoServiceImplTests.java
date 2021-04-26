@@ -12,9 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
@@ -98,7 +96,7 @@ public class ReviewPhotoServiceImplTests {
                 new Feature(),
                 5,
                 true);
-        testReview.setPhotos(List.of(
+        testReview.setReviewPhotos(List.of(
                 new ReviewPhoto(1, testReview, "http://fakeimage.path/image.png")
         ));
         when(reviewService.getReviewById(anyInt()))

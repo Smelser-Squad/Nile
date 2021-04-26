@@ -35,12 +35,11 @@ public class VendorTest {
     public void addVendorTest() {
         Vendor newVendor = new Vendor();
         newVendor.setName("new vendor");
-//        newVendor.setProducts(new ArrayList<>());
         Vendor added = repo.save(newVendor);
         assertNotNull(added);
         assertEquals(2, added.getVendorId());
         assertEquals("new vendor", added.getName());
-//        assertEquals(0, added.getProducts().size());
+
     }
 
     @Test

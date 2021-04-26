@@ -20,9 +20,7 @@ public class ProductSpecification implements Serializable {
 
     @ManyToOne
     @MapsId("productId")
-
     @JsonIgnoreProperties(value = {"productSpecs"})
-
     private Product product;
 
     @ManyToOne

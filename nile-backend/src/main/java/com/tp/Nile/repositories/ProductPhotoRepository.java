@@ -18,4 +18,7 @@ public interface ProductPhotoRepository extends JpaRepository<ProductPhoto,Integ
     @Query("select p from ProductPhoto p where p.product.productId=:productId")
     List<ProductPhoto> getPhotosByProduct(@Param("productId") Integer productId);
 
+    @Query("select p from ProductPhoto p where p.product.productId=:productId and p.color=:color")
+    List<ProductPhoto> getPhotosByProductColor(@Param("productId") Integer productId, @Param("color") String color);
 }
+

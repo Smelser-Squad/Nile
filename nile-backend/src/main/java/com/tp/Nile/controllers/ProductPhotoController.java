@@ -3,6 +3,7 @@ package com.tp.Nile.controllers;
 import com.tp.Nile.exceptions.InvalidPhotoIdException;
 import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.exceptions.NullPhotoIdException;
+import com.tp.Nile.exceptions.NullProductIdException;
 import com.tp.Nile.models.ProductPhoto;
 import com.tp.Nile.services.ProductPhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,14 @@ public class ProductPhotoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @GetMapping("/{productId}/{color}")
+    public ResponseEntity getPhotosByProductColor(@PathVariable Integer productId, @PathVariable String color){
+        try {
+            return ResponseEntity.ok(service.getPhotosByProductColor(productId, color));
+        } catch (InvalidProductIdException | NullProductIdException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @GetMapping
     public ResponseEntity getAllPhotos() {return ResponseEntity.ok(service.getAllPhotos());}
 
@@ -53,4 +61,6 @@ public class ProductPhotoController {
     public ResponseEntity addPhoto(@RequestBody ProductPhoto photo, @PathVariable Integer productId) throws InvalidProductIdException {
         return ResponseEntity.ok(service.addPhoto(photo, productId));
     }
+
+
 }

@@ -12,9 +12,12 @@ import java.util.List;
 public interface ProductPhotoService {
     List<ProductPhoto> getAllPhotos();
 
+    List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException, NullProductIdException;
+
     ProductPhoto getPhotoById(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
     List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException;
     ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException;
     ProductPhoto updatePhoto(ProductPhoto update);
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
+
 }

@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "review_photo")
+@JsonIgnoreProperties(value = {"product"}, allowSetters = true)
 public class ReviewPhoto {
 
     @Id
@@ -23,8 +24,8 @@ public class ReviewPhoto {
     private Integer photoId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_review_id", referencedColumnName = "review_id")
-    @JsonBackReference()
+    @JoinColumn(name = "fk_review_id")
+    @JsonBackReference
     private Review review;
 
     @Column(name = "image_src", nullable = false)
