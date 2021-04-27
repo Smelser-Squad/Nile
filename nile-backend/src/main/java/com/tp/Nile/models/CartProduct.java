@@ -24,7 +24,7 @@ public class CartProduct implements Serializable {
 
     @ManyToOne
     @MapsId("productId")
-    @JsonIgnoreProperties(value = {"cartProducts"})
+    @JsonIgnoreProperties(value = {"cartProducts", "productSpecs", "questions", "features"})
     private Product product;
 
     @Column(name="quantity", nullable = false)

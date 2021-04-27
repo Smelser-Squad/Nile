@@ -19,7 +19,6 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@ActiveProfiles("test")
 public class ReviewPhotoServiceImplTests {
     @Mock
     ReviewPhotoRepository repository;
