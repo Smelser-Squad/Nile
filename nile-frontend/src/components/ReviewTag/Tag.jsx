@@ -1,13 +1,9 @@
 import "./Tag.css";
 import React from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { ToggleButtonGroup } from '@material-ui/lab';
 import { useState } from 'react';
-import { common } from "@material-ui/core/colors";
 
-
- 
 
 
 const commonWords = getStopWords();
@@ -16,22 +12,16 @@ const commonWords = getStopWords();
 const Tag = ({reviews,sendDataToParent}) =>
 {
     const [filterPhrase, setFilterPhrase] = useState("")
-    const [selected, setSelected] = useState(true);
 
+    //toggle button
     const handleToggle = (event, newFilterPhrase) => {
         setFilterPhrase(newFilterPhrase);
-        handleSelect(event)    
-    }
-
-    const handleSelect = (event) =>
-    {
-        if(selected===false)
-        {
+        if(newFilterPhrase===null)
+        { 
             sendDataToParent("clearSelection")
-        }   
-        setSelected(!selected)
-
+        }    
     }
+
 
     //array to hold string tags
     const tagArr = [];
@@ -67,7 +57,6 @@ for (const key in wordCounts) {
 }
 
     const tagList = (
-
         tagArr.map((phrase)=>
         <ToggleButton
             value = {phrase}         
@@ -89,7 +78,6 @@ for (const key in wordCounts) {
             onChange={handleToggle}>
             {tagList}
             </ToggleButtonGroup>
-
         </div>
 
     );
