@@ -26,21 +26,22 @@ function Home() {
                     rating={calcRating(product)}
                     image={product.photos[0].imageSrc}
                     description={product.description}
+                    vendor={product.vendor.name}
                 />
             );
             setCards(cards);
         }
         );
     }
-    function calcRating(product) {
+    function calcRating(product)  {
         let sum = 0;
-        for (let i = 0; i < product.reviews.length; i++) {
+        for(let i = 0; i < product.reviews.length; i++) {
             sum += product.reviews[i].rating;
         }
         const avgRating = sum / product.reviews.length;
         return avgRating;
     }
-
+   
 
     return (
         <div className='home' >
