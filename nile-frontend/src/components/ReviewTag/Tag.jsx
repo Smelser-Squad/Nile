@@ -12,18 +12,41 @@ import { useState } from 'react';
 //filter by the phrases
 
 //hard coded phrases
-const tagArr = ["soft", "length", "manageable","cheap"];
+const tagArr = [];
 
 const Tag = ({reviews,sendDataToParent}) =>
 {
-
+    //create a string array and push all review text from parent into that array
     const stringArr = [];
     Object.entries(reviews).map(([summary,value])=>stringArr.push(value.props.summary));
-    console.log(stringArr);
 
+    let wordCounts = { };
+    for(let i =0; i<stringArr.length;i++)
+    {
+
+        let words = stringArr[i].toLowerCase().split(/\b/);
+        for(let j = 0; j < words.length; j++)
+        {
+            wordCounts[words[j]] = (wordCounts[words[j]] || 0) + 1;
+        }
+    }
+
+
+for (const key in wordCounts) {
+    console.log(key);
+    if (Object.hasOwnProperty.call(wordCounts, key)) {
+        const element = wordCounts[key];
+        if(element>=3)
+        {
+            console.log(element)
+            tagArr.push(key);
+        }
+        
+    }
+}
 
     const tagList = (
-  
+
         tagArr.map((phrase)=>
         <ToggleButton
             value = {phrase}         
@@ -55,11 +78,5 @@ const Tag = ({reviews,sendDataToParent}) =>
 
     );
 }
-
-// var wordCounts = { };
-// var words = str.split(/\b/);
-
-// for(var i = 0; i < words.length; i++)
-//     wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
 
 export default Tag;
