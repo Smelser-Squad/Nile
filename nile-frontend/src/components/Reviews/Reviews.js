@@ -11,7 +11,7 @@ function Reviews() {
 
     const reviewList=[];
 
-    const test = document.URL.substring(43)
+    const test = document.URL.substring(43);
 
     // console.log(test)
     if(reviews.length===0){
