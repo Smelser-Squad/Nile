@@ -1,0 +1,28 @@
+#review-count {
+    margin-left: 5px;
+    text-decoration: none;
+    color: #067186;
+}
+#product-image {
+    margin-right: 900px;
+    height: 220px;
+    width: 220px;
+}
+.BrandProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    max-height: 400px;
+    min-width: 100px;
+    background-color: white;
+    z-index: 1;
+}
+.BrandProduct_info{
+    padding-left: 20px; 
+    margin-right: 40px;
+
+}

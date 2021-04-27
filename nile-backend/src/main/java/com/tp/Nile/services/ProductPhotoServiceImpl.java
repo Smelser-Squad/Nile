@@ -51,6 +51,8 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
         return repo.getColorsOfProduct(productId);
     }
 
+
+
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException {
         Product toAssociate = productService.getProductById(productId);
