@@ -23,27 +23,29 @@ function Product({ productId, image, name, price, avgRating, reviewCount, primeE
     return (
         <div class="products-container">
             <div class="row">
-                <img class="image" id="product-image" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} src={image}></img>
+                <img class="image" id="single-product-image" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} src={image}></img>
             </div>
-            <div class="row">
-                <p id="product-name" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} >{name}</p>
-            </div>
-            <div class="row">
-                <ReactStars
-                    count={5}
-                    edit={false}
-                    isHalf={true}
-                    value={avgRating}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
-                <p id="review-count" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} >{reviewCount}</p>
-            </div>
-            <div class="row">
+            <div class="body">
+                <div class="row">
+                    <p id="product-name" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} >{name}</p>
+                </div>
+                <div class="row">
+                    <ReactStars
+                        count={5}
+                        edit={false}
+                        isHalf={true}
+                        value={avgRating}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
+                    <p id="review-count" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} >{reviewCount}</p>
+                </div>
+                <div class="row">
 
-                <p id="price-tag" onClick={() => { window.location.href = `/singleProductListing/${productId}` }}>${price}
-                </p>
-                <PrimeLogo primeEligible={primeEligible} productId={productId} />
+                    <p id="price-tag" onClick={() => { window.location.href = `/singleProductListing/${productId}` }}>${price}
+                    </p>
+                    <PrimeLogo primeEligible={primeEligible} productId={productId} />
+                </div>
             </div>
         </div>
     );

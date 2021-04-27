@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import  {GlassMagnifier, SideBySideMagnifier} from "react-image-magnifiers";
 
 
-function ProductPhotos({color}) {
+function ProductPhotos() {
 
     const [data, setData] = useState([]);
 
@@ -21,7 +21,7 @@ function ProductPhotos({color}) {
     
 
     if(data.length===0){
-        getPhotos(productId,{color}).then((list)=>
+        getPhotos(productId).then((list)=>
         {
             list.map((item)=>
             PhotoList.push(item),

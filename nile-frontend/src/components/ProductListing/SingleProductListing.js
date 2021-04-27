@@ -63,7 +63,7 @@ function SingleProductListing() {
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
             
             
-            {/* <ProductPhotos color={color} /> */}
+            <ProductPhotos/>
             {/* <ProductColorSelector setProductColor={setProductColor}/> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
