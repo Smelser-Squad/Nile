@@ -7,6 +7,7 @@ import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
+import Comparison from '../Comparison/Comparison';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
