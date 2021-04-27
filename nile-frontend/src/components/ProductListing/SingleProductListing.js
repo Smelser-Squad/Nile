@@ -93,11 +93,8 @@ function SingleProductListing() {
             <br />
             <MoreProducts />
             <QuestionAnswer />
-        
             <ReviewSummary />
-            
             <Reviews />
-
         </div>
 
     )
