@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "feature")
 @JsonIgnoreProperties({ "products"})
 public class Feature implements Serializable {
 

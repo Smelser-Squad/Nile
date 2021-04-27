@@ -13,8 +13,6 @@ function Reviews() {
 
     const test = document.URL.substring(43);
 
-    console.log(test)
-
     if(reviews.length===0){
         getReviews(test).then((list)=>
         {

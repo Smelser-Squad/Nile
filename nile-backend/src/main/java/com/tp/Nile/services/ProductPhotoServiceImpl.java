@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PhotoServiceImpl implements PhotoService{
+public class ProductPhotoServiceImpl implements ProductPhotoService {
     @Autowired
     ProductPhotoRepository repo;
     @Autowired
@@ -20,6 +20,7 @@ public class PhotoServiceImpl implements PhotoService{
     public List<ProductPhoto> getAllPhotos() {
         return repo.findAll();
     }
+
 
     @Override
     public ProductPhoto getPhotoById(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException {
@@ -36,14 +37,19 @@ public class PhotoServiceImpl implements PhotoService{
         }
     }
 
-
     @Override
     public List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException
-        {return repo.getPhotosByProduct(productId); }
+        {return repo.getPhotosByProduct(productId);}
 
     @Override
-    public List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException
-    {return repo.getPhotosByProductColor(productId, color); }
+    public List<ProductPhoto> getPhotosByProductColor(Integer productId, String color) throws InvalidProductIdException, NullProductIdException {
+        return repo.getPhotosByProductColor(productId, color);
+    }
+
+    @Override
+    public List<String> getColorsOfProduct(Integer productId) throws InvalidProductIdException {
+        return repo.getColorsOfProduct(productId);
+    }
 
     @Override
     public ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException {
