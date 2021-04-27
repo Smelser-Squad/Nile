@@ -15,6 +15,24 @@ const commonWords = getStopWords();
 
 const Tag = ({reviews,sendDataToParent}) =>
 {
+    const [filterPhrase, setFilterPhrase] = useState("")
+    const [selected, setSelected] = useState(true);
+
+    const handleToggle = (event, newFilterPhrase) => {
+        setFilterPhrase(newFilterPhrase);
+        handleSelect(event)    
+    }
+
+    const handleSelect = (event) =>
+    {
+        if(selected===false)
+        {
+            sendDataToParent("clearSelection")
+        }   
+        setSelected(!selected)
+
+    }
+
     //array to hold string tags
     const tagArr = [];
     //create a string array and push all review text from parent into that array
@@ -42,7 +60,6 @@ for (const key in wordCounts) {
         if(element>=2 && !tagArr.includes(key)&& !commonWords.includes(key))
         {
             // console.log(element)
-
             tagArr.push(key);
         }
         
@@ -66,16 +83,11 @@ for (const key in wordCounts) {
     return (
         <div class= "tag-container">
             <h3 id="tag-header">Read reviews that mention</h3> 
-            <ToggleButtonGroup>
+            <ToggleButtonGroup
+            value={filterPhrase}
+            exclusive
+            onChange={handleToggle}>
             {tagList}
-            <ToggleButton>
-            <HighlightOffIcon 
-            value="clearSelection"
-            onClick = {()=> 
-                sendDataToParent("clearSelection")}
-                >
-            </HighlightOffIcon>
-            </ToggleButton>
             </ToggleButtonGroup>
 
         </div>
