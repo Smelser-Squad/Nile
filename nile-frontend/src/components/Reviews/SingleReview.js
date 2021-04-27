@@ -9,7 +9,7 @@ function SingleReview({helpful,rating,reviewDate,summary,title}) {
             <ReactStars
                     count={5}
                     edit={false}
-                    value={5}
+                    value={rating}
                     activeColor="#FFA41C"
                     size={15}
                 />

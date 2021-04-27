@@ -4,6 +4,10 @@ import ReactStars from 'react-rating-stars-component';
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
+import {useParams} from 'react-router'
+import { Link } from "react-router-dom";
+
+
 
 const BorderLinearProgress = withStyles(() => ({
     root: {
@@ -21,6 +25,9 @@ const BorderLinearProgress = withStyles(() => ({
 }))(LinearProgress);
 
 function ReviewSummary() {
+
+
+    const { productId } = useParams();
 
     function displaySeeMore() {
         var x = document.getElementById("seeMore");
@@ -98,7 +105,7 @@ function ReviewSummary() {
                 </div>
 
             </div>
-            {/* <div className="5star_row">
+            <div className="5star_row">
                     <BorderLinearProgress variant="determinate" value={80} />
                 </div>
                 <div className="4star_row">
@@ -112,7 +119,7 @@ function ReviewSummary() {
                 </div>
                 <div className="star_row">
                     <span>1 star <BorderLinearProgress variant="determinate" value={40} /> 40%</span>
-                </div> */}
+                </div>
 
             <hr className="light" />
 
@@ -195,7 +202,9 @@ function ReviewSummary() {
                 </span>
                 <br />
                 <br />
-                <button className="writeReview">Write a customer review</button>
+                <Link to={`/createReview/${productId}`}>
+                    <button className="writeReview">Write a customer review</button>
+                </Link>
                 <br />
             </div>
 

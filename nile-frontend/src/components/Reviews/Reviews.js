@@ -22,6 +22,7 @@ function Reviews() {
             );
             const reviews=reviewList.map((review)=>
                 <SingleReview
+                    key={review.reviewId}
                     helpful={review.helpful}
                     rating={review.rating}
                     reviewDate={review.reviewDate}
