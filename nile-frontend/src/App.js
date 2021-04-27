@@ -1,5 +1,4 @@
 import './App.css';
-import Tag from './components/ReviewTag/Tag.jsx';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
 import Checkout from './components/Checkout/Checkout';
@@ -44,7 +43,7 @@ function App() {
               
                     </Route>
 
-                    <Route exact path="/createReview">
+                    <Route exact path="/createReview/:productId">
                         <CreateReview/>
                     </Route>
 
