@@ -1,83 +1,74 @@
 import { useState } from 'react';
 import './ProductPhotos.css';
-import {getPhotos} from '../../service/PhotoService'
+import {getColorPhotos, getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
+import  {GlassMagnifier, SideBySideMagnifier} from "react-image-magnifiers";
 
 
-function ProductPhotos() {
+function ProductPhotos({color}) {
 
     const [data, setData] = useState([]);
-    const [photoSrc, setPhoto] = useState([])
-    const [modalSrc, setModal] = useState([])
-     const{productId}=useParams();
+
+    const [magnifier, setMag] = useState([])
+    const { productId } = useParams();
 
 
     const PhotoList = [];
 
 
+    
+
+    
+
     if(data.length===0){
-        getPhotos(productId).then((list)=>
+        getPhotos(productId,{color}).then((list)=>
         {
             list.map((item)=>
-            PhotoList.push(item)
-
+            PhotoList.push(item),
+            
             );
             const data = PhotoList.map((photo) =>
                 <li className="listedPhoto"
                     onClick={() => updatePhoto(photo.imageSrc)}>
                     <img
-                        id="altPhoto"
+                        className="altPhoto"
+                        id= {photo.photoId}
                         alt=""
                         src={photo.imageSrc} >
                     </img>
                 </li>
 
             );
-            const photoSrc = PhotoList.map((photo) =>
-                <img id="productImg"
-                    onMouseEnter={displayModal}
-                    onMouseLeave={hideModal}
-                    alt="product" src={photo.imageSrc}></img>)
-            const modalSrc = PhotoList.map((photo) =>
-                <img id="modalImage"
-                    alt=""
-                    src={photo.imageSrc}></img>)
+        
+            const magnifier = PhotoList.map((photo) =>
+                <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
             setData(data);
-            setPhoto(photoSrc);
-            setModal(modalSrc);
+
+            setMag(magnifier);
+            
         }
         );
+       
     }
 
 
 
     return(
         <div className="PhotoContainer">
-            <ul className="altPhotoList">
+            <div>
+                <ul className="altPhotoList">
                 {data}
-            </ul>
-            {photoSrc[0]}
-
-            <div id="myModal" class="modal">
-                {modalSrc[0]}
+                </ul>
+                {magnifier[0]}
             </div>
-
+        
         </div>
-
+    
     );
-    function displayModal() {
-        let modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    }
-
-    function hideModal() {
-        let modal = document.getElementById("myModal");
-        modal.style.display = "none";
-    }
 
     function updatePhoto(newSrc) {
-        document.getElementById("productImg").src = newSrc;
-        document.getElementById("modalImage").src = newSrc;
+       document.getElementsByClassName("mag")[0].getElementsByTagName("img")[0].setAttribute("src", newSrc);
+       document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
     }
 
 }

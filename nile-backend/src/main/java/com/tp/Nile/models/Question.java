@@ -37,7 +37,7 @@ public class Question implements Serializable {
     @JoinColumn(name = "product_id")
 
 
-    @JsonIgnoreProperties(value = {"questions"})
+    @JsonIgnoreProperties(value = {"cartProducts", "productSpecs", "questions", "features", "reviews"})
 
     private Product product;
 

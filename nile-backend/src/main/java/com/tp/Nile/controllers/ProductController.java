@@ -1,10 +1,7 @@
 package com.tp.Nile.controllers;
 
-import com.tp.Nile.exceptions.*;
-import com.tp.Nile.models.Category;
+import com.tp.Nile.exceptions.InvalidProductIdException;
 import com.tp.Nile.models.Product;
-import com.tp.Nile.models.Type;
-import com.tp.Nile.models.Vendor;
 import com.tp.Nile.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

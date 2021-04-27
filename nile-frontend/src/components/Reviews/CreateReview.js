@@ -1,15 +1,29 @@
 import './CreateReview.css'
 import ReactStars from "react-rating-stars-component";
+import {addReview} from "../../service/ReviewService"
 import { Radio } from '@material-ui/core';
+import React from 'react';
 
 
-function createReview(){
+    function onTitleChange() {
+        this.setState({
+            title: this.target.value
+        });
+    };
 
-    let summary = "";
-    let feature1Rating = 0;
-    let feature2Rating = 0;
-    let feature3Rating = 0;
-    let sizeRating = 0;
+function CreateReview(){
+
+    
+
+    const Review = {
+        rating : 5,
+        review_date : "2021-04-16",
+        summary : "test summary",
+        title: "test title",
+        product : {
+            productId: 1
+        }
+    }
 
     return (
         <div id="createReviewContainer">
@@ -83,13 +97,20 @@ function createReview(){
             <hr></hr>
             Add a headline
             <br/>
-            <input placeholder="Review title"/>
+            {/* <input  placeholder="title"
+            value={this.Review.title}
+            onChange={this.onTitleChange} required
+            /> */}
             <br/>
             Add a written review
             <br/>
             <input placeholder="Review summary"/>
+            <br/>
+            <button onClick={()=>addReview(Review)}>submit</button>
         </div>
     )
+    
+
 }
 
-export default createReview;
+export default CreateReview;
