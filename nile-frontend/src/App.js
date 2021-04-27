@@ -40,7 +40,7 @@ function App() {
               
                     </Route>
 
-                    <Route exact path="/createReview">
+                    <Route exact path="/createReview/:productId">
                         <CreateReview/>
                     </Route>
 

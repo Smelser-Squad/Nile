@@ -92,9 +92,12 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            {/* <QuestionAnswer />
+            <QuestionAnswer />
+        
             <ReviewSummary />
-            <Reviews /> */}
+            
+            <Reviews />
+
         </div>
 
     )
