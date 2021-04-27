@@ -16,21 +16,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository repo;
 
-    @Autowired
-    TypeServiceImpl typeService;
-
-    @Autowired
-    VendorServiceImpl vendorService;
-
-    @Autowired
-    CategoryServiceImpl categoryService;
-
-   @Autowired
-   FeatureServiceImpl featureService;
-
-   @Autowired
-   PhotoServiceImpl photoService;
-
     public List<Product> getAllProducts() {
         return repo.findAll();
     }
