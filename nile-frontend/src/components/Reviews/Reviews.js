@@ -13,6 +13,7 @@ function Reviews() {
 
     const test = document.URL.substring(43);
 
+    // console.log(test)
     if(reviews.length===0){
         getReviews(test).then((list)=>
         {
@@ -40,12 +41,10 @@ function Reviews() {
     const sendDataToParent = (tag) =>
     {   
         setReviews(reviews)
-        console.log("From the parent "+ tag);
         for(let i = 0; i < reviews.length;i++)
         {
             if(tag!=="clearSelection" && reviews[i].props.summary.includes(tag))
             {
-                console.log(reviews[i].props.summary);
                 reviewList.push(reviews[i].props)
                 const filtered = reviewList.map((review)=>
                 <SingleReview
@@ -66,12 +65,13 @@ function Reviews() {
         }
 
     }
-
+    
 
     return (
         <div class="reviews-container">
             <Tag
-            reviews sendDataToParent={sendDataToParent} />
+            reviews={reviews}
+            sendDataToParent={sendDataToParent} />
             {filteredReviews}
         </div>
     )
