@@ -48,7 +48,9 @@ display: flex;
 #price_tag {
     margin-top: 5px; 
     font-size: 15px;
-    margin-right: 25px;
+    margin-right: 70px;
+    color:  #055768;
+
 
 }
 
@@ -58,6 +60,7 @@ display: flex;
 }
 
 #product_name {
+    color:  #067186;
     text-decoration: none;
     height: 100px;
     margin-bottom: -90px;
