@@ -3,18 +3,20 @@ import '../CartProduct/CartProduct.css';
 import ReactStars from "react-rating-stars-component";
 import { useStateValue } from '../../../StateProvider';
 
-function CartProduct({ productId, image, name, price, rating }) {
+function CartProduct({ productId, image, name, price, rating, key }) {
     const [{ cart }, dispatch] = useStateValue();
     const removeFromCart = () => {
         dispatch({
             type: 'REMOVE_FROM_CART',
             productId: productId,
+            key: productId
+
         })
     }
 
     return (
         <div className='cartProduct'>
-            <img className='cartProduct_image' src={image} />
+            <img className='cartProduct_image' alt="" src={image} />
 
             <div className='cartProduct_info'>
                 <p className='cartProduct_name'>{name} </p>

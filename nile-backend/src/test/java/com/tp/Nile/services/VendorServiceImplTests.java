@@ -20,8 +20,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class VendorServiceImplTests {
 
     @Mock
@@ -41,6 +39,7 @@ public class VendorServiceImplTests {
                 .allSatisfy(vendor -> {
                     assertThat(vendor.getVendorId()).isEqualTo(1);
                     assertThat(vendor.getName()).isEqualTo("Best Buy");
+
                 });
     }
 
@@ -58,6 +57,7 @@ public class VendorServiceImplTests {
                 .isInstanceOf(Vendor.class)
                 .hasFieldOrPropertyWithValue("vendorId", 1)
                 .hasFieldOrPropertyWithValue("name", "Best Buy");
+
     }
 
     @Test

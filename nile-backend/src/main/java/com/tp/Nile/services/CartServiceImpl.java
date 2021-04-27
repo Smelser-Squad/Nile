@@ -3,7 +3,9 @@ package com.tp.Nile.services;
 import com.tp.Nile.exceptions.InvalidCartIdException;
 import com.tp.Nile.exceptions.NullCartIdException;
 import com.tp.Nile.models.Cart;
+import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.CartRepository;
+import com.tp.Nile.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     CartRepository repo;
+
+    @Autowired
+    UserRepository uRepo;
 
 
     @Override
@@ -39,7 +44,14 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addCart(Cart newCart) {
-        return repo.saveAndFlush(newCart);
+        User user = newCart.getUser();
+        if(user.getUserId() == null){
+            user = uRepo.saveAndFlush(user);
+            newCart.setUser(user);
+        }
+        Cart cart = repo.saveAndFlush(newCart);
+
+        return cart;
     }
 
     @Override

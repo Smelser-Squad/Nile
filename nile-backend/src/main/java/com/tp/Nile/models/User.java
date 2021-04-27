@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -27,7 +26,6 @@ import java.util.*;
 public class User extends DateAudit implements Serializable {
 
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
@@ -54,6 +52,9 @@ public class User extends DateAudit implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,

@@ -15,6 +15,8 @@ public interface ReviewService {
     List<Review> getReviewsByUserId(Integer userId)
             throws InvalidUserIdException, NullUserIdException, NullReviewAttributeException;
 
+    List<Review> getReviewsByProductId(Integer productId) throws NullProductIdException, InvalidProductIdException, InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
+
     Review getReviewById(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
 
@@ -22,7 +24,7 @@ public interface ReviewService {
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException;
 
     Review updateReview(Review updatedReview)
-            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
+            throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException, InvalidReviewException;
 
     boolean deleteReview(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;

@@ -1,5 +1,5 @@
-.product-container {
-    margin-left: 25px;
+.products-container {
+    min-width: 100px;
 }
 
 #product-image {
@@ -36,6 +36,7 @@
     color: #067186;
 }
 #review-count {
+    margin-left: 5px;
     text-decoration: none;
     color: #067186;
 }
