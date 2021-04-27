@@ -13,6 +13,4 @@ export async function getReviews(productId){
 
 export function addReview(Review){
     axios.post(`http://localhost:80/api/reviews`,Review);
-    console.log();
-    console.log(Review)
 }
