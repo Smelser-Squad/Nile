@@ -6,6 +6,7 @@ import com.tp.Nile.models.ProductSpecification;
 import com.tp.Nile.models.Specification;
 import com.tp.Nile.repositories.ProductSpecificationRepository;
 import com.tp.Nile.services.ProductSpecificationService;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,7 @@ public class ProductSpecificationServiceImpl implements ProductSpecificationServ
     }
 
     @Override
-    public ProductSpecification addProductSpec(ProductSpecification newProductSpec) throws NullProductIdException, InvalidProductIdException, NullSpecIdException, InvalidSpecIdException, NullProductSpecIdObjectException, NullSpecValueException, InvalidSpecValueException {
+    public ProductSpecification addProductSpec(ProductSpecification newProductSpec) throws NullProductIdException, InvalidProductIdException, NullSpecIdException, InvalidSpecIdException, NullProductSpecIdObjectException, NullSpecValueException, InvalidSpecValueException, TypesDoNotMatchException {
         if (newProductSpec.getId() == null) {
             throw new NullProductSpecIdObjectException("Id object cannot be null");
         }
@@ -71,6 +72,9 @@ public class ProductSpecificationServiceImpl implements ProductSpecificationServ
         Product product = productService.getProductById(newProductSpec.getId().getProductId());
         newProductSpec.setProduct(product);
         Specification spec = specService.getSpecById(newProductSpec.getId().getSpecId());
+        if (spec.getType().getTypeId() != product.getType().getTypeId()) {
+            throw new TypesDoNotMatchException("Product and spec types must match");
+        }
         newProductSpec.setSpec(spec);
         return repo.saveAndFlush(newProductSpec);
     }

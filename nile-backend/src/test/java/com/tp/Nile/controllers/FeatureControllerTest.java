@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FeatureControllerTest {
@@ -81,7 +83,7 @@ public class FeatureControllerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     void updateFeature() throws Exception {
         MvcResult result = this.mockMvc.perform(get("/api/features/{featureId}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -100,7 +102,7 @@ public class FeatureControllerTest {
                 .andExpect(jsonPath("$.name").value("Wireless"));
     }
 
-    @Order(7)
+    @Order(6)
     @Test
     void deletingAFeatureReturnsExpectedMessageAndStatusCode() throws Exception {
         this.mockMvc.perform(delete("/api/features/{featureId}", 1))

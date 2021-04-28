@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "feature")
 @JsonIgnoreProperties({ "products"})
 public class Feature implements Serializable {
 
@@ -33,6 +33,5 @@ public class Feature implements Serializable {
     @ManyToMany(mappedBy = "features", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Product> products;
-
 
 }

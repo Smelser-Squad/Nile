@@ -15,8 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -83,7 +81,7 @@ public class CategoryControllerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     void updateCategory() throws Exception {
         MvcResult result = this.mockMvc.perform(get("/api/categories/{categoryId}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -114,7 +112,7 @@ public class CategoryControllerTest {
                 .andExpect(jsonPath("$.name").value(name));
     }
 
-    @Order(7)
+    @Order(6)
     @Test
     void deletingACategoryReturnsExpectedMessageAndStatusCode() throws Exception {
         this.mockMvc.perform(delete("/api/categories/{categoryId}", 1))

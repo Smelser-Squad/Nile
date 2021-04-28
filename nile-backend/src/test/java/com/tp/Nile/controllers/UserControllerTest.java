@@ -31,26 +31,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//@ActiveProfiles("test")
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserControllerTest {
 
-    @Autowired
-    MockMvc mockMvc;
-
-    private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-
-    static String asJsonString(final Object obj) {
-        try {
-            final ObjectMapper mapper = new ObjectMapper();
-            final String jsonContent = mapper.writeValueAsString(obj);
-            return jsonContent;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @Autowired
+//    MockMvc mockMvc;
+//
+//    private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+//
+//    static String asJsonString(final Object obj) {
+//        try {
+//            final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());;
+//            final String jsonContent = mapper.writeValueAsString(obj);
+//            return jsonContent;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 //
 //    @Test
 //    @Order(1)
@@ -66,14 +66,23 @@ public class UserControllerTest {
 //    public void testAddUser() throws Exception {
 //
 //        User thisUser = new User();
-//        thisUser.setUserId(1);
+//        thisUser.setEnabled(true);
+//        thisUser.setPassword("password");
+//        thisUser.getRoles().add(new Role(RoleName.ROLE_ADMIN));
+//        thisUser.setUsername("username");
 //
 //        this.mockMvc.perform(post("/api/users")
 //                .content(asJsonString(thisUser))
 //                .contentType(MediaType.APPLICATION_JSON)
 //                .accept(MediaType.APPLICATION_JSON))
 //                .andDo(print())
-//                .andExpect(jsonPath("$.userId").value(1));
+//                .andExpect(jsonPath("$.userId").value(1))
+//                .andExpect(jsonPath("$.enabled").value(true))
+//                .andExpect(jsonPath("$.password").value("password"))
+//                .andExpect(jsonPath("$.role").value("admin"))
+//                .andExpect(jsonPath("$.username").value("username"));
+//
+//
 //    }
 //
 //    @Test
@@ -81,19 +90,20 @@ public class UserControllerTest {
 //    public void getUserById() throws Exception {
 //        this.mockMvc.perform(get("/api/users/{userId}", 1)
 //                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
 //                .andExpect(jsonPath("$.userId").exists())
 //                .andExpect(jsonPath("$.userId").value(1));
 //    }
 //
-//    @Test
-//    @Order(4)
-//    public void getUserByInvalidUserId() throws Exception {
-//        this.mockMvc.perform(get("/api/users/{userId}", Integer.MIN_VALUE)
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(result -> assertEquals("User with that id does not exist",
-//                        result.getResponse().getContentAsString()));
-//    }
-
+////    @Test
+////    @Order(4)
+////    public void getUserByInvalidUserId() throws Exception {
+////        this.mockMvc.perform(get("/api/users/{userId}", Integer.MIN_VALUE)
+////                .contentType(MediaType.APPLICATION_JSON))
+////                .andExpect(result -> assertEquals("User with that id does not exist",
+////                        result.getResponse().getContentAsString()));
+////    }
+//
 //    @Test
 //    @Order(5)
 //    public void updateUser() throws Exception {
@@ -103,14 +113,17 @@ public class UserControllerTest {
 //
 //        User newUser = this.mapper.readValue(result.getResponse().getContentAsString(), User.class);
 //
-//        newUser.setUserId(10);
+//        newUser.getRoles().add(new Role(RoleName.ROLE_ADMIN));
+//        newUser.setEnabled(false);
 //
 //
 //        this.mockMvc.perform(put("/api/users")
 //                .content(asJsonString(newUser))
 //                .contentType(MediaType.APPLICATION_JSON))
 //                .andDo(print())
-//                .andExpect(jsonPath("$.userId").value(newUser.getUserId()));
+//                .andExpect(jsonPath("$.userId").value(1))
+//                .andExpect(jsonPath("$.role").value("user"))
+//                .andExpect(jsonPath("$.enabled").value(false));
 //    }
-//
+
 }

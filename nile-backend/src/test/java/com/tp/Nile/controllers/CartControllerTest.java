@@ -3,6 +3,8 @@ package com.tp.Nile.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.tp.Nile.models.Cart;
+import com.tp.Nile.models.Role;
+import com.tp.Nile.models.RoleName;
 import com.tp.Nile.models.User;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -27,17 +29,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//@ActiveProfiles("test")
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CartControllerTest {
 
-    @Autowired
-    MockMvc mockMvc;
-
-
-    private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+//    @Autowired
+//    MockMvc mockMvc;
+//
+//
+//    private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 //
 //    @Test
 //    @Order(1)
@@ -47,19 +49,21 @@ public class CartControllerTest {
 //                .andExpect(status().isOk())
 //                .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
 //    }
-
+//
 //    @Test
 //    @Order(2)
 //    void addCart() throws Exception {
 //        Cart cart = new Cart();
 //        User user = new User();
+//        user.setName("sample name");
 //        user.setUsername("username");
 //        user.setPassword("password");
-//        user.setRole("admin");
+//        user.setEmail("random@email.com");
+//        user.getRoles().add(new Role(RoleName.ROLE_ADMIN));
 //        user.setEnabled(true);
 //        cart.setUser(user);
 //
-//        LocalDate date = LocalDate.of(2021, 4, 20);
+//        LocalDate date = LocalDate.of(2021, 04, 22);
 //        cart.setPurchaseDate(date);
 //        cart.setStatus("Saved");
 //        cart.setCartProducts(new ArrayList<>());
@@ -75,7 +79,7 @@ public class CartControllerTest {
 //                .andExpect(jsonPath("$.user.password").value("password"))
 //                .andExpect(jsonPath("$.user.role").value("admin"))
 //                .andExpect(jsonPath("$.user.enabled").value(true))
-//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-21"))
+//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-22"))
 //                .andExpect(jsonPath("$.status").value("Saved"));
 //
 //    }
@@ -102,7 +106,7 @@ public class CartControllerTest {
 //                .andExpect(jsonPath("$.user.password").value("password"))
 //                .andExpect(jsonPath("$.user.role").value("admin"))
 //                .andExpect(jsonPath("$.user.enabled").value(true))
-//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-21"))
+//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-22"))
 //                .andExpect(jsonPath("$.status").value("Saved"));
 //    }
 //
@@ -127,7 +131,7 @@ public class CartControllerTest {
 //                .andExpect(jsonPath("$.user.password").value("password"))
 //                .andExpect(jsonPath("$.user.role").value("admin"))
 //                .andExpect(jsonPath("$.user.enabled").value(true))
-//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-21"))
+//                .andExpect(jsonPath("$.purchaseDate").value("2021-04-22"))
 //                .andExpect(jsonPath("$.status").value("Delivered"));
 //
 //
@@ -145,7 +149,7 @@ public class CartControllerTest {
 
     static String asJsonString(final Object obj) {
         try {
-            final ObjectMapper mapper = new ObjectMapper();
+            final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
             final String jsonContent = mapper.writeValueAsString(obj);
             return jsonContent;
         } catch (Exception e) {

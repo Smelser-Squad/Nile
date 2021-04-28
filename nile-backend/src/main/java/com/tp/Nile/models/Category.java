@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "category")
 @JsonIgnoreProperties({ "products" })
 public class Category implements Serializable {
 

@@ -5,10 +5,8 @@ import com.tp.Nile.models.Category;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Type;
 import com.tp.Nile.models.Vendor;
-import com.tp.Nile.repositories.CategoryRepository;
 import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,12 +26,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     CategoryServiceImpl categoryService;
-
-   @Autowired
-   FeatureServiceImpl featureService;
-
-   @Autowired
-   PhotoServiceImpl photoService;
 
     public List<Product> getAllProducts() {
         return repo.findAll();
@@ -130,26 +122,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Product updateProduct(Product updatedProduct) {
-        Product edited=repo.findById(updatedProduct.getProductId()).get();
-
-
-        /*if(edited!=null){
-            edited.setName(updatedProduct.getName());
-            edited.setBrand(updatedProduct.getBrand());
-            edited.setPrice(updatedProduct.getPrice());
-            edited.setDescription(updatedProduct.getDescription());
-
-        }*/
-        return repo.saveAndFlush(updatedProduct);
+        return repo.save(updatedProduct);
     }
 
     public void deleteProduct(Integer productId) throws InvalidProductIdException {
         try {
-            Product retrieved = repo.findById(productId).get();
-            if (retrieved != null) {
-                repo.delete(retrieved);
-            }
-
+            repo.deleteById(productId);
         } catch(Exception e) {
             throw new InvalidProductIdException("Product with that id does not exist");
         }
