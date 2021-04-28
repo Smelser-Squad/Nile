@@ -17,68 +17,54 @@ function CreateReview(){
 
     const [name,setName]=useState([]);
     const [image,setImage]=useState([]);
+    const [summary, setSummary]=useState([]);
+    const [title, setTitle]=useState([]);
+    const [rating, setRating]=useState([]);
+
 
     const { productId } = useParams();
 
-    console.log("before " + name)
     getProduct(productId).then((name)=>{
         setName(name.name);
-        console.log(name)
-
     })
 
     getProduct(productId).then((image)=>{
         setImage(image.photos[0].imageSrc);
+        setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
     })
 
-    console.log(name)
-    console.log(image)
 
-
-
-    
-
-    // function onTitleChange() {
-    //     this.setState({
-    //         title: this.target.value
-    //     });
-    // };
-
-    function handleChange() {
-
-    }
 
     const mili = Date.now();
     const formattedDate = new Date(mili);
     const stringDate = formattedDate.getFullYear()+"-"+(formattedDate.getMonth()+1)+"-"+formattedDate.getDate();
 
     const Review = {
-        rating : 5,
+        rating : rating,
         review_date : stringDate, //YYYY-MM-DD
-        summary : "",
-        title: "",
+        summary : summary,
+        title: title,
     }
-
-           
+    console.log(Review)
 
     return (
         
         <div id="createReviewContainer">
-            <div>
-                {name}
-                <img src={image}></img>
+            <div id="product-info-review">
+                <img id="product-image-review"src={image}></img>
+                <span id="product-name-review">{name}</span>
             </div>
             <hr></hr>
-            <div>
-            Overall rating
-            <br/>
-            <ReactStars
-                    count={5}
-                    edit={true}
-                    value={0}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
+            <div id="overall-rating">
+                Overall rating
+                <br/>
+                    <ReactStars
+                        count={5}
+                        edit={true}
+                        value={rating}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
             </div>
             <hr></hr>
             Rate features
@@ -134,11 +120,11 @@ function CreateReview(){
             <hr></hr>
             Add a headline
             <br/>
-            <input id="textTitle" placeholder="Review title" value={Review.title} onChange={handleChange()}/>
+            <input id="textTitle" placeholder="Review title" onChange={e => setTitle(e.target.value)}/>
             <br/>
             Add a written review
             <br/>
-            <textarea id="textSummary" placeholder="Review summary" value={Review.summary}/>
+            <textarea id="textSummary" placeholder="Review summary" onChange={e => setSummary(e.target.value)}/>
             <br/>
             <button onClick={()=>addReview(Review)}>submit</button>
         </div>
