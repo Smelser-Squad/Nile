@@ -1,7 +1,7 @@
 import './MoreProducts.css';
 import Product from "./Product";
 import { useState } from 'react';
-import { getProduct, getProducts, getProductsByCategory } from '../../service/ProductService'
+import { getProduct, getProductsByCategory } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { useParams } from 'react-router';
 

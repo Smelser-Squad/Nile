@@ -1,4 +1,3 @@
-import { SignalCellularNoSimOutlined } from '@material-ui/icons';
 import React, { useState } from 'react'
 import { getProducts } from '../../service/ProductService'
 
