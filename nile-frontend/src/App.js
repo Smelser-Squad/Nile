@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Payment from './components/Payment/Payment';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -29,6 +31,14 @@ function App() {
 
                     <Route exact path="/checkout">
                         <Checkout />
+                    </Route>
+
+                    <Route exact path="/signin">
+                        <SignIn />                 
+                    </Route>
+
+                    <Route exact path="/signup">
+                        <SignUp />
                     </Route>
 
                     <Route exact path="/payment">
