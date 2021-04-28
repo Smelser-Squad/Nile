@@ -2,34 +2,52 @@ import './CreateReview.css'
 import ReactStars from "react-rating-stars-component";
 import {addReview} from "../../service/ReviewService"
 import { Radio } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
+import {getProductById} from '../../service/ProductService';
+import { PrintDisabled } from '@material-ui/icons';
 
 
-    function onTitleChange() {
-        this.setState({
-            title: this.target.value
-        });
-    };
+
 
 function CreateReview(){
 
-    
+    const[Product,setProduct,summary,title]=useState([]);
+
+    const testProduct = getProductById(document.URL.substring(34));
+
+    // function onTitleChange() {
+    //     this.setState({
+    //         title: this.target.value
+    //     });
+    // };
+
+    function handleChange() {
+
+    }
+
+    const mili = Date.now();
+    const formattedDate = new Date(mili);
+    const stringDate = formattedDate.getFullYear()+"-"+(formattedDate.getMonth()+1)+"-"+formattedDate.getDate();
+    testProduct.then(
+        (response)=>{
+            setProduct(response.data)
+        }) 
 
     const Review = {
         rating : 5,
-        review_date : "2021-04-16",
-        summary : "test summary",
-        title: "test title",
-        product : {
-            productId: 1
-        }
+        review_date : stringDate, //YYYY-MM-DD
+        summary : "",
+        title: "",
+        Product
     }
 
+           
+
     return (
+        
         <div id="createReviewContainer">
-            Create review
             <div>
-                (IMAGE)(ITEM DESCRIPTION)
+                {Product.name}
             </div>
             <hr></hr>
             <div>
@@ -97,14 +115,11 @@ function CreateReview(){
             <hr></hr>
             Add a headline
             <br/>
-            {/* <input  placeholder="title"
-            value={this.Review.title}
-            onChange={this.onTitleChange} required
-            /> */}
+            <input id="textTitle" placeholder="Review title" value={Review.title} onChange={handleChange()}/>
             <br/>
             Add a written review
             <br/>
-            <input placeholder="Review summary"/>
+            <textarea id="textSummary" placeholder="Review summary" value={Review.summary}/>
             <br/>
             <button onClick={()=>addReview(Review)}>submit</button>
         </div>

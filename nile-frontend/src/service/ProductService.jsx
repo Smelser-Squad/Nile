@@ -7,5 +7,9 @@ async function getProducts(){
     return(data);
     
 }
-export {getProducts}
+
+function getProductById(productId){
+    return axios.get(`http://localhost:80/api/products/${productId}`)
+}
+export {getProducts,getProductById}
 

@@ -11,10 +11,10 @@ function Reviews() {
 
     const reviewList=[];
 
-    const test = document.URL.substring(43)
+    const productId = document.URL.substring(43)
 
     if(reviews.length===0){
-        getReviews(test).then((list)=>
+        getReviews(productId).then((list)=>
         {
             list.map((item)=>
             reviewList.push(item)
