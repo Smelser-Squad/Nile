@@ -1,30 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { signup, checkEmailAvailability, checkUsernameAvailability } from '../../util/APIUtils';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +33,52 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  let usernameAvailable = true;
+  let emailAvailable = true;
+
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
+
+  function handleUsernameChange(event) {
+    setUsername(event.target.value);
+    checkUsernameAvailability(username)
+      .then(response => {
+        usernameAvailable = response.available;
+      }).catch(error => {
+        Promise.reject(error);
+      })
+  }
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+    checkEmailAvailability(email)
+      .then(response => {
+        emailAvailable = response.available;
+      }).catch(error => {
+        Promise.reject(error);
+      })
+  }
+
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    signup({ name, username, email, password })
+      .then(response => {
+        window.location.replace(process.env.REACT_APP_SIGNIN || "http://localhost:3000/signin");
+        // TODO: display success message using Snackbars
+      }).catch(error => {
+        // TODO: display error message using Snackbars
+      })
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,33 +90,43 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
+                onChange={handleNameChange}
+                value={name}
                 autoComplete="fname"
-                name="firstName"
+                name="fullName"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="fullName"
+                label="Full Name"
+                helperText="Name must be between 4 and 40 characters."
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                error={!usernameAvailable}
+                onChange={handleUsernameChange}
+                value={username}
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                helperText="Username must be between 3 and 15 characters."
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                error={!emailAvailable}
+                onChange={handleEmailChange}
+                value={email}
                 variant="outlined"
                 required
                 fullWidth
@@ -93,10 +134,13 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                helperText="Email cannot be more than 40 characters."
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={handlePasswordChange}
+                value={password}
                 variant="outlined"
                 required
                 fullWidth
@@ -105,12 +149,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                helperText="Password must be between 6 and 20 characters."
               />
             </Grid>
           </Grid>
@@ -132,9 +171,6 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

@@ -41,14 +41,14 @@ export function signup(signupRequest) {
 
 export function checkUsernameAvailability(username) {
     return request({
-        url: API_BASE_URL + "/user/checkUsernameAvailability?username=" + username,
+        url: API_BASE_URL + "/users/checkUsernameAvailability?username=" + username,
         method: 'GET'
     });
 }
 
 export function checkEmailAvailability(email) {
     return request({
-        url: API_BASE_URL + "/user/checkEmailAvailability?email=" + email,
+        url: API_BASE_URL + "/users/checkEmailAvailability?email=" + email,
         method: 'GET'
     });
 }
@@ -60,7 +60,7 @@ export function getCurrentUser() {
     }
 
     return request({
-        url: API_BASE_URL + "/user/me",
+        url: API_BASE_URL + "/users/me",
         method: 'GET'
     });
 }
