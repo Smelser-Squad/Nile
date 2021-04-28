@@ -15,13 +15,12 @@ function ProductPhotos({color}) {
 
     const PhotoList = [];
 
-
-    
+console.log(typeof color);
 
     
 
     if(data.length===0){
-        getPhotos(productId,{color}).then((list)=>
+        getPhotos(productId,color).then((list)=>
         {
             list.map((item)=>
             PhotoList.push(item),

@@ -16,12 +16,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 
+
 function SingleProductListing() {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
-    const[color,setProductColor]=useState('white');
+    const[color,setProductColor]=useState('');
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -61,10 +62,10 @@ function SingleProductListing() {
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
-            
-            
-            {/* <ProductPhotos color={color} /> */}
-            {/* <ProductColorSelector setProductColor={setProductColor}/> */}
+
+            <ProductPhotos color={color}/>
+            <ProductColorSelector setProductColor={setProductColor}/>
+
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
