@@ -52,7 +52,6 @@ function SingleProductListing() {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
-                console.log(res.data)
             })
     }, [])
 
