@@ -45,7 +45,11 @@ function CreateReview(){
         review_date : stringDate, //YYYY-MM-DD
         summary : summary,
         title: title,
+        product : {
+            productId : productId
+        }
     }
+
 
     return (
         
@@ -126,7 +130,7 @@ function CreateReview(){
             <br/>
             <textarea id="textSummary" placeholder="Review summary" onChange={e => setSummary(e.target.value)}/>
             <br/>
-            <button onClick={()=>addReview(Review)}>submit</button>
+            <button onClick={()=>addReview(Review,productId)}>submit</button>
         </div>
     )
     

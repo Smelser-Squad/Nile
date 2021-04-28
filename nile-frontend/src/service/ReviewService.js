@@ -9,6 +9,7 @@ export async function getReviews(productId){
 
 }
 
-export function addReview(Review){
+export function addReview(Review,productId){
     axios.post(`http://localhost:80/api/reviews`,Review);
+    window.location.replace(`http://localhost:3000/singleProductListing/${productId}`)
 }
