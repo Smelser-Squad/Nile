@@ -16,18 +16,19 @@ function Payment() {
     console.log(totalCartPrice);
 
     async function handleToken(token, addresses) {
-        console.log({ token, addresses });
+        // console.log({ token, addresses });
+        console.log(token.card.id);
+        console.log(totalCartPrice);
+
         axios.post('http://localhost:80/api/create-charge', {
-            token,
+            token: token.card.id,
             amount: totalCartPrice,
-           
+
         }).then((response) => {
             alert('Payment success')
         }).catch((error) => {
             alert('Payment failed')
         })
-        // console.log(totalCartPrice);
-        // console.log(token.card.id);
 
     }
 

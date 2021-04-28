@@ -1,5 +1,6 @@
 package com.tp.Nile.controllers;
 
+import com.tp.Nile.controllers.Helper.ChargeRequest;
 import com.tp.Nile.exceptions.InvalidStripeException;
 import com.tp.Nile.services.StripeService;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,9 +32,9 @@ public class PaymentController {
     }
 
     @PostMapping("/create-charge")
-    public ResponseEntity createCharge(String token, Integer amount) {
+    public ResponseEntity createCharge(@RequestBody ChargeRequest request) {
         try {
-            return ResponseEntity.ok(stripeService.createCharge(token, amount ));
+            return ResponseEntity.ok(stripeService.createCharge(request ));
         }
         catch (InvalidStripeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
