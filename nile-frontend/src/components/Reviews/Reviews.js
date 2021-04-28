@@ -3,6 +3,8 @@ import SingleReview from './SingleReview';
 import {getReviews} from '../../service/ReviewService';
 import { useState } from 'react';
 import Tag from '../../components/ReviewTag/Tag';
+import {useParams} from 'react-router'
+
 
 function Reviews() {
 
@@ -11,11 +13,13 @@ function Reviews() {
 
     const reviewList=[];
 
+    const { productId } = useParams();
+
     const test = document.URL.substring(43);
 
     // console.log(test)
     if(reviews.length===0){
-        getReviews(test).then((list)=>
+        getReviews(productId).then((list)=>
         {
             list.map((item)=>
             reviewList.push(item)

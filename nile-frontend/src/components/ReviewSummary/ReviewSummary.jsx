@@ -3,7 +3,11 @@ import React, { Suspense } from 'react';
 import axios from 'axios';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
+import {useParams} from 'react-router'
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+
+
 
 const BorderLinearProgress = withStyles(() => ({
     root: {
@@ -20,9 +24,9 @@ const BorderLinearProgress = withStyles(() => ({
     },
 }))(LinearProgress);
 
-function ReviewSummary (starAvg, productId) {
+function ReviewSummary (starAvg) {
 
-    productId = document.URL.substring(43);
+    const { productId } = useParams();
 
     const [reviewAvg, getAvgReviews] = useState();
     const [totalReviews, getTotalReviews] = useState();
@@ -125,6 +129,8 @@ function ReviewSummary (starAvg, productId) {
 
     starAvg = reviewAvg;
 
+
+
     function displaySeeMore() {
         var x = document.getElementById("seeMore");
         var y = document.getElementById("moreID");
@@ -206,8 +212,8 @@ function ReviewSummary (starAvg, productId) {
                     trustworthiness.</p>
                     </div>
 
-                </div>
-                {/* <div className="5star_row">
+            </div>
+            <div className="5star_row">
                     <BorderLinearProgress variant="determinate" value={80} />
                 </div>
                 <div className="4star_row">
@@ -221,7 +227,7 @@ function ReviewSummary (starAvg, productId) {
                 </div>
                 <div className="star_row">
                     <span>1 star <BorderLinearProgress variant="determinate" value={40} /> 40%</span>
-                </div> */}
+                </div>
 
                 <hr className="light" />
 
@@ -302,11 +308,13 @@ function ReviewSummary (starAvg, productId) {
                     <span className="share_thoughts">
                         Share your thoughts with other customers
                 </span>
-                    <br />
-                    <br />
+                <br />
+                <br />
+                <Link to={`/createReview/${productId}`}>
                     <button className="writeReview">Write a customer review</button>
-                    <br />
-                </div>
+                </Link>
+                <br />
+            </div>
 
                 <hr className="light" />
 
