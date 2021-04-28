@@ -13,7 +13,8 @@ import { useParams } from 'react-router';
 
 function CreateReview(){
 
-    // const[Product,setProduct,summary,title]=useState([]);
+    // The only way I could get rating passed to review object was to grab the innerHTML from the p tag at the 0th index
+    // since it is the react-stars at the begining. features will be done in the same way once they are finalized
 
     const [name,setName]=useState([]);
     const [image,setImage]=useState([]);
@@ -45,7 +46,6 @@ function CreateReview(){
         summary : summary,
         title: title,
     }
-    console.log(Review)
 
     return (
         
