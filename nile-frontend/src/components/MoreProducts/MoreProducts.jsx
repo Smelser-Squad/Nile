@@ -1,7 +1,7 @@
 import './MoreProducts.css';
 import Product from "./Product";
 import { useState } from 'react';
-import { getProducts } from '../../service/ProductService'
+import { getProduct, getProducts, getProductsByCategory } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { useParams } from 'react-router';
 
@@ -15,11 +15,10 @@ function calcRating(product) {
 }
 
 function MoreProducts() {
-
     const [products, setProducts] = useState([]);
     const AllProducts = [];
 
-    const{productId} = useParams();
+    const{productId} = useParams();    
 
     if (products.length === 0) {
         getProducts().then((list) => {

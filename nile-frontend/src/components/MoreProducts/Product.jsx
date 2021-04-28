@@ -1,7 +1,5 @@
 import './Product.css';
 import ReactStars from "react-rating-stars-component";
-import { Link } from "react-router-dom";
-import { useState } from 'react';
 
 function PrimeLogo(props) {
     const primeEligible = props.primeEligible;

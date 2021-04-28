@@ -60,6 +60,7 @@ function SingleProductListing() {
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
             
             
@@ -96,7 +97,7 @@ function SingleProductListing() {
 
             <br />
             <br />
-            <MoreProducts />
+            <MoreProducts/>
             <QuestionAnswer />
             <ReviewSummary />
             <Reviews />
