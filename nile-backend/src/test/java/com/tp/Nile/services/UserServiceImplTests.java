@@ -20,8 +20,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class UserServiceImplTests {
 
     @Mock
@@ -46,10 +44,10 @@ public class UserServiceImplTests {
         answerSet.add(newAnswer);
 
         User newUser = new User();
-        newUser.setUserId(1);
+        newUser.setUserId(1L);
         newUser.setUsername("Bdeyo");
         newUser.setEnabled(true);
-        newUser.setRole("Owner");
+        newUser.getRoles().add(new Role(RoleName.ROLE_ADMIN));
         newUser.setPassword("1234");
 
         when(repo.findAll()).thenReturn((List.of(newUser)));
@@ -63,10 +61,10 @@ public class UserServiceImplTests {
     @Test
     public void testGetUserByIdGoldenPath() {
         User newUser = new User();
-        newUser.setUserId(1);
+        newUser.setUserId(1L);
         newUser.setUsername("Bdeyo");
         newUser.setEnabled(true);
-        newUser.setRole("Owner");
+        newUser.getRoles().add(new Role(RoleName.ROLE_ADMIN));
         newUser.setPassword("1234");
 
         when(repo.findById(1)).thenReturn(Optional.of(newUser));
@@ -83,7 +81,7 @@ public class UserServiceImplTests {
         assertThat(thisUser)
                 .isNotNull()
                 .isInstanceOf(User.class)
-                .hasFieldOrPropertyWithValue("userId", 1);
+                .hasFieldOrPropertyWithValue("userId", 1L);
     }
 
     @Test
@@ -116,7 +114,7 @@ public class UserServiceImplTests {
     @Test
     public void testAddUserGoldenPath() {
 
-        int userId = 10;
+        long userId = 10;
         List<Cart> cartList = new ArrayList<>();
         Cart newCart = new Cart();
         newCart.setCartId(5);
@@ -147,7 +145,7 @@ public class UserServiceImplTests {
         assertThat(addedUser)
                 .isNotNull()
                 .isInstanceOf(User.class)
-                .hasFieldOrPropertyWithValue("userId", 10);
+                .hasFieldOrPropertyWithValue("userId", 10L);
 
         assertThat(addedUser.getCarts().get(0))
                 .isNotNull()

@@ -30,32 +30,10 @@ public class PaymentController {
         return "charge";
     }
 
-
-
-//    @PostMapping("/create-charge")
-//    public @ResponseBody
-//    Response createCharge(String email, String token) {
-//        //validate data
-//        if (token == null) {
-//            return new Response(false, "Stripe payment token is missing. Please, try again later.");
-//        }
-//
-//        //create charge
-//        String chargeId = stripeService.createCharge(email, token, 999); //$9.99 USD
-//        if (chargeId == null) {
-//            return new Response(false, "An error occurred while trying to create a charge.");
-//        }
-//
-//        // You may want to store charge id along with order information
-//
-//        return new Response(true, "Success! Your charge id is " + chargeId);
-//    }
-//
-
     @PostMapping("/create-charge")
-    public ResponseEntity createCharge(String email, String token, int amount) {
+    public ResponseEntity createCharge(String token, Integer amount) {
         try {
-            return ResponseEntity.ok(stripeService.createCharge(email,token, amount));
+            return ResponseEntity.ok(stripeService.createCharge(token, amount ));
         }
         catch (InvalidStripeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

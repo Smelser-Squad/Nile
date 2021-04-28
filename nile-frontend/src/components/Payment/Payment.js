@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
@@ -16,22 +15,19 @@ function Payment() {
     const totalCartPrice = getCartTotal(cart) * 100;
     console.log(totalCartPrice);
 
-
-    // async function handleToken(token, addresses) {
-    //     console.log({ token, addresses });
-    // }
-
     async function handleToken(token, addresses) {
         console.log({ token, addresses });
         axios.post('http://localhost:80/api/create-charge', {
+            token,
             amount: totalCartPrice,
-            token: token.id,
+           
         }).then((response) => {
             alert('Payment success')
         }).catch((error) => {
             alert('Payment failed')
         })
-        console.log(totalCartPrice);
+        // console.log(totalCartPrice);
+        // console.log(token.card.id);
 
     }
 
@@ -106,8 +102,8 @@ function Payment() {
 
                             stripeKey={publishableStripeKey}
                             amount={totalCartPrice}
-                            billingAddress
-                            shippingAddress
+                            // billingAddress
+                            // shippingAddress
                             token={handleToken}
                             currency="USD"
                             label="Pay Now"

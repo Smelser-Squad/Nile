@@ -18,15 +18,20 @@ public class StripeService {
     public StripeService() {
     }
 
-    public String createCharge(String email, String token, int amount) throws InvalidStripeException {
+    public String createCharge( String token, Integer amount) throws InvalidStripeException{
         String id = null;
         try {
             Stripe.apiKey = API_SECRET_KEY;
             Map<String, Object> chargeParams = new HashMap<>();
+//            chargeParams.put("amount", 200);
             chargeParams.put("amount", amount);
+
             chargeParams.put("currency", "usd");
-            chargeParams.put("description", "Charge for " + email);
+//            chargeParams.put("description", "Charge for " + email);
             chargeParams.put("source", token); // ^ obtained with Stripe.js
+
+
+//            chargeParams.put("source", "tok_visa");
 
             //create a charge
             Charge charge = Charge.create(chargeParams);
@@ -36,4 +41,5 @@ public class StripeService {
         }
         return id;
     }
+
 }
