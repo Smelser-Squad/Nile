@@ -1,8 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidFeatureIdException;
-import com.tp.Nile.exceptions.InvalidProductIdException;
-import com.tp.Nile.exceptions.NullFeatureIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Feature;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.repositories.FeatureRepository;
@@ -68,6 +66,26 @@ public class FeatureServiceImpl implements FeatureService {
             return true;
         }else{
             throw new InvalidFeatureIdException("Feature with that id does not exist");
+        }
+    }
+
+    @Override
+    public List<Feature> getFeaturesByProductId(Integer productId) throws NullProductIdException,
+            NullProductObjectException, InvalidProductIdException {
+        if (productId == null)
+            throw new NullProductIdException("Can not get feature with null product id");
+
+        List<Feature> retrieved = null;
+
+        List<Feature> features = repo.getFeaturesByProductId(productId);
+
+        if(features != null)
+        {
+            retrieved = features;
+            return retrieved;
+        }
+        else {
+            throw new InvalidProductIdException("Features with that product id do not exist");
         }
     }
 }

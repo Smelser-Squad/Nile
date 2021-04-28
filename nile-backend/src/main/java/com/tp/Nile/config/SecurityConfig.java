@@ -94,7 +94,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specifications/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/charge")
+                        "/api/charge",
+                        "/api/productPhotos/**",
+                        "/api/qa/questions/**",
+                        "/api/qa/getAnswers/**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/products/**",

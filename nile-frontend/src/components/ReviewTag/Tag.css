@@ -1,4 +1,11 @@
 .tag-container button
 {
-  margin: 10px;  
+  margin: 10px; 
+  font-family: inherit;
+  font-weight: bolder;
+  color: black;
+  background-color: #D7E8EA;
+  text-transform: none;
+  width: 100px;
+  height: 35px;
 }

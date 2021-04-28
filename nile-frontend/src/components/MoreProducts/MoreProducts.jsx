@@ -1,8 +1,9 @@
 import './MoreProducts.css';
 import Product from "./Product";
 import { useState } from 'react';
-import { getProducts } from '../../service/ProductService'
+import { getProduct, getProductsByCategory } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
+import { useParams } from 'react-router';
 
 function calcRating(product) {
     let sum = 0;
@@ -14,14 +15,26 @@ function calcRating(product) {
 }
 
 function MoreProducts() {
-
     const [products, setProducts] = useState([]);
+    const [category, setCategory] = useState([]);
     const AllProducts = [];
 
+    const{productId} = useParams();    
+    
+    getProduct(productId)
+    .then((category) => {
+        setCategory(category.category.name)
+    }
+    );
+
     if (products.length === 0) {
-        getProducts().then((list) => {
-            list.map((item) =>
-                AllProducts.push(item)
+        getProductsByCategory(category).then((list) => {
+            list.map((item) => {
+
+                if(item.productId !== parseInt(productId)) {
+                    AllProducts.push(item);
+                }
+            }   
             );
             const products = AllProducts.map((product) =>
                 <Product
@@ -39,8 +52,6 @@ function MoreProducts() {
         }
         );
     }
-
-    const pages = Math.ceil((products.length / 5));
 
     const Arrow = ({ text, className }) => {
         return (
@@ -60,7 +71,6 @@ function MoreProducts() {
             <div class="header">
                 <span>
                     <h3 id="customer-bought">Customers also bought these products</h3>
-                    <p class="pages">Page 1 of {pages}</p>
                 </span>
             </div>
 
