@@ -1,5 +1,4 @@
 #createReviewContainer {
-  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,11 +38,9 @@
 }
 
 #product-name-review {
-  color: red;
 }
 
 #product-info-review {
-  color: blue;
   display: flex;
   justify-content: center;
 }
