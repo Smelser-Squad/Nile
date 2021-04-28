@@ -1,66 +1,18 @@
 import './QA.css';
-import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
 import './QA.jsx';
-import Answers from './Answers';
+import Question from "./SingleQuestion";
 
 export default function Questions(props) {
-    const displayQuestions = (props) => {
+        console.log(props);
         const {questions} = props;
-        const productId = 1;
-
-
-        if(questions.length > 0){
-            return(
-                questions.map((question, index) => {
-                    console.log(question);
-                    return(
-                        <Grid container spacing={3}>
-                        <Grid item xs={1}>
-                        <img className="toggleVoteUp" src="https://cdn4.iconfinder.com/data/icons/neutro-award/32/upvote-512.png" onClick={upVote} ></img><br></br>
-                            <div className="buttonText">
-                                {question.votes}<br></br>
-                                votes<br></br>
-                            </div>
-                            <img className="toggleVoteDown" src="https://cdn4.iconfinder.com/data/icons/neutro-award/32/downvote-512.png" onClick={downVote}></img>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <div className="queAndAns">
-                                <div className="left">
-                                    Question: <br></br><br></br>
-                                    Answer: 
-                                </div>
-                            </div>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <div className="queAndAns">
-                                <div className="right">
-                                    {question.question}<br></br><br></br>
-                                    <Answers answers={question.answers} />
-                                </div>
-                                <br></br>
-                            </div>
-                        </Grid>
-                    </Grid>
-                    )
-                })
-                
-                );
-    }}
-
-    return (<div>
-        {displayQuestions(props)}
-        </div>
-        )
-    
+        console.log(questions);
+        const quest = questions.map((question, index) => {
+            return( <Question question={question} />)
+        });
+        return quest;
 }
 
-function upVote(){
-    console.log("upvote");
-}
-function downVote(){
-    console.log("downvote");
-}
+
 
 function expandAnswer() {
     console.log("expand");
