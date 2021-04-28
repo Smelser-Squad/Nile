@@ -61,13 +61,13 @@ const useStyles = makeStyles({
     root: {
         borderRadius: "0px",
         border: "transparent",
-        borderBottom: "1px solid grey" 
+        borderBottom: "1px solid grey",
     },
     groupedHorizontal: {
         "&:not(:first-child)":{
             border: "transparent",
             borderBottom: "1px solid grey" 
-        }
+        },
     }
 });
 
@@ -78,6 +78,7 @@ const classes = useStyles();
         <ToggleButton
             classes= {{
                 root: classes.root,
+                selected: classes.selected,
             }}
             disableRipple
             disableFocusRipple
