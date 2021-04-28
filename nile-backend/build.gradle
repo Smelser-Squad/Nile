@@ -16,6 +16,7 @@ dependencies {
 
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+	implementation group: 'com.stripe', name: 'stripe-java', version: '20.47.1'
 
 	implementation 'junit:junit:4.12'
 	compileOnly 'org.projectlombok:lombok:1.18.20'

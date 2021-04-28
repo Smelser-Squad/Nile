@@ -1,48 +1,42 @@
+
 import React from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import { loadStripe } from '@stripe/stripe-js';
-
-
 import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
 import { getCartTotal } from '../../reducer';
 import axios from 'axios';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-
 
 function Payment() {
-    const stripe = useStripe();
-    const elements = useElements();
     const [{ cart }] = useStateValue();
 
+    const publishableStripeKey = 'pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y';
+    const totalCartPrice = getCartTotal(cart) * 100;
+    console.log(totalCartPrice);
+
+
+    // async function handleToken(token, addresses) {
+    //     console.log({ token, addresses });
+    // }
 
     async function handleToken(token, addresses) {
         console.log({ token, addresses });
-    };
+        axios.post('http://localhost:80/api/create-charge', {
+            amount: totalCartPrice,
+            token: token.id,
+        }).then((response) => {
+            alert('Payment success')
+        }).catch((error) => {
+            alert('Payment failed')
+        })
+        console.log(totalCartPrice);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement)
-        });
-        if (!error) {
-            console.log(paymentMethod)
-            const { id } = paymentMethod;
-
-            try {
-
-                const { data } = await axios.post("/api/charge", { id, amout: 1099 });
-                console.log(data);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
+    function paymentSubmit() {
+        return publishableStripeKey;
     }
 
     return (
@@ -108,55 +102,19 @@ function Payment() {
                                 prefix={"$"}
                             />
                         </div>
-
-                        <form className="payment_form" onSubmit={handleSubmit}>
-
-
-                            <CardElement />
-                            <button type="submit" disabled={!stripe}>
-                                Pay
-                            </button>
-                        </form>
-
-                    </div>
-                </div>
-
-
-
-
-                {/* <div className='payment_section'>
-                    <div className='payment_title'>
-                        <h3>
-                            Payment Method
-                    </h3>
-                    </div>
-                    <div className='payment_details'>
-                        <div className='payment_priceContainer'>
-                            <CurrencyFormat
-                                renderText={(value) => (
-                                    <h3> Order Total: {value} </h3>
-                                )}
-                                decimalScale={2}
-                                value={getCartTotal(cart)}
-                                displayType={"text"}
-                                thousandSeperator={true}
-                                prefix={"$"}
-                            />
-                        </div>
                         <StripeCheckout
 
-
-                            stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
-                            token={handleToken}
-                            amount={getCartTotal * 100}
+                            stripeKey={publishableStripeKey}
+                            amount={totalCartPrice}
                             billingAddress
                             shippingAddress
+                            token={handleToken}
+                            currency="USD"
+                            label="Pay Now"
+                            panelLabel="Pay Now"
                         />
                     </div>
-                </div> */}
-
-
-
+                </div>
             </div>
         </div>
     )
