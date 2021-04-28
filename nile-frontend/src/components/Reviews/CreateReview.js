@@ -5,15 +5,35 @@ import { Radio } from '@material-ui/core';
 import React, { useState } from 'react';
 import {getProductById} from '../../service/ProductService';
 import { PrintDisabled } from '@material-ui/icons';
+import { useParams } from 'react-router';
+
 
 
 
 
 function CreateReview(){
 
-    const[Product,setProduct,summary,title]=useState([]);
+    // const[Product,setProduct,summary,title]=useState([]);
 
-    const testProduct = getProductById(document.URL.substring(34));
+    const [name,setName]=useState([]);
+    const [image,setImage]=useState([]);
+
+    const { productId } = useParams();
+
+    getProductById(productId).then((name)=>{
+        setName(name.data.name);
+    })
+
+    getProductById(productId).then((image)=>{
+        setImage(image.data.photos[0].imageSrc);
+    })
+
+    console.log(name)
+    console.log(image)
+
+
+
+    
 
     // function onTitleChange() {
     //     this.setState({
@@ -28,26 +48,23 @@ function CreateReview(){
     const mili = Date.now();
     const formattedDate = new Date(mili);
     const stringDate = formattedDate.getFullYear()+"-"+(formattedDate.getMonth()+1)+"-"+formattedDate.getDate();
-    testProduct.then(
-        (response)=>{
-            setProduct(response.data)
-        }) 
 
     const Review = {
         rating : 5,
         review_date : stringDate, //YYYY-MM-DD
         summary : "",
         title: "",
-        Product
     }
 
+    console.log(Review)
            
 
     return (
         
         <div id="createReviewContainer">
             <div>
-                {Product.name}
+                {name}
+                <img src={image}></img>
             </div>
             <hr></hr>
             <div>
