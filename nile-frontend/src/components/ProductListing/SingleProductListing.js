@@ -52,6 +52,7 @@ function SingleProductListing() {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
+                console.log(res.data)
             })
     }, [])
 
@@ -85,7 +86,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.name} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
