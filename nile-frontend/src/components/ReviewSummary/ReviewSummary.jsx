@@ -29,24 +29,53 @@ function ReviewSummary (starAvg) {
     const { productId } = useParams();
 
     const [reviewAvg, getAvgReviews] = useState();
-
     const [totalReviews, getTotalReviews] = useState();
 
     const [fiveStarPercent, getFiveStars] = useState();
-
     const [fourStarPercent, getFourStars] = useState();
-
     const [threeStarPercent, getThreeStars] = useState();
-
     const [twoStarPercent, getTwoStars] = useState();
-
     const [oneStarPercent, getOneStars] = useState();
+
+    const [featureOne, getFeatureOne] = useState();
+    const [featureTwo, getFeatureTwo] = useState();
+    const [featureThree, getFeatureThree] = useState();
+    const [featureFour, getFeatureFour] = useState();
+    const [featureFive, getFeatureFive] = useState();
+    const [featureSix, getFeatureSix] = useState();
+
 
     let numFiveStar = 0;
     let numFourStar = 0;
     let numThreeStar = 0;
     let numTwoStar = 0;
     let numOneStar = 0;
+
+    async function getFeaturesByProductId() {
+        await axios.get(`http://localhost:80/api/features/byproduct/${productId}`)
+            .then(res => {
+                for (let i in res.data) {
+                    if (i == 0) {
+                        getFeatureOne(res.data[i].name);
+                    }
+                    else if (i == 1) {
+                        getFeatureTwo(res.data[i].name);
+                    }
+                    else if (i == 2) {
+                        getFeatureThree(res.data[i].name);
+                    }
+                    else if (i == 3) {
+                        getFeatureFour(res.data[i].name);
+                    }
+                    else if (i == 4) {
+                        getFeatureFive(res.data[i].name);
+                    }
+                    else if (i == 5) {
+                        getFeatureSix(res.data[i].name);
+                    }
+                }
+            })
+    }
 
     async function getAllReviewsByProductId() {
         await axios.get(`http://localhost:80/api/reviews/byproduct/${productId}`)
@@ -74,7 +103,7 @@ function ReviewSummary (starAvg) {
                 const avgReview = (((numFiveStar * 5) + (numFourStar * 4)
                     + (numThreeStar * 3) + (numTwoStar * 2) + numOneStar) / totalReviews).toFixed(1);
 
-                const parseAvg = parseInt(avgReview);
+                const parseAvg = parseFloat(avgReview);
 
                 const fiveStar = (numFiveStar / totalReviews) * 100;
                 const fourStar = (numFourStar / totalReviews) * 100;
@@ -95,6 +124,7 @@ function ReviewSummary (starAvg) {
 
     useEffect(() => {
         getAllReviewsByProductId();
+        getFeaturesByProductId();
     }, []);
 
     starAvg = reviewAvg;
@@ -124,6 +154,8 @@ function ReviewSummary (starAvg) {
             y.innerHTML = "&#8681; How are ratings calculated?";
         }
     }
+
+    console.log("Feature One: " + featureOne);
 
     const ReactStars = React.lazy(() => import('react-rating-stars-component'));
 
@@ -203,7 +235,7 @@ function ReviewSummary (starAvg) {
 
                 <div className="by_feature">
                     <h3>By feature</h3>
-                    <span>Absorbency
+                    <span>{featureOne}
                 <ReactStars
                             count={5}
                             edit={false}
@@ -212,7 +244,7 @@ function ReviewSummary (starAvg) {
                             size={15}
                         /></span>
 
-                    <span>Fabric texture</span>
+                    <span>{featureTwo}</span>
                     <ReactStars
                         count={5}
                         edit={false}
@@ -221,7 +253,7 @@ function ReviewSummary (starAvg) {
                         size={15}
                     />
 
-                    <span>Fit true to size</span>
+                    <span>{featureThree}</span>
                     <ReactStars
                         count={5}
                         edit={false}
@@ -231,7 +263,7 @@ function ReviewSummary (starAvg) {
                     />
 
                     <div id="seeMore">
-                        <span>More feature #1</span>
+                        <span>{featureFour}</span>
                         <ReactStars
                             count={5}
                             edit={false}
@@ -240,7 +272,7 @@ function ReviewSummary (starAvg) {
                             size={15}
                         />
 
-                        <span>More feature #2</span>
+                        <span>{featureFive}</span>
                         <ReactStars
                             count={5}
                             edit={false}
@@ -249,7 +281,7 @@ function ReviewSummary (starAvg) {
                             size={15}
                         />
 
-                        <span>More feature #3</span>
+                        <span>{featureSix}</span>
                         <ReactStars
                             count={5}
                             edit={false}
