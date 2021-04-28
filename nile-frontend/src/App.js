@@ -1,9 +1,9 @@
 import './App.css';
-import Tag from './components/ReviewTag/Tag.jsx';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
 import Checkout from './components/Checkout/Checkout';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
+import BrandProducts from './components/Brand/BrandProducts';
 import CreateReview from './components/Reviews/CreateReview'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Payment from './components/Payment/Payment';
@@ -22,6 +22,9 @@ function App() {
                 <Switch>
                     <Route exact path="/singleProductListing/:productId">
                         <SingleProductListing/>
+                    </Route>
+                    <Route exact path="/products/brand/:brand">
+                        <BrandProducts/>
                     </Route>
 
                     <Route exact path="/checkout">

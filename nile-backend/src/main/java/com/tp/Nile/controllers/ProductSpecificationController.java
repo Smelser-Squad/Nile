@@ -20,7 +20,7 @@ public class ProductSpecificationController {
     public ResponseEntity addProductSpec(@RequestBody ProductSpecification productSpec) {
         try {
             return ResponseEntity.ok(service.addProductSpec(productSpec));
-        } catch (NullProductIdException | InvalidProductIdException | NullSpecIdException | InvalidSpecIdException | NullProductSpecIdObjectException | NullSpecValueException | InvalidSpecValueException ex) {
+        } catch (NullProductIdException | InvalidProductIdException | NullSpecIdException | InvalidSpecIdException | NullProductSpecIdObjectException | NullSpecValueException | InvalidSpecValueException | TypesDoNotMatchException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }

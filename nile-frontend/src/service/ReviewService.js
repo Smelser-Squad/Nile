@@ -5,8 +5,6 @@ import axios from 'axios'
 export async function getReviews(productId){
     const reviews=await axios.get(`http://localhost:80/api/reviews/byproduct/${productId}`)
     const data=reviews.data;
-    // console.log(data);
-
     return data;
 
 }

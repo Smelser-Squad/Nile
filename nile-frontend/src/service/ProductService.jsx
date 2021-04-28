@@ -1,15 +1,30 @@
 import axios from 'axios'
 
-async function getProducts(){
-    const products=await axios.get('http://localhost:80/api/products')
+
+async function getProduct(productId){
+    const products=await axios.get(`http://localhost:80/api/products/${productId}`)
     const data=products.data;
 
     return(data);
-    
 }
 
-function getProductById(productId){
-    return axios.get(`http://localhost:80/api/products/${productId}`)
+async function getBrandProducts(brand){
+    
+    const products=await axios.get(`http://localhost:80/api/products/brand/${brand}`)
+    const data=products.data;
+    
+
+    return(data);
 }
-export {getProducts,getProductById}
+
+async function getProducts(){
+    const products=await axios.get('http://localhost:80/api/products')
+    const data=products.data;
+    console.log(data);
+    
+    return(data);
+    
+   }
+
+export {getProduct, getBrandProducts,getProducts}
 

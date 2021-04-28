@@ -3,7 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import {addReview} from "../../service/ReviewService"
 import { Radio } from '@material-ui/core';
 import React, { useState } from 'react';
-import {getProductById} from '../../service/ProductService';
+import {getProduct} from '../../service/ProductService';
 import { PrintDisabled } from '@material-ui/icons';
 import { useParams } from 'react-router';
 
@@ -20,12 +20,15 @@ function CreateReview(){
 
     const { productId } = useParams();
 
-    getProductById(productId).then((name)=>{
-        setName(name.data.name);
+    console.log("before " + name)
+    getProduct(productId).then((name)=>{
+        setName(name.name);
+        console.log(name)
+
     })
 
-    getProductById(productId).then((image)=>{
-        setImage(image.data.photos[0].imageSrc);
+    getProduct(productId).then((image)=>{
+        setImage(image.photos[0].imageSrc);
     })
 
     console.log(name)
@@ -56,7 +59,6 @@ function CreateReview(){
         title: "",
     }
 
-    console.log(Review)
            
 
     return (
