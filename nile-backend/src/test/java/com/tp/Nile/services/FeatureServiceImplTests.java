@@ -30,7 +30,8 @@ public class FeatureServiceImplTests {
 
     @Test
     public void testGetAllFeaturesGoldenPath() {
-        when(repo.findAll()).thenReturn(List.of(new Feature(1, "Bluetooth", new ArrayList<>())));
+        when(repo.findAll()).thenReturn(List.of(new Feature(1, "Bluetooth",
+                new ArrayList<>(), new ArrayList<>())));
         List<Feature> features = service.getAllFeatures();
 
         assertThat(features)
@@ -45,7 +46,8 @@ public class FeatureServiceImplTests {
 
     @Test
     public void testGetFeatureByIdGoldenPath() {
-        when(repo.findById(1)).thenReturn(Optional.of(new Feature(1, "Bluetooth", new ArrayList<>())));
+        when(repo.findById(1)).thenReturn(Optional.of(new Feature(1, "Bluetooth",
+                new ArrayList<>(), new ArrayList<>())));
         Feature feature = null;
         try {
             feature = service.getFeatureById(1);
