@@ -1,12 +1,15 @@
 .products-container {
     min-width: 100px;
+    max-width: 250px;
+    text-align: center;
+    justify-content: center;
 }
 
-#product-image {
-    margin-top: 50px;
+#single-product-image {
     height: 150px;
     width: 150px;
 }
+
 #price-tag {
     color: #B12805;
     font-weight: bold;
@@ -36,6 +39,7 @@
     color: #067186;
 }
 #review-count {
+    margin-top: 2px;
     margin-left: 5px;
     text-decoration: none;
     color: #067186;
@@ -48,3 +52,4 @@
     display: flex;
     margin: 5px;
 }
+

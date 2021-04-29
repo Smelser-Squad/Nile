@@ -1,11 +1,9 @@
-
 import axios from 'axios'
 
-    async function getPhotos(productId,color){
+    async function getPhotos(productId){
         
-        const photos=await axios.get(`http://localhost:80/api/productPhotos/${productId}/${color.colorName}`)
+        const photos=await axios.get(`http://localhost:80/api/productPhotos/${productId}`)
         const data=photos.data;
-        console.log(data);
         
         return(data);
         

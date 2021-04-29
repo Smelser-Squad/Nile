@@ -1,12 +1,19 @@
 #createReviewContainer {
-  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  /* flex-wrap: nowrap; */
+  align-items: center;
 }
 
 .sizeReview {
 }
 
+#overall-rating {
+}
+
 #sizeDiv {
-  margin-left: 25%;
   text-align: center;
   width: 50%;
 }
@@ -28,4 +35,17 @@
 #size-description {
   font-size: 12px;
   color: gray;
+}
+
+#product-name-review {
+}
+
+#product-info-review {
+  display: flex;
+  justify-content: center;
+}
+
+#product-image-review {
+  color: green;
+  height: 150px;
 }
