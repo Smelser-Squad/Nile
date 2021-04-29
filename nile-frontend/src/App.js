@@ -11,6 +11,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import ShowAllReviews from './components/Reviews/ShowAllReviews';
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -50,6 +51,9 @@ function App() {
 
                     <Route exact path="/createReview/:productId">
                         <CreateReview/>
+                    </Route>
+                    <Route exact path="/singleProductListing/all-product-reviews/:name">
+                        <ShowAllReviews/>
                     </Route>
 
 
