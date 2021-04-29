@@ -47,7 +47,7 @@ public class QAServiceImpl implements QAService{
     @Override
     public Set<Question> getQuestions(Integer productId) throws NullProductIdException, InvalidProductIdException {
         Product pro = pRepo.getProductById(productId);
-        Set<Question> que = qRepo.findByProduct(pro);
+        Set<Question> que = qRepo.findByProductOrderByVotesDesc(pro);
         if(!que.isEmpty()){
             return que;
         }
