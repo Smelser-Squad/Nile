@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,11 +7,17 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { signup, checkEmailAvailability, checkUsernameAvailability } from '../../util/APIUtils';
+import { 
+  NAME_MIN_LENGTH, NAME_MAX_LENGTH, 
+  USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH,
+  EMAIL_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH
+} from '../../constants';
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -29,57 +35,73 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+});
 
-export default function SignUp() {
-  const classes = useStyles();
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        name: {
+            value: ''
+        },
+        username: {
+            value: ''
+        },
+        email: {
+            value: ''
+        },
+        password: {
+            value: ''
+        }
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateUsernameAvailability = this.validateUsernameAvailability.bind(this);
+    this.validateEmailAvailability = this.validateEmailAvailability.bind(this);
+    this.isFormInvalid = this.isFormInvalid.bind(this);
+}
 
-  let usernameAvailable = true;
-  let emailAvailable = true;
+  handleInputChange(event, validationFn) {
+    const target = event.target;
+        const inputName = target.name;        
+        const inputValue = target.value;
 
-  function handleNameChange(event) {
-    setName(event.target.value);
+        this.setState({
+            [inputName] : {
+                value: inputValue,
+                ...validationFn(inputValue)
+            }
+        });
   }
 
-  function handleUsernameChange(event) {
-    setUsername(event.target.value);
-    checkUsernameAvailability(username)
-      .then(response => {
-        usernameAvailable = response.available;
-      }).catch(error => {
-        Promise.reject(error);
-      })
-  }
-
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-    checkEmailAvailability(email)
-      .then(response => {
-        emailAvailable = response.available;
-      }).catch(error => {
-        Promise.reject(error);
-      })
-  }
-
-  function handlePasswordChange(event) {
-    setPassword(event.target.value);
-  }
-
-  function handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    signup({ name, username, email, password })
+    const signupRequest = {
+      name: this.state.name.value,
+      email: this.state.email.value,
+      username: this.state.username.value,
+      password: this.state.password.value
+  };
+    signup(signupRequest)
       .then(response => {
-        window.location.replace(process.env.REACT_APP_SIGNIN || "http://localhost:3000/signin");
+        // window.location.replace(process.env.REACT_APP_SIGNIN || "http://localhost:3000/signin");
+        this.props.history.push("/signin");
         // TODO: display success message using Snackbars
       }).catch(error => {
         // TODO: display error message using Snackbars
       })
   }
 
+  isFormInvalid() {
+    return !(this.state.name.validateStatus === 'success' &&
+            this.state.username.validateStatus === 'success' &&
+            this.state.email.validateStatus === 'success' &&
+            this.state.password.validateStatus === 'success'
+    );
+  }
+
+render() {
+  const { classes } = this.props;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -90,57 +112,65 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                onChange={handleNameChange}
-                value={name}
+                onChange={event => this.handleInputChange(event, this.validateName)}
+                value={this.state.name.value}
+                error={this.state.name.validateStatus === 'error'}
+                helperText={this.state.name.errorMsg}
                 autoComplete="fname"
-                name="fullName"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="fullName"
+                id="name"
                 label="Full Name"
-                helperText="Name must be between 4 and 40 characters."
+                placeholder="Your full name"
                 autoFocus
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={!usernameAvailable}
-                onChange={handleUsernameChange}
-                value={username}
+                onChange={event => this.handleInputChange(event, this.validateUsername)}
+                onBlur={this.validateUsernameAvailability}
+                value={this.state.username.value}
+                error={this.state.username.validateStatus === 'error'}
+                helperText={this.state.username.errorMsg}
                 variant="outlined"
                 required
                 fullWidth
                 id="username"
                 label="Username"
+                placeholder="A unique username"
                 name="username"
                 autoComplete="username"
-                helperText="Username must be between 3 and 15 characters."
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={!emailAvailable}
-                onChange={handleEmailChange}
-                value={email}
+                onChange={event => this.handleInputChange(event, this.validateEmail)}
+                onBlur={this.validateEmailAvailability}
+                value={this.state.email.value}
+                error={this.state.email.validateStatus === 'error'}
+                helperText={this.state.email.errorMsg}
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
+                placeholder="Your email"
                 autoComplete="email"
-                helperText="Email cannot be more than 40 characters."
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={handlePasswordChange}
-                value={password}
+                onChange={event => this.handleInputChange(event, this.validatePassword)}
+                value={this.state.password.value}
+                error={this.state.password.validateStatus === 'error'}
+                helperText={this.state.password.errorMsg}
                 variant="outlined"
                 required
                 fullWidth
@@ -148,8 +178,8 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
+                placeholder="A password between 6 to 20 characters"
                 autoComplete="current-password"
-                helperText="Password must be between 6 and 20 characters."
               />
             </Grid>
           </Grid>
@@ -159,6 +189,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={this.isFormInvalid()}
           >
             Sign Up
           </Button>
@@ -174,3 +205,202 @@ export default function SignUp() {
     </Container>
   );
 }
+
+// Validation functions
+
+validateName(name) {
+  if(name.length < NAME_MIN_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Name is too short (Minimum ${NAME_MIN_LENGTH} characters needed.)`
+      }
+  } else if (name.length > NAME_MAX_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Name is too long (Maximum ${NAME_MAX_LENGTH} characters allowed.)`
+      }
+  } else {
+      return {
+          validateStatus: 'success',
+          errorMsg: null,
+        };            
+  }
+}
+
+validateEmail(email) {
+  if(!email) {
+      return {
+          validateStatus: 'error',
+          errorMsg: 'Email may not be empty'                
+      }
+  }
+
+  const EMAIL_REGEX = RegExp('[^@ ]+@[^@ ]+\\.[^@ ]+');
+  if(!EMAIL_REGEX.test(email)) {
+      return {
+          validateStatus: 'error',
+          errorMsg: 'Email not valid'
+      }
+  }
+
+  if(email.length > EMAIL_MAX_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Email is too long (Maximum ${EMAIL_MAX_LENGTH} characters allowed)`
+      }
+  }
+
+  return {
+      validateStatus: null,
+      errorMsg: null
+  }
+}
+
+validateUsername(username) {
+  if(username.length < USERNAME_MIN_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
+      }
+  } else if (username.length > USERNAME_MAX_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Username is too long (Maximum ${USERNAME_MAX_LENGTH} characters allowed.)`
+      }
+  } else {
+      return {
+          validateStatus: null,
+          errorMsg: null
+      }
+  }
+}
+
+validateUsernameAvailability() {
+  // First check for client side errors in username
+  const usernameValue = this.state.username.value;
+  const usernameValidation = this.validateUsername(usernameValue);
+
+  if(usernameValidation.validateStatus === 'error') {
+      this.setState({
+          username: {
+              value: usernameValue,
+              ...usernameValidation
+          }
+      });
+      return;
+  }
+
+  this.setState({
+      username: {
+          value: usernameValue,
+          validateStatus: 'pending',
+          errorMsg: null
+      }
+  });
+
+  checkUsernameAvailability(usernameValue)
+  .then(response => {
+      if(response.available) {
+          this.setState({
+              username: {
+                  value: usernameValue,
+                  validateStatus: 'success',
+                  errorMsg: null
+              }
+          });
+      } else {
+          this.setState({
+              username: {
+                  value: usernameValue,
+                  validateStatus: 'error',
+                  errorMsg: 'This username is already taken'
+              }
+          });
+      }
+  }).catch(error => {
+      // Marking validateStatus as success, Form will be recchecked at server
+      this.setState({
+          username: {
+              value: usernameValue,
+              validateStatus: 'success',
+              errorMsg: null
+          }
+      });
+  });
+}
+
+validateEmailAvailability() {
+  // First check for client side errors in email
+  const emailValue = this.state.email.value;
+  const emailValidation = this.validateEmail(emailValue);
+
+  if(emailValidation.validateStatus === 'error') {
+      this.setState({
+          email: {
+              value: emailValue,
+              ...emailValidation
+          }
+      });    
+      return;
+  }
+
+  this.setState({
+      email: {
+          value: emailValue,
+          validateStatus: 'pending',
+          errorMsg: null
+      }
+  });
+
+  checkEmailAvailability(emailValue)
+  .then(response => {
+      if(response.available) {
+          this.setState({
+              email: {
+                  value: emailValue,
+                  validateStatus: 'success',
+                  errorMsg: null
+              }
+          });
+      } else {
+          this.setState({
+              email: {
+                  value: emailValue,
+                  validateStatus: 'error',
+                  errorMsg: 'This Email is already registered'
+              }
+          });
+      }
+  }).catch(error => {
+      // Marking validateStatus as success, Form will be recchecked at server
+      this.setState({
+          email: {
+              value: emailValue,
+              validateStatus: 'success',
+              errorMsg: null
+          }
+      });
+  });
+}
+
+validatePassword(password) {
+  if(password.length < PASSWORD_MIN_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Password is too short (Minimum ${PASSWORD_MIN_LENGTH} characters needed.)`
+      }
+  } else if (password.length > PASSWORD_MAX_LENGTH) {
+      return {
+          validateStatus: 'error',
+          errorMsg: `Password is too long (Maximum ${PASSWORD_MAX_LENGTH} characters allowed.)`
+      }
+  } else {
+      return {
+          validateStatus: 'success',
+          errorMsg: null,
+      };            
+  }
+}
+}
+
+export default withStyles(styles, { withTheme: true })(SignUp);
