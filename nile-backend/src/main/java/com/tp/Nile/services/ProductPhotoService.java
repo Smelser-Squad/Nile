@@ -17,10 +17,12 @@ public interface ProductPhotoService {
     ProductPhoto getPhotoById(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
     List<ProductPhoto> getPhotosByProduct(Integer productId) throws InvalidProductIdException, NullProductIdException;
 
-    List<String> getColorsOfProduct(Integer productId) throws InvalidProductIdException;
 
     ProductPhoto addPhoto(ProductPhoto newPhoto, Integer productId) throws InvalidProductIdException;
     ProductPhoto updatePhoto(ProductPhoto update);
+
+
+    List<String> getColorsOfProduct(Integer productId) throws InvalidProductIdException;
     boolean deletePhoto(Integer photoId) throws NullPhotoIdException, InvalidPhotoIdException;
 
 }
