@@ -55,7 +55,7 @@ function CreateReview(){
             <h2>Create Review</h2>
             <div id="product-info-review">
                 <img id="product-image-review"src={image}></img>
-                <span id="product-name-review">{name}</span>
+                <h5 id="product-name-review">{name}</h5>
             </div>
             <hr class="divide"></hr>
             <div id="overall-rating">
@@ -127,7 +127,7 @@ function CreateReview(){
                 <input id="text-title" alt="image of product" placeholder="What's important to know?" onChange={e => setTitle(e.target.value)}/>
                 <h3>Add a written review</h3>
                 <textarea id="text-summary" placeholder="What did you like or dislike? How did you use this product?" onChange={e => setSummary(e.target.value)}/>
-                <button onClick={()=>addReview(Review,productId)}>submit</button>
+                <button id="submit-review" onClick={()=>addReview(Review,productId)}>submit</button>
             </div>
         </div>
     )
