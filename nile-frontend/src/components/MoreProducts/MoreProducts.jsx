@@ -19,22 +19,22 @@ function MoreProducts() {
     const [category, setCategory] = useState([]);
     const AllProducts = [];
 
-    const{productId} = useParams();    
-    
+    const { productId } = useParams();
+
     getProduct(productId)
-    .then((category) => {
-        setCategory(category.category.name)
-    }
-    );
+        .then((category) => {
+            setCategory(category.category.name)
+        }
+        );
 
     if (products.length === 0) {
         getProductsByCategory(category).then((list) => {
             list.map((item) => {
 
-                if(item.productId !== parseInt(productId)) {
+                if (item.productId !== parseInt(productId)) {
                     AllProducts.push(item);
                 }
-            }   
+            }
             );
             const products = AllProducts.map((product) =>
                 <Product
