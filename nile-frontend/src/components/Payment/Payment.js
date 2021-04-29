@@ -1,7 +1,7 @@
 import React from 'react';
 import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
@@ -13,6 +13,7 @@ function Payment() {
     const publishableStripeKey = 'pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y';
     const totalCartPrice = getCartTotal(cart) * 100;
 
+    const history = useHistory();
     async function handleToken(token) {
         axios.post('http://localhost:80/api/create-charge', {
             token: token.card.id,
@@ -20,7 +21,9 @@ function Payment() {
             email: token.email,
 
         }).then((response) => {
-            alert('Payment success')
+            history.replace('/orders')
+
+            // alert('Payment success')
         }).catch((error) => {
             alert('Payment failed')
         })
