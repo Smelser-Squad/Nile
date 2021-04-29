@@ -6,8 +6,7 @@ import  {SideBySideMagnifier} from "react-image-magnifiers";
 
 
 
-
-function ProductPhotos({color}) {
+function ProductPhotos() {
 
     
     const [data, setData] = useState([]);
@@ -20,6 +19,7 @@ function ProductPhotos({color}) {
     function generatePhotos(color) {
     if(data.length===0 || currColor !== color){
         getPhotos(productId, color).then((list)=>
+
         {
             list.map((item)=>
             PhotoList.push(item),

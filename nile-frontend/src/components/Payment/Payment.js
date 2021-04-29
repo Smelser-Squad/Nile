@@ -3,19 +3,30 @@ import CartProduct from '../Cart/CartProduct/CartProduct';
 import { useStateValue } from "../../StateProvider";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-
-
 import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
 import { getCartTotal } from '../../reducer';
+import axios from 'axios';
 
 function Payment() {
     const [{ cart }] = useStateValue();
+    const publishableStripeKey = 'pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y';
+    const totalCartPrice = getCartTotal(cart) * 100;
 
+    async function handleToken(token) {
+        axios.post('http://localhost:80/api/create-charge', {
+            token: token.card.id,
+            amount: totalCartPrice,
+            email: token.email,
 
-    async function handleToken(token, addresses) {
-        console.log({ token, addresses });
+        }).then((response) => {
+            alert('Payment success')
+        }).catch((error) => {
+            alert('Payment failed')
+        })
+
     }
+
     return (
         <div className='payment'>
 
@@ -81,11 +92,14 @@ function Payment() {
                         </div>
                         <StripeCheckout
 
-                            stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
-                            token={handleToken}
-                            amount={getCartTotal * 100}
+                            stripeKey={publishableStripeKey}
+                            amount={totalCartPrice}
                             billingAddress
                             shippingAddress
+                            token={handleToken}
+                            currency="USD"
+                            label="Pay Now"
+                            panelLabel="Pay Now"
                         />
                     </div>
                 </div>
