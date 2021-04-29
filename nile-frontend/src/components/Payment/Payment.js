@@ -16,7 +16,6 @@ function Payment() {
     console.log(totalCartPrice);
 
     async function handleToken(token, addresses) {
-        // console.log({ token, addresses });
         console.log(token.card.id);
         console.log(totalCartPrice);
 
@@ -30,10 +29,6 @@ function Payment() {
             alert('Payment failed')
         })
 
-    }
-
-    function paymentSubmit() {
-        return publishableStripeKey;
     }
 
     return (
@@ -103,8 +98,8 @@ function Payment() {
 
                             stripeKey={publishableStripeKey}
                             amount={totalCartPrice}
-                            // billingAddress
-                            // shippingAddress
+                            billingAddress
+                            shippingAddress
                             token={handleToken}
                             currency="USD"
                             label="Pay Now"
