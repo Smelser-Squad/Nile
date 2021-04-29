@@ -23,7 +23,7 @@ function MoreProducts() {
     
     getProduct(productId)
     .then((category) => {
-        setCategory(category.name)
+        setCategory(category.category.name)
     }
     );
 
