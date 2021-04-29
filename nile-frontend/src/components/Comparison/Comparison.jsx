@@ -9,9 +9,6 @@ async function createTableData(products, specIds) {
   let data = [];
   let columns = [];
   let tableData = {};
-  console.log("products.length: " + products.length)
-  console.log("Specs: " + specIds);
-  console.log("data: " + data);
   let firstColumn = {
     Header: "",
     accessor: "spec"
@@ -27,10 +24,8 @@ async function createTableData(products, specIds) {
   for (let i = 0; i < specIds.length; i++) {
     let currRow = {};
     for (let j = 0; j < products.length; j++) {
-      console.log(products[j]);
       let currProdSpec = await getProductSpecsById(products[j].productId, specIds[i])
       let currSpec = await getSpecById(specIds[i])
-      console.log("currSpec: " + JSON.stringify(currSpec))
 
       if (currProdSpec != null) {
         currRow[products[j].name] = currProdSpec.value;
@@ -38,7 +33,6 @@ async function createTableData(products, specIds) {
         currRow[products[j].name] = "N/A";
       }
       currRow["spec"] = currSpec.specName;
-      console.log("currRow: " + JSON.stringify(currRow));
     }
     data.push(currRow);
     
@@ -46,9 +40,7 @@ async function createTableData(products, specIds) {
   }
   
   tableData["data"] = data;
-  console.log("tableData: " + JSON.stringify(tableData));
   tableData["columns"] = columns;
-  console.log("tableData: " + JSON.stringify(tableData));
   return tableData;
 }
 
@@ -71,23 +63,16 @@ function Comparison() {
           typeProducts.push(prod);
         });
         setProducts(typeProducts);
-        console.log("typeProducts: " + JSON.stringify(typeProducts[0]));
         for (let i = 0; i < typeProducts.length; i++) {
-          console.log("Current length of products specs: " + typeProducts[i].productSpecs.length);
           for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
             let currSpecId = typeProducts[i].productSpecs[j].id.specId;
-            console.log("currSpecId: " + currSpecId);
             if (!allSpecIds.includes(currSpecId)) {
               allSpecIds.push(currSpecId);
-              console.log("ADDING SPEC...");
-              console.log(allSpecIds);
             }
           }
         }
         createTableData(typeProducts, allSpecIds).then(res => {
-          console.log("createTable res: " + JSON.stringify(res));
           setTableData(res);
-          setColumns(tableData['columns']);
           setData(tableData.data);
           setLoading(false);
         });
