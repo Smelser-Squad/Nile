@@ -2,46 +2,73 @@ import './CreateReview.css'
 import ReactStars from "react-rating-stars-component";
 import {addReview} from "../../service/ReviewService"
 import { Radio } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
+import {getProduct} from '../../service/ProductService';
+import { PrintDisabled } from '@material-ui/icons';
+import { useParams } from 'react-router';
 
 
-    function onTitleChange() {
-        this.setState({
-            title: this.target.value
-        });
-    };
+
+
 
 function CreateReview(){
 
-    
+    // The only way I could get rating passed to review object was to grab the innerHTML from the p tag at the 0th index
+    // since it is the react-stars at the begining. features will be done in the same way once they are finalized
+
+    const [name,setName]=useState([]);
+    const [image,setImage]=useState([]);
+    const [summary, setSummary]=useState([]);
+    const [title, setTitle]=useState([]);
+    const [rating, setRating]=useState([]);
+
+
+    const { productId } = useParams();
+
+    getProduct(productId).then((name)=>{
+        setName(name.name);
+    })
+
+    getProduct(productId).then((image)=>{
+        setImage(image.photos[0].imageSrc);
+        setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
+    })
+
+
+
+    const mili = Date.now();
+    const formattedDate = new Date(mili);
+    const stringDate = formattedDate.getFullYear()+"-"+(formattedDate.getMonth()+1)+"-"+formattedDate.getDate();
 
     const Review = {
-        rating : 5,
-        review_date : "2021-04-16",
-        summary : "test summary",
-        title: "test title",
+        rating : rating,
+        review_date : stringDate, //YYYY-MM-DD
+        summary : summary,
+        title: title,
         product : {
-            productId: 1
+            productId : productId
         }
     }
 
+
     return (
+        
         <div id="createReviewContainer">
-            Create review
-            <div>
-                (IMAGE)(ITEM DESCRIPTION)
+            <div id="product-info-review">
+                <img id="product-image-review"src={image}></img>
+                <span id="product-name-review">{name}</span>
             </div>
             <hr></hr>
-            <div>
-            Overall rating
-            <br/>
-            <ReactStars
-                    count={5}
-                    edit={true}
-                    value={0}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
+            <div id="overall-rating">
+                Overall rating
+                <br/>
+                    <ReactStars
+                        count={5}
+                        edit={true}
+                        value={rating}
+                        activeColor="#FFA41C"
+                        size={15}
+                    />
             </div>
             <hr></hr>
             Rate features
@@ -97,16 +124,13 @@ function CreateReview(){
             <hr></hr>
             Add a headline
             <br/>
-            {/* <input  placeholder="title"
-            value={this.Review.title}
-            onChange={this.onTitleChange} required
-            /> */}
+            <input id="textTitle" placeholder="Review title" onChange={e => setTitle(e.target.value)}/>
             <br/>
             Add a written review
             <br/>
-            <input placeholder="Review summary"/>
+            <textarea id="textSummary" placeholder="Review summary" onChange={e => setSummary(e.target.value)}/>
             <br/>
-            <button onClick={()=>addReview(Review)}>submit</button>
+            <button onClick={()=>addReview(Review,productId)}>submit</button>
         </div>
     )
     

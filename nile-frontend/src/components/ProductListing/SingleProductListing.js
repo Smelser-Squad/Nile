@@ -21,15 +21,15 @@ function SingleProductListing() {
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
-    const[color,setProductColor]=useState('white');
+    const [color, setProductColor] = useState('white');
 
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -55,15 +55,16 @@ function SingleProductListing() {
             })
     }, [])
 
-    
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
-            
-            
-            {/* <ProductPhotos color={color} /> */}
+
+
+            <ProductPhotos />
             {/* <ProductColorSelector setProductColor={setProductColor}/> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
@@ -84,7 +85,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.vendor.name} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
@@ -98,8 +99,11 @@ function SingleProductListing() {
             <br />
             <MoreProducts />
             <QuestionAnswer />
+
             <ReviewSummary />
+
             <Reviews />
+
         </div>
 
     )
