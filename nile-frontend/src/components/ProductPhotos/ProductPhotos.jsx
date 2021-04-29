@@ -17,7 +17,7 @@ function ProductPhotos({color}) {
     const PhotoList = [];
     
 
-    function generatePhotos(color) {
+    
     if(data.length===0 || currColor !== color){
         getPhotos(productId, color).then((list)=>
         {
@@ -48,12 +48,9 @@ function ProductPhotos({color}) {
         );
         
     }
-    }
+    
 
-    useEffect(()=>{
-        generatePhotos(color);
-      }, [color])
-   
+    
 
     return(
         <div className="PhotoContainer">
@@ -73,9 +70,9 @@ function ProductPhotos({color}) {
        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
     }
 
+
+
 }
-
-
 
 
 
