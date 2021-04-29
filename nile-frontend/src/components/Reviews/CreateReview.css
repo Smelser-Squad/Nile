@@ -86,3 +86,16 @@
 #photo-submit-description {
   font-size: 12px;
 }
+
+#product-name-review {
+}
+
+#product-info-review {
+  display: flex;
+  justify-content: center;
+}
+
+#product-image-review {
+  color: green;
+  height: 150px;
+}
