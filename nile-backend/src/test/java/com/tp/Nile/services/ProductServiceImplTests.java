@@ -61,7 +61,7 @@ public class ProductServiceImplTests {
         vendor.setName("Best Buy");
 
         when(repo.findAll()).thenReturn(List.of(new Product(1, category, vendor, type, BigDecimal.valueOf(50.0), "Echo Dot", "description", "Amazon", 20, true,
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
 
 
         List<Product> products = service.getAllProducts();
@@ -99,7 +99,7 @@ public class ProductServiceImplTests {
         vendor.setName("Best Buy");
 
         when(repo.findById(1)).thenReturn(Optional.of(new Product(1, category, vendor, type, BigDecimal.valueOf(50.0), "Echo Dot", "description", "Amazon", 20, true,
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
 
 
         Product product = null;

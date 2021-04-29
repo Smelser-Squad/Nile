@@ -15,8 +15,6 @@ function Reviews() {
 
     const { productId } = useParams();
 
-    const test = document.URL.substring(43);
-
     // console.log(test)
     if(reviews.length===0){
         getReviews(productId).then((list)=>
