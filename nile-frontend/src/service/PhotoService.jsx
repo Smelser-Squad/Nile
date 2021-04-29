@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 
     async function getPhotos(productId, color){

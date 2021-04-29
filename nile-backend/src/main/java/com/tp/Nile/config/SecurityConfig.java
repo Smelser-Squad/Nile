@@ -78,7 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.jpg",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js")
+                        "/**/*.js",
+                        "/h2-console/**")
                 .permitAll()
                 .antMatchers("/api/auth/**")
                 .permitAll()
@@ -94,8 +95,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specifications/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productPhotos/**",
                         "/api/productPhotos/colors/**",
+                        "/api/charge",
+                        "/api/productPhotos/**",
                         "/api/qa/questions/**",
                         "/api/qa/getAnswers/**")
                 .permitAll()
@@ -107,7 +109,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/features/**",
                         "/api/specifications/**",
                         "/api/types/**",
-                        "/api/vendors/**")
+                        "/api/vendors/**",
+                        "/api/create-charge")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",

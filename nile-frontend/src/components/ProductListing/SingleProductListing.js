@@ -100,7 +100,7 @@ function SingleProductListing() {
             <br />
             <br />
             <MoreProducts />
-            <QuestionAnswer />
+            {/* <QuestionAnswer /> */}
             {/* <ReviewSummary />
             <Reviews /> */}
         </div>
