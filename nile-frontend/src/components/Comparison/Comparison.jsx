@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useTable } from 'react-table';
 import { getProduct, getTypeProducts } from '../../service/ProductService'
-import { getProductSpecsById } from '../../service/SpecService'
+import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import './Comparison.css'
 import Table from './Table'
 
@@ -11,24 +11,7 @@ async function createTableData(products, specIds) {
   let tableData = {};
   console.log("products.length: " + products.length)
   console.log("Specs: " + specIds);
-  for (let i = 0; i < specIds.length; i++) {
-    let currRow = {};
-    for (let j = 0; j < products.length; j++) {
-      console.log(products[j]);
-      getProductSpecsById(products[j].productId, specIds[i]).then(currProdSpec => {
-        if (currProdSpec != null) {
-          currRow[products[j].name] = currProdSpec.value;
-        } else {
-          currRow[products[j].name] = "N/A";
-        }
-        if (currRow["spec"] === undefined) {
-          currRow["spec"] = currProdSpec.spec.specName;
-        }
-      });
-    }
-    console.log(JSON.stringify(currRow));
-    data.push(currRow);
-  }
+  console.log("data: " + data);
   let firstColumn = {
     Header: "",
     accessor: "spec"
@@ -41,8 +24,31 @@ async function createTableData(products, specIds) {
     }
     columns.push(currColumn);
   }
+  for (let i = 0; i < specIds.length; i++) {
+    let currRow = {};
+    for (let j = 0; j < products.length; j++) {
+      console.log(products[j]);
+      let currProdSpec = await getProductSpecsById(products[j].productId, specIds[i])
+      let currSpec = await getSpecById(specIds[i])
+      console.log("currSpec: " + JSON.stringify(currSpec))
+
+      if (currProdSpec != null) {
+        currRow[products[j].name] = currProdSpec.value;
+      } else {
+        currRow[products[j].name] = "N/A";
+      }
+      currRow["spec"] = currSpec.specName;
+      console.log("currRow: " + JSON.stringify(currRow));
+    }
+    data.push(currRow);
+    
+    //data.push(currRow);
+  }
+  
   tableData["data"] = data;
+  console.log("tableData: " + JSON.stringify(tableData));
   tableData["columns"] = columns;
+  console.log("tableData: " + JSON.stringify(tableData));
   return tableData;
 }
 
@@ -69,17 +75,18 @@ function Comparison() {
         for (let i = 0; i < typeProducts.length; i++) {
           console.log("Current length of products specs: " + typeProducts[i].productSpecs.length);
           for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
-            console.log("Current product specs: " + JSON.stringify(typeProducts[i].productSpecs));
-            if (!allSpecIds.includes(typeProducts[i].productsSpecs[j].id.specId)) {
-              allSpecIds.push(typeProducts[i].productsSpecs[j].id.specId);
+            let currSpecId = typeProducts[i].productSpecs[j].id.specId;
+            console.log("currSpecId: " + currSpecId);
+            if (!allSpecIds.includes(currSpecId)) {
+              allSpecIds.push(currSpecId);
               console.log("ADDING SPEC...");
               console.log(allSpecIds);
             }
           }
         }
         createTableData(typeProducts, allSpecIds).then(res => {
+          console.log("createTable res: " + JSON.stringify(res));
           setTableData(res);
-          console.log("Table data: " + JSON.stringify(tableData));
           setColumns(tableData['columns']);
           setData(tableData.data);
           setLoading(false);
@@ -94,7 +101,7 @@ function Comparison() {
 
   return (
     <div className="Comparison">
-      Test
+      <Table columns={tableData["columns"]} data={tableData["data"]} />
     </div>
   )
 }
