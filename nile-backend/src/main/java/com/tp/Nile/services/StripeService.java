@@ -25,17 +25,10 @@ public class StripeService {
         try {
             Stripe.apiKey = API_SECRET_KEY;
             Map<String, Object> chargeParams = new HashMap<>();
-
-//            chargeParams.put("amount", 200);
             chargeParams.put("amount", request.getAmount());
-
             chargeParams.put("currency", "usd");
-//            chargeParams.put("description", "Charge for " + email);
+            chargeParams.put("description", "Charge for " + request.getEmail());
             chargeParams.put("source", "tok_visa"); // ^ obtained with Stripe.js
-
-
-//            chargeParams.put("source", "tok_visa");
-
             //create a charge
             Charge charge = Charge.create(chargeParams);
             id = charge.getId();
