@@ -97,7 +97,7 @@ public class QAServiceImplTest {
         addedQuestions.add(quest);
         try {
             when(pService.getProductById(1)).thenReturn(prod);
-            when(qRepo.findByProduct(prod)).thenReturn(addedQuestions);
+            when(qRepo.findByProductOrderByVotesDesc(prod)).thenReturn(addedQuestions);
             addedQuestions = service.getQuestions(1);
         } catch (InvalidProductIdException | NullProductIdException e) {
             fail("Exception failed");
