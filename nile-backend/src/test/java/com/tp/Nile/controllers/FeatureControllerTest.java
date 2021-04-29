@@ -57,7 +57,6 @@ public class FeatureControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("Bluetooth"));
     }
 
@@ -77,7 +76,6 @@ public class FeatureControllerTest {
     void getFeatureByFeatureId() throws Exception {
         this.mockMvc.perform(get("/api/features/{featureId}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.featureId").exists())
                 .andExpect(jsonPath("$.name").value("Bluetooth"));
     }
