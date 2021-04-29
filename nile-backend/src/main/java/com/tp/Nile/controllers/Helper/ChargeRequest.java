@@ -1,36 +1,33 @@
 package com.tp.Nile.controllers.Helper;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class ChargeRequest {
-    String token;
-    Integer amount;
-    String email;
+import javax.persistence.*;
+import java.io.Serializable;
 
-    public ChargeRequest(){
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "charge")
+public class ChargeRequest implements Serializable {
 
-    }
-    public ChargeRequest(String token, Integer amount, String email) {
-        this.token = token;
-        this.amount = amount;
-        this.email = email;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "charge_id")
+    private Integer chargeId;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    @Column(name = "token", nullable = false)
+    private String token;
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
+    @Column(name = "amount", nullable = false)
+    private Integer amount;
 
-    public String getEmail() {
-        return email;
-    }
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    public String getToken() {
-        return token;
-    }
 
-    public Integer getAmount() {
-        return amount;
-    }
 }
