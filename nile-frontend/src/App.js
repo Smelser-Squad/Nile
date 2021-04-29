@@ -33,13 +33,8 @@ function App() {
                         <Checkout />
                     </Route>
 
-                    <Route exact path="/signin">
-                        <SignIn />                 
-                    </Route>
-
-                    <Route exact path="/signup">
-                        <SignUp />
-                    </Route>
+                    <Route exact path="/signin" component={SignIn}></Route>
+                    <Route exact path="/signup" component={SignUp}></Route>
 
                     <Route exact path="/payment">
                         <Elements stripe={stripekey}>
