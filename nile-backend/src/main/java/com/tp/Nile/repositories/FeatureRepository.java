@@ -13,4 +13,7 @@ import java.util.List;
 @Profile({ "dev", "test" })
 public interface FeatureRepository extends JpaRepository<Feature,Integer> {
 
+    @Query("select p.features from Product p where p.productId=:productId")
+    List<Feature> getFeaturesByProductId(@Param("productId") Integer productId);
+
 }

@@ -34,5 +34,4 @@ public class Feature implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Product> products;
 
-
 }
