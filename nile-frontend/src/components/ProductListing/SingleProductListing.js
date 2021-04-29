@@ -65,7 +65,7 @@ function SingleProductListing() {
             
             
             <ProductPhotos/>
-            {/* <ProductColorSelector setProductColor={setProductColor}/> */}
+            <ProductColorSelector setProductColor={setProductColor}/>
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
