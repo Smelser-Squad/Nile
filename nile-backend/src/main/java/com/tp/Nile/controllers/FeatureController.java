@@ -1,10 +1,7 @@
 package com.tp.Nile.controllers;
 
 
-import com.tp.Nile.exceptions.InvalidCategoryIdException;
-import com.tp.Nile.exceptions.InvalidFeatureIdException;
-import com.tp.Nile.exceptions.NullCategoryIdException;
-import com.tp.Nile.exceptions.NullFeatureIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Feature;
 import com.tp.Nile.services.FeatureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ public class FeatureController {
 
     @Autowired
     FeatureServiceImpl service;
-
 
     @PostMapping()
     public ResponseEntity addFeature(@RequestBody Feature feature){
@@ -44,6 +40,14 @@ public class FeatureController {
         }
     }
 
+    @GetMapping("/byproduct/{productId}")
+    public ResponseEntity getFeaturesByProductId(@PathVariable Integer productId) {
+        try {
+            return ResponseEntity.ok(service.getFeaturesByProductId(productId));
+        } catch (NullProductIdException | InvalidProductIdException | NullProductObjectException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
 
     @PutMapping()
     public ResponseEntity updateFeature(@RequestBody Feature updatedFeature){
