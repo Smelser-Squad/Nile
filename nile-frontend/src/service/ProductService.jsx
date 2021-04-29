@@ -23,5 +23,11 @@ async function getBrandProducts(brand){
 
     return(data);
 }
-export {getProducts,getProduct, getBrandProducts}
+async function getTypeProducts(type){
+    const products=await axios.get(`http://localhost:80/api/products/type/${type}`);
+    const data=products.data;
+
+    return(data);
+}
+export {getProducts,getProduct, getBrandProducts, getTypeProducts}
 
