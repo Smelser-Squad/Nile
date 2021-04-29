@@ -1,10 +1,8 @@
 import './CreateReview.css'
 import ReactStars from "react-rating-stars-component";
 import {addReview} from "../../service/ReviewService"
-import { Radio } from '@material-ui/core';
 import React, { useState } from 'react';
 import {getProduct} from '../../service/ProductService';
-import { PrintDisabled } from '@material-ui/icons';
 import { useParams } from 'react-router';
 
 
@@ -54,56 +52,56 @@ function CreateReview(){
     return (
         
         <div id="createReviewContainer">
+            <h2>Create Review</h2>
             <div id="product-info-review">
                 <img id="product-image-review"src={image}></img>
                 <span id="product-name-review">{name}</span>
             </div>
-            <hr></hr>
+            <hr class="divide"></hr>
             <div id="overall-rating">
-                Overall rating
-                <br/>
+                <h3>Overall Rating</h3>
                     <ReactStars
                         count={5}
                         edit={true}
                         value={rating}
                         activeColor="#FFA41C"
-                        size={15}
+                        size={40}
                     />
             </div>
-            <hr></hr>
-            Rate features
-            <br/>
-            (FEATURE 1)
-            <ReactStars
-                    count={5}
-                    edit={true}
-                    value={0}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
-            <br/>
-            <div>
-            (FEATURE 2)
-            <ReactStars
-                    count={5}
-                    edit={true}
-                    value={0}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
-            </div>
-            <div>
-            (FEATURE 3)
-            <ReactStars
-                    count={5}
-                    edit={true}
-                    value={0}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
+            <hr class="divide"></hr>
+            <div id="feature-rating">
+                <h3>Rate Features</h3>
+                <span>support</span>
+                <ReactStars
+                        count={5}
+                        edit={true}
+                        value={0}
+                        activeColor="#FFA41C"
+                        size={30}
+                    />
+                <div>
+                <span>for working out</span>
+                <ReactStars
+                        count={5}
+                        edit={true}
+                        value={0}
+                        activeColor="#FFA41C"
+                        size={30}
+                    />
+                </div>
+                <div>
+                <span>comfort</span>
+                <ReactStars
+                        count={5}
+                        edit={true}
+                        value={0}
+                        activeColor="#FFA41C"
+                        size={30}
+                    />
+                </div>
             </div>
             <div id="sizeDiv">
-                <span>(HOW IT FITS)</span>
+                <span>How does this product fit?</span>
                 <div id="sizeButtonDiv">
                     <input type="radio" class="sizeReview" id="size1" name="size"></input>
                     <input type="radio" class="sizeReview" id="size2" name="size"></input>
@@ -111,26 +109,26 @@ function CreateReview(){
                     <input type="radio" class="sizeReview" id="size4" name="size"></input>
                     <input type="radio" class="sizeReview" id="size5" name="size"></input>
                 </div>
-                <div id="sizeDescription">
+                <div id="size-description">
                     <span>Too small</span>
                     <span>as expected</span>
                     <span>Too large</span>
                 </div>
             </div>
-            <hr></hr>
-            Add a photo
-            <br/>
-            (PHOTO SUBMIT)
-            <hr></hr>
-            Add a headline
-            <br/>
-            <input id="textTitle" placeholder="Review title" onChange={e => setTitle(e.target.value)}/>
-            <br/>
-            Add a written review
-            <br/>
-            <textarea id="textSummary" placeholder="Review summary" onChange={e => setSummary(e.target.value)}/>
-            <br/>
-            <button onClick={()=>addReview(Review,productId)}>submit</button>
+            <hr class="divide"></hr>
+            <div id="photo-submit">
+                <h3>Add a photo</h3>
+                <span id="photo-submit-description">shoppers find images and videos more helpful than text alone</span>
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23 0v20h-8v-2h6v-16h-18v16h6v2h-8v-20h22zm-12 13h-4l5-6 5 6h-4v11h-2v-11z"/></svg>
+            </div>
+            <hr class="divide"></hr>
+            <div id="review-writting">
+                <h3>Add a headline</h3>
+                <input id="text-title" alt="image of product" placeholder="What's important to know?" onChange={e => setTitle(e.target.value)}/>
+                <h3>Add a written review</h3>
+                <textarea id="text-summary" placeholder="What did you like or dislike? How did you use this product?" onChange={e => setSummary(e.target.value)}/>
+                <button onClick={()=>addReview(Review,productId)}>submit</button>
+            </div>
         </div>
     )
     
