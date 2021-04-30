@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ProductPhotos.css';
 import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
@@ -32,11 +32,12 @@ export function ProductPhotos({color}) {
             const magnifier = PhotoList.map((photo) =>
                 <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
             setData(data);
+            setCurrColor(color);
             setMag(magnifier);
             setCurrColor(color);
         }
         );
-       
+        
     }
     
     return(

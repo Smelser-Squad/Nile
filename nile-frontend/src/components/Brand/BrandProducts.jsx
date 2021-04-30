@@ -20,10 +20,9 @@ function BrandProducts(){
             );
             const cards = ProductList.map((product) =>
             <div className="BrandProduct">
-            <Link to={`/singleProductListing/${product.productId}`}>{product.name} | {product.photos[0].color}</Link>
+            <Link to={`/singleProductListing/${product.productId}`}>{product.name} - {product.photos[0].color}</Link>
             <img id="product-image" src={product.photos[0].imageSrc} alt=""></img>
             <div className="BrandProduct_info">
-            <h2>${product.price}</h2>
             <div class="row">
             <ReactStars
                     count={5}
@@ -36,6 +35,8 @@ function BrandProducts(){
           
             <p id="review-count">{product.reviews.length}</p>
             </div>
+            <h2>${product.price}</h2>
+         
             </div>
         </div>
             );

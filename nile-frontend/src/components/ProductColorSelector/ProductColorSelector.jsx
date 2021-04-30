@@ -4,18 +4,24 @@ import './ProductColorSelector.css'
  import Radio from '@material-ui/core/Radio';
  import FormControlLabel from '@material-ui/core/FormControlLabel';
  import { useParams } from 'react-router';
-import {  RadioGroup } from '@material-ui/core';
+import { colors, RadioGroup } from '@material-ui/core';
+import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx'
 
-
+ // import axios from 'axios';
  
  
- export function ProductColorSelector({setProductColor,defaultColor}){
+ 
+ export function ProductColorSelector({setProductColor, defaultColor}){
  
     const [color, setColor] = useState('')
     const {productId}=useParams();
     const [button,setButton]=useState('');
     const colorList = [];
+
+
+    // setDefaultColor(color[0]);
     
+
     const onRadioClick=(color)=>{
         setProductColor(color);
         
