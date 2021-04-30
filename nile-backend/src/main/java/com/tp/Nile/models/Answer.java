@@ -32,7 +32,6 @@ public class Answer implements Serializable {
 
 
     @JsonIgnoreProperties(value = {"answers"})
-
     private Question question;
 
     @ManyToOne(fetch = FetchType.EAGER)

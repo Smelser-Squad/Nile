@@ -74,7 +74,6 @@ public class RoleServiceImpl implements RoleService {
 
         if (edited != null) {
             edited.setId(role.getId());
-            edited.setUsers(role.getUsers());
         }
         else
             throw new NullRoleException("Role can not be null");
