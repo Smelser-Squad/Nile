@@ -1,17 +1,20 @@
-import React from 'react';
-import './Order.css';
+import './Order.css ';
 
-
-function Order() {
-
-
+function Order({ chargeId, confirmationId, amount, email }) {
+    amount = amount / 100;
 
     return (
         <div className='order'>
 
+            <p className="order_token" >{confirmationId}</p>
+            <p className="order_amount">{amount} </p>
+            <p className="order_email">{email}</p>
+
+
+
 
         </div>
-    )
+    );
 }
 
 export default Order;
