@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { withSnackbar } from 'notistack';
 import { signup, checkEmailAvailability, checkUsernameAvailability } from '../../util/APIUtils';
 import { 
   NAME_MIN_LENGTH, NAME_MAX_LENGTH, 
@@ -52,7 +53,8 @@ class SignUp extends Component {
         },
         password: {
             value: ''
-        }
+        },
+        open: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -84,11 +86,12 @@ class SignUp extends Component {
   };
     signup(signupRequest)
       .then(response => {
-        // window.location.replace(process.env.REACT_APP_SIGNIN || "http://localhost:3000/signin");
+        this.props.enqueueSnackbar('User registered successfully!', {
+          variant: 'success', anchorOrigin: { vertical: 'bottom', horizontal: 'center' }});
         this.props.history.push("/signin");
-        // TODO: display success message using Snackbars
       }).catch(error => {
-        // TODO: display error message using Snackbars
+        this.props.enqueueSnackbar('Something went wrong!', {
+          variant: 'error', anchorOrigin: { vertical: 'bottom', horizontal: 'center '}});
       })
   }
 
@@ -112,7 +115,11 @@ render() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+        <form 
+          className={classes.form} 
+          noValidate
+          onSubmit={this.handleSubmit}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -190,6 +197,7 @@ render() {
             color="primary"
             className={classes.submit}
             disabled={this.isFormInvalid()}
+            onClick={this.handleClick}
           >
             Sign Up
           </Button>
@@ -200,7 +208,7 @@ render() {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </form> 
       </div>
     </Container>
   );
@@ -403,4 +411,4 @@ validatePassword(password) {
 }
 }
 
-export default withStyles(styles, { withTheme: true })(SignUp);
+export default withSnackbar(withStyles(styles, { withTheme: true })(SignUp));
