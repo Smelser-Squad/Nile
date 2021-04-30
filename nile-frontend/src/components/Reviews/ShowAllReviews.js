@@ -3,24 +3,40 @@ import  "./ShowAllReviews.css";
 import {useParams} from 'react-router'
 import {getProduct} from '../../service/ProductService';
 import {getReviews} from '../../service/ReviewService';
+import SingleReview from './SingleReview';
+
 
 
 function ShowAllReviews(){
 
-    const[allReviews, setAllReviews] = useState();
+    const[allReviews, setAllReviews] = useState([]);
     const { productId } = useParams();
     // const { productName } = useParams();
 
-    getReviews(productId).then((name)=>{
-        setAllReviews(allReviews);
-    })
+    const reviewsList =[];
 
-    console.log(productId);
-    // console.log(productName);
+    getReviews(productId).then((list)=>{
+        list.map((summary)=>
+        reviewsList.push(summary));
+        console.log(reviewsList);
+        const reviews = reviewsList.map((review)=>
+        
+
+        <SingleReview
+        key={review.reviewId}
+        helpful={review.helpful}
+        rating={review.rating}
+        reviewDate={review.reviewDate}
+        title={review.title}
+        summary={review.summary}/>
+        );
+        console.log(allReviews);
+        setAllReviews(reviews);
+    })
 
     return(
         <div class="all-reviews-container">
-            Reviews will be here
+            
             {allReviews}
 
         </div>
