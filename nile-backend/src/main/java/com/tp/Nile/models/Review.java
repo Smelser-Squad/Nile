@@ -50,7 +50,6 @@ public class Review implements Serializable {
     private String title;
 
     @Column(name = "review_date", nullable = false)
-
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -59,12 +58,12 @@ public class Review implements Serializable {
 
     @OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "review-photos")
     private List<ReviewPhoto> reviewPhotos = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @JsonBackReference(value = "product-reviews")
     private Product product;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
