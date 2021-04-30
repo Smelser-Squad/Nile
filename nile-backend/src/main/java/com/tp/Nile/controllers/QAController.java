@@ -62,7 +62,7 @@ public class QAController {
     }
 
     //update votes on question
-    @PutMapping("/updateVotes/{questionId}/{votes}")
+    @PostMapping("/updateVotes/{questionId}/{votes}")
     public ResponseEntity updateVote(@PathVariable("questionId") Integer questionId, @PathVariable("votes") Integer votes){
         try {
             return ResponseEntity.ok(service.updateVote(questionId, votes));
