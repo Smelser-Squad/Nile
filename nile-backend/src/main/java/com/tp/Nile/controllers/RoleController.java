@@ -1,21 +1,15 @@
 package com.tp.Nile.controllers;
 
-import com.tp.Nile.exceptions.*;
+import com.tp.Nile.exceptions.InvalidRoleIdException;
+import com.tp.Nile.exceptions.NullRoleException;
+import com.tp.Nile.exceptions.NullRoleIdException;
 import com.tp.Nile.models.Role;
-import com.tp.Nile.models.User;
-import com.tp.Nile.payload.UserIdentityAvailability;
-import com.tp.Nile.payload.UserSummary;
 import com.tp.Nile.repositories.RoleRepository;
-import com.tp.Nile.repositories.UserRepository;
-import com.tp.Nile.security.CurrentUser;
-import com.tp.Nile.security.UserPrincipal;
 import com.tp.Nile.services.RoleServiceImpl;
-import com.tp.Nile.services.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/roles")

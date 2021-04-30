@@ -14,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import java.io.UnsupportedEncodingException;
+import java.time.Instant;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -87,7 +88,7 @@ public class ReviewControllerTest {
                 .andExpect(jsonPath("$.rating").value(4));
     }
 
-    //    @Test
+//    @Test
 //    @Order(5)
 //    public void getReviewByUserIdGoldenPath() throws Exception {
 //
@@ -102,20 +103,27 @@ public class ReviewControllerTest {
 //
 //        newList.add(newReview);
 //
-//        User newUser = new User();
-//        newUser.setUserId(1);
+//        User user = new User();
+//        user.setName("sample name");
+//        user.setEmail("sample2@email.com");
+//        user.setUsername("username");
+//        user.setPassword("password");
+//        user.setCreatedAt(Instant.now());
+//        user.setUpdatedAt(Instant.now());
+//        user.getRoles().add(new Role(RoleName.ROLE_ADMIN));
+//        user.setEnabled(true);
 //
-//        newReview.setUser(newUser);
+//        newReview.setUser(user);
 //
 //        this.mockMvc.perform(get("/api/reviews/by/{userId}", 1)
-
+//
 //                .contentType(MediaType.APPLICATION_JSON))
 //                .andExpect(jsonPath("$.reviewId").exists())
 //                .andExpect(jsonPath("$.reviewId").value(5))
 //                .andExpect(jsonPath("$.summary").value("sample summary"))
 //                .andExpect(jsonPath("$.title").value("sample title"))
 //                .andExpect(jsonPath("$.rating").value(3));
-
+//
 //
 //    }
     @Test
@@ -142,13 +150,13 @@ public class ReviewControllerTest {
                 .andExpect(jsonPath("$.rating").value(1));
 
     }
-//    @Test
-//    @Order(6)
-//    public void deletingReviewAndGettingCorrectMessage() throws Exception {
-//        this.mockMvc.perform(delete("/api/reviews/{reviewId}", 2))
-//                .andExpect(result -> assertEquals("Review " + 2 + " deleted",
-//                        result.getResponse().getContentAsString()));
-//    }
+    @Test
+    @Order(6)
+    public void deletingReviewAndGettingCorrectMessage() throws Exception {
+        this.mockMvc.perform(delete("/api/reviews/{reviewId}", 1))
+                .andExpect(result -> assertEquals("Review " + 1 + " deleted",
+                        result.getResponse().getContentAsString()));
+    }
 //    @Test
 //    @Order(7)
 //    public void deletingReviewWithInvalidIdAndGettingIncorrectMessage() throws Exception {
