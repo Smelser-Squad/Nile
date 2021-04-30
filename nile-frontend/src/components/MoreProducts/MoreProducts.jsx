@@ -58,7 +58,7 @@ function MoreProducts() {
                 {text}
             </div>
         );
-    };
+};
 
     const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
     const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
