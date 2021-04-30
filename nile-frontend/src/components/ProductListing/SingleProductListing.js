@@ -7,7 +7,7 @@ import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
 import {ProductColorSelector} from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
-import Comparison from '../Comparison/Comparison';
+import Comparison from '../Comparison/Comparison.jsx';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
@@ -30,8 +30,8 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -57,11 +57,12 @@ function SingleProductListing() {
             })
     }, [])
 
-    
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
+
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
             <ProductPhotos color={color}/>
@@ -86,7 +87,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.vendor.name} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
@@ -98,10 +99,16 @@ function SingleProductListing() {
 
             <br />
             <br />
+            {/* <Comparison
+                product={Product}
+            /> */}
             <MoreProducts />
-            <QuestionAnswer />
+            {/* <QuestionAnswer /> */}
+
             <ReviewSummary />
+
             <Reviews />
+
         </div>
 
     )

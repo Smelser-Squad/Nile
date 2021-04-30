@@ -12,5 +12,5 @@ import java.util.Set;
 @Profile({ "dev", "test" })
 public interface QuestionRepository extends JpaRepository<Question,Integer> {
 
-    Set<Question> findByProduct(Product product);
+    Set<Question> findByProductOrderByVotesDesc(Product product);
 }
