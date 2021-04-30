@@ -105,7 +105,7 @@ function SingleProductListing() {
         
             <Reviews />
             <Link 
-            to={`./all-product-reviews/${Product.name}`} >
+            to={`./all-product-reviews/${Product.productId}`} >
                 See all reviews
             </Link>
         </div>

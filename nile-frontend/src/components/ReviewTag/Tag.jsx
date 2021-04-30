@@ -40,18 +40,18 @@ const Tag = ({reviews,sendDataToParent}) =>
             wordCounts[words[j]] = (wordCounts[words[j]] || 0) + 1;
         }
     }
-    console.log(wordCounts)
+    // console.log(wordCounts)
 
 
 for (const key in wordCounts) {
-    console.log(key);
+    // console.log(key);
     if (Object.hasOwnProperty.call(wordCounts, key)) {
         const element = wordCounts[key];
         //push phrases into tag array if it's occurence is above a certain amount
         //and it isn't already present in the array
         if(element>=2 && !tagArr.includes(key)&& !commonWords.includes(key))
         {
-            console.log(element)
+            // console.log(element)
             tagArr.push(key);
         }
         
