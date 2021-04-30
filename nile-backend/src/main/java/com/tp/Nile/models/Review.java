@@ -50,7 +50,6 @@ public class Review implements Serializable {
     private String title;
 
     @Column(name = "review_date", nullable = false)
-
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
