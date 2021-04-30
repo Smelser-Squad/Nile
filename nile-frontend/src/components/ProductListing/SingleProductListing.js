@@ -22,17 +22,17 @@ function SingleProductListing() {
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
-    const [color,setProductColor]=useState(defaultColor);
+    const [color, setProductColor] = useState(defaultColor);
     console.log(typeof defaultColor);
 
-    
+
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -58,16 +58,16 @@ function SingleProductListing() {
             })
     }, [])
 
-    
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
-            
-            
-            <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
+
+
+            <ProductPhotos color={color} />
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
