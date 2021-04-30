@@ -1,3 +1,8 @@
 INSERT INTO "role" ("name")
-SELECT names FROM (VALUES ('ROLE_USER'), ('ROLE_ADMIN')) as names
-WHERE NOT EXISTS (SELECT * FROM "role");
+SELECT 'ROLE_USER'
+WHERE
+    NOT EXISTS (
+        SELECT "name"
+            FROM "role"
+            WHERE "name" = 'ROLE_USER'
+    );
