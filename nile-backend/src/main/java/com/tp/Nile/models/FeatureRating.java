@@ -35,7 +35,7 @@ public class FeatureRating implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Feature.class)
     @JoinColumn(name = "feature_id")
-    @JsonBackReference(value = "feature-ratings")
+    @JsonBackReference(value="feature-rating")
     private Feature feature;
 
     @Column(name = "rating", nullable = false)

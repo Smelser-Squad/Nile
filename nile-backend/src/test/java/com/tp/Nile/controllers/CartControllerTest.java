@@ -1,40 +1,45 @@
-package com.tp.Nile.controllers;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tp.Nile.models.Cart;
-import com.tp.Nile.models.Role;
-import com.tp.Nile.models.RoleName;
-import com.tp.Nile.models.User;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+//package com.tp.Nile.controllers;
+//
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import com.tp.Nile.models.Cart;
+//import com.tp.Nile.models.Role;
+//import com.tp.Nile.models.RoleName;
+//import com.tp.Nile.models.User;
+//import com.tp.Nile.payload.SignUpRequest;
+//import com.tp.Nile.security.UserPrincipal;
+//import org.junit.jupiter.api.MethodOrderer;
+//import org.junit.jupiter.api.Order;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.TestMethodOrder;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.context.annotation.Import;
+//import org.springframework.http.MediaType;
+//import org.springframework.security.test.context.support.WithMockUser;
+//import org.springframework.test.context.ActiveProfiles;
+//import org.springframework.test.web.servlet.MockMvc;
+//import org.springframework.test.web.servlet.MvcResult;
+//
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.HashSet;
+//
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertNotNull;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//
 //@SpringBootTest
 //@AutoConfigureMockMvc
 //@ActiveProfiles("test")
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CartControllerTest {
-
+//public class CartControllerTest {
+//
 //    @Autowired
 //    MockMvc mockMvc;
 //
@@ -52,22 +57,32 @@ public class CartControllerTest {
 //
 //    @Test
 //    @Order(2)
+//    @WithMockUser(username = "user1", password = "pwd", roles = "USER")
 //    void addCart() throws Exception {
 //        Cart cart = new Cart();
-//        User user = new User();
-//        user.setName("sample name");
-//        user.setUsername("username");
-//        user.setPassword("password");
-//        user.setEmail("random@email.com");
-//        user.getRoles().add(new Role(RoleName.ROLE_ADMIN));
-//        user.setEnabled(true);
-//        cart.setUser(user);
+//
+////        SignUpRequest signUpRequest = new SignUpRequest();
+////        signUpRequest.setName("sample name");
+////        signUpRequest.setUsername("username");
+////        signUpRequest.setPassword("password");
+////        signUpRequest.setEmail("random@email.com");
+////
+////        MvcResult result = this.mockMvc.perform(post("/api/auth/signup")
+////                .content(asJsonString(signUpRequest))
+////                .contentType(MediaType.APPLICATION_JSON)
+////                .accept(MediaType.APPLICATION_JSON))
+////                .andDo(print())
+////                .andExpect(status().isCreated())
+////                .andExpect(jsonPath("$.name").value("sample name"))
+////                .andReturn();
+////
+////        UserPrincipal user = this.mapper.readValue(result.getResponse().getContentAsString(), UserPrincipal.class);
+////        cart.setUser(user);
 //
 //        LocalDate date = LocalDate.of(2021, 04, 22);
 //        cart.setPurchaseDate(date);
 //        cart.setStatus("Saved");
 //        cart.setCartProducts(new ArrayList<>());
-//
 //
 //        this.mockMvc.perform(post("/api/carts")
 //                .content(asJsonString(cart))
@@ -75,10 +90,10 @@ public class CartControllerTest {
 //                .accept(MediaType.APPLICATION_JSON))
 //                .andDo(print())
 //                .andExpect(status().isCreated())
-//                .andExpect(jsonPath("$.user.username").value("username"))
-//                .andExpect(jsonPath("$.user.password").value("password"))
-//                .andExpect(jsonPath("$.user.role").value("admin"))
-//                .andExpect(jsonPath("$.user.enabled").value(true))
+////                .andExpect(jsonPath("$.user.username").value("username"))
+////                .andExpect(jsonPath("$.user.password").value("password"))
+////                .andExpect(jsonPath("$.user.role").value("admin"))
+////                .andExpect(jsonPath("$.user.enabled").value(true))
 //                .andExpect(jsonPath("$.purchaseDate").value("2021-04-22"))
 //                .andExpect(jsonPath("$.status").value("Saved"));
 //
@@ -146,14 +161,14 @@ public class CartControllerTest {
 //                .andExpect(result -> assertEquals("Cart 1 deleted",
 //                        result.getResponse().getContentAsString()));
 //    }
-
-    static String asJsonString(final Object obj) {
-        try {
-            final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-            final String jsonContent = mapper.writeValueAsString(obj);
-            return jsonContent;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
+//
+//    static String asJsonString(final Object obj) {
+//        try {
+//            final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+//            final String jsonContent = mapper.writeValueAsString(obj);
+//            return jsonContent;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//}
