@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { useTable } from 'react-table';
 import { getProduct, getTypeProducts } from '../../service/ProductService'
 import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import './Comparison.css'
