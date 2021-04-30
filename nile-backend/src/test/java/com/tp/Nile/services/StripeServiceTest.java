@@ -31,7 +31,7 @@
 //    public void createChargeTest(){
 //        String id = null;
 //
-////        Stripe.apiKey = API_SECRET_KEY;
+//        Stripe.apiKey = API_SECRET_KEY;
 //
 //        ChargeRequest request = new ChargeRequest(1, "token", 200,"yesrat@gmail.com");
 //
