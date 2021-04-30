@@ -24,11 +24,7 @@ public class FeatureRatingServiceImpl implements FeatureRatingService {
 
     @Override
     public FeatureRating addFeatureRating(FeatureRating rating) throws NullRatingIdException, NullFeatureRatingException, InvalidRatingIdException {
-        if (rating.getRatingId() == null)
-            throw new NullRatingIdException("Rating id can not be null");
-        else if (rating.getRatingId() < 0)
-            throw new InvalidRatingIdException("Rating id is invalid");
-        else if (rating.getFeature() == null || rating.getProduct() == null || rating.getRating() == null)
+        if (rating.getFeature() == null || rating.getProduct() == null || rating.getRating() == null)
             throw new NullFeatureRatingException("There is a null value in the object");
         else
             return repo.saveAndFlush(rating);

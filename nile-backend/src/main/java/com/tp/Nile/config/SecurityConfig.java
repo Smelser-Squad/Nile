@@ -96,10 +96,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/charge",
-                        "/api/productPhotos/**",
+                        "/api/productPhoto/**",
                         "/api/qa/questions/**",
                         "/api/qa/getAnswers/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/products/**",
@@ -111,7 +112,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**,",
+                        "/api/qa/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
@@ -122,7 +125,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,
                         "/api/products/**",
@@ -133,7 +137,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
