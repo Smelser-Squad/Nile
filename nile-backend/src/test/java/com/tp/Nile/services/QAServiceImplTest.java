@@ -1,9 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidProductIdException;
-import com.tp.Nile.exceptions.InvalidQAIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
-import com.tp.Nile.exceptions.NullQAIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Question;
@@ -74,7 +71,7 @@ public class QAServiceImplTest {
         Answer addedAnswer = null;
         try {
             addedAnswer = service.addAnswer(ans,1,1);
-        } catch (InvalidQAIdException | NullQAIdException e) {
+        } catch (InvalidQAIdException | NullQAIdException | NullUserException | InvalidUserIdException | NullUserIdException e) {
             fail("Exception failed");
         }
         addedAnswer.setAnswerId(1);

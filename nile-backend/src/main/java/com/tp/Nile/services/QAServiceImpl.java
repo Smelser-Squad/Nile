@@ -1,12 +1,10 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidProductIdException;
-import com.tp.Nile.exceptions.InvalidQAIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
-import com.tp.Nile.exceptions.NullQAIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Question;
+import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.AnswerRepository;
 import com.tp.Nile.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,9 @@ public class QAServiceImpl implements QAService{
     @Autowired
     ProductServiceImpl pRepo;
 
+    @Autowired
+    UserServiceImpl userService;
+
 
     @Override
     public Question addQuestion(Question question, Integer productId) throws NullProductIdException, InvalidProductIdException {
@@ -36,9 +37,10 @@ public class QAServiceImpl implements QAService{
     }
 
     @Override
-    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException {
+    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException, NullUserException, InvalidUserIdException, NullUserIdException {
         Question que = this.getQuestionById(questionId);
-        //TODO: NEED USER SERVICE
+        User usuario = userService.getUserById(userId);
+        answer.setUser(usuario);
         answer.setQuestion(que);
         return aRepo.saveAndFlush(answer);
 
