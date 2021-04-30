@@ -9,7 +9,10 @@ import SingleReview from './SingleReview';
 
 function ShowAllReviews(){
 
+    const [showLength, setLength] = useState(3);
     const[allReviews, setAllReviews] = useState([]);
+    const[mostPositive, setPositiove]= useState([]);
+    const[mostNegative, setNegative]=useState([]);
     const { productId } = useParams();
     // const { productName } = useParams();
 
@@ -19,7 +22,7 @@ function ShowAllReviews(){
         list.map((summary)=>
         reviewsList.push(summary));
         console.log(reviewsList);
-        const reviews = reviewsList.map((review)=>
+        const reviews = reviewsList.slice(0,showLength).map((review)=>
         
 
         <SingleReview
@@ -34,11 +37,16 @@ function ShowAllReviews(){
         setAllReviews(reviews);
     })
 
+    const showMoreReviews = () =>
+    {
+        setLength(showLength+3);
+    }
+
     return(
         <div class="all-reviews-container">
             
             {allReviews}
-
+            <button onClick={showMoreReviews}>Show More</button>
         </div>
     )
 
