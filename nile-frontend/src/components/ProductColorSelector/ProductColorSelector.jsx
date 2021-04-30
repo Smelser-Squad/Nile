@@ -10,7 +10,7 @@ import { forceUpdate } from '../ProductPhotos/ProductPhotos.jsx'
  
  
  
- export function ProductColorSelector({setProductColor}){
+ export function ProductColorSelector({setProductColor, defaultColor}){
  
     const [color, setColor] = useState('')
     const {productId}=useParams();
@@ -25,27 +25,23 @@ const fetchColors= async ()=>{
     const apiCall=await fetch (`http://localhost:80/api/productPhotos/colors/${productId}`);
     const color=await apiCall.json();
     setColor(color);
-    
-   
 }
 
 if(color.length===0){
-getListColors(productId).then((list)=>
-{
-  list.map((colorName)=>
-  colorList.push(colorName),
-  );
+  getListColors(productId).then((list)=>
+  {
+    list.map((colorName)=>
+    colorList.push(colorName),
+    );
 
-  const button = colorList.map((color) => 
-  
+    const button = colorList.map((color) => 
       <label>
         <input type="radio" value={color} label={color} onClick={() => onRadioClick(color)}/> {color}
-        </label>
-  );
-  setButton(button)
-        }
-  );
-      }    
+      </label>
+    );
+    setButton(button)
+  });
+}    
   
  useEffect(()=>{
   fetchColors();

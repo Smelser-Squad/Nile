@@ -30,7 +30,6 @@ function MoreProducts() {
     if (products.length === 0) {
         getProductsByCategory(category).then((list) => {
             list.map((item) => {
-
                 if (item.productId !== parseInt(productId)) {
                     AllProducts.push(item);
                 }

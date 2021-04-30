@@ -5,23 +5,16 @@ import { useParams } from 'react-router';
 import  {SideBySideMagnifier} from "react-image-magnifiers";
 
 
-function ProductPhotos() {
+function ProductPhotos({color}) {
 
     const [data, setData] = useState([]);
-
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
-
-
+    const [currColor, setCurrColor] = useState(color);
     const PhotoList = [];
 
-
-    
-
-    
-
-    if(data.length===0){
-        getPhotos(productId).then((list)=>
+    if(data.length===0 || currColor !== color){
+        getColorPhotos(productId, color).then((list)=>
         {
             list.map((item)=>
             PhotoList.push(item),
@@ -43,15 +36,12 @@ function ProductPhotos() {
             const magnifier = PhotoList.map((photo) =>
                 <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
             setData(data);
-
             setMag(magnifier);
-            
+            setCurrColor(color);
         }
         );
        
     }
-
-
 
     return(
         <div className="PhotoContainer">
@@ -72,11 +62,5 @@ function ProductPhotos() {
     }
 
 }
-
-
-
-
-
-
 
 export default ProductPhotos;

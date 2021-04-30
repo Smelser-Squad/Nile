@@ -8,6 +8,14 @@ import axios from 'axios'
         return(data);
         
     }
+    async function getColorPhotos(productId, color){
+        
+        const photos=await axios.get(`http://localhost:80/api/productPhotos/${productId}/${color}`)
+        const data=photos.data;
+        
+        return(data);
+        
+    }
     async function getListColors(productId){
         
         const photos=await axios.get(`http://localhost:80/api/productPhotos/colors/${productId}`)
@@ -16,6 +24,6 @@ import axios from 'axios'
         return(data);
         
     }
-    export {getPhotos, getListColors}
+    export {getPhotos, getListColors, getColorPhotos}
 
 
