@@ -49,14 +49,12 @@ public class ReviewControllerTest {
 //    @Test
 //    @Order(2)
 //    public void testAddReview() throws Exception {
-//        List<Review> reviews = new ArrayList<>();
 //        Review review1 = new Review();
-//        review1.setReviewId(1);
+////        review1.setReviewId(1);
 //        review1.setHelpful(true);
 //        review1.setRating(4);
 //        review1.setSummary("sample summary");
 //        review1.setTitle("sample title");
-//        reviews.add(review1);
 //        this.mockMvc.perform(post("/api/reviews")
 //                .content(asJsonString(review1))
 //                .contentType(MediaType.APPLICATION_JSON)
@@ -68,14 +66,14 @@ public class ReviewControllerTest {
 //                .andExpect(jsonPath("$.title").value("sample title"))
 //                .andExpect(jsonPath("$.rating").value(4));
 //    }
-    @Test
-    @Order(3)
-    public void getReviewByInvalidReviewId() throws Exception {
-        this.mockMvc.perform(get("/api/reviews/{reviewId}", Integer.MIN_VALUE)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(result -> assertEquals("Review with that id does not exist",
-                        result.getResponse().getContentAsString()));
-    }
+//    @Test
+//    @Order(3)
+//    public void getReviewByInvalidReviewId() throws Exception {
+//        this.mockMvc.perform(get("/api/reviews/{reviewId}", Integer.MIN_VALUE)
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(result -> assertEquals("Review with that id does not exist",
+//                        result.getResponse().getContentAsString()));
+//    }
 //    @Test
 //    @Order(4)
 //    public void getReviewByReviewIdGoldenPath() throws Exception {
@@ -87,35 +85,35 @@ public class ReviewControllerTest {
 //                .andExpect(jsonPath("$.title").value("sample title"))
 //                .andExpect(jsonPath("$.rating").value(4));
 //    }
-//    //    @Test
-////    @Order(5)
-////    public void getReviewByUserIdGoldenPath() throws Exception {
-////
-////        List<Review> newList = new ArrayList<>();
-////
-////        Review newReview = new Review();
-////        newReview.setReviewId(5);
-////        newReview.setHelpful(true);
-////        newReview.setRating(3);
-////        newReview.setSummary("sample summary");
-////        newReview.setTitle("sample title");
-////
-////        newList.add(newReview);
-////
-////        User newUser = new User();
-////        newUser.setUserId(1);
-////
-////        newReview.setUser(newUser);
-////
-////        this.mockMvc.perform(get("/api/reviews/by/{userId}", 1)
-////                .contentType(MediaType.APPLICATION_JSON))
-////                .andExpect(jsonPath("$.reviewId").exists())
-////                .andExpect(jsonPath("$.reviewId").value(5))
-////                .andExpect(jsonPath("$.summary").value("sample summary"))
-////                .andExpect(jsonPath("$.title").value("sample title"))
-////                .andExpect(jsonPath("$.rating").value(3));
-////
-////    }
+//    @Test
+//    @Order(5)
+//    public void getReviewByUserIdGoldenPath() throws Exception {
+//
+//        List<Review> newList = new ArrayList<>();
+//
+//        Review newReview = new Review();
+//        newReview.setReviewId(5);
+//        newReview.setHelpful(true);
+//        newReview.setRating(3);
+//        newReview.setSummary("sample summary");
+//        newReview.setTitle("sample title");
+//
+//        newList.add(newReview);
+//
+//        User newUser = new User();
+//        newUser.setUserId(1L);
+//
+//        newReview.setUser(newUser);
+//
+//        this.mockMvc.perform(get("/api/reviews/by/{userId}", 1)
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$.reviewId").exists())
+//                .andExpect(jsonPath("$.reviewId").value(5))
+//                .andExpect(jsonPath("$.summary").value("sample summary"))
+//                .andExpect(jsonPath("$.title").value("sample title"))
+//                .andExpect(jsonPath("$.rating").value(3));
+//
+//    }
 //    @Test
 //    @Order(5)
 //    public void updateReviewGoldenPath() throws Exception {
@@ -146,12 +144,12 @@ public class ReviewControllerTest {
 //        this.mockMvc.perform(delete("/api/reviews/{reviewId}", 2))
 //                .andExpect(result -> assertEquals("Review " + 2 + " deleted",
 //                        result.getResponse().getContentAsString()));
-    }
+//    }
 //    @Test
 //    @Order(7)
 //    public void deletingReviewWithInvalidIdAndGettingIncorrectMessage() throws Exception {
 //        this.mockMvc.perform(delete("/api/reviews/{reviewId}", Integer.MIN_VALUE))
 //                .andExpect(result -> assertEquals("Review " + Integer.MIN_VALUE + " not found",
 //                        result.getResponse().getContentAsString()));
-////    }
-//}
+//    }
+}
