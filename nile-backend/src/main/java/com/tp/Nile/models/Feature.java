@@ -37,7 +37,7 @@ public class Feature implements Serializable {
 
     @OneToMany(mappedBy = "feature", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "feature-ratings")
     private List<FeatureRating> featureRatingList;
 
 }

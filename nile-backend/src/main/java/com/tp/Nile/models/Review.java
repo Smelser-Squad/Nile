@@ -59,12 +59,12 @@ public class Review implements Serializable {
 
     @OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "review-photos")
     private List<ReviewPhoto> reviewPhotos = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @JsonBackReference(value = "product-reviews")
     private Product product;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

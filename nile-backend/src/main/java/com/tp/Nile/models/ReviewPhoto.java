@@ -25,7 +25,7 @@ public class ReviewPhoto {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_review_id")
-    @JsonBackReference
+    @JsonBackReference(value = "review-photos")
     private Review review;
 
     @Column(name = "image_src", nullable = false)
