@@ -23,6 +23,12 @@ async function getBrandProducts(brand){
 
     return(data);
 }
+async function getTypeProducts(type){
+    const products=await axios.get(`http://localhost:80/api/products/type/${type}`);
+    const data=products.data;
+
+    return(data);
+}
 
 async function getProductsByCategory(category){
     const products=await axios.get(`http://localhost:80/api/products/category/${category}`)
@@ -31,5 +37,5 @@ async function getProductsByCategory(category){
     return(Promise.resolve(data));
 }
 
-export {getProducts,getProduct, getBrandProducts, getProductsByCategory}
+export {getProducts,getProduct, getBrandProducts, getTypeProducts, getProductsByCategory}
 
