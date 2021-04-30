@@ -108,12 +108,14 @@ public class ReviewControllerTest {
 //        newReview.setUser(newUser);
 //
 //        this.mockMvc.perform(get("/api/reviews/by/{userId}", 1)
+
 //                .contentType(MediaType.APPLICATION_JSON))
 //                .andExpect(jsonPath("$.reviewId").exists())
 //                .andExpect(jsonPath("$.reviewId").value(5))
 //                .andExpect(jsonPath("$.summary").value("sample summary"))
 //                .andExpect(jsonPath("$.title").value("sample title"))
 //                .andExpect(jsonPath("$.rating").value(3));
+
 //
 //    }
     @Test
