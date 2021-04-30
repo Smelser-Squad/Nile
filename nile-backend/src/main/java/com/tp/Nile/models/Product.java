@@ -34,6 +34,7 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = { CascadeType.MERGE })
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties(value = {"products"})
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })

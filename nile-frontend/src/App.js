@@ -52,6 +52,9 @@ function App() {
                         <CreateReview/>
                     </Route>
 
+                        <Route exact path="/orders">
+                            <Orders />
+                        </Route>
 
                 </Switch>
             </div>

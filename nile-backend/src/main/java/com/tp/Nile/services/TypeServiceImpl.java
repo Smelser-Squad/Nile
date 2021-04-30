@@ -60,9 +60,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type updateType(Integer typeId, Type updatedType) throws NullTypeIdException, InvalidTypeIdException {
-        Type toUpdate = getTypeById(typeId);
-        updatedType.setTypeId(typeId);
+    public Type updateType(Type updatedType) throws NullTypeIdException, InvalidTypeIdException {
         return repo.saveAndFlush(updatedType);
     }
 

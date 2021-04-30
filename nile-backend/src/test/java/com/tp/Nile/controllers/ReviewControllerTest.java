@@ -1,11 +1,12 @@
 package com.tp.Nile.controllers;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tp.Nile.exceptions.InvalidReviewIdException;
-import com.tp.Nile.models.*;
-import lombok.ToString;
-import org.junit.jupiter.api.*;
+import com.tp.Nile.models.Review;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,9 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import java.io.UnsupportedEncodingException;
-import java.time.Instant;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -30,6 +32,7 @@ public class ReviewControllerTest {
     @Autowired
     MockMvc mockMvc;
     private ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+
     static String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();
@@ -39,6 +42,7 @@ public class ReviewControllerTest {
             throw new RuntimeException(e);
         }
     }
+
     @Test
     @Order(1)
     public void testGetAllReviews() throws Exception {
@@ -47,6 +51,7 @@ public class ReviewControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(result -> assertNotNull(result.getResponse().getContentAsString()));
     }
+
     @Test
     @Order(2)
     public void testAddReview() throws Exception {
@@ -68,6 +73,7 @@ public class ReviewControllerTest {
                 .andExpect(jsonPath("$.title").value("sample title"))
                 .andExpect(jsonPath("$.rating").value(4));
     }
+
     @Test
     @Order(3)
     public void getReviewByInvalidReviewId() throws Exception {
@@ -76,6 +82,7 @@ public class ReviewControllerTest {
                 .andExpect(result -> assertEquals("Review with that id does not exist",
                         result.getResponse().getContentAsString()));
     }
+
     @Test
     @Order(4)
     public void getReviewByReviewIdGoldenPath() throws Exception {
@@ -88,7 +95,7 @@ public class ReviewControllerTest {
                 .andExpect(jsonPath("$.rating").value(4));
     }
 
-//    @Test
+    //    @Test
 //    @Order(5)
 //    public void getReviewByUserIdGoldenPath() throws Exception {
 //
@@ -150,6 +157,7 @@ public class ReviewControllerTest {
                 .andExpect(jsonPath("$.rating").value(1));
 
     }
+
     @Test
     @Order(6)
     public void deletingReviewAndGettingCorrectMessage() throws Exception {
@@ -157,11 +165,4 @@ public class ReviewControllerTest {
                 .andExpect(result -> assertEquals("Review " + 1 + " deleted",
                         result.getResponse().getContentAsString()));
     }
-//    @Test
-//    @Order(7)
-//    public void deletingReviewWithInvalidIdAndGettingIncorrectMessage() throws Exception {
-//        this.mockMvc.perform(delete("/api/reviews/{reviewId}", Integer.MIN_VALUE))
-//                .andExpect(result -> assertEquals("Review " + Integer.MIN_VALUE + " not found",
-//                        result.getResponse().getContentAsString()));
-//    }
 }
