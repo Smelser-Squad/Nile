@@ -99,7 +99,7 @@ function SingleProductListing() {
 
             <br />
             <br />
-            <MoreProducts />
+            {/* <MoreProducts /> */}
             {/* <QuestionAnswer /> */}
             {/* <ReviewSummary />
             <Reviews /> */}
