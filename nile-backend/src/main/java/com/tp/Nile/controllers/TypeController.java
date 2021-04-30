@@ -24,9 +24,9 @@ public class TypeController {
     @PostMapping()
     public ResponseEntity addType(@RequestBody Type type){
         try {
-            return ResponseEntity.ok(service.addType(type));
-        } catch (NullTypeNameException | EmptyTypeNameException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+            return new ResponseEntity<>(service.addType(type), HttpStatus.CREATED);
+        } catch (NullTypeNameException | EmptyTypeNameException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -39,15 +39,17 @@ public class TypeController {
     public ResponseEntity getTypeById(@PathVariable Integer typeId) {
         try {
             return ResponseEntity.ok(service.getTypeById(typeId));
-        } catch (NullTypeIdException | InvalidTypeIdException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (InvalidTypeIdException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (NullTypeIdException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
-    @PutMapping("/{typeId}")
-    public ResponseEntity updateType(@PathVariable Integer typeId, @RequestBody Type updatedType) {
+    @PutMapping()
+    public ResponseEntity updateType(@RequestBody Type updatedType) {
         try {
-            return ResponseEntity.ok(service.updateType(typeId, updatedType));
+            return ResponseEntity.ok(service.updateType(updatedType));
         } catch (NullTypeIdException | InvalidTypeIdException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
@@ -56,12 +58,13 @@ public class TypeController {
     @DeleteMapping("/{typeId}")
     public ResponseEntity deleteType(@PathVariable Integer typeId) {
         try {
-            if (service.deleteType(typeId)) {
-                return ResponseEntity.ok("Type " + typeId + " successfully deleted");
-            } else {
-                return ResponseEntity.ok("Type " + typeId + " not found");
+            if(service.deleteType(typeId)) {
+                return new ResponseEntity<>("Type " + typeId + " deleted", HttpStatus.NO_CONTENT);
+            } else{
+                return new ResponseEntity<>("Type " + typeId + " not found", HttpStatus.NOT_FOUND);
             }
-        } catch (NullTypeIdException ex) {
+        }
+        catch (NullTypeIdException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
