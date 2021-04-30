@@ -12,55 +12,56 @@ import { Elements } from '@stripe/react-stripe-js';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ShowAllReviews from './components/Reviews/ShowAllReviews';
+import { SnackbarProvider } from 'notistack';
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
 function App() {
     return (
         // eslint-disable-next-line
-        <Router>
-            <div className="App" >
-                <Header />
+        <SnackbarProvider maxSnack={1}>
+            <Router>
+                <div className="App" >
+                    <Header />
 
-                <Switch>
-                    <Route exact path="/singleProductListing/:productId">
-                        <SingleProductListing/>
-                    </Route>
-                    <Route exact path="/products/brand/:brand">
-                        <BrandProducts/>
-                    </Route>
+                    <Switch>
+                        <Route exact path="/singleProductListing/:productId">
+                            <SingleProductListing/>
+                        </Route>
+                        <Route exact path="/products/brand/:brand">
+                            <BrandProducts/>
+                        </Route>
 
-                    <Route exact path="/checkout">
-                        <Checkout />
-                    </Route>
+                        <Route exact path="/checkout">
+                            <Checkout />
+                        </Route>
 
-                    <Route exact path="/signin" component={SignIn}></Route>
-                    <Route exact path="/signup" component={SignUp}></Route>
+                        <Route exact path="/signin" component={SignIn}></Route>
+                        <Route exact path="/signup" component={SignUp}></Route>
 
-                    <Route exact path="/payment">
-                        <Elements stripe={stripekey}>
+                        <Route exact path="/payment">
+                            <Elements stripe={stripekey}>
 
-                            <Payment />
+                                <Payment />
 
-                        </Elements>
-                    </Route>
-                    <Route exact path="/">
-                        <Home />
-              
-                    </Route>
+                            </Elements>
+                        </Route>
+                        <Route exact path="/">
+                            <Home />
+                
+                        </Route>
 
-                    <Route exact path="/createReview/:productId">
-                        <CreateReview/>
-                    </Route>
+                        <Route exact path="/createReview/:productId">
+                            <CreateReview/>
+                        </Route>
                     <Route exact path="/singleProductListing/all-product-reviews/:productId">
                         <ShowAllReviews/>
                     </Route>
 
-
-                </Switch>
-            </div>
-        </Router>
-        
+                    </Switch>
+                </div>
+            </Router>
+        </SnackbarProvider>
     );
 }
 
