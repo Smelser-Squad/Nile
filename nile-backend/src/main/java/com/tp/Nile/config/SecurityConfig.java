@@ -95,13 +95,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-<<<<<<< HEAD
+
 
                         "/api/productPhotos/**",
 
-=======
+
                         "/api/productPhotos/colors/**",
->>>>>>> 256a8b60a22a64e186909317c7970b849448b721
+
                         "/api/charge",
                         "/api/productPhotos/**",
                         "/api/qa/questions/**",
