@@ -21,22 +21,21 @@ function MoreProducts() {
 
     const { productId } = useParams();
 
-
     useEffect(() => {
         getProduct(productId)
             .then((category) => {
                 setCategory(category.category.name)
             }
             );
-    }, []);
+    }, [productId]);
 
     if (products.length === 0) {
         getProductsByCategory(category).then((list) => {
-            list.map((item) => {
+            for(let item of list) {
                 if (item.productId !== parseInt(productId)) {
                     AllProducts.push(item);
                 }
-            });
+            }
             
             const products = AllProducts.map((product) =>
                 <Product
