@@ -28,7 +28,7 @@ function Orders() {
         );
     }
     return (
-        <div className='order'>
+        <div className='orders'>
             <div className="home_container">
                 {orders}
             </div >
