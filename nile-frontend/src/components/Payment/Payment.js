@@ -1,26 +1,29 @@
-import React from 'react';
-import CartProduct from '../Cart/CartProduct/CartProduct';
-import { useStateValue } from "../../StateProvider";
-import { Link } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
-import './Payment.css';
-import CurrencyFormat from 'react-currency-format';
-import { getCartTotal } from '../../reducer';
 import axios from 'axios';
+import React from 'react';
+import CurrencyFormat from 'react-currency-format';
+import { Link, useHistory } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+import { getCartTotal } from '../../reducer';
+import { useStateValue } from "../../StateProvider";
+import CartProduct from '../Cart/CartProduct/CartProduct';
+import './Payment.css';
 
 function Payment() {
-    const [{ cart }] = useStateValue();
+    const [{ cart }, dispatch] = useStateValue();
     const publishableStripeKey = 'pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y';
     const totalCartPrice = getCartTotal(cart) * 100;
-
+    const history = useHistory();
     async function handleToken(token) {
         axios.post('http://localhost:80/api/create-charge', {
             token: token.card.id,
             amount: totalCartPrice,
-            email: token.email,
+            email: token.email
 
         }).then((response) => {
-            alert('Payment success')
+            dispatch({
+                type: 'EMPTY_CART'
+            })
+            history.replace('/orders')
         }).catch((error) => {
             alert('Payment failed')
         })
@@ -81,7 +84,7 @@ function Payment() {
                         <div className='payment_priceContainer'>
                             <CurrencyFormat
                                 renderText={(value) => (
-                                    <h3> Order Total: {value} </h3>
+                                    <h4> Order Total ({cart.length} items): {value} </h4>
                                 )}
                                 decimalScale={2}
                                 value={getCartTotal(cart)}
@@ -91,7 +94,6 @@ function Payment() {
                             />
                         </div>
                         <StripeCheckout
-
                             stripeKey={publishableStripeKey}
                             amount={totalCartPrice}
                             billingAddress

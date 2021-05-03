@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.math.BigDecimal;
-import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductControllerTest {
@@ -65,7 +64,7 @@ public class ProductControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andReturn();
-        category= this.mapper.readValue(result.getResponse().getContentAsString(), Category.class);
+        category = this.mapper.readValue(result.getResponse().getContentAsString(), Category.class);
 
         product.setCategory(category);
 
@@ -228,24 +227,6 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.price").value(159.99))
                 .andExpect(jsonPath("$.primeEligible").value(true))
                 .andExpect(jsonPath("$.stock").value(3));
-    }
-
-//    @Order(10)
-//    @Test
-//    void deletingAProductReturnsExpectedMessageAndStatusCode() throws Exception {
-//        this.mockMvc.perform(delete("/api/products/{productId}", 1))
-//                .andExpect(status().isNoContent())
-//                .andExpect(result -> assertEquals("Product 1 deleted",
-//                        result.getResponse().getContentAsString()));
-//    }
-
-    @Order(11)
-    @Test
-    void deletingAProductWithInvalidIdReturns404AndAppropriateResponse() throws Exception {
-        this.mockMvc.perform(delete("/api/products/{productId}", Integer.MIN_VALUE))
-                .andExpect(status().isNotFound())
-                .andExpect(result -> assertEquals("Product " + Integer.MIN_VALUE + " not found",
-                        result.getResponse().getContentAsString()));
     }
 
     static String asJsonString(final Object obj) {

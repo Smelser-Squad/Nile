@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ProductPhotos.css';
-import {getColorPhotos, getPhotos} from '../../service/PhotoService'
+import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
 import  {SideBySideMagnifier} from "react-image-magnifiers";
 
 
+
 function ProductPhotos({color}) {
 
+    
     const [data, setData] = useState([]);
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
     const [currColor, setCurrColor] = useState(color);
     const PhotoList = [];
+    
 
+   
     if(data.length===0 || currColor !== color){
-        getColorPhotos(productId, color).then((list)=>
+        getPhotos(productId, color).then((list)=>
+
         {
             list.map((item)=>
             PhotoList.push(item),
@@ -36,12 +41,16 @@ function ProductPhotos({color}) {
             const magnifier = PhotoList.map((photo) =>
                 <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
             setData(data);
+            setCurrColor(color);
             setMag(magnifier);
             setCurrColor(color);
         }
         );
-       
+        
     }
+    
+
+    
 
     return(
         <div className="PhotoContainer">
@@ -61,6 +70,12 @@ function ProductPhotos({color}) {
        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
     }
 
+
+
 }
+
+
+
+
 
 export default ProductPhotos;

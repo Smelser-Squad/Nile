@@ -1,9 +1,9 @@
-import React from 'react'
-import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
+import './Header.css';
 function Header() {
     const [{ cart }] = useStateValue();
     return (
@@ -23,18 +23,20 @@ function Header() {
 
             <div className="header_nav" >
 
-            <Link to="/signin">
-                <div className="header_option" >
-                    <span className="header_optionOne" > Hello Guest </span>
-                    <span className="header_optionTwo" > Sign In </span>
-                </div >
-            </Link>
+                <Link to="/signin">
+                    <div className="header_option" >
+                        <span className="header_optionOne" > Hello Guest </span>
+                        <span className="header_optionTwo" > Sign In </span>
+                    </div >
+                </Link>
 
-                <div className="header_option" >
-                    <span className="header_optionOne" > Returns </span>
-                    <span className="header_optionTwo" > & Orders </span>
-                </div >
+                <Link to="/Orders">
 
+                    <div className="header_option" >
+                        <span className="header_optionOne" > Returns </span>
+                        <span className="header_optionTwo" > & Orders </span>
+                    </div >
+                </Link>
                 <div className="header_option" >
                     <span className="header_optionOne" > Your </span>
                     <span className="header_optionTwo" > Prime </span>
