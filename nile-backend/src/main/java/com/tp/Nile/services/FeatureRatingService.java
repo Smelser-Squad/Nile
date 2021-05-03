@@ -15,7 +15,7 @@ public interface FeatureRatingService {
     FeatureRating addFeatureRating(FeatureRating rating) throws NullRatingIdException,
             NullFeatureRatingException, InvalidRatingIdException;
 
-    FeatureRating getRatingByFeatureAndProductId(Integer featureId, Integer productId)
+    Integer getRatingByFeatureAndProductId(Integer productId, Integer featureId)
         throws NullFeatureIdException, InvalidFeatureIdException,
             NullProductIdException,InvalidProductIdException,
             NullRatingIdException, InvalidRatingIdException;
