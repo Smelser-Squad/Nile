@@ -1,11 +1,14 @@
 package com.tp.Nile.controllers.Helper;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,5 +32,9 @@ public class ChargeRequest implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "order_date")
+    @JsonFormat(pattern = "MMMM dd, yyyy")
+    @CreationTimestamp
+    private LocalDate orderDate;
 
 }

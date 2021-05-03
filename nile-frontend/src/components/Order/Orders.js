@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { getOrders } from '../../service/StripeService';
-import Order from './Order';
 import './Orders.css';
+import SingleOrder from './SingleOrder';
 
 function Orders() {
     const [orders, setOrders] = useState([]);
-
     const orderList = [];
 
     if (orders.length === 0) {
@@ -14,15 +13,17 @@ function Orders() {
                 orderList.push(item)
             );
             const orders = orderList.map((order) =>
-                <Order
+                <SingleOrder
                     key={order.chargeId}
                     chargeId={order.chargeId}
-                    confirmationId={order.confirmationId}
+                    token={order.token}
                     amount={order.amount}
                     email={order.email}
+                    orderDate={order.orderDate}
                 />
             );
             setOrders(orders);
+            console.log(orderList)
         }
         );
     }

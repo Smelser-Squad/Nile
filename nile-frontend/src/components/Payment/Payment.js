@@ -24,7 +24,7 @@ function Payment() {
             email: token.email,
 
         }).then((response) => {
-            history.replace('/order/${chargeId}')
+            history.replace('/orders')
 
             // alert('Payment success')
         }).catch((error) => {

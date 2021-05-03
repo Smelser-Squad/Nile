@@ -78,7 +78,7 @@ function SingleProductListing() {
 
                 </p>
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
+                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
                 <p className="ship">

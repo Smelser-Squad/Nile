@@ -12,8 +12,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Orders from './components/Order/Orders';
-import { SnackbarProvider } from 'notistack';
-import SingleOrder from './components/Order/SingleOrder';
+import SingleOrder from './components/Order/SingleOrder'
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -58,11 +57,9 @@ function App() {
                     <Route exact path="/orders">
                         <Orders />
                     </Route>
-
-                    <Route exact path="/order/:chargeId">
+                    <Route exact path="/SingleOrder/:chargeId">
                         <SingleOrder />
                     </Route>
-
                 </Switch>
             </div>
         </Router>
