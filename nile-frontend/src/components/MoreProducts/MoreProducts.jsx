@@ -1,6 +1,6 @@
 import './MoreProducts.css';
 import Product from "./Product";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getProduct, getProductsByCategory } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { useParams } from 'react-router';
@@ -21,11 +21,14 @@ function MoreProducts() {
 
     const { productId } = useParams();
 
-    getProduct(productId)
-        .then((category) => {
-            setCategory(category.category.name)
-        }
-        );
+
+    useEffect(() => {
+        getProduct(productId)
+            .then((category) => {
+                setCategory(category.category.name)
+            }
+            );
+    }, []);
 
     if (products.length === 0) {
         getProductsByCategory(category).then((list) => {
@@ -33,8 +36,8 @@ function MoreProducts() {
                 if (item.productId !== parseInt(productId)) {
                     AllProducts.push(item);
                 }
-            }
-            );
+            });
+            
             const products = AllProducts.map((product) =>
                 <Product
                     key={product.productId}
@@ -58,7 +61,7 @@ function MoreProducts() {
                 {text}
             </div>
         );
-};
+    };
 
     const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
     const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
