@@ -34,6 +34,7 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = { CascadeType.MERGE })
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties(value = {"products"})
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
@@ -71,7 +72,7 @@ public class Product implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="product")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "product-photos")
     private List<ProductPhoto> photos = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
@@ -91,7 +92,7 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "product-reviews")
     private List<Review> reviews;
 
     @OneToMany(cascade = CascadeType.ALL,

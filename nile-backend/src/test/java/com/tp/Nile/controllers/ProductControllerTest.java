@@ -1,35 +1,35 @@
-package com.tp.Nile.controllers;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tp.Nile.models.*;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Order;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-
-import java.math.BigDecimal;
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+//package com.tp.Nile.controllers;
+//
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import com.tp.Nile.models.*;
+//import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api.Order;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.http.MediaType;
+//import org.springframework.test.annotation.DirtiesContext;
+//import org.springframework.test.context.ActiveProfiles;
+//import org.springframework.test.web.servlet.MockMvc;
+//import org.springframework.test.web.servlet.MvcResult;
+//
+//import java.math.BigDecimal;
+//import java.util.*;
+//
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//
 //@SpringBootTest
 //@AutoConfigureMockMvc
 //@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 //@ActiveProfiles("test")
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ProductControllerTest {
-
+//public class ProductControllerTest {
+//
 //    @Autowired
 //    MockMvc mockMvc;
 //
@@ -56,17 +56,44 @@ public class ProductControllerTest {
 //        product.setPrimeEligible(false);
 //        product.setStock(2);
 //
-////        Category category = new Category();
-////        category.setName("Sports");
-////        product.setCategory(category);
-////
-////        Type type = new Type();
-////        type.setTypeName("Sample Type");
-////        product.setType(type);
-////
-////        Vendor vendor = new Vendor();
-////        vendor.setName("Nike Store");
-////        product.setVendor(vendor);
+//        Category category = new Category();
+//        category.setName("Sports");
+//
+//        MvcResult result = this.mockMvc.perform(post("/api/categories")
+//                .content(asJsonString(category))
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andReturn();
+//        category= this.mapper.readValue(result.getResponse().getContentAsString(), Category.class);
+//
+//        product.setCategory(category);
+//
+//        Type type = new Type();
+//        type.setTypeName("Sample Type");
+//
+//        result = this.mockMvc.perform(post("/api/types")
+//                .content(asJsonString(type))
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andReturn();
+//        type = this.mapper.readValue(result.getResponse().getContentAsString(), Type.class);
+//
+//        product.setType(type);
+//
+//        Vendor vendor = new Vendor();
+//        vendor.setName("Nike Store");
+//
+//        result = this.mockMvc.perform(post("/api/vendors")
+//                .content(asJsonString(vendor))
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andReturn();
+//        vendor = this.mapper.readValue(result.getResponse().getContentAsString(), Vendor.class);
+//
+//        product.setVendor(vendor);
 //
 //        this.mockMvc.perform(post("/api/products")
 //                .content(asJsonString(product))
@@ -125,53 +152,53 @@ public class ProductControllerTest {
 //                .andExpect(jsonPath("$.[0].stock").value(2));
 //    }
 //
-////    @Test
-////    @Order(6)
-////    void getProductsByCategory() throws Exception {
-////        this.mockMvc.perform(get("/api/products/category/{category}", "Sports")
-////                .contentType(MediaType.APPLICATION_JSON))
-////                .andDo(print())
-////                .andExpect(status().isOk())
-////                .andExpect(jsonPath("$.[0].price").value(249.99))
-////                .andExpect(jsonPath("$.[0].productId").exists())
-////                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
-////                .andExpect(jsonPath("$.[0].brand").value("Nike"))
-////                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
-////                .andExpect(jsonPath("$.[0].primeEligible").value(false))
-////                .andExpect(jsonPath("$.[0].stock").value(2));
-////    }
-////
-////    @Test
-////    @Order(7)
-////    void getProductsByVendor() throws Exception {
-////        this.mockMvc.perform(get("/api/products/vendor/{vendor}", "Nike Store")
-////                .contentType(MediaType.APPLICATION_JSON))
-////                .andDo(print())
-////                .andExpect(status().isOk())
-////                .andExpect(jsonPath("$.[0].price").value(249.99))
-////                .andExpect(jsonPath("$.[0].productId").exists())
-////                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
-////                .andExpect(jsonPath("$.[0].brand").value("Nike"))
-////                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
-////                .andExpect(jsonPath("$.[0].primeEligible").value(false))
-////                .andExpect(jsonPath("$.[0].stock").value(2));
-////    }
-////
-////    @Test
-////    @Order(8)
-////    void getProductsByType() throws Exception {
-////        this.mockMvc.perform(get("/api/products/type/{type}", "Sample Type")
-////                .contentType(MediaType.APPLICATION_JSON))
-////                .andDo(print())
-////                .andExpect(status().isOk())
-////                .andExpect(jsonPath("$.[0].price").value(249.99))
-////                .andExpect(jsonPath("$.[0].productId").exists())
-////                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
-////                .andExpect(jsonPath("$.[0].brand").value("Nike"))
-////                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
-////                .andExpect(jsonPath("$.[0].primeEligible").value(false))
-////                .andExpect(jsonPath("$.[0].stock").value(2));
-////    }
+//    @Test
+//    @Order(6)
+//    void getProductsByCategory() throws Exception {
+//        this.mockMvc.perform(get("/api/products/category/{category}", "Sports")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.[0].price").value(249.99))
+//                .andExpect(jsonPath("$.[0].productId").exists())
+//                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
+//                .andExpect(jsonPath("$.[0].brand").value("Nike"))
+//                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
+//                .andExpect(jsonPath("$.[0].primeEligible").value(false))
+//                .andExpect(jsonPath("$.[0].stock").value(2));
+//    }
+//
+//    @Test
+//    @Order(7)
+//    void getProductsByVendor() throws Exception {
+//        this.mockMvc.perform(get("/api/products/vendor/{vendor}", "Nike Store")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.[0].price").value(249.99))
+//                .andExpect(jsonPath("$.[0].productId").exists())
+//                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
+//                .andExpect(jsonPath("$.[0].brand").value("Nike"))
+//                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
+//                .andExpect(jsonPath("$.[0].primeEligible").value(false))
+//                .andExpect(jsonPath("$.[0].stock").value(2));
+//    }
+//
+//    @Test
+//    @Order(8)
+//    void getProductsByType() throws Exception {
+//        this.mockMvc.perform(get("/api/products/type/{type}", "Sample Type")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.[0].price").value(249.99))
+//                .andExpect(jsonPath("$.[0].productId").exists())
+//                .andExpect(jsonPath("$.[0].description").value("Athletic shoes"))
+//                .andExpect(jsonPath("$.[0].brand").value("Nike"))
+//                .andExpect(jsonPath("$.[0].name").value("Air Jordan"))
+//                .andExpect(jsonPath("$.[0].primeEligible").value(false))
+//                .andExpect(jsonPath("$.[0].stock").value(2));
+//    }
 //
 //    @Test
 //    @Order(9)
@@ -203,14 +230,14 @@ public class ProductControllerTest {
 //                .andExpect(jsonPath("$.stock").value(3));
 //    }
 //
-//    @Order(10)
-//    @Test
-//    void deletingAProductReturnsExpectedMessageAndStatusCode() throws Exception {
-//        this.mockMvc.perform(delete("/api/products/{productId}", 1))
-//                .andExpect(status().isNoContent())
-//                .andExpect(result -> assertEquals("Product 1 deleted",
-//                        result.getResponse().getContentAsString()));
-//    }
+////    @Order(10)
+////    @Test
+////    void deletingAProductReturnsExpectedMessageAndStatusCode() throws Exception {
+////        this.mockMvc.perform(delete("/api/products/{productId}", 1))
+////                .andExpect(status().isNoContent())
+////                .andExpect(result -> assertEquals("Product 1 deleted",
+////                        result.getResponse().getContentAsString()));
+////    }
 //
 //    @Order(11)
 //    @Test
@@ -230,4 +257,4 @@ public class ProductControllerTest {
 //            throw new RuntimeException(e);
 //        }
 //    }
-}
+//}
