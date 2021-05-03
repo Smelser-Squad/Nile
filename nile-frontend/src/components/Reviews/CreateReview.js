@@ -14,11 +14,13 @@ function CreateReview(){
     // The only way I could get rating passed to review object was to grab the innerHTML from the p tag at the 0th index
     // since it is the react-stars at the begining. features will be done in the same way once they are finalized
 
-    const [name,setName]=useState([]);
-    const [image,setImage]=useState([]);
-    const [summary, setSummary]=useState([]);
-    const [title, setTitle]=useState([]);
-    const [rating, setRating]=useState([]);
+    const [name,setName]=useState(0);
+    const [image,setImage]=useState(0);
+    const [summary, setSummary]=useState(0);
+    const [title, setTitle]=useState(0);
+    const [rating, setRating]=useState(0);
+    const [feature, setFeature]=useState(0);
+    const [product, setProduct]=useState(0);
 
 
     const { productId } = useParams();
@@ -31,6 +33,13 @@ function CreateReview(){
         setImage(image.photos[0].imageSrc);
         setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
     })
+
+    getProduct(productId).then((response)=>{
+        //setFeature(response.features);
+        // console.log(feature)
+    })
+
+    // console.log(product)
 
 
 
