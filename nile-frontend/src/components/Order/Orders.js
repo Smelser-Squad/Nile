@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getOrders } from '../../service/StripeService';
 import './Orders.css';
 import SingleOrder from './SingleOrder';
 
 function Orders() {
     const [orders, setOrders] = useState([]);
-    const orderList = [];
 
-    if (orders.length === 0) {
+    useEffect(() => {
+        const orderList = [];
         getOrders().then((list) => {
             list.map((item) =>
                 orderList.push(item)
@@ -25,7 +25,9 @@ function Orders() {
             setOrders(orders);
         }
         );
-    }
+
+    }, []);
+
     return (
         <div className='orders'>
             <h1>Your Orders </h1>

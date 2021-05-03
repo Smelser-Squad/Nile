@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getProducts } from '../../service/ProductService';
 import './Home.css';
 import HomeProduct from './HomeProduct';
@@ -8,9 +8,8 @@ function Home() {
 
     const [cards, setCards] = useState([]);
 
-    const ProductList = [];
-
-    if (cards.length === 0) {
+    useEffect(() => {
+        const ProductList = [];
         getProducts().then((list) => {
             console.log(list)
             list.map((item) =>
@@ -26,13 +25,11 @@ function Home() {
                     rating={calcRating(product)}
                     image={product.photos[0].imageSrc}
                     description={product.description}
-                // vendor={product.vendor.name}
                 />
             );
             setCards(cards);
-        }
-        );
-    }
+        })
+    }, [])
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {
