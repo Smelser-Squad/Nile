@@ -20,54 +20,52 @@ const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZ
 function App() {
     return (
         // eslint-disable-next-line
-        <SnackbarProvider maxSnack={1}>
-            <Router>
-                <div className="App" >
-                    <Header />
+        <Router>
+            <div className="App" >
+                <Header />
 
-                    <Switch>
-                        <Route exact path="/singleProductListing/:productId">
-                            <SingleProductListing />
-                        </Route>
-                        <Route exact path="/products/brand/:brand">
-                            <BrandProducts />
-                        </Route>
+                <Switch>
+                    <Route exact path="/singleProductListing/:productId">
+                        <SingleProductListing />
+                    </Route>
+                    <Route exact path="/products/brand/:brand">
+                        <BrandProducts />
+                    </Route>
 
-                        <Route exact path="/checkout">
-                            <Checkout />
-                        </Route>
+                    <Route exact path="/checkout">
+                        <Checkout />
+                    </Route>
 
-                        <Route exact path="/signin" component={SignIn}></Route>
-                        <Route exact path="/signup" component={SignUp}></Route>
+                    <Route exact path="/signin" component={SignIn}></Route>
+                    <Route exact path="/signup" component={SignUp}></Route>
 
-                        <Route exact path="/payment">
-                            <Elements stripe={stripekey}>
+                    <Route exact path="/payment">
+                        <Elements stripe={stripekey}>
 
-                                <Payment />
+                            <Payment />
 
-                            </Elements>
-                        </Route>
-                        <Route exact path="/">
-                            <Home />
+                        </Elements>
+                    </Route>
+                    <Route exact path="/">
+                        <Home />
 
-                        </Route>
+                    </Route>
 
-                        <Route exact path="/createReview/:productId">
-                            <CreateReview />
-                        </Route>
+                    <Route exact path="/createReview/:productId">
+                        <CreateReview />
+                    </Route>
 
-                        <Route exact path="/orders">
-                            <Orders />
-                        </Route>
+                    <Route exact path="/orders">
+                        <Orders />
+                    </Route>
 
-                        <Route exact path="/order/:chargeId">
-                            <SingleOrder />
-                        </Route>
+                    <Route exact path="/order/:chargeId">
+                        <SingleOrder />
+                    </Route>
 
-                    </Switch>
-                </div>
-            </Router>
-        </SnackbarProvider>
+                </Switch>
+            </div>
+        </Router>
     );
 }
 

@@ -5,12 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './StateProvider'
 import reducer, { initialState } from "./reducer";
+import { SnackbarProvider } from 'notistack';
 
 ReactDOM.render(
     < React.StrictMode >
         <StateProvider initialState={initialState} reducer={reducer}>
-            <App />
-
+            <SnackbarProvider maxSnack={1}>
+                <App />
+            </SnackbarProvider>
         </StateProvider>
     </React.StrictMode>,
     document.getElementById('root')

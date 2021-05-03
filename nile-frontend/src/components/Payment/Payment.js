@@ -16,7 +16,6 @@ function Payment() {
     // const currentuser = getCurrentUser();
     // console.log(currentuser);
 
-
     const history = useHistory();
     async function handleToken(token) {
         axios.post('http://localhost:80/api/create-charge', {
