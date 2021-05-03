@@ -108,10 +108,10 @@ function SingleProductListing() {
             <QuestionAnswer />
 
             <ReviewSummary />
-        
+
             <Reviews />
-            <Link 
-            to={`./all-product-reviews/${Product.productId}`} >
+            <Link
+                to={`./all-product-reviews/${Product.productId}`} >
                 See all reviews
             </Link>
         </div>
