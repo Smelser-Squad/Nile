@@ -7,11 +7,15 @@ import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
 import { getCartTotal } from '../../reducer';
 import axios from 'axios';
+import { getCurrentUser } from '../../util/APIUtils';
 
 function Payment() {
     const [{ cart }] = useStateValue();
     const publishableStripeKey = 'pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y';
     const totalCartPrice = getCartTotal(cart) * 100;
+    // const currentuser = getCurrentUser();
+    // console.log(currentuser);
+
 
     const history = useHistory();
     async function handleToken(token) {
@@ -21,7 +25,7 @@ function Payment() {
             email: token.email,
 
         }).then((response) => {
-            history.replace('/orders')
+            history.replace('/order/${chargeId}')
 
             // alert('Payment success')
         }).catch((error) => {
@@ -103,6 +107,8 @@ function Payment() {
                             currency="USD"
                             label="Pay Now"
                             panelLabel="Pay Now"
+                        // email={getCurrentUser}
+
                         />
                     </div>
                 </div>
