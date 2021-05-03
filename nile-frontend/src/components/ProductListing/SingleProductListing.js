@@ -66,8 +66,8 @@ function SingleProductListing() {
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
             
             
-            <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
+            {/* <ProductPhotos color={color}/> */}
+            {/* <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -100,15 +100,15 @@ function SingleProductListing() {
             <br />
             <br />
 
-            <Comparison
+            {/* <Comparison
                 product={Product}
             />
-            <MoreProducts />
+            <MoreProducts /> */}
             <QuestionAnswer />
-
+{/* 
             <ReviewSummary />
 
-            <Reviews />
+            <Reviews /> */}
 
 
         </div>

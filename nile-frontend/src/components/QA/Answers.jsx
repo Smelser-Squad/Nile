@@ -14,7 +14,7 @@ export default function Answers(props) {
                     return(
                         <div>
                             {answer.answer} <br></br>
-                            by userOne on 04/19/2020<br></br>
+                            by {answer.userName} on 04/19/2020<br></br>
                             {/* {3>1 ? <button className="borderlessButton" onClick={expandAnswer}> See more answers</button> : null} */}
                             <br></br>
                         </div>
