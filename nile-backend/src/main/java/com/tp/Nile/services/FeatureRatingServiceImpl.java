@@ -35,7 +35,7 @@ public class FeatureRatingServiceImpl implements FeatureRatingService {
     }
 
     @Override
-    public FeatureRating getRatingByFeatureAndProductId(Integer featureId, Integer productId) throws NullFeatureIdException,
+    public Integer getRatingByFeatureAndProductId(Integer productId, Integer featureId) throws NullFeatureIdException,
             InvalidFeatureIdException, NullProductIdException, InvalidProductIdException,
             NullRatingIdException, InvalidRatingIdException {
         if (featureId == null)
@@ -43,9 +43,9 @@ public class FeatureRatingServiceImpl implements FeatureRatingService {
         if (productId == null)
             throw new NullProductIdException("Product id can not be null");
 
-        FeatureRating rating = null;
+        Integer rating = null;
 
-        Optional<FeatureRating> featureRating = repo.getRatingByFeatureAndProductId(featureId, productId);
+        Optional<Integer> featureRating = repo.getRatingByFeatureAndProductId(featureId, productId);
 
         if (featureRating != null)
         {

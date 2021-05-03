@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface FeatureRatingRepository extends JpaRepository<FeatureRating,Integer> {
 
     @Query("SELECT fr.rating from FeatureRating fr where fr.feature.featureId =:featureId and fr.product.productId =:productId")
-    Optional<FeatureRating> getRatingByFeatureAndProductId
+    Optional<Integer> getRatingByFeatureAndProductId
             (@Param("featureId")Integer featureId,
              @Param("productId")Integer productId);
 
