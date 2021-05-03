@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Checkout.css'
 import Subtotal from '../Cart/Subtotal/Subtotal'
 import CartProduct from '../Cart/CartProduct/CartProduct'
@@ -6,6 +6,8 @@ import { useStateValue } from '../../StateProvider'
 
 function Checkout() {
     const [{ cart }] = useStateValue();
+    const[quan,setProductPrice]=useState('');
+   console.log(quan);
     return (
         <div className='checkout' >
             <div className="checkout_left">
@@ -21,6 +23,7 @@ function Checkout() {
                         image={product.image}
                         price={product.price}
                         rating={product.rating}
+                        setProductPrice={setProductPrice}
                     />
 
                 ))}
@@ -28,7 +31,7 @@ function Checkout() {
             </div>
 
             <div className="checkout_right">
-                <Subtotal />
+                <Subtotal quan={quan}/>
             </div>
         </div>
     )

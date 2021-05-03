@@ -9,6 +9,7 @@ export function ProductPhotos({color}) {
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
     const [currColor, setCurrColor] = useState(color);
+    
     const PhotoList = [];
     if(data.length===0 || currColor !== color){
         getPhotos(productId, color).then((list)=>

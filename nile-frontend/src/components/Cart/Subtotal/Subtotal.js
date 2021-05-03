@@ -5,10 +5,13 @@ import { useStateValue } from "../.././../StateProvider";
 import { getCartTotal } from '../../../reducer';
 import { useHistory } from 'react-router';
 
-function Subtotal() {
+function Subtotal({quan}) {
     const [{ cart }] = useStateValue();
     const history = useHistory();
-
+getTotal();
+  function getTotal(){
+      console.log(quan);
+  }
     return (
         <div className='subtotal' >
 

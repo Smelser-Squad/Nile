@@ -6,12 +6,11 @@ import { useStateValue } from '../../../StateProvider';
 import Product from '../../MoreProducts/Product';
 import { getCartTotal } from '../../../reducer';
 
-function CartProduct({ productId, image, name, price, rating, key }) {
+function CartProduct({ productId, image, name, price, rating, key, setProductPrice}) {
     const [{ cart }, dispatch] = useStateValue();
 
     const [quantity, setQuantity] = useState(1); 
     const [cartPrice, setTotalPrice] = useState(price);
-
     
 
     const removeFromCart = () => {
@@ -24,13 +23,16 @@ function CartProduct({ productId, image, name, price, rating, key }) {
     };
 
     function incrementQuentaty(){
-        const cartPrice = getCartTotal(cart); 
+        const cartPrice = getCartTotal(cart,quantity); 
         setQuantity(prevQuantity=> prevQuantity + 1);
-        setTotalPrice(price + cartPrice);
+        setTotalPrice(price + cartPrice * quantity);
+        setProductPrice(price * (quantity+1));
+        
     }
 
     function decrementQuantity(){
         setQuantity(prevQuantity=> prevQuantity - 1);
+        setProductPrice(price * (quantity - 1));
     }
 
     return (

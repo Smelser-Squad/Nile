@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { getBrandProducts } from '../../service/ProductService';
 import ReactStars from "react-rating-stars-component";
-import { Link } from "react-router-dom";
+
 
 import './BrandProducts.css'
 
