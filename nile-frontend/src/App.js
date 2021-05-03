@@ -6,13 +6,14 @@ import BrandProducts from './components/Brand/BrandProducts';
 import Checkout from './components/Checkout/Checkout';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import Orders from './components/Order/Orders';
 import SingleOrder from './components/Order/SingleOrder';
 import Payment from './components/Payment/Payment';
 import SingleProductListing from './components/ProductListing/SingleProductListing';
 import CreateReview from './components/Reviews/CreateReview';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import ShowAllReviews from './components/Reviews/ShowAllReviews';
+import Orders from './components/Order/Orders'
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -52,6 +53,9 @@ function App() {
 
                     <Route exact path="/createReview/:productId">
                         <CreateReview />
+                    </Route>
+                    <Route exact path="/singleProductListing/all-product-reviews/:productId">
+                        <ShowAllReviews />
                     </Route>
 
                     <Route exact path="/orders">
