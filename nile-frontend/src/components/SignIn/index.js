@@ -3,7 +3,6 @@ import { ACCESS_TOKEN } from '../../constants';
 import { login } from '../../util/APIUtils';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -51,21 +50,24 @@ const SignIn = (props) => {
     event.preventDefault();
     login({ usernameOrEmail, password })
       .then(response => {
-        enqueueSnackbar('Login was successful!', { variant: 'success', anchorOrigin: {
-          vertical: 'bottom', horizontal: 'center'
-        }});
+        enqueueSnackbar('Login was successful!', {
+          variant: 'success', anchorOrigin: {
+            vertical: 'bottom', horizontal: 'center'
+          }
+        });
         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
         props.history.push("/");
       }).catch(error => {
-        enqueueSnackbar(`${error.message}!`, { variant: 'error', anchorOrigin: {
-          vertical: 'bottom', horizontal: 'center'
-        }});
+        enqueueSnackbar(`${error.message}!`, {
+          variant: 'error', anchorOrigin: {
+            vertical: 'bottom', horizontal: 'center'
+          }
+        });
       })
   }
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
