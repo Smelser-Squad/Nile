@@ -5,7 +5,6 @@ import com.tp.Nile.exceptions.InvalidStripeException;
 import com.tp.Nile.services.StripeService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api")
@@ -23,20 +22,26 @@ public class PaymentController {
         this.stripeService = stripeService;
     }
 
-
-
-    @GetMapping("/charge")
-    public String chargePage(Model model) {
-        model.addAttribute("stripePublicKey", API_PUBLIC_KEY);
-        return "charge";
-    }
-
     @PostMapping("/create-charge")
     public ResponseEntity createCharge(@RequestBody ChargeRequest request) {
         try {
             return ResponseEntity.ok(stripeService.createCharge(request ));
         }
         catch (InvalidStripeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/charges")
+    public ResponseEntity getAllTypes(){
+        return ResponseEntity.ok(stripeService.getAllCharges());
+    }
+
+    @GetMapping("/charge/{chargeId}")
+    public ResponseEntity getChargeById(@PathVariable Integer chargeId) {
+        try {
+            return ResponseEntity.ok(stripeService.getChargeById(chargeId));
+        } catch (InvalidStripeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -23,6 +23,7 @@ async function getBrandProducts(brand){
 
     return(data);
 }
+
 async function getTypeProducts(type){
     const products=await axios.get(`http://localhost:80/api/products/type/${type}`);
     const data=products.data;

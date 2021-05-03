@@ -15,6 +15,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
+import Tag from '../ReviewTag/Tag';
 
 
 function SingleProductListing() {
@@ -76,6 +77,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
+           
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -101,6 +103,7 @@ function SingleProductListing() {
             <MoreProducts />
             {/* <QuestionAnswer /> */}
             <ReviewSummary />
+      
             <Reviews />
         </div>
 

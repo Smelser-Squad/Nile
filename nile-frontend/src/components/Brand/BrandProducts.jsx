@@ -20,7 +20,7 @@ function BrandProducts(){
             );
             const cards = ProductList.map((product) =>
             <div className="BrandProduct">
-            <Link to={`/singleProductListing/${product.productId}`}>{product.name} - {product.photos[0].color}</Link>
+            <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${product.productId}` }}>{product.name} - {product.photos[0].color} </h1>
             <img id="product-image" src={product.photos[0].imageSrc} alt=""></img>
             <div className="BrandProduct_info">
             <div class="row">
@@ -36,13 +36,27 @@ function BrandProducts(){
             <p id="review-count">{product.reviews.length}</p>
             </div>
             <h2>${product.price}</h2>
-         
+            <PrimeLogo primeEligible={product.primeEligible} productId={product.productId} />
             </div>
         </div>
             );
             setProduct(cards);
         }
         );
+    }
+    function PrimeLogo(props) {
+        const primeEligible = props.primeEligible;
+        if (primeEligible) {
+            return (
+                <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"
+    
+                ></img>
+    
+            );
+        }
+        else {
+            return <div></div>
+        }
     }
     function calcRating(product)  {
         let sum = 0;
@@ -56,6 +70,12 @@ function BrandProducts(){
 return(
     <div>
         <h1>{Product.length} results for "{brand}"</h1>
+        {/* <select id="sort">
+        <option selected disabled hidden >Sort By</option>
+        <option>Price:High to Low</option>
+        <option>Price:Low to High</option>
+        </select> */}
+        
     {Product}
     </div>
 )
