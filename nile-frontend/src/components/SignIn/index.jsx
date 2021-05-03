@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { ACCESS_TOKEN } from '../../constants';
-import { login } from '../../util/APIUtils';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useSnackbar, withSnackbar } from 'notistack';
+import React, { useState } from 'react';
+import { ACCESS_TOKEN } from '../../constants';
+import { login } from '../../util/APIUtils';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = (props) => {
   const classes = useStyles();
+  const ref = React.createRef();
   const { enqueueSnackbar } = useSnackbar();
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,22 +50,27 @@ const SignIn = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     login({ usernameOrEmail, password })
-      .then(response => {
-        enqueueSnackbar('Login was successful!', { variant: 'success', anchorOrigin: {
-          vertical: 'bottom', horizontal: 'center'
-        }});
+      .then((response) => {
+        enqueueSnackbar('Login was successful!', {
+          variant: 'success',
+          anchorOrigin: {
+            vertical: 'bottom', horizontal: 'center',
+          },
+        });
         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-        props.history.push("/");
-      }).catch(error => {
-        enqueueSnackbar(`${error.message}!`, { variant: 'error', anchorOrigin: {
-          vertical: 'bottom', horizontal: 'center'
-        }});
-      })
+        props.history.push('/');
+      }).catch((error) => {
+        enqueueSnackbar(`${error.message}!`, {
+          variant: 'error',
+          anchorOrigin: {
+            vertical: 'bottom', horizontal: 'center',
+          },
+        });
+      });
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" maxWidth="xs" ref={ref}>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -112,7 +117,7 @@ const SignIn = (props) => {
           <Grid container>
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
@@ -120,6 +125,6 @@ const SignIn = (props) => {
       </div>
     </Container>
   );
-}
+};
 
 export default withSnackbar(SignIn);

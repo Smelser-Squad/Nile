@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @Profile({ "dev", "test" })
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select c from Cart c where c.user.userId=:user_id")
     List<Cart> getCartByUserId(@Param("user_id") Integer user_id);
