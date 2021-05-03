@@ -53,11 +53,11 @@ function ShowAllReviews (){
                 );
                 setPositive(positive);
                 setNegative(negative);
-            
                 setAllReviews(reviews);
+            
             })
-        }        
-    },[allReviews.length,productId,reviewsList,]);
+        }
+    },[allReviews,mostNegative,mostPositive]);
     
  
 
