@@ -24,8 +24,6 @@ function SingleProductListing() {
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState(defaultColor);
-    console.log(typeof defaultColor);
-
 
     const addToCart = () => {
         // dispatch the item into the data layer
