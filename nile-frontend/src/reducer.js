@@ -1,5 +1,7 @@
 export const initialState = {
     cart: [],
+    currentUser: null,
+    isAuthenticated: false
 };
 
 export const getCartTotal = (cart) =>
@@ -25,13 +27,26 @@ const reducer = (state, action) => {
                 newCart.splice(index, 1);
             }
             else {
-                console.warn('cant remove from the card')
+                console.warn('cant remove from the cart')
             }
             return {
                 ...state,
                 cart: newCart
             }
 
+        case "USER_SIGN_IN":
+            return {
+                ...state,
+                currentUser: action.currentUser,
+                isAuthenticated: action.isAuthenticated
+            }
+        
+        case "USER_SIGN_OUT":
+            return {
+                ...state,
+                currentUser: null,
+                isAuthenticated: false
+            }
         default:
             return state;
     }

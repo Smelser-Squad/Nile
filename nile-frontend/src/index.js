@@ -10,7 +10,7 @@ import { SnackbarProvider } from 'notistack';
 ReactDOM.render(
     < React.StrictMode >
         <StateProvider initialState={initialState} reducer={reducer}>
-            <SnackbarProvider maxSnack={1}>
+            <SnackbarProvider maxSnack={3}>
                 <App />
             </SnackbarProvider>
         </StateProvider>
