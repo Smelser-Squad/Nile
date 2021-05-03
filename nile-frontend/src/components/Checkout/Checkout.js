@@ -3,11 +3,12 @@ import './Checkout.css'
 import Subtotal from '../Cart/Subtotal/Subtotal'
 import CartProduct from '../Cart/CartProduct/CartProduct'
 import { useStateValue } from '../../StateProvider'
+import './Checkout.css'
 
 function Checkout() {
     const [{ cart }] = useStateValue();
     const[quan,setProductPrice]=useState('');
-   console.log(quan);
+    console.log(quan);
     return (
         <div className='checkout' >
             <div className="checkout_left">

@@ -1,9 +1,9 @@
-import React from 'react'
-import './Subtotal.css'
+import React from 'react';
 import CurrencyFormat from "react-currency-format";
-import { useStateValue } from "../.././../StateProvider";
-import { getCartTotal } from '../../../reducer';
 import { useHistory } from 'react-router';
+import { getCartTotal } from '../../../reducer';
+import { useStateValue } from "../.././../StateProvider";
+import './Subtotal.css';
 
 function Subtotal({quan}) {
     const [{ cart }] = useStateValue();
@@ -28,7 +28,7 @@ function getTotal(){
                     </>
                 )}
                 decimalScale={2}
-                value={getCartTotal(cart)} //get the total price of all the products //TODO: function getTotal 
+                value={getCartTotal(cart) + quan} //get the total price of all the products //TODO: function getTotal 
                 displayType={"text"}
                 thousandSeperator={true}
                 prefix={"$"}

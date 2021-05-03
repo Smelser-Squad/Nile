@@ -1,17 +1,17 @@
-import React from 'react';
-import '../CartProduct/CartProduct.css';
+import React, { useState } from 'react';
 import ReactStars from "react-rating-stars-component";
-import { useStateValue } from '../../../StateProvider';
-  import {useState} from 'react';
-import Product from '../../MoreProducts/Product';
 import { getCartTotal } from '../../../reducer';
+import { useStateValue } from '../../../StateProvider';
+import '../CartProduct/CartProduct.css';
+
 
 function CartProduct({ productId, image, name, price, rating, key, setProductPrice}) {
     const [{ cart }, dispatch] = useStateValue();
 
-    const [quantity, setQuantity] = useState(1); 
+    const [quantity, setQuantity] = useState(1);
     const [cartPrice, setTotalPrice] = useState(price);
     
+    // console.log(quantity)
 
     const removeFromCart = () => {
         dispatch({
@@ -23,9 +23,9 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
     };
 
     function incrementQuentaty(){
-        const cartPrice = getCartTotal(cart,quantity); 
+        const cartPrice = getCartTotal(cart); 
         setQuantity(prevQuantity=> prevQuantity + 1);
-        setTotalPrice(price + cartPrice);
+        setTotalPrice(price+ cartPrice);
         setProductPrice(price * (quantity + 1));
         
     }
@@ -33,6 +33,10 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
     function decrementQuantity(){
         setQuantity(prevQuantity=> prevQuantity - 1);
         setProductPrice(price * (quantity - 1));
+    }
+
+    function ProductTotal(){
+        return quantity;
     }
 
     return (
@@ -57,7 +61,7 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
 
                 </div>
 
-                <div className="quantity_container"> 
+                <div className="quantity_container">
                     <div className="quantity">Quantity {quantity} </div>
                     <div className="buttons">
                         <button className="btn" onClick={incrementQuentaty}>+</button>

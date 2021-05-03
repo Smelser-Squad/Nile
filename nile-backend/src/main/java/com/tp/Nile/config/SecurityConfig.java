@@ -106,8 +106,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                         "/api/charge",
                         "/api/productPhotos/**",
-                        "/api/qa/questions/**",
-                        "/api/qa/getAnswers/**",
+                        "/api/qa/**",
                         "/api/charges",
                         "/api/charge/**",
                         "/api/productspecs/**")
@@ -126,7 +125,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/qa/**"
+                )
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
@@ -138,7 +139,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/qa/**"
+                        )
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,
                         "/api/products/**",

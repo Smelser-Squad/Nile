@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { getProducts } from '../../service/ProductService'
-
-import './Home.css'
+import React, { useState } from 'react';
+import { getProducts } from '../../service/ProductService';
+import './Home.css';
 import HomeProduct from './HomeProduct';
+
 
 function Home() {
 
