@@ -11,8 +11,9 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import Orders from './components/Order/Orders';
-import {useState} from 'react';
+import ShowAllReviews from './components/Reviews/ShowAllReviews';
+import Orders from './components/Order/Orders'
+import { SnackbarProvider } from 'notistack';
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -51,8 +52,11 @@ function App() {
             
                     </Route>
 
-                    <Route exact path="/createReview/:productId">
-                        <CreateReview/>
+                        <Route exact path="/createReview/:productId">
+                            <CreateReview />
+                       </Route>
+                    <Route exact path="/singleProductListing/all-product-reviews/:productId">
+                        <ShowAllReviews/>
                     </Route>
 
                         <Route exact path="/orders">

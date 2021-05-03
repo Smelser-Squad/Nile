@@ -25,8 +25,8 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
     function incrementQuentaty(){
         const cartPrice = getCartTotal(cart,quantity); 
         setQuantity(prevQuantity=> prevQuantity + 1);
-        setTotalPrice(price + cartPrice * quantity);
-        setProductPrice(price * (quantity+1));
+        setTotalPrice(price + cartPrice);
+        setProductPrice(price * (quantity + 1));
         
     }
 

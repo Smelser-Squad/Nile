@@ -22,7 +22,7 @@ function Reviews() {
             list.map((item)=>
             reviewList.push(item)
             );
-            const reviews=reviewList.map((review)=>
+            const reviews=reviewList.slice(0,5).map((review)=>
                 <SingleReview
                     key={review.reviewId}
                     helpful={review.helpful}
