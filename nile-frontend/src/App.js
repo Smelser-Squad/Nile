@@ -1,18 +1,18 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import BrandProducts from './components/Brand/BrandProducts';
+import Checkout from './components/Checkout/Checkout';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import Checkout from './components/Checkout/Checkout';
-import SingleProductListing from './components/ProductListing/SingleProductListing';
-import BrandProducts from './components/Brand/BrandProducts';
-import CreateReview from './components/Reviews/CreateReview';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Orders from './components/Order/Orders';
+import SingleOrder from './components/Order/SingleOrder';
 import Payment from './components/Payment/Payment';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import SingleProductListing from './components/ProductListing/SingleProductListing';
+import CreateReview from './components/Reviews/CreateReview';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import Orders from './components/Order/Orders';
-import SingleOrder from './components/Order/SingleOrder'
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 

@@ -1,7 +1,7 @@
-import './HomeProduct.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
+import './HomeProduct.css';
 
 
 function HomeProduct({ productId, image, name, price, rating, description, vendor }) {

@@ -1,10 +1,9 @@
-import React from 'react';
-import '../CartProduct/CartProduct.css';
+import React, { useState } from 'react';
 import ReactStars from "react-rating-stars-component";
-import { useStateValue } from '../../../StateProvider';
-import { useState } from 'react';
-import Product from '../../MoreProducts/Product';
 import { getCartTotal } from '../../../reducer';
+import { useStateValue } from '../../../StateProvider';
+import '../CartProduct/CartProduct.css';
+
 
 function CartProduct({ productId, image, name, price, rating, key }) {
     const [{ cart }, dispatch] = useStateValue();

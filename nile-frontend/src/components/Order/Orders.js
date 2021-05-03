@@ -23,13 +23,13 @@ function Orders() {
                 />
             );
             setOrders(orders);
-            console.log(orderList)
         }
         );
     }
     return (
         <div className='orders'>
-            <div className="home_container">
+            <h1>Your Orders </h1>
+            <div className="orders_order">
                 {orders}
             </div >
         </div>
