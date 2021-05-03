@@ -23,8 +23,6 @@ function SingleProductListing() {
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState(defaultColor);
-    console.log(typeof defaultColor);
-
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -78,7 +76,7 @@ function SingleProductListing() {
 
                 </p>
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
+                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
                 <p className="ship">

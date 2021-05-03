@@ -203,8 +203,6 @@ function ReviewSummary() {
         }
     }
 
-    console.log("feature one rating: " + featureOneRating);
-
     const ReactStars = React.lazy(() => import('react-rating-stars-component'));
 
     return (

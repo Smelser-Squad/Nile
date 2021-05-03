@@ -1,7 +1,7 @@
-import './HomeProduct.css';
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
+import './HomeProduct.css';
 
 
 function HomeProduct({ productId, image, name, price, rating, description, vendor }) {
@@ -17,11 +17,11 @@ function HomeProduct({ productId, image, name, price, rating, description, vendo
                 price: price,
                 rating: rating,
                 description: description,
-                vendor:vendor
+                vendor: vendor
             },
         });
     };
-    
+
     return (
         <div className="product">
             <div className="product_info"></div>
@@ -53,8 +53,8 @@ function HomeProduct({ productId, image, name, price, rating, description, vendo
                 />
             </div>
             <Link to={`/singleProductListing/${productId}`}>
-                    <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
-                </Link>
+                <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
+            </Link>
             <button onClick={addToCart}>Add to Cart</button>
         </div >
     );
