@@ -22,10 +22,10 @@ function MoreProducts() {
     const { productId } = useParams();
 
     getProduct(productId)
-        .then((category) => {
-            setCategory(category.category.name)
-        }
-        );
+    .then((category) => {
+        setCategory(category.category.name)
+    }
+    );
 
     if (products.length === 0) {
         getProductsByCategory(category).then((list) => {
