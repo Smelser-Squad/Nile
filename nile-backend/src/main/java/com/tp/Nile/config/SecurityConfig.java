@@ -100,8 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/productPhotos/colors/**",
                         "/api/charge",
                         "/api/productPhotos/**",
-                        "/api/qa/questions/**",
-                        "/api/qa/getAnswers/**",
+                        "/api/qa/**",
                         "/api/charges",
                         "/api/charge/**",
                         "/api/productspecs/**")
