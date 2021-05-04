@@ -16,8 +16,10 @@ function ShowAllReviews (){
     const[allReviews, setAllReviews] = useState([]);
     const[filteredReviews, setFilteredReviews] = useState([]);
     const[filtered, setFiltered] = useState(false);
+    const[filterText, setFilterText] = useState("");
     const[mostPositive, setPositive]= useState();
     const[mostNegative, setNegative]=useState();
+
     const { productId } = useParams();
 
     const reviewsList =[];
@@ -66,12 +68,6 @@ function ShowAllReviews (){
     },[allReviews,mostNegative,mostPositive]);
 
 
-
-
-    //SEARCH FILTER HERE!!!
-
-    
-
     const useInputStyles = makeStyles({
         root:{
             marginTop: "1%",
@@ -106,6 +102,43 @@ function ShowAllReviews (){
     const inputClasses = useInputStyles();
     const buttonClasses = useButtonStyles();
 
+
+    //SEARCH FILTER HERE!!!
+    const handleFilter = () => {
+
+        for(let i = 0; i < allReviews.length;i++)
+        {
+            setAllReviews(allReviews)
+            if(allReviews[i].props.summary.includes(filterText))
+            {
+                reviewsList.push(allReviews[i].props)
+                const filtered = reviewsList.map((review)=>
+                <SingleReview
+                key = {review.reviewId}
+                helpful={review.helpful}
+                rating={review.rating}
+                reviewDate={review.reviewDate}
+                title={review.title}
+                summary={review.summary}
+            />
+                );
+                setFilteredReviews(filtered)
+                setFiltered(true)
+            }
+        }
+    }
+
+    const handleSearch = (event) => {
+        setFilterText(event.target.value)
+    }
+
+    const clearFilter = () =>
+    {
+        setFilteredReviews(allReviews)
+        document.getElementById("textField").value = ""; 
+        setFilterText("")
+    }
+
     return(
         <div class="all-reviews-container">
             <div class="top-reviews">
@@ -121,7 +154,9 @@ function ShowAllReviews (){
             <hr></hr>
 
             <TextField
+            id="textField"
             placeholder="Search customer reviews"
+            onChange={handleSearch}
             classes = {{
                 root: inputClasses.root,
             }}
@@ -136,13 +171,21 @@ function ShowAllReviews (){
              variant="outlined" 
              size="small" ></TextField>
             <Button 
+            onClick={handleFilter}
             classes={{
                 root: buttonClasses.root,
             }}
-            size="small" 
+            size="small"
             variant="contained">
                 Search</Button>
+                <div class="header-container">
+                <h3 >Filtered By</h3>
+                <span>Containing "{filterText}"</span>
+                <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button>
+                </div>
+
             {filteredReviews}
+
         </div>
     )
 
