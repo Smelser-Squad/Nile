@@ -18,9 +18,8 @@ function CreateReview(){
     const [image,setImage]=useState([]);
     const [summary, setSummary]=useState([]);
     const [title, setTitle]=useState([]);
-    const [rating, setRating]=useState([]);
+    const [rating, setRating]=useState(-1);
     const [features, setFeatures]=useState([]);
-    const [product, setProduct]=useState([]);
 
     const { productId } = useParams();
 
@@ -30,7 +29,6 @@ function CreateReview(){
             setFeatures(response.features)
             setName(response.name)
             setImage(response.photos[0].imageSrc);
-            setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
 
         })
     },[])
@@ -62,17 +60,18 @@ function CreateReview(){
                 },
                 rating : document.getElementsByTagName("p")[i+1].innerHTML
             }
-            console.log(featureRating)
+
             addFeatureRating(featureRating)
         }
-
+        setRating(document.getElementsByTagName("p")[0].innerHTML)
         addReview(Review,productId)
 
     }
 
     return (
-
+        
         <div id="createReviewContainer">
+            {/* <img src="src/assets/loading.gif"></img> */}
             <h2>Create Review</h2>
             <div id="product-info-review">
                 <img id="product-image-review"src={image}></img>
@@ -82,51 +81,84 @@ function CreateReview(){
             <div id="overall-rating">
                 <h3>Overall Rating</h3>
                     <ReactStars
+                        onChange={setRating}
                         count={5}
                         edit={true}
-                        value={rating}
+                        value={0}
                         activeColor="#FFA41C"
                         size={40}
                     />
             </div>
             <hr class="divide"></hr>
+            <h3>Rate Features</h3>
             {features.length>0 ?
 
-             (<div id="feature-rating">
-             <h3>Rate Features</h3>
-             <span>{features[0].name}</span>
-             <ReactStars
-                     count={5}
-                     edit={true}
-                     value={1}
-                     activeColor="#FFA41C"
-                     size={30}
-                 />
-             <div>
-             <span>{features[1].name}</span>
-             <ReactStars
-                     count={5}
-                     edit={true}
-                     value={2}
-                     activeColor="#FFA41C"
-                     size={30}
-                 />
-             </div>
-             <div>
-             <span>{features[2].name}</span>
-             <ReactStars
-                     count={5}
-                     edit={true}
-                     value={3}
-                     activeColor="#FFA41C"
-                     size={30}
-                 />
-             </div>
-         </div>):
+             (
+            <div id="feature-rating">
+                <span>{features[0].name}</span>
+                <ReactStars
+                        count={5}
+                        edit={true}
+                        value={0}
+                        activeColor="#FFA41C"
+                        size={30}
+                    />
+                <div>
+                    <span>{features[1].name}</span>
+                    <ReactStars
+                            count={5}
+                            edit={true}
+                            value={0}
+                            activeColor="#FFA41C"
+                            size={30}
+                        />
+                </div>
+                <div>
+                    <span>{features[2].name}</span>
+                    <ReactStars
+                            count={5}
+                            edit={true}
+                            value={0}
+                            activeColor="#FFA41C"
+                            size={30}
+                        />
+                </div>
+                <div>
+                    <span>{features[3].name}</span>
+                    <ReactStars
+                            count={5}
+                            edit={true}
+                            value={0}
+                            activeColor="#FFA41C"
+                            size={30}
+                        />
+                </div>
+                <div>
+                    <span>{features[4].name}</span>
+                    <ReactStars
+                            count={5}
+                            edit={true}
+                            value={0}
+                            activeColor="#FFA41C"
+                            size={30}
+                        />
+                </div>
+                <div>
+                    <span>{features[5].name}</span>
+                    <ReactStars
+                            count={5}
+                            edit={true}
+                            value={0}
+                            activeColor="#FFA41C"
+                            size={30}
+                        />
+                </div>
+            </div>
+         ):
 
          (<div>LOADING</div>)}
             
-            <div id="sizeDiv">
+            {/* <div id="sizeDiv">
                 <span>How does this product fit?</span>
                 <div id="sizeButtonDiv">
                     <input type="radio" class="sizeReview" id="size1" name="size"></input>
@@ -140,7 +172,7 @@ function CreateReview(){
                     <span>as expected</span>
                     <span>Too large</span>
                 </div>
-            </div>
+            </div> */}
             <hr class="divide"></hr>
             <div id="photo-submit">
                 <h3>Add a photo</h3>
@@ -153,7 +185,7 @@ function CreateReview(){
                 <input id="text-title" alt="image of product" placeholder="What's important to know?" onChange={e => setTitle(e.target.value)}/>
                 <h3>Add a written review</h3>
                 <textarea id="text-summary" placeholder="What did you like or dislike? How did you use this product?" onChange={e => setSummary(e.target.value)}/>
-                <button id="submit-review" onClick={()=>submitReview(Review,productId)}>submit</button>
+                <button id="submit-review" disabled={Review.rating===-1 || Review.title<1 || Review.summary < 1} onClick={()=>submitReview(Review,productId)}>submit</button>
             </div>
         </div>
     )
