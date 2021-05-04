@@ -10,7 +10,6 @@ export const getCartTotal = (cart) =>
 
 
 const reducer = (state, action) => {
-    // console.log(action);
     switch (action.type) {
         case "ADD_TO_CART":
             return {
@@ -32,13 +31,18 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: newCart
-            }
+            };
+        case "EMPTY_CART":
+            return {
+                ...state,
+                cart: []
+            };
 
         case "USER_SIGN_IN":
             return {
                 ...state,
                 currentUser: action.currentUser,
-                isAuthenticated: action.isAuthenticated
+                isAuthenticated: true
             }
         
         case "USER_SIGN_OUT":

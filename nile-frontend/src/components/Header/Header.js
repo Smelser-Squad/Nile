@@ -1,10 +1,10 @@
-import React from 'react'
-import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import UserMenu from '../UserMenu';
+import './Header.css';
 function Header() {
     const [{ cart, currentUser, isAuthenticated }] = useStateValue();
     return (
@@ -24,7 +24,8 @@ function Header() {
 
             <div className="header_nav" >
 
-                <UserMenu props={[currentUser, isAuthenticated]} />
+                
+                <UserMenu />
 
                 <Link to="/Orders">
 

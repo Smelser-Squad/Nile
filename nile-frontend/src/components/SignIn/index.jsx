@@ -70,8 +70,8 @@ const SignIn = (props) => {
               },
             });
             dispatch({
+              type: 'USER_SIGN_IN',
               currentUser: response,
-              isAuthenticated: true,
             });
             props.history.push('/');
           }).catch(error => {
