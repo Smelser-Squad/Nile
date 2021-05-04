@@ -35,9 +35,7 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
         setProductPrice(price * (quantity - 1));
     }
 
-    function ProductTotal(){
-        return quantity;
-    }
+  
 
     return (
         <div className='cartProduct'>

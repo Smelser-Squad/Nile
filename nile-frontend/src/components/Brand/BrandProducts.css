@@ -5,7 +5,7 @@
    
 }
 #product-image {
-    margin-right: 900px;
+    margin-right: 1000px;
     height: 220px;
     width: 220px;
 
@@ -22,27 +22,24 @@
     min-width: 100px;
     background-color: white;
     z-index: 1;
+   
 }
 .BrandProduct_info{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;  
-    margin-right: 300px;
-    /* margin-bottom: 80px;  */
+    align-items: center;  
+    margin-right: 400px;
+ 
 }
 #name {
     text-decoration: none;
     height: 100px;
     margin-bottom: -90px;
     font-size: 30px;
-    margin-right: 300px;
+    margin-right: 400px;
     margin-top: 70px;
 }
 #pages{
     display: flex;
     justify-content: center;
-}
-.row{
-    margin-bottom: 200px;
 }

@@ -7,8 +7,8 @@ import './Checkout.css'
 
 function Checkout() {
     const [{ cart }] = useStateValue();
-    const[quan,setProductPrice]=useState('');
-    console.log(quan);
+    const[SingleProductPrice,setProductPrice]=useState('');
+
     return (
         <div className='checkout' >
             <div className="checkout_left">
@@ -32,7 +32,7 @@ function Checkout() {
             </div>
 
             <div className="checkout_right">
-                <Subtotal quan={quan}/>
+                <Subtotal SingleProductPrice={SingleProductPrice}/>
             </div>
         </div>
     )
