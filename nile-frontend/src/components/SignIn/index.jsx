@@ -10,7 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useSnackbar, withSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { ACCESS_TOKEN } from '../../constants';
-import { login } from '../../util/APIUtils';
+import { useStateValue } from '../../StateProvider';
+import { getCurrentUser, login } from '../../util/APIUtils';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +39,7 @@ const SignIn = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [{ state }, dispatch] = useStateValue();
 
   function handleUsernameOrEmailChange(event) {
     setUsernameOrEmail(event.target.value);
@@ -58,7 +60,27 @@ const SignIn = (props) => {
           },
         });
         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-        props.history.push('/');
+        getCurrentUser()
+          .then(response => {
+            enqueueSnackbar('User authenticated successfully!', {
+              variant: 'success',
+              anchorOrigin: {
+                vertical: 'bottom', horizontal: 'center',
+              },
+            });
+            dispatch({
+              type: 'USER_SIGN_IN',
+              currentUser: response,
+            });
+            props.history.push('/');
+          }).catch(error => {
+            enqueueSnackbar(`${error.message}`, {
+              variant: 'error',
+              anchorOrigin: {
+                vertical: 'bottom', horizontal: 'center',
+              },
+            });
+          });
       }).catch((error) => {
         enqueueSnackbar(`${error.message}!`, {
           variant: 'error',
