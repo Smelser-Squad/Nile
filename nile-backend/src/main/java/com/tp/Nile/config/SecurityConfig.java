@@ -95,12 +95,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
+                        "/api/productPhotos/colors/**",
                         "/api/charge",
                         "/api/productPhoto/**",
                         "/api/qa/questions/**",
                         "/api/qa/getAnswers/**",
                         "/api/productspecs/**",
-                        "/api/featureRating/**")
+                        "/api/featureRating/**",
+                        "/api/charges",
+                        "/api/charge/**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/products/**",

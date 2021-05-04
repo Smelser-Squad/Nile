@@ -1,10 +1,10 @@
 import './CreateReview.css'
 import ReactStars from "react-rating-stars-component";
-import {addReview} from "../../service/ReviewService"
+import {addReview,addFeatureRating} from "../../service/ReviewService"
 import React, { useState } from 'react';
 import {getProduct} from '../../service/ProductService';
 import { useParams } from 'react-router';
-
+import {useEffect} from 'react';
 
 
 
@@ -14,33 +14,26 @@ function CreateReview(){
     // The only way I could get rating passed to review object was to grab the innerHTML from the p tag at the 0th index
     // since it is the react-stars at the begining. features will be done in the same way once they are finalized
 
-    const [name,setName]=useState(0);
-    const [image,setImage]=useState(0);
-    const [summary, setSummary]=useState(0);
-    const [title, setTitle]=useState(0);
-    const [rating, setRating]=useState(0);
-    const [feature, setFeature]=useState(0);
-    const [product, setProduct]=useState(0);
-
+    const [name,setName]=useState([]);
+    const [image,setImage]=useState([]);
+    const [summary, setSummary]=useState([]);
+    const [title, setTitle]=useState([]);
+    const [rating, setRating]=useState([]);
+    const [features, setFeatures]=useState([]);
+    const [product, setProduct]=useState([]);
 
     const { productId } = useParams();
 
-    getProduct(productId).then((name)=>{
-        setName(name.name);
-    })
+    useEffect(()=> {
+        getProduct(productId).then((response)=>
+        {
+            setFeatures(response.features)
+            setName(response.name)
+            setImage(response.photos[0].imageSrc);
+            setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
 
-    getProduct(productId).then((image)=>{
-        setImage(image.photos[0].imageSrc);
-        setRating(parseInt(document.getElementsByTagName("p")[0].innerHTML))
-    })
-
-    getProduct(productId).then((response)=>{
-        //setFeature(response.features);
-        // console.log(feature)
-    })
-
-    // console.log(product)
-
+        })
+    },[])
 
 
     const mili = Date.now();
@@ -57,9 +50,28 @@ function CreateReview(){
         }
     }
 
+    function submitReview(Review,productId){
+        for(var i=0;i<features.length;i++){
+
+            const featureRating = {
+                product :{
+                    productId : productId
+                },
+                feature :{
+                    featureId : features[i].featureId
+                },
+                rating : document.getElementsByTagName("p")[i+1].innerHTML
+            }
+            console.log(featureRating)
+            addFeatureRating(featureRating)
+        }
+
+        addReview(Review,productId)
+
+    }
 
     return (
-        
+
         <div id="createReviewContainer">
             <h2>Create Review</h2>
             <div id="product-info-review">
@@ -78,37 +90,42 @@ function CreateReview(){
                     />
             </div>
             <hr class="divide"></hr>
-            <div id="feature-rating">
-                <h3>Rate Features</h3>
-                <span>support</span>
-                <ReactStars
-                        count={5}
-                        edit={true}
-                        value={0}
-                        activeColor="#FFA41C"
-                        size={30}
-                    />
-                <div>
-                <span>for working out</span>
-                <ReactStars
-                        count={5}
-                        edit={true}
-                        value={0}
-                        activeColor="#FFA41C"
-                        size={30}
-                    />
-                </div>
-                <div>
-                <span>comfort</span>
-                <ReactStars
-                        count={5}
-                        edit={true}
-                        value={0}
-                        activeColor="#FFA41C"
-                        size={30}
-                    />
-                </div>
-            </div>
+            {features.length>0 ?
+
+             (<div id="feature-rating">
+             <h3>Rate Features</h3>
+             <span>{features[0].name}</span>
+             <ReactStars
+                     count={5}
+                     edit={true}
+                     value={1}
+                     activeColor="#FFA41C"
+                     size={30}
+                 />
+             <div>
+             <span>{features[1].name}</span>
+             <ReactStars
+                     count={5}
+                     edit={true}
+                     value={2}
+                     activeColor="#FFA41C"
+                     size={30}
+                 />
+             </div>
+             <div>
+             <span>{features[2].name}</span>
+             <ReactStars
+                     count={5}
+                     edit={true}
+                     value={3}
+                     activeColor="#FFA41C"
+                     size={30}
+                 />
+             </div>
+         </div>):
+
+         (<div>LOADING</div>)}
+            
             <div id="sizeDiv">
                 <span>How does this product fit?</span>
                 <div id="sizeButtonDiv">
@@ -136,12 +153,14 @@ function CreateReview(){
                 <input id="text-title" alt="image of product" placeholder="What's important to know?" onChange={e => setTitle(e.target.value)}/>
                 <h3>Add a written review</h3>
                 <textarea id="text-summary" placeholder="What did you like or dislike? How did you use this product?" onChange={e => setSummary(e.target.value)}/>
-                <button id="submit-review" onClick={()=>addReview(Review,productId)}>submit</button>
+                <button id="submit-review" onClick={()=>submitReview(Review,productId)}>submit</button>
             </div>
         </div>
     )
     
 
 }
+
+
 
 export default CreateReview;

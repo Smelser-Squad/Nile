@@ -13,3 +13,7 @@ export function addReview(Review,productId){
     axios.post(`http://localhost:80/api/reviews`,Review);
     window.location.replace(`http://localhost:3000/singleProductListing/${productId}`)
 }
+
+export function addFeatureRating(featureRating){
+    axios.post(`http://localhost:80/api/featureRating`,featureRating)
+}
