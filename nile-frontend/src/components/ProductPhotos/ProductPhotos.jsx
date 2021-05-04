@@ -4,14 +4,13 @@ import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
 import  {SideBySideMagnifier} from "react-image-magnifiers";
 
-function ProductPhotos({color}) {
-
+export function ProductPhotos({color}) {
     const [data, setData] = useState([]);
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
     const [currColor, setCurrColor] = useState(color);
+    
     const PhotoList = [];
-   
     if(data.length===0 || currColor !== color){
         getPhotos(productId, color).then((list)=>
         {
@@ -42,6 +41,7 @@ function ProductPhotos({color}) {
             setData(data);
             setCurrColor(color);
             setMag(magnifier);
+            setCurrColor(color);
         }
         );
         
@@ -57,16 +57,9 @@ function ProductPhotos({color}) {
             </div>
         </div>
     );
-
     function updatePhoto(newSrc) {
        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[0].setAttribute("src", newSrc);
        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
     }
-
 }
-
-
-
-
-
 export default ProductPhotos;
