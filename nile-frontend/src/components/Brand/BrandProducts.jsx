@@ -112,13 +112,13 @@ function BrandProducts(){
        let list;
     var selected=document.getElementById("sort").value
   
-    const FiliterArray=(Array.from(FilteredList));
+    const FilterArray=(Array.from(FilteredList));
 
     if(selected=="low to high"){
-         list=FiliterArray.sort(compareValues('price'));
+         list=FilterArray.sort(compareValues('price'));
     }
     else{
-        list=FiliterArray.sort(compareValues('price','desc'));
+        list=FilterArray.sort(compareValues('price','desc'));
     }
 
 
