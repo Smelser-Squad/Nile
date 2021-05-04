@@ -1,5 +1,7 @@
 package com.tp.Nile.controllers.Helper;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tp.Nile.models.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,10 @@ public class ChargeRequest implements Serializable {
     @JsonFormat(pattern = "MMMM dd, yyyy")
     @CreationTimestamp
     private LocalDate orderDate;
+
+    @Column(name = "cart", nullable = true)
+    @OneToOne(mappedBy = "chargeRequest")
+    private Cart cart;
 
 
 

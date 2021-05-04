@@ -10,7 +10,7 @@ public interface CartService {
 
     List<Cart> getAllCarts();
     Cart getCartById(Integer cartId) throws NullCartIdException, InvalidCartIdException;
-    List<Cart> getCartsByUserId(Integer userId) throws NullUserIdException, InvalidUserIdException;
+    List<Cart> getBoughtCartsByUserId(Integer userId) throws NullUserIdException, InvalidUserIdException;
     Cart addCart(Cart newCart);
     Cart updateCart(Cart updatedCart);
     boolean deleteCart(Integer cartId) throws NullCartIdException, InvalidCartIdException;

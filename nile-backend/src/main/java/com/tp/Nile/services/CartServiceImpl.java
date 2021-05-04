@@ -11,6 +11,7 @@ import com.tp.Nile.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<Cart> getCartsByUserId(Integer userId) throws NullUserIdException, InvalidUserIdException {
+    public List<Cart> getBoughtCartsByUserId(Integer userId) throws NullUserIdException, InvalidUserIdException {
+        List<Cart> boughtCarts = new ArrayList<>();
+
         if(userId == null){
             throw new NullUserIdException("Cannot get carts by user id with null id");
         }
@@ -53,7 +56,12 @@ public class CartServiceImpl implements CartService {
 
         if(user.isPresent()){
             List<Cart> carts = repo.findByUser(user.get());
-            return carts;
+            for(Cart cart : carts){
+                if(cart.getStatus().equals("Ordered")){
+                    boughtCarts.add(cart);
+                }
+            }
+            return boughtCarts;
         }else{
             throw new InvalidUserIdException("User with that id does not exist");
         }

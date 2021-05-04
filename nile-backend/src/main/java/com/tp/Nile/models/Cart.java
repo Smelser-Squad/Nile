@@ -1,6 +1,8 @@
 package com.tp.Nile.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tp.Nile.controllers.Helper.ChargeRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,4 +43,9 @@ public class Cart implements Serializable {
     @OneToMany(mappedBy = "cart")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CartProduct> cartProducts = new ArrayList<>();
+
+    @JsonIgnore
+    @Column(name = "charge_request", nullable = true)
+    @OneToOne(mappedBy = "cart")
+    private ChargeRequest chargeRequest;
 }

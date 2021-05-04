@@ -42,10 +42,10 @@ public class CartController {
         }
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity getCartsByUserId(@PathVariable Integer userId) {
+    @GetMapping("/bought/{userId}")
+    public ResponseEntity getBoughtCartsByUserId(@PathVariable Integer userId) {
         try {
-            return ResponseEntity.ok(service.getCartsByUserId(userId));
+            return ResponseEntity.ok(service.getBoughtCartsByUserId(userId));
         } catch (InvalidUserIdException | NullUserIdException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
