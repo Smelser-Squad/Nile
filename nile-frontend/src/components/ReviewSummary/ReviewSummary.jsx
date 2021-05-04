@@ -3,11 +3,9 @@ import React, { Suspense } from 'react';
 import axios from 'axios';
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core';
-import {useParams} from 'react-router'
+import { useParams } from 'react-router'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-
-
 
 const BorderLinearProgress = withStyles(() => ({
     root: {
@@ -24,7 +22,7 @@ const BorderLinearProgress = withStyles(() => ({
     },
 }))(LinearProgress);
 
-function ReviewSummary (starAvg) {
+function ReviewSummary() {
 
     const { productId } = useParams();
 
@@ -37,13 +35,19 @@ function ReviewSummary (starAvg) {
     const [twoStarPercent, getTwoStars] = useState();
     const [oneStarPercent, getOneStars] = useState();
 
-    const [featureOne, getFeatureOne] = useState();
-    const [featureTwo, getFeatureTwo] = useState();
-    const [featureThree, getFeatureThree] = useState();
-    const [featureFour, getFeatureFour] = useState();
-    const [featureFive, getFeatureFive] = useState();
-    const [featureSix, getFeatureSix] = useState();
+    const [featureOneName, getFeatureOne] = useState();
+    const [featureTwoName, getFeatureTwo] = useState();
+    const [featureThreeName, getFeatureThree] = useState();
+    const [featureFourName, getFeatureFour] = useState();
+    const [featureFiveName, getFeatureFive] = useState();
+    const [featureSixName, getFeatureSix] = useState();
 
+    const [featureOneRating, getFeatureOneRating] = useState();
+    const [featureTwoRating, getFeatureTwoRating] = useState();
+    const [featureThreeRating, getFeatureThreeRating] = useState();
+    const [featureFourRating, getFeatureFourRating] = useState();
+    const [featureFiveRating, getFeatureFiveRating] = useState();
+    const [featureSixRating, getFeatureSixRating] = useState();
 
     let numFiveStar = 0;
     let numFourStar = 0;
@@ -51,33 +55,81 @@ function ReviewSummary (starAvg) {
     let numTwoStar = 0;
     let numOneStar = 0;
 
-    async function getFeaturesByProductId() {
+    const getFeaturesByProductId = async () => {
         await axios.get(`http://localhost:80/api/features/byproduct/${productId}`)
             .then(res => {
                 for (let i in res.data) {
-                    if (i == 0) {
+                    if (parseInt(i) === 0) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureOneRating(sum / count);
                         getFeatureOne(res.data[i].name);
                     }
-                    else if (i == 1) {
+                    else if (parseInt(i) === 1) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureTwoRating(sum / count);
                         getFeatureTwo(res.data[i].name);
                     }
-                    else if (i == 2) {
+                    else if (parseInt(i) === 2) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureThreeRating(sum / count);
                         getFeatureThree(res.data[i].name);
                     }
-                    else if (i == 3) {
+                    else if (parseInt(i) === 3) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureFourRating(sum / count);
                         getFeatureFour(res.data[i].name);
                     }
-                    else if (i == 4) {
+                    else if (parseInt(i) === 4) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureFiveRating(sum / count);
                         getFeatureFive(res.data[i].name);
                     }
-                    else if (i == 5) {
+                    else if (parseInt(i) === 5) {
+                        let sum = 0;
+                        let count = 0; 
+                        for (let j in res.data[i].featureRatingList)
+                        {
+                            sum += res.data[i].featureRatingList[j].rating;
+                            count++;
+                        }
+                        getFeatureSixRating(sum / count);
                         getFeatureSix(res.data[i].name);
                     }
                 }
             })
     }
 
-    async function getAllReviewsByProductId() {
+    const getAllReviewsByProductId = async () => {
         await axios.get(`http://localhost:80/api/reviews/byproduct/${productId}`)
             .then(res => {
                 for (let i in res.data) {
@@ -125,11 +177,7 @@ function ReviewSummary (starAvg) {
     useEffect(() => {
         getAllReviewsByProductId();
         getFeaturesByProductId();
-    }, []);
-
-    starAvg = reviewAvg;
-
-
+    }, [productId]);
 
     function displaySeeMore() {
         var x = document.getElementById("seeMore");
@@ -155,8 +203,6 @@ function ReviewSummary (starAvg) {
         }
     }
 
-    console.log("Feature One: " + featureOne);
-
     const ReactStars = React.lazy(() => import('react-rating-stars-component'));
 
     return (
@@ -168,7 +214,7 @@ function ReviewSummary (starAvg) {
                     <ReactStars
                         count={5}
                         edit={false}
-                        value={starAvg}
+                        value={reviewAvg}
                         activeColor="#FFA41C"
                         size={15}
                         isHalf={true}
@@ -212,21 +258,6 @@ function ReviewSummary (starAvg) {
                     trustworthiness.</p>
                     </div>
 
-            </div>
-            <div className="5star_row">
-                    <BorderLinearProgress variant="determinate" value={80} />
-                </div>
-                <div className="4star_row">
-                    <BorderLinearProgress variant="determinate" value={70} />
-                </div>
-                <div className="3star_row">
-                    <BorderLinearProgress variant="determinate" value={60} />
-                </div>
-                <div className="2star_row">
-                    <BorderLinearProgress variant="determinate" value={50} />
-                </div>
-                <div className="star_row">
-                    <span>1 star <BorderLinearProgress variant="determinate" value={40} /> 40%</span>
                 </div>
 
                 <hr className="light" />
@@ -235,57 +266,57 @@ function ReviewSummary (starAvg) {
 
                 <div className="by_feature">
                     <h3>By feature</h3>
-                    <span>{featureOne}
-                <ReactStars
+                    <span>{featureOneName}
+                        <ReactStars
                             count={5}
                             edit={false}
-                            value={4}
+                            value={featureOneRating}
                             activeColor="#FFA41C"
                             size={15}
                         /></span>
 
-                    <span>{featureTwo}</span>
+                    <span>{featureTwoName}</span>
                     <ReactStars
                         count={5}
                         edit={false}
-                        value={2}
+                        value={featureTwoRating}
                         activeColor="#FFA41C"
                         size={15}
                     />
 
-                    <span>{featureThree}</span>
+                    <span>{featureThreeName}</span>
                     <ReactStars
                         count={5}
                         edit={false}
-                        value={4}
+                        value={featureThreeRating}
                         activeColor="#FFA41C"
                         size={15}
                     />
 
                     <div id="seeMore">
-                        <span>{featureFour}</span>
+                        <span>{featureFourName}</span>
                         <ReactStars
                             count={5}
                             edit={false}
-                            value={1}
+                            value={featureFourRating}
                             activeColor="#FFA41C"
                             size={15}
                         />
 
-                        <span>{featureFive}</span>
+                        <span>{featureFiveName}</span>
                         <ReactStars
                             count={5}
                             edit={false}
-                            value={2}
+                            value={featureFiveRating}
                             activeColor="#FFA41C"
                             size={15}
                         />
 
-                        <span>{featureSix}</span>
+                        <span>{featureSixName}</span>
                         <ReactStars
                             count={5}
                             edit={false}
-                            value={3}
+                            value={featureSixRating}
                             activeColor="#FFA41C"
                             size={15}
                         />
@@ -308,13 +339,13 @@ function ReviewSummary (starAvg) {
                     <span className="share_thoughts">
                         Share your thoughts with other customers
                 </span>
-                <br />
-                <br />
-                <Link to={`/createReview/${productId}`}>
-                    <button className="writeReview">Write a customer review</button>
-                </Link>
-                <br />
-            </div>
+                    <br />
+                    <br />
+                    <Link to={`/createReview/${productId}`}>
+                        <button className="writeReview">Write a customer review</button>
+                    </Link>
+                    <br />
+                </div>
 
                 <hr className="light" />
 

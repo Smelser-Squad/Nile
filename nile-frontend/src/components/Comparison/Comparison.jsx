@@ -20,6 +20,12 @@ async function createTableData(products, specIds) {
     }
     columns.push(currColumn);
   }
+  let priceRow = {};
+  priceRow["spec"] = "Price";
+  for (let i = 0; i < products.length; i++) {
+    priceRow[products[i].name] = "$"+products[i].price.toFixed(2);
+  }
+  data.push(priceRow);
   for (let i = 0; i < specIds.length; i++) {
     let currRow = {};
     for (let j = 0; j < products.length; j++) {
@@ -29,7 +35,7 @@ async function createTableData(products, specIds) {
       if (currProdSpec != null) {
         currRow[products[j].name] = currProdSpec.value;
       } else {
-        currRow[products[j].name] = "N/A";
+        currRow[products[j].name] = "";
       }
       currRow["spec"] = currSpec.specName;
     }

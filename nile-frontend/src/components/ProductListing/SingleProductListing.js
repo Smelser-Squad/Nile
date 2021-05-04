@@ -5,9 +5,10 @@ import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
+import ShowAllReviews from '../Reviews/ShowAllReviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
-import Comparison from '../Comparison/Comparison.jsx';
+import Comparison from '../Comparison/Comparison';
 import { useParams } from 'react-router-dom'
 import { useStateValue } from "../../StateProvider";
 import Radio from '@material-ui/core/Radio';
@@ -23,8 +24,6 @@ function SingleProductListing() {
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState(defaultColor);
-    console.log(typeof defaultColor);
-
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -78,7 +77,7 @@ function SingleProductListing() {
 
                 </p>
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' onClick={addToCart}><button className="shop_button ">Shop Now</button></Link>
+                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
                 <p className="ship">
@@ -107,10 +106,12 @@ function SingleProductListing() {
             <QuestionAnswer />
 
             <ReviewSummary />
-
+        
             <Reviews />
-
-
+            <Link 
+            to={`./all-product-reviews/${Product.productId}`} >
+                See all reviews
+            </Link>
         </div>
 
     )
