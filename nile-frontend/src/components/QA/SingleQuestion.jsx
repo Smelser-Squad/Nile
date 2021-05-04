@@ -62,7 +62,7 @@ export default function Question(props) {
                     <div className="queAndAns">
                         <div className="right">
                             <div className="btn" onClick={togglePop}>
-                                {props.question.question}<br></br><br></br>
+                                <span className="btnLink">{props.question.question}</span><br></br><br></br>
                             </div>
                             {seen ? <PopUp toggle={togglePop} question={props.question} /> : null}
                             <Answers answers={props.question.answers} /> 
@@ -84,7 +84,7 @@ export default function Question(props) {
     displayQuestions(props)
     )
 
-    }
+}
 
     
 
