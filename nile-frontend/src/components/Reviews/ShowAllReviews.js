@@ -15,6 +15,7 @@ function ShowAllReviews (){
 
     const[allReviews, setAllReviews] = useState([]);
     const[filteredReviews, setFilteredReviews] = useState([]);
+    const[filtered, setFiltered] = useState(false);
     const[mostPositive, setPositive]= useState();
     const[mostNegative, setNegative]=useState();
     const { productId } = useParams();
@@ -76,13 +77,15 @@ function ShowAllReviews (){
             marginTop: "1%",
             marginBottom: "1%",
             width: "35%",
-            
+            background: "white",
+            borderRadius: "6%",  
+         
         },
         adornedStart:
         {
-            paddingLeft:"8px",
+            paddingLeft: "8px", 
         }
-
+     
     });
 
     const useButtonStyles = makeStyles({
@@ -90,20 +93,21 @@ function ShowAllReviews (){
             marginTop: "1%",
             marginBottom: "1%",
             marginLeft: "1%",
-            
+            fontFamily: "inherit",
+            fontWeight: "bolder",
+            color: "white",
+            textTransform: "none",
+            background: "linear-gradient(to bottom, #72787F, #444C55)",
+
         },
 
     });
 
     const inputClasses = useInputStyles();
     const buttonClasses = useButtonStyles();
-    
- 
-
 
     return(
         <div class="all-reviews-container">
-            <hr></hr>
             <div class="top-reviews">
             <div class="positive-review">
                 <h3>Top positive review:</h3>
@@ -117,19 +121,17 @@ function ShowAllReviews (){
             <hr></hr>
 
             <TextField
+            placeholder="Search customer reviews"
             classes = {{
                 root: inputClasses.root,
-                adornedStart: inputClasses.adornedStart,
             }}
             InputProps={{
                 startAdornment: 
-                <InputAdornment 
-                classes ={{
-                    adornedStart: inputClasses.adornedStart,
-                }}
+                <InputAdornment
                 position="start">
                     <SearchIcon/>
                 </InputAdornment>,
+                classes:{adornedStart: inputClasses.adornedStart}
               }}
              variant="outlined" 
              size="small" ></TextField>
