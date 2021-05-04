@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { getProducts } from '../../service/ProductService'
-
-import './Home.css'
+import React, { useState } from 'react';
+import { getProducts } from '../../service/ProductService';
+import './Home.css';
 import HomeProduct from './HomeProduct';
+
 
 function Home() {
 
@@ -26,7 +26,7 @@ function Home() {
                     rating={calcRating(product)}
                     image={product.photos[0].imageSrc}
                     description={product.description}
-                    // vendor={product.vendor.name}
+                // vendor={product.vendor.name}
                 />
             );
             setCards(cards);
