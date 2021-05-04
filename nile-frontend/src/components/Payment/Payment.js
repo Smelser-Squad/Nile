@@ -39,7 +39,7 @@ function Payment() {
         <
         h1 >
         Checkout( <
-            Link to = 'checkout' > { cart ? .length }
+            Link to = 'checkout' > { cart.length }
             items < /Link>
         ) <
         /h1> <
