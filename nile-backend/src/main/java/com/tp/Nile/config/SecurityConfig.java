@@ -92,6 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/categories/**",
                         "/api/reviews/**",
                         "/api/features/**",
+                        "/api/specifications/**",
+                        "/api/featureRating/**",
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
@@ -108,30 +110,44 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/carts/**",
                         "/api/categories/**",
                         "/api/reviews/**",
+                        "/api/qa/addQuestion/**",
                         "/api/features/**",
+                        "/api/featureRating/**",
+                        "/api/specifications/**",
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
+<<<<<<< HEAD
                         "/api/qa/**",
                         "/api/productspecs/**")
+=======
+                        "/api/productPhotos/**",
+                        "/api/productspecs/**",
+                        "/api/qa/**"
+                )
+>>>>>>> 838f1087ba30cda6d18dcd2fbb6b29aca06b7c5f
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
                         "/api/carts/**",
                         "/api/categories/**",
                         "/api/reviews/**",
+                        "/api/featureRating/**",
                         "/api/features/**",
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/qa/**"
+                        )
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,
                         "/api/products/**",
                         "/api/carts/**",
                         "/api/categories/**",
                         "/api/reviews/**",
+                        "/api/featureRating/**",
                         "/api/features/**",
                         "/api/specs/**",
                         "/api/types/**",

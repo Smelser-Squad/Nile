@@ -1,25 +1,53 @@
 import React, {useEffect, useState} from 'react';
 import { getProduct, getTypeProducts } from '../../service/ProductService'
 import { getProductSpecsById, getSpecById } from '../../service/SpecService'
+import { getAverageReviewScore } from '../../service/ReviewService'
 import './Comparison.css'
 import Table from './Table'
 
 async function createTableData(products, specIds) {
   let data = [];
   let columns = [];
+  let numReviews = [];
   let tableData = {};
+
   let firstColumn = {
     Header: "",
     accessor: "spec"
   };
   columns.push(firstColumn);
+
   for (let i = 0; i < products.length; i++) {
+    let currImage = {
+      Header: props => <img src={products[i].photos[0].imageSrc}></img>,
+      accessor: products[i].name + "_img",
+      Cell: props => <img src={products[i].photos[0].imageSrc}></img>,
+      columns: []
+    }
     let currColumn = {
       Header: products[i].name,
       accessor: products[i].name
     }
-    columns.push(currColumn);
+    currImage.columns.push(currColumn);
+    columns.push(currImage);
   }
+
+  let priceRow = {};
+  priceRow["spec"] = "Price";
+  for (let i = 0; i < products.length; i++) {
+    priceRow[products[i].name] = "From $"+products[i].price.toFixed(2);
+  }
+  data.push(priceRow);
+
+  let ratingRow = {};
+  ratingRow["spec"] = "Ratings";
+  for (let i = 0; i < products.length; i++) {
+    const currReviewInfo = await getAverageReviewScore(products[i].productId);
+    ratingRow[products[i].name] = currReviewInfo.avg;
+    numReviews[i] = currReviewInfo.length;
+  }
+  data.push(ratingRow);
+
   for (let i = 0; i < specIds.length; i++) {
     let currRow = {};
     for (let j = 0; j < products.length; j++) {
@@ -29,17 +57,16 @@ async function createTableData(products, specIds) {
       if (currProdSpec != null) {
         currRow[products[j].name] = currProdSpec.value;
       } else {
-        currRow[products[j].name] = "N/A";
+        currRow[products[j].name] = "";
       }
       currRow["spec"] = currSpec.specName;
     }
     data.push(currRow);
-    
-    //data.push(currRow);
   }
   
   tableData["data"] = data;
   tableData["columns"] = columns;
+  tableData["numReviews"] = numReviews;
   return tableData;
 }
 
@@ -53,7 +80,6 @@ function Comparison() {
   const typeProducts = [];
   const allSpecIds = [];
   const [columns, setColumns] = useState([]);
-  const [data, setData] = useState([]);
 
   if (products.length === 0) {
     getProduct(productId).then(curr => {
@@ -72,7 +98,6 @@ function Comparison() {
         }
         createTableData(typeProducts, allSpecIds).then(res => {
           setTableData(res);
-          setData(tableData.data);
           setLoading(false);
         });
       })
@@ -85,7 +110,7 @@ function Comparison() {
 
   return (
     <div className="Comparison">
-      <Table columns={tableData["columns"]} data={tableData["data"]} />
+      <Table columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} />
     </div>
   )
 }

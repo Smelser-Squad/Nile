@@ -7,9 +7,7 @@ function PrimeLogo(props) {
         return (
             <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"
                 onClick={() => { window.location.href = `/singleProductListing/${props.productId}` }}
-
             ></img>
-
         );
     }
     else {
@@ -21,7 +19,7 @@ function Product({ productId, image, name, price, avgRating, reviewCount, primeE
     return (
         <div class="products-container">
             <div class="row">
-                <img class="image" id="single-product-image" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} src={image}></img>
+                <img class="image" id="single-product-image" alt="" onClick={() => { window.location.href = `/singleProductListing/${productId}` }} src={image}></img>
             </div>
             <div class="body">
                 <div class="row">

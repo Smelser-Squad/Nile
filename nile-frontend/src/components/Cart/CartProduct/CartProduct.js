@@ -1,18 +1,17 @@
-import React from 'react';
-import '../CartProduct/CartProduct.css';
+import React, { useState } from 'react';
 import ReactStars from "react-rating-stars-component";
-import { useStateValue } from '../../../StateProvider';
-  import {useState} from 'react';
-import Product from '../../MoreProducts/Product';
 import { getCartTotal } from '../../../reducer';
+import { useStateValue } from '../../../StateProvider';
+import '../CartProduct/CartProduct.css';
+
 
 function CartProduct({ productId, image, name, price, rating, key }) {
     const [{ cart }, dispatch] = useStateValue();
 
-    const [quantity, setQuantity] = useState(1); 
+    const [quantity, setQuantity] = useState(1);
     const [cartPrice, setTotalPrice] = useState(price);
 
-    
+
 
     const removeFromCart = () => {
         dispatch({
@@ -23,14 +22,14 @@ function CartProduct({ productId, image, name, price, rating, key }) {
         })
     };
 
-    function incrementQuentaty(){
-        const cartPrice = getCartTotal(cart); 
-        setQuantity(prevQuantity=> prevQuantity + 1);
+    function incrementQuentaty() {
+        const cartPrice = getCartTotal(cart);
+        setQuantity(prevQuantity => prevQuantity + 1);
         setTotalPrice(price + cartPrice);
     }
 
-    function decrementQuantity(){
-        setQuantity(prevQuantity=> prevQuantity - 1);
+    function decrementQuantity() {
+        setQuantity(prevQuantity => prevQuantity - 1);
     }
 
     return (
@@ -55,7 +54,7 @@ function CartProduct({ productId, image, name, price, rating, key }) {
 
                 </div>
 
-                <div className="quantity_container"> 
+                <div className="quantity_container">
                     <div className="quantity">Quantity {quantity} </div>
                     <div className="buttons">
                         <button className="btn" onClick={incrementQuentaty}>+</button>

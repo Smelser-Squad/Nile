@@ -1,5 +1,6 @@
 export const initialState = {
     cart: [],
+    user: null
 };
 
 export const getCartTotal = (cart) =>
@@ -8,7 +9,6 @@ export const getCartTotal = (cart) =>
 
 
 const reducer = (state, action) => {
-    // console.log(action);
     switch (action.type) {
         case "ADD_TO_CART":
             return {
@@ -30,7 +30,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: newCart
-            }
+            };
+        case "EMPTY_CART":
+            return {
+                ...state,
+                cart: []
+            };
 
         default:
             return state;

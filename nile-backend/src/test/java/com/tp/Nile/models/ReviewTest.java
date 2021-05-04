@@ -17,6 +17,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -45,6 +46,8 @@ public class ReviewTest {
         user.setEmail("sample@email.com");
         user.setUsername("username");
         user.setPassword("password");
+        user.setCreatedAt(Instant.now());
+        user.setUpdatedAt(Instant.now());
         user.getRoles().add(new Role(RoleName.ROLE_ADMIN));
         user.setEnabled(true);
         setupReview.setUser(user);
@@ -68,6 +71,8 @@ public class ReviewTest {
         user.setEmail("sample2@email.com");
         user.setUsername("username");
         user.setPassword("password");
+        user.setCreatedAt(Instant.now());
+        user.setUpdatedAt(Instant.now());
         user.getRoles().add(new Role(RoleName.ROLE_ADMIN));
         user.setEnabled(true);
         newReview.setUser(user);

@@ -1,9 +1,9 @@
-import React from 'react'
-import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
+import './Header.css';
 function Header() {
     const [{ cart }] = useStateValue();
     return (

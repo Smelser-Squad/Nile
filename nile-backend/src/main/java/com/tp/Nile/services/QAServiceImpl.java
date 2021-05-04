@@ -7,6 +7,7 @@ import com.tp.Nile.models.Question;
 import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.AnswerRepository;
 import com.tp.Nile.repositories.QuestionRepository;
+import com.tp.Nile.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class QAServiceImpl implements QAService{
     ProductServiceImpl pRepo;
 
     @Autowired
-    UserServiceImpl userService;
+    UserRepository uRepo;
 
 
     @Override
@@ -39,8 +40,11 @@ public class QAServiceImpl implements QAService{
     @Override
     public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException, NullUserException, InvalidUserIdException, NullUserIdException {
         Question que = this.getQuestionById(questionId);
-        User usuario = userService.getUserById(userId);
-        answer.setUser(usuario);
+        //TODO: validate user and catch exceptions
+        Long user = new Long(userId);
+        Optional<User> usuario = uRepo.findById(user);
+        answer.setUser(usuario.get());
+        //Todo: this
         answer.setQuestion(que);
         return aRepo.saveAndFlush(answer);
 
