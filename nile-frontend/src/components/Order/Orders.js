@@ -13,26 +13,26 @@ function Orders() {
                 orderList.push(item)
             );
             const orders = orderList.map((order) =>
-                <SingleOrder
-                    key={order.chargeId}
-                    chargeId={order.chargeId}
-                    token={order.token}
-                    amount={order.amount}
-                    email={order.email}
-                    orderDate={order.orderDate}
+                <
+                SingleOrder key = { order.chargeId }
+                chargeId = { order.chargeId }
+                token = { order.token }
+                amount = { order.amount }
+                email = { order.email }
+                orderDate = { order.orderDate }
+                cart = { order.cart }
                 />
             );
             setOrders(orders);
-        }
-        );
+        });
     }
-    return (
-        <div className='orders'>
-            <h1>Your Orders </h1>
-            <div className="orders_order">
-                {orders}
-            </div >
-        </div>
+    return ( <
+        div className = 'orders' >
+        <
+        h1 > Your Orders < /h1> <
+        div className = "orders_order" > { orders } <
+        /div > <
+        /div>
     )
 }
 
