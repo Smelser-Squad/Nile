@@ -5,7 +5,6 @@ import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
-import ShowAllReviews from '../Reviews/ShowAllReviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import Comparison from '../Comparison/Comparison';
@@ -109,7 +108,7 @@ function SingleProductListing() {
             <Reviews />
             <Link 
             to={`./all-product-reviews/${Product.productId}`} >
-                See all reviews
+                <p class="all-reviews-link">See all reviews > </p>
             </Link>
         </div>
 
