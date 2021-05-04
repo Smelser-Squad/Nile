@@ -6,7 +6,7 @@ import { useStateValue } from "../../StateProvider";
 import UserMenu from '../UserMenu';
 import './Header.css';
 function Header() {
-    const [{ cart, currentUser, isAuthenticated }] = useStateValue();
+    const [{ cart }] = useStateValue();
     return (
         <div className='nav_header' >
             <Link to="/">
@@ -24,7 +24,7 @@ function Header() {
 
             <div className="header_nav" >
 
-                
+
                 <UserMenu />
 
                 <Link to="/Orders">

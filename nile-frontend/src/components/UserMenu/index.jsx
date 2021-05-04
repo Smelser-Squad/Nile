@@ -69,7 +69,7 @@ export default function UserMenu(props) {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-                {isAuthenticated ? `Welcome back ${currentUser.username}` : 'Hello Guest'}
+               Hello {isAuthenticated ? currentUser.username : 'Guest'}
             </Button>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
