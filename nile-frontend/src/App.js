@@ -1,17 +1,19 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import BrandProducts from './components/Brand/BrandProducts';
+import Checkout from './components/Checkout/Checkout';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
-import Checkout from './components/Checkout/Checkout';
-import SingleProductListing from './components/ProductListing/SingleProductListing';
-import BrandProducts from './components/Brand/BrandProducts';
-import CreateReview from './components/Reviews/CreateReview'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import SingleOrder from './components/Order/SingleOrder';
 import Payment from './components/Payment/Payment';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import SingleProductListing from './components/ProductListing/SingleProductListing';
+import CreateReview from './components/Reviews/CreateReview';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import Orders from './components/Order/Orders';
+import ShowAllReviews from './components/Reviews/ShowAllReviews';
+import Orders from './components/Order/Orders'
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
@@ -24,10 +26,10 @@ function App() {
 
                 <Switch>
                     <Route exact path="/singleProductListing/:productId">
-                        <SingleProductListing/>
+                        <SingleProductListing />
                     </Route>
                     <Route exact path="/products/brand/:brand">
-                        <BrandProducts/>
+                        <BrandProducts />
                     </Route>
 
                     <Route exact path="/checkout">
@@ -46,17 +48,22 @@ function App() {
                     </Route>
                     <Route exact path="/">
                         <Home />
-            
+
                     </Route>
 
                     <Route exact path="/createReview/:productId">
-                        <CreateReview/>
+                        <CreateReview />
+                    </Route>
+                    <Route exact path="/singleProductListing/all-product-reviews/:productId">
+                        <ShowAllReviews />
                     </Route>
 
-                        <Route exact path="/orders">
-                            <Orders />
-                        </Route>
-
+                    <Route exact path="/orders">
+                        <Orders />
+                    </Route>
+                    <Route exact path="/SingleOrder/:chargeId">
+                        <SingleOrder />
+                    </Route>
                 </Switch>
             </div>
         </Router>
