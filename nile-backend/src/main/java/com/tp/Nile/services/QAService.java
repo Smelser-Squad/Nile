@@ -1,9 +1,6 @@
 package com.tp.Nile.services;
 
-import com.tp.Nile.exceptions.InvalidProductIdException;
-import com.tp.Nile.exceptions.InvalidQAIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
-import com.tp.Nile.exceptions.NullQAIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Question;
 
@@ -12,7 +9,7 @@ import java.util.Set;
 public interface QAService{
     public Question addQuestion(Question question, Integer productId) throws NullProductIdException, InvalidProductIdException;
 
-    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException;
+    public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException, NullUserException, InvalidUserIdException, NullUserIdException;
 
     public Set<Question> getQuestions(Integer productId) throws NullProductIdException, InvalidProductIdException;
 
