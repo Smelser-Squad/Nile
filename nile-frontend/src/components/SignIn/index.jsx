@@ -40,7 +40,6 @@ const SignIn = (props) => {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [{ state }, dispatch] = useStateValue();
-  console.log(state)
 
   function handleUsernameOrEmailChange(event) {
     setUsernameOrEmail(event.target.value);
