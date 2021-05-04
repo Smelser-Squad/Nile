@@ -68,10 +68,14 @@ function CreateReview(){
 
     }
 
+    console.log(name.length)
+
     return (
         
-        <div id="createReviewContainer">
-            {/* <img src="src/assets/loading.gif"></img> */}
+        <div >
+            {name.length>0 ? (
+            <div id="createReviewContainer">
+            <img src="../../assets/loading.gif"></img>
             <h2>Create Review</h2>
             <div id="product-info-review">
                 <img id="product-image-review"src={image}></img>
@@ -91,9 +95,6 @@ function CreateReview(){
             </div>
             <hr class="divide"></hr>
             <h3>Rate Features</h3>
-            {features.length>0 ?
-
-             (
             <div id="feature-rating">
                 <span>{features[0].name}</span>
                 <ReactStars
@@ -154,25 +155,7 @@ function CreateReview(){
                         />
                 </div>
             </div>
-         ):
-
-         (<div>LOADING</div>)}
-            
-            {/* <div id="sizeDiv">
-                <span>How does this product fit?</span>
-                <div id="sizeButtonDiv">
-                    <input type="radio" class="sizeReview" id="size1" name="size"></input>
-                    <input type="radio" class="sizeReview" id="size2" name="size"></input>
-                    <input type="radio" class="sizeReview" id="size3" name="size"></input>
-                    <input type="radio" class="sizeReview" id="size4" name="size"></input>
-                    <input type="radio" class="sizeReview" id="size5" name="size"></input>
-                </div>
-                <div id="size-description">
-                    <span>Too small</span>
-                    <span>as expected</span>
-                    <span>Too large</span>
-                </div>
-            </div> */}
+         
             <hr class="divide"></hr>
             <div id="photo-submit">
                 <h3>Add a photo</h3>
@@ -187,7 +170,11 @@ function CreateReview(){
                 <textarea id="text-summary" placeholder="What did you like or dislike? How did you use this product?" onChange={e => setSummary(e.target.value)}/>
                 <button id="submit-review" disabled={Review.rating===-1 || Review.title<1 || Review.summary < 1} onClick={()=>submitReview(Review,productId)}>submit</button>
             </div>
+            </div>
+            ):
+            (<div>LOADING</div>)}
         </div>
+
     )
     
 
