@@ -76,6 +76,14 @@ span {
     padding-bottom: 40px;
 }
 
+.review-ratings {
+    float: left;
+}
+
+.by_feature {
+    clear: both;
+}
+
 .star_row {
     display: inline-block;
 }
