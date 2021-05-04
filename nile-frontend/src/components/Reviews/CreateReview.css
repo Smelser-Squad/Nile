@@ -120,3 +120,32 @@
   margin-top: 10px;
   margin-bottom: 25px;
 }
+
+#submit-review:disabled {
+  background: #d4d5d6;
+  border-radius: 3px;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  text-decoration: none !important;
+  vertical-align: middle;
+  color: black;
+  padding: 5px;
+  width: 300px;
+  position: relative;
+  left: 55%;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+#loading-div {
+  text-align: center;
+}
+
+#loading-gif {
+  width: 10%;
+}
