@@ -1,25 +1,39 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { getBrandProducts } from '../../service/ProductService';
 import ReactStars from "react-rating-stars-component";
-
-
+import Pagination from '@material-ui/lab/Pagination';
+import { makeStyles } from '@material-ui/core/styles';
 import './BrandProducts.css'
+
+
 
 function BrandProducts(){
 
+   const useStyles = makeStyles((theme) => ({
+        root: {
+          '& > *': {
+            marginTop: theme.spacing(2),
+          },
+        },
+      }));
+    const classes = useStyles();
     const [Product, setProduct] = useState([]);
     const{brand}=useParams();
-    const ProductList = [];
+    const[FilteredList,setList]=useState();
+    const ProductList =[];
+
+   
+      
+    useEffect(() => {
 
     if (Product.length === 0) {
         getBrandProducts(brand).then((list) => {
-            console.log(list)
             list.map((item) =>
-                ProductList.push(item)
+            ProductList.push(item)
             );
-           
-
+            setList(ProductList);
+            // console.log(ProductList.sort(compareValues('price')));
 
             let cards = ProductList.map((product) =>
             <div className="BrandProduct">
@@ -44,15 +58,21 @@ function BrandProducts(){
         </div>
             );
       setProduct(cards);
+
         }
         );
+        
     }
+    
+}, []);
+
     function PrimeLogo(props) {
+        // console.log(ProductList)
         const primeEligible = props.primeEligible;
         if (primeEligible) {
             return (
                 <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"
-    
+                
                 ></img>
     
             );
@@ -69,6 +89,7 @@ function BrandProducts(){
         const avgRating = sum / product.reviews.length;
         return avgRating;
     }
+
    function compareValues(key,order='asc'){
     return function innerSort(a,b){
         if(!a.hasOwnProperty(key)|| !b.hasOwnProperty(key)) return 0;
@@ -87,13 +108,21 @@ function BrandProducts(){
 
     };
    }
-   function sort(){
-    
-       console.log('hi');
-    let list2= ProductList.sort(compareValues('price'));
-     
-    // console.log(list2);
-       let cards = list2.map((product) =>
+   function Sort(){
+       let list;
+    var selected=document.getElementById("sort").value
+  
+    const FiliterArray=(Array.from(FilteredList));
+
+    if(selected=="low to high"){
+         list=FiliterArray.sort(compareValues('price'));
+    }
+    else{
+        list=FiliterArray.sort(compareValues('price','desc'));
+    }
+
+
+       let cards = list.map((product) =>
             <div className="BrandProduct">
             <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${product.productId}` }}>{product.name} - {product.photos[0].color} </h1>
             <img id="product-image" src={product.photos[0].imageSrc} alt=""></img>
@@ -116,17 +145,24 @@ function BrandProducts(){
         </div>
             );
             setProduct(cards);
-   }
+   
+}
+   
 return(
     <div>
         <h1>{Product.length} results for "{brand}"</h1>
-        <select id="sort">
+
+        <select id="sort" onChange={()=>Sort()}>
         <option selected disabled hidden >Sort By</option>
-        <option>Price:High to Low</option>
-        <option> Price:Low to High</option>
+        <option value="high to low">Price:High to Low</option>
+        <option value="low to high"> Price:Low to High</option>
         </select>
-        <button type="button" onClick={()=>sort()}>Search</button>
+        
     {Product}
+    <div id ="pages" className={classes.root}>
+     
+      <Pagination count={11} defaultPage={6} boundaryCount={2} />
+    </div>
     </div>
 )
 }

@@ -24,8 +24,8 @@ function SingleProductListing() {
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
-    const[color,setProductColor]=useState('');
-
+    const [defaultColor, setDefaultColor] = useState('')
+    const [color, setProductColor] = useState(defaultColor);
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -67,7 +67,7 @@ function SingleProductListing() {
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
             <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} defaultColor={color}/>
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
 
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">

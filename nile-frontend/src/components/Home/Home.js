@@ -8,6 +8,8 @@ function Home() {
 
     const [cards, setCards] = useState([]);
 
+    
+
     const ProductList = [];
 
     if (cards.length === 0) {

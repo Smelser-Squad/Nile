@@ -39,3 +39,7 @@
     margin-right: 300px;
     margin-top: 70px;
 }
+#pages{
+    display: flex;
+    justify-content: center;
+}

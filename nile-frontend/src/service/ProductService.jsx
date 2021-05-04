@@ -35,7 +35,7 @@ async function getProductsByCategory(category){
     const products=await axios.get(`http://localhost:80/api/products/category/${category}`)
     const data=products.data;
 
-    return(Promise.resolve(data));
+    return(data);
 }
 
 export {getProducts,getProduct, getBrandProducts, getTypeProducts, getProductsByCategory}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useState} from 'react';
 import './ProductPhotos.css';
 import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
@@ -15,9 +15,9 @@ export function ProductPhotos({color}) {
         getPhotos(productId, color).then((list)=>
         {
             list.map((item)=>
-            PhotoList.push(item),
-            
+                PhotoList.push(item),
             );
+
             const data = PhotoList.map((photo) =>
                 <li className="listedPhoto"
                     onClick={() => updatePhoto(photo.imageSrc)}>
@@ -31,7 +31,13 @@ export function ProductPhotos({color}) {
             );
         
             const magnifier = PhotoList.map((photo) =>
-                <SideBySideMagnifier className="mag" style={{ height: "500px", width: "500px", display: "inline-block" }} imageSrc={photo.imageSrc} fillAvailableSpace={false}/>)
+                <SideBySideMagnifier 
+                className="mag" 
+                style={{ height: "500px", width: "500px", display: "inline-block" }} 
+                imageSrc={photo.imageSrc} 
+                fillAvailableSpace={false}/>
+            )
+
             setData(data);
             setCurrColor(color);
             setMag(magnifier);
@@ -49,9 +55,7 @@ export function ProductPhotos({color}) {
                 </ul>
                 {magnifier[0]}
             </div>
-        
         </div>
-    
     );
     function updatePhoto(newSrc) {
        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[0].setAttribute("src", newSrc);
