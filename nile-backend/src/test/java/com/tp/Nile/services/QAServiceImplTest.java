@@ -4,8 +4,10 @@ import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Product;
 import com.tp.Nile.models.Question;
+import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.AnswerRepository;
 import com.tp.Nile.repositories.QuestionRepository;
+import com.tp.Nile.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,6 +36,9 @@ public class QAServiceImplTest {
 
     @Mock
     private ProductServiceImpl pService;
+
+    @Mock
+    private UserRepository uRepo;
 
     @InjectMocks
     private QAServiceImpl service;
@@ -66,9 +71,14 @@ public class QAServiceImplTest {
         quest.setQuestion("question2");
         Answer ans = new Answer();
         ans.setAnswer("answer2");
+        User usuario = new User();
+        Long uId = new Long(1);
+        usuario.setUserId(uId);
         when(qRepo.findById(1)).thenReturn(java.util.Optional.of(quest));
         when(aRepo.saveAndFlush(ans)).thenReturn(ans);
+        when(uRepo.findById(uId)).thenReturn(java.util.Optional.of(usuario));
         Answer addedAnswer = null;
+
         try {
             addedAnswer = service.addAnswer(ans,1,1);
         } catch (InvalidQAIdException | NullQAIdException | NullUserException | InvalidUserIdException | NullUserIdException e) {

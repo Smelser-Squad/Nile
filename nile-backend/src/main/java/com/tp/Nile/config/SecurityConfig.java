@@ -118,15 +118,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
-<<<<<<< HEAD
                         "/api/qa/**",
                         "/api/productspecs/**")
-=======
-                        "/api/productPhotos/**",
-                        "/api/productspecs/**",
-                        "/api/qa/**"
-                )
->>>>>>> 838f1087ba30cda6d18dcd2fbb6b29aca06b7c5f
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
