@@ -1,6 +1,6 @@
 import './MoreProducts.css';
 import Product from "./Product";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getProduct, getProductsByCategory } from '../../service/ProductService'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { useParams } from 'react-router';
@@ -17,41 +17,40 @@ function calcRating(product) {
 function MoreProducts() {
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState([]);
-    const AllProducts = [];
 
-    const{productId} = useParams();    
-    
-    getProduct(productId)
-    .then((category) => {
-        setCategory(category.category.name)
-    }
-    );
+    const { productId } = useParams();
 
-    if (products.length === 0) {
-        getProductsByCategory(category).then((list) => {
-            list.map((item) => {
+    useEffect(() => {
+        const AllProducts = [];
 
-                if(item.productId !== parseInt(productId)) {
-                    AllProducts.push(item);
+        getProduct(productId)
+            .then((category) => {
+                setCategory(category.category.name)
+            });
+
+            getProductsByCategory(category).then((list) => {
+                for(let item of list) {
+                    if (item.productId !== parseInt(productId)) {
+                        AllProducts.push(item);
+                    }
                 }
-            }   
+                
+                const products = AllProducts.map((product) =>
+                    <Product
+                        key={product.productId}
+                        productId={product.productId}
+                        name={product.name}
+                        price={product.price}
+                        avgRating={calcRating(product)}
+                        image={product.photos[0].imageSrc}
+                        reviewCount={product.reviews.length}
+                        primeEligible={product.primeEligible}
+                    />
+                );
+                setProducts(products);
+            }
             );
-            const products = AllProducts.map((product) =>
-                <Product
-                    key={product.productId}
-                    productId={product.productId}
-                    name={product.name}
-                    price={product.price}
-                    avgRating={calcRating(product)}
-                    image={product.photos[0].imageSrc}
-                    reviewCount={product.reviews.length}
-                    primeEligible={product.primeEligible}
-                />
-            );
-            setProducts(products);
-        }
-        );
-    }
+    }, [productId, category]);
 
     const Arrow = ({ text, className }) => {
         return (
