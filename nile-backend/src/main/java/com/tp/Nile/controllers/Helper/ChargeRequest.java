@@ -39,8 +39,8 @@ public class ChargeRequest implements Serializable {
     @CreationTimestamp
     private LocalDate orderDate;
 
-    @Column(name = "cart", nullable = true)
-    @OneToOne(mappedBy = "chargeRequest")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
 

@@ -17,7 +17,8 @@ function Payment() {
         axios.post('http://localhost:80/api/create-charge', {
             token: token.card.id,
             amount: totalCartPrice,
-            email: token.email
+            email: token.email,
+            cart: cart
 
         }).then((response) => {
             dispatch({

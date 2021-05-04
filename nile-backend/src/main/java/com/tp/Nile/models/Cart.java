@@ -44,8 +44,6 @@ public class Cart implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CartProduct> cartProducts = new ArrayList<>();
 
-    @JsonIgnore
-    @Column(name = "charge_request", nullable = true)
     @OneToOne(mappedBy = "cart")
     private ChargeRequest chargeRequest;
 }
