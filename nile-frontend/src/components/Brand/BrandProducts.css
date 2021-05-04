@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: flex-end;  
     margin-right: 300px;
-    /* margin-top: -30px;  */
+    /* margin-bottom: 80px;  */
 }
 #name {
     text-decoration: none;
@@ -42,4 +42,7 @@
 #pages{
     display: flex;
     justify-content: center;
+}
+.row{
+    margin-bottom: 200px;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getProducts } from '../../service/ProductService';
 import './Home.css';
 import HomeProduct from './HomeProduct';
@@ -8,33 +8,31 @@ function Home() {
 
     const [cards, setCards] = useState([]);
 
+    useEffect(() => {
+        const ProductList = [];
+        if (cards.length === 0) {
+            getProducts().then((list) => {
+                list.map((item) =>
+                    ProductList.push(item)
+                );
+                const cards = ProductList.map((product) =>
     
-
-    const ProductList = [];
-
-    if (cards.length === 0) {
-        getProducts().then((list) => {
-            console.log(list)
-            list.map((item) =>
-                ProductList.push(item)
-            );
-            const cards = ProductList.map((product) =>
-
-                <HomeProduct
-                    key={product.productId}
-                    productId={product.productId}
-                    name={product.name}
-                    price={product.price}
-                    rating={calcRating(product)}
-                    image={product.photos[0].imageSrc}
-                    description={product.description}
+                    <HomeProduct
+                        key={product.productId}
+                        productId={product.productId}
+                        name={product.name}
+                        price={product.price}
+                        rating={calcRating(product)}
+                        image={product.photos[0].imageSrc}
+                        description={product.description}
                   
-                />
-            );
-            setCards(cards);
-        }
+                    />
+                );
+                setCards(cards);
+            }
         );
     }
+}, []);
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {

@@ -161,7 +161,7 @@ return(
     {Product}
     <div id ="pages" className={classes.root}>
      
-      <Pagination count={11} defaultPage={6} boundaryCount={2} />
+      <Pagination count={6} defaultPage={1} boundaryCount={2} />
     </div>
     </div>
 )
