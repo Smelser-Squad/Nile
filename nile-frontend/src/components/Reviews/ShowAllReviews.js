@@ -4,6 +4,10 @@ import {useParams} from 'react-router'
 import {getProduct} from '../../service/ProductService';
 import {getReviews} from '../../service/ReviewService';
 import SingleReview from './SingleReview';
+import { Button, TextField,InputAdornment } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
+import SearchIcon from '@material-ui/icons/Search';
+
 
 
 
@@ -54,10 +58,45 @@ function ShowAllReviews (){
                 setPositive(positive);
                 setNegative(negative);
                 setAllReviews(reviews);
+                setFilteredReviews(reviews)
             
             })
         }
     },[allReviews,mostNegative,mostPositive]);
+
+
+
+
+    //SEARCH FILTER HERE!!!
+
+    
+
+    const useInputStyles = makeStyles({
+        root:{
+            marginTop: "1%",
+            marginBottom: "1%",
+            width: "35%",
+            
+        },
+        adornedStart:
+        {
+            paddingLeft:"8px",
+        }
+
+    });
+
+    const useButtonStyles = makeStyles({
+        root:{
+            marginTop: "1%",
+            marginBottom: "1%",
+            marginLeft: "1%",
+            
+        },
+
+    });
+
+    const inputClasses = useInputStyles();
+    const buttonClasses = useButtonStyles();
     
  
 
@@ -76,7 +115,32 @@ function ShowAllReviews (){
             </div>
             </div>
             <hr></hr>
-            {allReviews}
+
+            <TextField
+            classes = {{
+                root: inputClasses.root,
+                adornedStart: inputClasses.adornedStart,
+            }}
+            InputProps={{
+                startAdornment: 
+                <InputAdornment 
+                classes ={{
+                    adornedStart: inputClasses.adornedStart,
+                }}
+                position="start">
+                    <SearchIcon/>
+                </InputAdornment>,
+              }}
+             variant="outlined" 
+             size="small" ></TextField>
+            <Button 
+            classes={{
+                root: buttonClasses.root,
+            }}
+            size="small" 
+            variant="contained">
+                Search</Button>
+            {filteredReviews}
         </div>
     )
 
