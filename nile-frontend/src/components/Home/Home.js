@@ -10,26 +10,29 @@ function Home() {
 
     useEffect(() => {
         const ProductList = [];
-        getProducts().then((list) => {
-            console.log(list)
-            list.map((item) =>
-                ProductList.push(item)
-            );
-            const cards = ProductList.map((product) =>
+        if (cards.length === 0) {
+            getProducts().then((list) => {
+                list.map((item) =>
+                    ProductList.push(item)
+                );
+                const cards = ProductList.map((product) =>
 
-                <HomeProduct
-                    key={product.productId}
-                    productId={product.productId}
-                    name={product.name}
-                    price={product.price}
-                    rating={calcRating(product)}
-                    image={product.photos[0].imageSrc}
-                    description={product.description}
-                />
+                    <HomeProduct
+                        key={product.productId}
+                        productId={product.productId}
+                        name={product.name}
+                        price={product.price}
+                        rating={calcRating(product)}
+                        image={product.photos[0].imageSrc}
+                        description={product.description}
+                    // vendor={product.vendor.name}
+                    />
+                );
+                setCards(cards);
+            }
             );
-            setCards(cards);
-        })
-    }, [])
+        }
+    }, []);
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {
