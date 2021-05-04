@@ -105,6 +105,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/productPhotos/colors/**",
 
                         "/api/charge",
+                        "/api/qa/questions/**",
+                        "/api/qa/getAnswers/**",
+                        "/api/productspecs/**",
+                        "/api/featureRating/**",
                         "/api/productPhotos/**",
                         "/api/qa/**",
                         "/api/charges",
@@ -125,9 +129,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
+                        "/api/productspecs/**,",
                         "/api/qa/**",
-                        "/api/productspecs/**",
-                        "/api/productPhotos/**")
+                        "/api/featureRating/**",
+                        "/api/productPhotos/**",
+                        "/api/qa/**",
+                        "/api/productspecs/**")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
@@ -140,6 +147,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/productspecs/**",
+                        "/api/featureRating/**",
                         "/api/qa/**"
                         )
                 .permitAll()
@@ -153,7 +161,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
