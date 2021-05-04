@@ -1,10 +1,7 @@
 package com.tp.Nile.controllers;
 
 
-import com.tp.Nile.exceptions.InvalidCartIdException;
-import com.tp.Nile.exceptions.InvalidCategoryIdException;
-import com.tp.Nile.exceptions.NullCartIdException;
-import com.tp.Nile.exceptions.NullCategoryIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Cart;
 import com.tp.Nile.services.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +38,15 @@ public class CartController {
         try {
             return ResponseEntity.ok(service.getCartById(cartId));
         } catch (InvalidCartIdException | NullCartIdException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity getCartsByUserId(@PathVariable Integer userId) {
+        try {
+            return ResponseEntity.ok(service.getCartsByUserId(userId));
+        } catch (InvalidUserIdException | NullUserIdException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }

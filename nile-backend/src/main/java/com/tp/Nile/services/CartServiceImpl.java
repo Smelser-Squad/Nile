@@ -1,7 +1,9 @@
 package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.InvalidCartIdException;
+import com.tp.Nile.exceptions.InvalidUserIdException;
 import com.tp.Nile.exceptions.NullCartIdException;
+import com.tp.Nile.exceptions.NullUserIdException;
 import com.tp.Nile.models.Cart;
 import com.tp.Nile.models.User;
 import com.tp.Nile.repositories.CartRepository;
@@ -39,6 +41,21 @@ public class CartServiceImpl implements CartService {
             return retrieved;
         }else{
             throw new InvalidCartIdException("Cart with that id does not exist");
+        }
+    }
+
+    @Override
+    public List<Cart> getCartsByUserId(Integer userId) throws NullUserIdException, InvalidUserIdException {
+        if(userId == null){
+            throw new NullUserIdException("Cannot get carts by user id with null id");
+        }
+        Optional<User> user = uRepo.findById(Long.valueOf(userId));
+
+        if(user.isPresent()){
+            List<Cart> carts = repo.findByUser(user.get());
+            return carts;
+        }else{
+            throw new InvalidUserIdException("User with that id does not exist");
         }
     }
 
