@@ -8,6 +8,7 @@ export default function QuestionAnswer() {
     const productId = 1;
     const [questions, getQuestions] = useState('');
     const [isLoading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
 
     useEffect(()=>{
         axios.get(`http://localhost:80/api/qa/questions/${productId}`)
@@ -27,17 +28,23 @@ export default function QuestionAnswer() {
     //         });
     // }
     
+    const searchInput = (event) => {
+        setSearch(event.target.value);
+        console.log(search);
+    }
+
     if(isLoading){
         return <div className="section">
         <h2>Customer questions & answers</h2>
-        <input type="text" className="search" placeholder="Have a question? Search for answers" onChange="" ></input>
+        <input type="text" name={search} className="search" placeholder="Have a question? Search for answers" onChange={searchInput} ></input>
     </div>
     }
 
     return(
         <div className="section">
             <h2>Customer questions & answers</h2>
-            <input type="text" className="search" placeholder="Have a question? Search for answers" onChange="" ></input>
+            <input type="text" name={search} className="search" placeholder="Have a question? Search for answers" onChange={searchInput} ></input>
+            <button onClick={()=> console.log(search)}>check</button>
             <Questions questions={questions} />
         </div>
         );
