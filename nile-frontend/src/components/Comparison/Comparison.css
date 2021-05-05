@@ -1,0 +1,17 @@
+.popup {
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.25);
+}
+.popup_content {
+  background-color: white;
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2%;
+  border-radius: 5px;
+}
+.popup_header {
+  text-align: center;
+}

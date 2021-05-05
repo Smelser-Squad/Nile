@@ -11,6 +11,8 @@ export default function Table({ columns, data, numReviews }) {
     prepareRow
   } = useTable({ columns, data });
 
+  console.log("Columns: " + JSON.stringify(columns));
+
   const ReactStars = React.lazy(() => import('react-rating-stars-component'));
 
   let reviewCount = 0;
@@ -49,14 +51,20 @@ export default function Table({ columns, data, numReviews }) {
                     const currNumReviews = numReviews[reviewCount];
                     reviewCount++;
                     return <td {...cell.getCellProps()}>
+                      <div class="stars">
                       <ReactStars
                           count={5}
                           edit={false}
-                          value={cell.value}
+                          value={parseInt(cell.value)}
                           activeColor="#FFA41C"
                           size={15}
                           isHalf={true}
-                      /> ({currNumReviews})
+                      />
+                      <span class="numReviews">
+                        ({currNumReviews})
+                      </span>
+                      </div>
+                      
                     </td>
                   }
                 })}
