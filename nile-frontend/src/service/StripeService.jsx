@@ -15,4 +15,11 @@ async function getOrderDetailsById(chargeId) {
     return (data);
 }
 
-export { getOrders, getOrderDetailsById }
+async function getCartProducts(cartId) {
+    const charges = await axios.get(`http://localhost:80/api/carts/products/${cartId}`)
+    const data = charges.data;
+    return (data);
+
+}
+
+export { getOrders, getOrderDetailsById, getCartProducts }

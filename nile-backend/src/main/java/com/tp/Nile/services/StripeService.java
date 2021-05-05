@@ -4,20 +4,28 @@ import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.tp.Nile.controllers.Helper.ChargeRequest;
 import com.tp.Nile.exceptions.InvalidStripeException;
+import com.tp.Nile.models.Cart;
+import com.tp.Nile.models.CartProduct;
+import com.tp.Nile.models.Product;
+import com.tp.Nile.repositories.CartRepository;
 import com.tp.Nile.repositories.ChargeRepository;
+import com.tp.Nile.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StripeService {
     @Autowired
     ChargeRepository repo;
+
+    @Autowired
+    CartRepository cRepo;
+
+    @Autowired
+    ProductRepository pRepo;
 
     @Value("${stripe.keys.secret}")
     private String API_SECRET_KEY;
@@ -25,8 +33,27 @@ public class StripeService {
     public StripeService() {
     }
 
+    public StripeService(ChargeRepository repo) {
+        this.repo = repo;
+    }
+
     public String createCharge(ChargeRequest request) throws InvalidStripeException{
         String id = null;
+
+
+//        for(Integer i : productId){
+//            Optional<Product> product = pRepo.findById(i);
+//            if(product.isPresent()){
+//                CartProduct cartProduct = new CartProduct();
+//                cartProduct.setCart(cart);
+//                cartProduct.setProduct(product.get());
+//                cart.getCartProducts().add(cartProduct);
+//
+//            }
+//        }
+//        cart = cRepo.saveAndFlush(cart);
+
+
         try {
             Stripe.apiKey = API_SECRET_KEY;
             Map<String, Object> chargeParams = new HashMap<>();
@@ -37,7 +64,16 @@ public class StripeService {
             //create a charge
             Charge charge = Charge.create(chargeParams);
             id = charge.getId();
+//            request.setCart(cart);
+
+            Optional<Cart> cart = cRepo.findById(2);
+            if(cart.isPresent()){
+                request.setCart(cart.get());
+            }
+
+
             repo.saveAndFlush(request);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
