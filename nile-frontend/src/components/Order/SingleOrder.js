@@ -10,6 +10,7 @@ function SingleOrder({ token, amount, email, orderDate }) {
             <p className="order_id">
                 <small>ORDER # {token}</small>
             </p>
+
             <CurrencyFormat
                 renderText={(value) => (
                     <h3 className="order_total">Order Total: {value}</h3>
@@ -23,5 +24,6 @@ function SingleOrder({ token, amount, email, orderDate }) {
         </div>
     )
 }
+
 
 export default SingleOrder;
