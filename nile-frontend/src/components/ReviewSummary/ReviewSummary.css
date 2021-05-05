@@ -76,8 +76,9 @@ span {
     padding-bottom: 40px;
 }
 
-.review-ratings {
+.review_ratings {
     float: left;
+    margin-right: 2%;
 }
 
 .by_feature {

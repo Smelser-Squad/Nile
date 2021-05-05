@@ -1,9 +1,9 @@
 import React from 'react'
 
-function PhotoTile({ photo }) {
+function PhotoTile({ photo, classes }) {
     return (
-        <div className="review-photo-tile">
-            <img className="review-photo" src={photo.imageSrc} alt="Review" />
+        <div className={classes.review_photo_tile}>
+            <img className={classes.review_photo} src={photo.imageSrc} alt="Review" />
         </div>
     );
 }

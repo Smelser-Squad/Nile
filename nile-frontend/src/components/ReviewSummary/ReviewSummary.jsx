@@ -204,7 +204,7 @@ function ReviewSummary() {
         <Suspense fallback={<div>Loading...</div>}>
             <div className="reviewSummary_container">
                 <div className="review_row">
-                    <div className="review-ratings">
+                    <div className="review_ratings">
                         <br />
                         <h2>Customer reviews</h2>
                         <ReactStars
