@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core';
 import { useParams } from 'react-router'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import ReviewPhotos from './ReviewPhotos/ReviewPhotos';
 
 const BorderLinearProgress = withStyles(() => ({
     root: {
@@ -61,9 +62,8 @@ function ReviewSummary() {
                 for (let i in res.data) {
                     if (parseInt(i) === 0) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -72,9 +72,8 @@ function ReviewSummary() {
                     }
                     else if (parseInt(i) === 1) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -83,9 +82,8 @@ function ReviewSummary() {
                     }
                     else if (parseInt(i) === 2) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -94,9 +92,8 @@ function ReviewSummary() {
                     }
                     else if (parseInt(i) === 3) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -105,9 +102,8 @@ function ReviewSummary() {
                     }
                     else if (parseInt(i) === 4) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -116,9 +112,8 @@ function ReviewSummary() {
                     }
                     else if (parseInt(i) === 5) {
                         let sum = 0;
-                        let count = 0; 
-                        for (let j in res.data[i].featureRatingList)
-                        {
+                        let count = 0;
+                        for (let j in res.data[i].featureRatingList) {
                             sum += res.data[i].featureRatingList[j].rating;
                             count++;
                         }
@@ -209,58 +204,61 @@ function ReviewSummary() {
         <Suspense fallback={<div>Loading...</div>}>
             <div className="reviewSummary_container">
                 <div className="review_row">
-                    <br />
-                    <h2>Customer reviews</h2>
-                    <ReactStars
-                        count={5}
-                        edit={false}
-                        value={reviewAvg}
-                        activeColor="#FFA41C"
-                        size={15}
-                        isHalf={true}
-                    />
-                    <p className="head_rating">
-                        {reviewAvg} out of 5
+                    <div className="review_ratings">
+                        <br />
+                        <h2>Customer reviews</h2>
+                        <ReactStars
+                            count={5}
+                            edit={false}
+                            value={reviewAvg}
+                            activeColor="#FFA41C"
+                            size={15}
+                            isHalf={true}
+                        />
+                        <p className="head_rating">
+                            {reviewAvg} out of 5
                 </p>
-                    <p className="global_rating">
-                        {totalReviews} global ratings
+                        <p className="global_rating">
+                            {totalReviews} global ratings
                 </p>
-                    <br />
+                        <br />
 
-                    <span>5 star -  {fiveStarPercent}%</span>
-                    <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={fiveStarPercent} /></span>
+                        <span>5 star -  {fiveStarPercent}%</span>
+                        <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={fiveStarPercent} /></span>
 
-                    <span>4 star -  {fourStarPercent}%</span>
-                    <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={fourStarPercent} /></span>
+                        <span>4 star -  {fourStarPercent}%</span>
+                        <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={fourStarPercent} /></span>
 
-                    <span>3 star -  {threeStarPercent}%</span>
-                    <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={threeStarPercent} /></span>
+                        <span>3 star -  {threeStarPercent}%</span>
+                        <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={threeStarPercent} /></span>
 
-                    <span>2 star -  {twoStarPercent}%</span>
-                    <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={twoStarPercent} /></span>
+                        <span>2 star -  {twoStarPercent}%</span>
+                        <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={twoStarPercent} /></span>
 
-                    <span>1 star -  {oneStarPercent}%</span>
-                    <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={oneStarPercent} /></span>
+                        <span>1 star -  {oneStarPercent}%</span>
+                        <span class="bar"><BorderLinearProgress className="ratings_bar" variant="determinate" value={oneStarPercent} /></span>
 
-                    <br />
+                        <br />
 
-                    <span><button id="buttonID"
-                        onClick={displayRatingsQ}
-                        className="calc_ratings">&#8681; How are ratings calculated?</button></span>
+                        <span><button id="buttonID"
+                            onClick={displayRatingsQ}
+                            className="calc_ratings">&#8681; How are ratings calculated?</button></span>
 
-                    <div id="ratingsQ">
-                        <p>To calculate the overall star rating and <br />
+                        <div id="ratingsQ">
+                            <p>To calculate the overall star rating and <br />
                     percentage breakdown by star, we don’t use <br />
                     a simple average. Instead, our system <br />
                     considers things like how recent a review is <br />
                     and if the reviewer bought the item on <br />
                     Amazon. It also analyzes reviews to verify <br />
                     trustworthiness.</p>
+                        </div>
                     </div>
 
+                    <ReviewPhotos/>
                 </div>
 
-                <hr className="light" />
+                <hr className="light" style={{clear: "both"}}/>
 
                 <br />
 

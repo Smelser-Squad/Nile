@@ -5,10 +5,12 @@ import com.tp.Nile.models.Review;
 import com.tp.Nile.models.ReviewPhoto;
 import com.tp.Nile.repositories.ReviewPhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReviewPhotoServiceImpl implements ReviewPhotoService {
 
     @Autowired
