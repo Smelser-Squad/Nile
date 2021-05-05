@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import  "./ShowAllReviews.css";
 import {useParams} from 'react-router'
-import {getProduct} from '../../service/ProductService';
 import {getReviews} from '../../service/ReviewService';
 import SingleReview from './SingleReview';
 import { Button, TextField,InputAdornment } from '@material-ui/core';
@@ -137,6 +136,7 @@ function ShowAllReviews (){
         setFilteredReviews(allReviews)
         document.getElementById("textField").value = ""; 
         setFilterText("")
+        setFiltered(false)
     }
 
     return(
@@ -178,11 +178,13 @@ function ShowAllReviews (){
             size="small"
             variant="contained">
                 Search</Button>
+                {filtered === true &&
                 <div class="header-container">
                 <h3 >Filtered By</h3>
                 <span>Containing "{filterText}"</span>
                 <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button>
                 </div>
+                }
 
             {filteredReviews}
 
