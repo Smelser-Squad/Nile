@@ -1,10 +1,7 @@
 package com.tp.Nile.controllers;
 
 
-import com.tp.Nile.exceptions.InvalidProductIdException;
-import com.tp.Nile.exceptions.InvalidQAIdException;
-import com.tp.Nile.exceptions.NullProductIdException;
-import com.tp.Nile.exceptions.NullQAIdException;
+import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Question;
 import com.tp.Nile.services.QAServiceImpl;
@@ -36,7 +33,7 @@ public class QAController {
     public ResponseEntity addAnswer(@RequestBody Answer answer, @PathVariable("questionId") Integer questionId, @PathVariable("userId") Integer userId){
         try {
             return ResponseEntity.ok(service.addAnswer(answer, questionId, userId));
-        } catch (InvalidQAIdException | NullQAIdException e) {
+        } catch (InvalidQAIdException | NullQAIdException | NullUserException | InvalidUserIdException | NullUserIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
