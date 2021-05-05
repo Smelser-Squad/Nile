@@ -24,5 +24,6 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Query("select p from Product p where p.type.typeName=:type")
     List<Product> getProductsByType(@Param("type") String type);
+    
 
 }

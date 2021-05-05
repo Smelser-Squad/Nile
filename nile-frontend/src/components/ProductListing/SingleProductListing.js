@@ -15,6 +15,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
+import Tag from '../ReviewTag/Tag';
+
 
 function SingleProductListing() {
 
@@ -63,9 +65,9 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-
             <ProductPhotos color={color} />
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -75,6 +77,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
+
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -83,7 +86,10 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-
+                {/* <p className="ship">
+                    <small>Sold By </small>
+                    <strong>{Product.vendor} </strong>
+                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
