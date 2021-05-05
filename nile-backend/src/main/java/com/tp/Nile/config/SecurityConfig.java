@@ -97,13 +97,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
+
+
+                        "/api/productPhotos/**",
+
+
                         "/api/productPhotos/colors/**",
+
                         "/api/charge",
+                        "/api/qa/questions/**",
+                        "/api/qa/getAnswers/**",
+                        "/api/productspecs/**",
+                        "/api/featureRating/**",
                         "/api/productPhotos/**",
                         "/api/qa/**",
                         "/api/charges",
                         "/api/charge/**",
                         "/api/productspecs/**")
+
                 .permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/products/**",
@@ -118,10 +129,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/create-charge",
+                        "/api/productspecs/**,",
+                        "/api/auth/**",
+                        "/api/featureRating/**",
                         "/api/productPhotos/**",
-                        "/api/productspecs/**",
-                        "/api/qa/**"
-                )
+                        "/api/qa/**",
+                        "/api/productspecs/**")
+
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,
                         "/api/products/**",
@@ -134,6 +148,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/productspecs/**",
+                        "/api/featureRating/**",
                         "/api/qa/**"
                         )
                 .permitAll()
@@ -147,7 +162,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/featureRating/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

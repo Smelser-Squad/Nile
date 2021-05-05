@@ -2,3 +2,24 @@
 {
     margin: 30px;
 }
+
+.header-container
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.positive-review
+{
+    display: inline-block;
+    width: 50%;
+    height: 10%;
+}
+
+.negative-review
+{
+    display: inline-block;
+    width: 50%;
+    height: 10%;
+  
+}

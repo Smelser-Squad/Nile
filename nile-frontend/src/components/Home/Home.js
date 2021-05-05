@@ -25,7 +25,7 @@ function Home() {
                         rating={calcRating(product)}
                         image={product.photos[0].imageSrc}
                         description={product.description}
-                    // vendor={product.vendor.name}
+                  
                     />
                 );
                 setCards(cards);
