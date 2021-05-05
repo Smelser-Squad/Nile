@@ -1,3 +1,5 @@
+import { ACCESS_TOKEN } from './constants';
+
 export const initialState = {
     cart: [],
     currentUser: null,
@@ -46,6 +48,7 @@ const reducer = (state, action) => {
             }
 
         case "USER_SIGN_OUT":
+            sessionStorage.removeItem(ACCESS_TOKEN);
             return {
                 ...state,
                 currentUser: null,
