@@ -59,7 +59,7 @@ const SignIn = (props) => {
             vertical: 'bottom', horizontal: 'center',
           },
         });
-        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        sessionStorage.setItem(ACCESS_TOKEN, response.accessToken);
         getCurrentUser()
           .then(response => {
             enqueueSnackbar('User authenticated successfully!', {
@@ -74,7 +74,7 @@ const SignIn = (props) => {
             });
             props.history.push('/');
           }).catch(error => {
-            enqueueSnackbar(`${error.message}`, {
+            enqueueSnackbar('User authentication failed!', {
               variant: 'error',
               anchorOrigin: {
                 vertical: 'bottom', horizontal: 'center',
@@ -82,7 +82,7 @@ const SignIn = (props) => {
             });
           });
       }).catch((error) => {
-        enqueueSnackbar(`${error.message}!`, {
+        enqueueSnackbar('User login failed!', {
           variant: 'error',
           anchorOrigin: {
             vertical: 'bottom', horizontal: 'center',
