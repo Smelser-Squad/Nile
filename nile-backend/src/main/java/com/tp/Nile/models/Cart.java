@@ -45,5 +45,6 @@ public class Cart implements Serializable {
     private List<CartProduct> cartProducts = new ArrayList<>();
 
     @OneToOne(mappedBy = "cart")
+    @JsonIgnoreProperties(value = {"cart"})
     private ChargeRequest chargeRequest;
 }

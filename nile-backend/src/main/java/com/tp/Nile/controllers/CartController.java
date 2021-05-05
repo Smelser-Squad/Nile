@@ -42,6 +42,15 @@ public class CartController {
         }
     }
 
+    @GetMapping("/products/{cartId}")
+    public ResponseEntity getProductsInACartByCartId(@PathVariable Integer cartId) {
+        try {
+            return ResponseEntity.ok(service.getProductsInACartByCartId(cartId));
+        } catch (InvalidCartIdException | NullCartIdException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/bought/{userId}")
     public ResponseEntity getBoughtCartsByUserId(@PathVariable Integer userId) {
         try {
