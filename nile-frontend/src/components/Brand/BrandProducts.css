@@ -2,11 +2,13 @@
     margin-left: 5px;
     text-decoration: none;
     color: #067186;
+   
 }
 #product-image {
-    margin-right: 900px;
+    margin-right: 1000px;
     height: 220px;
     width: 220px;
+
 }
 .BrandProduct{
     display: flex;
@@ -16,13 +18,28 @@
     margin: 10px;
     padding: 20px;
     width: 100%;
-    max-height: 400px;
+    max-height: 300px;
     min-width: 100px;
     background-color: white;
     z-index: 1;
+   
 }
 .BrandProduct_info{
-    padding-left: 20px; 
-    margin-right: 40px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    margin-right: 400px;
+ 
+}
+#name {
+    text-decoration: none;
+    height: 100px;
+    margin-bottom: -90px;
+    font-size: 30px;
+    margin-right: 400px;
+    margin-top: 70px;
+}
+#pages{
+    display: flex;
+    justify-content: center;
 }
