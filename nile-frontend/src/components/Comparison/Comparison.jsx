@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { getProduct, getTypeProducts } from '../../service/ProductService'
 import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import { getAverageReviewScore } from '../../service/ReviewService'
@@ -37,7 +37,7 @@ async function createTableData(products, specIds) {
   let priceRow = {};
   priceRow["spec"] = "Price";
   for (let i = 0; i < products.length; i++) {
-    priceRow[products[i].name] = "From $"+products[i].price.toFixed(2);
+    priceRow[products[i].name] = "From $" + products[i].price.toFixed(2);
   }
   data.push(priceRow);
 
@@ -65,7 +65,7 @@ async function createTableData(products, specIds) {
     }
     data.push(currRow);
   }
-  
+
   tableData["data"] = data;
   tableData["columns"] = columns;
   tableData["numReviews"] = numReviews;
@@ -80,9 +80,9 @@ function Comparison() {
   const [type, setType] = useState();
   const [tableData, setTableData] = useState({});
   const productId = document.URL.substring(43);
-  const [seen, setSeen] = useState(false);  
+  const [seen, setSeen] = useState(false);
 
-  function useForceUpdate(){
+  function useForceUpdate() {
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
   }
