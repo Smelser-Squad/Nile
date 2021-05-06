@@ -16,7 +16,7 @@ function Home() {
                     ProductList.push(item)
                 );
                 const cards = ProductList.map((product) =>
-    
+
                     <HomeProduct
                         key={product.productId}
                         productId={product.productId}
@@ -30,9 +30,9 @@ function Home() {
                 );
                 setCards(cards);
             }
-        );
-    }
-}, []);
+            );
+        }
+    }, []);
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {
