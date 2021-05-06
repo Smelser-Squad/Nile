@@ -16,6 +16,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
+import Tag from '../ReviewTag/Tag';
 
 function SingleProductListing() {
 
