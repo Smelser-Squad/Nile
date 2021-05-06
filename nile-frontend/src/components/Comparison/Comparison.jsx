@@ -4,6 +4,8 @@ import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import { getAverageReviewScore } from '../../service/ReviewService'
 import './Comparison.css'
 import Table from './Table'
+import { Refresh } from '@material-ui/icons';
+import PopUp from './PopUp';
 
 async function createTableData(products, specIds) {
   let data = [];
@@ -74,34 +76,56 @@ function Comparison() {
 
   const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [specIds, setSpecIds] = useState([]);
+  const [type, setType] = useState();
   const [tableData, setTableData] = useState({});
   const productId = document.URL.substring(43);
-  const typeProducts = [];
-  const allSpecIds = [];
-  const [columns, setColumns] = useState([]);
+  const [seen, setSeen] = useState(false);  
 
-  if (products.length === 0) {
-    getProduct(productId).then(curr => {
-      getTypeProducts(curr.type.typeName).then(res => {
-        res.map(prod => {
-          typeProducts.push(prod);
-        });
-        setProducts(typeProducts);
-        for (let i = 0; i < typeProducts.length; i++) {
-          for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
-            let currSpecId = typeProducts[i].productSpecs[j].id.specId;
-            if (!allSpecIds.includes(currSpecId)) {
-              allSpecIds.push(currSpecId);
+  function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+  }
+  const refresh = useForceUpdate();
+
+  useEffect(() => {
+    const typeProducts = [];
+    const allSpecIds = [];
+    if (products.length === 0) {
+      getProduct(productId).then(curr => {
+        setType(curr.type.typeName);
+        getTypeProducts(curr.type.typeName).then(res => {
+          res.map(prod => {
+            typeProducts.push(prod);
+          });
+          setProducts(typeProducts);
+          if (products.length <= 1) {
+            for (let i = 0; i < typeProducts.length; i++) {
+              for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
+                let currSpecId = typeProducts[i].productSpecs[j].id.specId;
+                if (!allSpecIds.includes(currSpecId)) {
+                  allSpecIds.push(currSpecId);
+                }
+              }
             }
+            createTableData(typeProducts, allSpecIds).then(res => {
+              setTableData(res);
+              setLoading(false);
+            });
           }
-        }
-        createTableData(typeProducts, allSpecIds).then(res => {
-          setTableData(res);
-          setLoading(false);
-        });
+        })
       })
-    })
+    }
+  }, [])
+
+  const togglePop = () => {
+    console.log(seen);
+    setSeen(!seen);
+    refresh();
+    console.log(seen);
+  }
+
+  if (products.length < 2) {
+    return <div className='comparison'></div>
   }
 
   if (isLoading || tableData === {}) {
@@ -109,8 +133,9 @@ function Comparison() {
   }
 
   return (
-    <div className="Comparison">
-      <Table columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} />
+    <div className="comparison">
+      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} /> : null}
+      <button onClick={togglePop}>Compare Products</button>
     </div>
   )
 }
