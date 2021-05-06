@@ -102,10 +102,10 @@ function SingleProductListing() {
             <br />
             <br />
 
-            {/* <Comparison
+            <Comparison
                 product={Product}
             />
-            <MoreProducts /> */}
+            <MoreProducts />
             <QuestionAnswer />
             {/* <ReviewSummary />
         
