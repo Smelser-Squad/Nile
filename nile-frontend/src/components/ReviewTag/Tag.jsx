@@ -49,7 +49,7 @@ for (const key in wordCounts) {
         const element = wordCounts[key];
         //push phrases into tag array if it's occurence is above a certain amount
         //and it isn't already present in the array
-        if(element>=2 && !tagArr.includes(key)&& !commonWords.includes(key))
+        if(element>=2 && !tagArr.includes(key)  && !commonWords.includes(key))
         {
             // console.log(element)
             tagArr.push(key);
