@@ -21,11 +21,13 @@ public class registerTest {
         WebElement usernameElement = driver.findElement(By.id("username"));
         WebElement emailElement = driver.findElement(By.id("email"));
         WebElement passwordElement = driver.findElement(By.id("password"));
+        WebElement submitButton = driver.findElement(By.id("submitButton"));
 
         fullnameElement.sendKeys("Brendan Deyo");
         usernameElement.sendKeys("Bdeyo28");
         emailElement.sendKeys("bdeyo1@talentpath.com");
         passwordElement.sendKeys("Password123");
+        submitButton.click();
 
 //        fullnameElement.submit();
 //        usernameElement.submit();
