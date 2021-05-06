@@ -68,8 +68,6 @@ function SingleProductListing() {
             {/* <ProductPhotos color={color}/>
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
 
-            <ProductPhotos color={color} />
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -87,10 +85,10 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-                <p className="ship">
+                {/* <p className="ship">
                     <small>Sold By </small>
                     <strong>{Product.vendor} </strong>
-                </p>
+                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
