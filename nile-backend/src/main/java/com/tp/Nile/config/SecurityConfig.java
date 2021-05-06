@@ -146,7 +146,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/specs/**",
                         "/api/types/**",
                         "/api/vendors/**",
-                        "/api/productspecs/**")
+                        "/api/productspecs/**",
+                        "/api/qa/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
