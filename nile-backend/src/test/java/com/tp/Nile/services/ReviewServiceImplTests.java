@@ -29,8 +29,9 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,6 +40,9 @@ public class ReviewServiceImplTests {
 
     @Mock
     private ReviewRepository repo;
+
+    @Mock
+    private ReviewPhotoServiceImpl photoService;
 
     @InjectMocks
     private ReviewServiceImpl service;
@@ -93,8 +97,7 @@ public class ReviewServiceImplTests {
 
         try {
             newReview = service.getReviewById(1);
-        } catch (NullReviewIdException | NullReviewAttributeException | InvalidReviewIdException ex)
-        {
+        } catch (NullReviewIdException | NullReviewAttributeException | InvalidReviewIdException ex) {
             fail("Exception was thrown");
         }
 
@@ -115,8 +118,7 @@ public class ReviewServiceImplTests {
             failBecauseExceptionWasNotThrown(NullReviewIdException.class);
         } catch (InvalidReviewIdException | NullReviewAttributeException ex) {
             fail("Wrong exception was thrown here");
-        } catch (NullReviewIdException ex )
-        {
+        } catch (NullReviewIdException ex) {
 
         }
     }
@@ -128,8 +130,7 @@ public class ReviewServiceImplTests {
             failBecauseExceptionWasNotThrown(InvalidReviewIdException.class);
         } catch (NullReviewIdException | NullReviewAttributeException ex) {
             fail("Wrong exception was thrown here");
-        } catch (InvalidReviewIdException ex )
-        {
+        } catch (InvalidReviewIdException ex) {
 
         }
     }
@@ -230,4 +231,30 @@ public class ReviewServiceImplTests {
         }
     }
 
+    @Test
+    public void testGetReviewPhotosByProductId()
+            throws NullReviewAttributeException, NullReviewIdException,
+            InvalidReviewIdException, NullProductIdException, InvalidProductIdException {
+        Review testReview = new Review(
+                1, new User(), "test summary", "test title", LocalDate.now(),
+                List.of(new ReviewPhoto()), new Product(), new Feature(), 5, true
+        );
+        ReviewPhoto testPhoto = new ReviewPhoto(1, testReview, "fakeimg.path/img.png");
+        when(photoService.getPhotosByReview(anyInt()))
+                .thenReturn(List.of(testPhoto));
+        when(repo.getReviewsByProductId(anyInt()))
+                .thenReturn(List.of(testReview));
+
+        List<ReviewPhoto> toTest = service.getReviewPhotosByProductId(1);
+
+        assertThat(toTest)
+                .isNotNull()
+                .isInstanceOf(List.class)
+                .allSatisfy(photo -> {
+                    assertThat(photo).isInstanceOf(ReviewPhoto.class);
+                    assertThat(photo.getPhotoId()).isExactlyInstanceOf(Integer.class).isEqualTo(1);
+                    assertThat(photo.getImageSrc()).isExactlyInstanceOf(String.class).isEqualTo("fakeimg.path/img.png");
+                    assertThat(photo.getReview()).isExactlyInstanceOf(Review.class);
+                });
+    }
 }

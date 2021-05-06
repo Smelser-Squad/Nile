@@ -38,7 +38,6 @@ public class Answer implements Serializable {
     @JoinColumn(name = "user_id")
 
     @JsonIgnoreProperties(value = {"answers"})
-
     private User user;
 
 }

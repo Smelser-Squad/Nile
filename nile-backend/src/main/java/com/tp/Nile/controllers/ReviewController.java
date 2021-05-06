@@ -64,6 +64,17 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/photosByProduct/{productId}")
+    public ResponseEntity getReviewPhotosByProductId(@PathVariable Integer productId) {
+        try {
+            return ResponseEntity.ok(service.getReviewPhotosByProductId(productId));
+        } catch (NullReviewAttributeException | InvalidProductIdException |
+                NullProductIdException | NullReviewIdException | InvalidReviewIdException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 //    @GetMapping("/by/{productId}")
 //    public ResponseEntity getReviewsByProductId(@PathVariable Integer productId) {
 //        try {
