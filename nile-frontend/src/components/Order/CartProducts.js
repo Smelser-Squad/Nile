@@ -1,14 +1,10 @@
-
 import './CartProducts.css';
 function CartProducts({ photos, name, price }) {
-
     return (
         <div>
             <div className="cart_products_left">
                 <img className='cartProduct_image' alt="" src={photos} />
-
             </div>
-
             <div className='cart_products_right'>
                 <p className="right_name">{name} </p>
                 <p className="right_price">
@@ -18,7 +14,5 @@ function CartProducts({ photos, name, price }) {
             </div>
         </div>
     )
-
 }
-
 export default CartProducts;

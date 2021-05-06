@@ -40,7 +40,7 @@ public class ChargeRequest implements Serializable {
     @CreationTimestamp
     private LocalDate orderDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 

@@ -3,17 +3,18 @@ package com.tp.Nile.services;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.tp.Nile.controllers.Helper.ChargeRequest;
+import com.tp.Nile.controllers.Helper.ChargeRequestHelper;
 import com.tp.Nile.exceptions.InvalidStripeException;
 import com.tp.Nile.models.Cart;
 import com.tp.Nile.models.CartProduct;
 import com.tp.Nile.models.Product;
-import com.tp.Nile.repositories.CartRepository;
-import com.tp.Nile.repositories.ChargeRepository;
-import com.tp.Nile.repositories.ProductRepository;
+import com.tp.Nile.models.User;
+import com.tp.Nile.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -22,10 +23,16 @@ public class StripeService {
     ChargeRepository repo;
 
     @Autowired
+    CartProductRepository cpRepo;
+
+    @Autowired
     CartRepository cRepo;
 
     @Autowired
     ProductRepository pRepo;
+
+    @Autowired
+    UserRepository uRepo;
 
     @Value("${stripe.keys.secret}")
     private String API_SECRET_KEY;
@@ -37,22 +44,45 @@ public class StripeService {
         this.repo = repo;
     }
 
-    public String createCharge(ChargeRequest request) throws InvalidStripeException{
+    public String createCharge(ChargeRequestHelper requestHelper) throws InvalidStripeException{
         String id = null;
+        ChargeRequest request = new ChargeRequest();
+        request.setToken(requestHelper.getToken());
+        request.setEmail(requestHelper.getEmail());
+        request.setAmount(requestHelper.getAmount());
+        List<Object> objectProductId = requestHelper.getCartProductId();
+        List<Integer> productId = new ArrayList<>();
+        for(Object object: objectProductId){
+            int i = (Integer) object;
+            productId.add(i);
+        }
+        Cart cart = new Cart();
+        cart.setCartProducts(new ArrayList<>());
+        cart.setStatus("Ordered");
+        cart.setPurchaseDate(LocalDate.now());
 
+        Optional<User> user = uRepo.findById(1L);
+        if(user.isPresent()){
+            cart.setUser(user.get());
+        }
 
-//        for(Integer i : productId){
-//            Optional<Product> product = pRepo.findById(i);
-//            if(product.isPresent()){
-//                CartProduct cartProduct = new CartProduct();
-//                cartProduct.setCart(cart);
-//                cartProduct.setProduct(product.get());
-//                cart.getCartProducts().add(cartProduct);
-//
-//            }
-//        }
-//        cart = cRepo.saveAndFlush(cart);
+        for(Integer i : productId){
+            Optional<Product> product = pRepo.findById(i);
+            if(product.isPresent()){
+                CartProduct cartProduct = new CartProduct();
+                cartProduct.setCart(cart);
+                cartProduct.setProduct(product.get());
+//                cartProduct = cpRepo.saveAndFlush(cartProduct);
+                cart.getCartProducts().add(cartProduct);
+            }
+        }
 
+        cart = cRepo.saveAndFlush(cart);
+        for(CartProduct cartProduct : cart.getCartProducts()){
+            cartProduct.setCart(cart);
+            cartProduct.setQuantity(1);
+            cpRepo.saveAndFlush(cartProduct);
+        }
 
         try {
             Stripe.apiKey = API_SECRET_KEY;
@@ -64,14 +94,7 @@ public class StripeService {
             //create a charge
             Charge charge = Charge.create(chargeParams);
             id = charge.getId();
-//            request.setCart(cart);
-
-            Optional<Cart> cart = cRepo.findById(2);
-            if(cart.isPresent()){
-                request.setCart(cart.get());
-            }
-
-
+            request.setCart(cart);
             repo.saveAndFlush(request);
 
         } catch (Exception ex) {

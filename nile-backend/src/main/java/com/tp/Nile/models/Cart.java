@@ -44,7 +44,7 @@ public class Cart implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CartProduct> cartProducts = new ArrayList<>();
 
-    @OneToOne(mappedBy = "cart")
+    @OneToOne(mappedBy = "cart", cascade = {CascadeType.MERGE})
     @JsonIgnoreProperties(value = {"cart"})
     private ChargeRequest chargeRequest;
 }
