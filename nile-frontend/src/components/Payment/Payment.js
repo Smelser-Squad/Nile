@@ -20,8 +20,9 @@ function Payment() {
     function getProductId() {
         cart.forEach((currentValue) => {
             cartProductId.push(currentValue.productId)
-
             console.log(cartProductId)
+            console.log(typeof cartProductId)
+            console.log(typeof currentValue)
         })
     }
 
@@ -32,8 +33,8 @@ function Payment() {
             // cartProductId: cartProductId,
             token: token.card.id,
             amount: totalCartPrice,
-            email: token.email
-
+            email: token.email,
+            cartProductId: cartProductId
         }
 
 
