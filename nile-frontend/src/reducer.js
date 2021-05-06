@@ -46,7 +46,7 @@ const reducer = (state, action) => {
                 currentUser: action.currentUser,
                 isAuthenticated: true
             }
-        
+
         case "USER_SIGN_OUT":
             sessionStorage.removeItem(ACCESS_TOKEN);
             return {

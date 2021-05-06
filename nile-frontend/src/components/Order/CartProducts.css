@@ -1,21 +1,18 @@
-.cartProducts {
-    padding: 40px;
-    margin: 20px 0;
-    border: 1px solid lightgray;
-    background-color: white;
-    position: relative;
+.cart_products_left {
+  width: 15%;
+  height: 200px;
+  float: left;
 }
-
-.cartProducts > p {
-    position: absolute;
-    top: 40px;
-    right: 20px;
+.cart_products_right {
+  margin-left: 20%;
+  height: 200px;
+}
+.right_name{
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 30px;
   }
-
-.order_total {
-    font-weight: 500;
-    text-align: right;
-  }
-
-
-  
+.right_price{
+  font-weight: bold;
+  font-size: 15px;
+}

@@ -5,6 +5,7 @@ import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
+import ShowAllReviews from '../Reviews/ShowAllReviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import Comparison from '../Comparison/Comparison';
@@ -31,8 +32,8 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -58,15 +59,15 @@ function SingleProductListing() {
             })
     }, [])
 
-    
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
+            {/* <ProductPhotos color={color}/>
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
 
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
@@ -77,7 +78,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
-           
+
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -101,18 +102,18 @@ function SingleProductListing() {
             <br />
             <br />
 
-            <Comparison
+            {/* <Comparison
                 product={Product}
             />
-            <MoreProducts /> 
-            <QuestionAnswer /> 
-            <ReviewSummary />
+            <MoreProducts /> */}
+            <QuestionAnswer />
+            {/* <ReviewSummary />
         
             <Reviews />
-            <Link 
-            to={`./all-product-reviews/${Product.productId}`} >
+            <Link
+                to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-            </Link>
+            </Link> */}
         </div>
 
     )
