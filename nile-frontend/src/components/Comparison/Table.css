@@ -33,6 +33,12 @@ tbody tr:nth-child(odd) {
   background-color: #D1D1D1;
 }
 th img {
-  width: 300px;
-  
+  width: 100%;
+}
+.stars {
+  display: inline-block;
+}
+.numReviews {
+  display: inline-block;
+  padding-top: 0px;
 }
