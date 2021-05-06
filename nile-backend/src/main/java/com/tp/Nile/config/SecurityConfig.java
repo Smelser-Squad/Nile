@@ -163,7 +163,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/types/**",
                         "/api/vendors/**",
                         "/api/productspecs/**",
-                        "/api/featureRating/**")
+                        "/api/qa/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
