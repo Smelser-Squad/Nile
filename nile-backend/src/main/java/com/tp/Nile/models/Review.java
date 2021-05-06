@@ -76,4 +76,20 @@ public class Review implements Serializable {
     @Column(name = "helpful")
     private boolean helpful;
 
+    public List<ReviewPhoto> setReviewPhotos(List<ReviewPhoto> photos) {
+        for (ReviewPhoto p : photos) {
+            addReviewPhoto(p);
+        }
+        return getReviewPhotos();
+    }
+
+    public void addReviewPhoto(ReviewPhoto photo) {
+        getReviewPhotos().add(photo);
+        photo.setReview(this);
+    }
+
+    public void removeReviewPhoto(ReviewPhoto photo) {
+        getReviewPhotos().remove(photo);
+        photo.setReview(null);
+    }
 }
