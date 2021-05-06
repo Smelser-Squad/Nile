@@ -1,9 +1,17 @@
-.add_toCart{
+.right_div{
     height: 400px;
     width: 220px;
     border: 2px solid black;
     margin-left: 1200px;
 }
+
+.middle_div{
+    
+}
+.right_div{
+
+}
+
 .button_purchase{
     margin-left: 10px;
     font: bold;

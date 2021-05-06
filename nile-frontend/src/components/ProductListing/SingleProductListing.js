@@ -62,14 +62,18 @@ function SingleProductListing() {
 
     return (
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2>
-            <h3>{Product.description}</h3>
-            <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            {/* <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
+            <div className="right_div">
+                <ProductPhotos color={color} />
+                <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+            </div>
 
-            <div className="add_toCart">
+
+            <div className="middle_div">
+
+            </div>
+
+            <div className="right_div">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
                 </RadioGroup>
@@ -87,10 +91,6 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-                {/* <p className="ship">
-                    <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
-                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
@@ -99,22 +99,24 @@ function SingleProductListing() {
             </small>
             </div>
 
+
             <br />
             <br />
 
-            {/* <Comparison
+            <Comparison
                 product={Product}
             />
-            <MoreProducts /> */}
+            <br />
+            <MoreProducts />
             <QuestionAnswer />
-            {/* <ReviewSummary />
-        
+            <ReviewSummary />
+
             <Reviews />
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-            </Link> */}
-        </div>
+            </Link>
+        </div >
 
     )
 }
