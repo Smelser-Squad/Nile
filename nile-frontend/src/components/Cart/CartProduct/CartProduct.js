@@ -5,13 +5,13 @@ import { useStateValue } from '../../../StateProvider';
 import '../CartProduct/CartProduct.css';
 
 
-function CartProduct({ productId, image, name, price, rating, key, setProductPrice}) {
+function CartProduct({ productId, image, name, price, rating, key, setProductPrice,quantity}) {
     const [{ cart }, dispatch] = useStateValue();
 
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(quantity);
     const [cartPrice, setTotalPrice] = useState(price);
     
-    // console.log(quantity)
+     console.log(cart)
 
     const removeFromCart = () => {
         dispatch({
@@ -22,17 +22,18 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
         })
     };
 
-    function incrementQuentaty(){
+    function incrementQuantity(){
         const cartPrice = getCartTotal(cart); 
-        setQuantity(prevQuantity=> prevQuantity + 1);
+        quantity+=1;
+        // setQuantity(prevQuantity=> prevQuantity + 1);
         setTotalPrice(price+ cartPrice);
-        setProductPrice(price * (quantity + 1));
-        
+      
     }
 
     function decrementQuantity(){
-        setQuantity(prevQuantity=> prevQuantity - 1);
-        setProductPrice(price * (quantity - 1));
+        quantity-=1
+        // setQuantity(prevQuantity=> prevQuantity - 1);
+        
     }
 
   
@@ -62,7 +63,7 @@ function CartProduct({ productId, image, name, price, rating, key, setProductPri
                 <div className="quantity_container">
                     <div className="quantity">Quantity {quantity} </div>
                     <div className="buttons">
-                        <button className="btn" onClick={incrementQuentaty}>+</button>
+                        <button className="btn" onClick={incrementQuantity}>+</button>
                         <button className="btn" onClick={decrementQuantity}>-</button>
                     </div>
 

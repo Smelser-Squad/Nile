@@ -25,6 +25,7 @@ function Home() {
                         rating={calcRating(product)}
                         image={product.photos[0].imageSrc}
                         description={product.description}
+                        quantity={1} 
                   
                     />
                 );
