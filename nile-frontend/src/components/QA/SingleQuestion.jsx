@@ -3,7 +3,7 @@ import axios from 'axios';
 import './QA.jsx';
 import Answers from './Answers';
 import {useState} from 'react';
-import PopUp from './Modal';
+import PopUp from './addAnswerPop';
 
 export default function Question(props) {
 
