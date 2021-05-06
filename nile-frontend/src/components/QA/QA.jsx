@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Questions from './Questions.jsx';
 import PopUp from './addQuestionPop';
 
-export default function QuestionAnswer() {
-    const productId = 1;
+export default function QuestionAnswer(props) {
+    const productId = props.productId;
     const [questions, getQuestions] = useState('');
     const [isLoading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -85,7 +85,7 @@ export default function QuestionAnswer() {
                     {searchResults.length > 0 ? <Questions questions={searchResults}/> : null}
                     <div className="addQuestionBtn">
                         Don't see the answer you're looking for?
-                        <button onClick={togglePop}>Post your question</button>
+                        <button className="toggleQuestion" onClick={togglePop}>Post your question</button>
                         {seen ? <PopUp toggle={togglePop} productId={productId}/> : null}
                     </div>
                 </>}

@@ -118,8 +118,7 @@ function SingleProductListing() {
 
             <br />
             <MoreProducts />
-            <QuestionAnswer />
-            <ReviewSummary />
+            <QuestionAnswer productId={productId} />            <ReviewSummary />
 
             <Reviews />
             <Link

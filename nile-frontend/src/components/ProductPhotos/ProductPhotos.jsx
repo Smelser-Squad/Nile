@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ProductPhotos.css';
 import { getPhotos } from '../../service/PhotoService'
 import { useParams } from 'react-router';
@@ -11,40 +11,43 @@ export function ProductPhotos({ color }) {
     const [currColor, setCurrColor] = useState(color);
 
     const PhotoList = [];
-    if (data.length === 0 || currColor !== color) {
-        getPhotos(productId, color).then((list) => {
-            list.map((item) =>
-                PhotoList.push(item),
+
+    useEffect(() => {
+        if (data.length === 0 || currColor !== color) {
+            getPhotos(productId, color).then((list) => {
+                list.map((item) =>
+                    PhotoList.push(item),
+                );
+
+                const data = PhotoList.map((photo) =>
+                    <li className="listedPhoto"
+                        onClick={() => updatePhoto(photo.imageSrc)}>
+                        <img
+                            className="altPhoto"
+                            id={photo.photoId}
+                            alt=""
+                            src={photo.imageSrc} >
+                        </img>
+                    </li>
+                );
+
+                const magnifier = PhotoList.map((photo) =>
+                    <SideBySideMagnifier
+                        className="mag"
+                        style={{ height: "500px", width: "500px", display: "inline-block" }}
+                        imageSrc={photo.imageSrc}
+                        fillAvailableSpace={false} />
+                )
+
+                setData(data);
+                setCurrColor(color);
+                setMag(magnifier);
+                setCurrColor(color);
+            }
             );
 
-            const data = PhotoList.map((photo) =>
-                <li className="listedPhoto"
-                    onClick={() => updatePhoto(photo.imageSrc)}>
-                    <img
-                        className="altPhoto"
-                        id={photo.photoId}
-                        alt=""
-                        src={photo.imageSrc} >
-                    </img>
-                </li>
-            );
-
-            const magnifier = PhotoList.map((photo) =>
-                <SideBySideMagnifier
-                    className="mag"
-                    style={{ height: "500px", width: "500px", display: "inline-block" }}
-                    imageSrc={photo.imageSrc}
-                    fillAvailableSpace={false} />
-            )
-
-            setData(data);
-            setCurrColor(color);
-            setMag(magnifier);
-            setCurrColor(color);
         }
-        );
-
-    }
+    }, [color])
 
     return (
         <div className="PhotoContainer">
