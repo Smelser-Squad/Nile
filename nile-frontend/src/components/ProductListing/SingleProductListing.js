@@ -59,15 +59,24 @@ function SingleProductListing() {
             })
     }, [])
 
+    console.log(Product)
 
     return (
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2>
-            <h3>{Product.description}</h3>
-            <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            {/* <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
+            <div>
+                <div className="left_item_description">
+                    <ProductPhotos color={color} />
+                    <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                </div>
+
+                <div className="right_item_description">
+                    <p className="right_name">{Product.name}</p>
+                    <p className="right_price">${Product.price}</p>
+                    <p className="right_name">{Product.description}</p>
+                    <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
+                </div>
+            </div>
 
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
