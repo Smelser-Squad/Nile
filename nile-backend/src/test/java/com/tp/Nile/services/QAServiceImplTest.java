@@ -76,7 +76,7 @@ public class QAServiceImplTest {
         usuario.setUserId(uId);
         when(qRepo.findById(1)).thenReturn(java.util.Optional.of(quest));
         when(aRepo.saveAndFlush(ans)).thenReturn(ans);
-        when(uRepo.findById(uId)).thenReturn(java.util.Optional.of(usuario));
+//        when(uRepo.findById(uId)).thenReturn(java.util.Optional.of(usuario));
         Answer addedAnswer = null;
 
         try {
