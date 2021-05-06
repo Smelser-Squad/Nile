@@ -64,8 +64,23 @@ function SingleProductListing() {
     return (
         <div className="SingleProductListing">
 
+
+
             <ProductPhotos color={color} />
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+
+            <div className="right_item_description">
+                <p className="right_name">{Product.name}</p>
+                <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                <p className="blue_text"> Reviews |  Questions Answered!</p>
+                <p className="green_text">In Stock.</p>
+                <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
+                <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
+                <p className="opaque_text">Offer Type:</p>
+
+
+            </div>
 
 
             <div className="add_toCart">
