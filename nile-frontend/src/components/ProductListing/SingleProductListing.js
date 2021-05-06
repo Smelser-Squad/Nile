@@ -24,7 +24,7 @@ function SingleProductListing() {
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
-    const [color, setProductColor] = useState(defaultColor);
+    const [color, setProductColor] = useState('Black');
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -105,6 +105,7 @@ function SingleProductListing() {
             <Comparison
                 product={Product}
             />
+
             <MoreProducts /> 
 
             <QuestionAnswer productId={productId}/> 
@@ -116,6 +117,7 @@ function SingleProductListing() {
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
+
             </Link> 
         </div>
 
