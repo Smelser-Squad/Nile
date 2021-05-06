@@ -66,7 +66,7 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            <ProductPhotos color={color}/>
+            <ProductPhotos color={color}/> 
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
 
             <div className="add_toCart">
@@ -89,7 +89,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.vendor} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
@@ -105,7 +105,6 @@ function SingleProductListing() {
             <Comparison
                 product={Product}
             />
-
             <MoreProducts />
             <QuestionAnswer /> 
             <ReviewSummary />
@@ -115,7 +114,8 @@ function SingleProductListing() {
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-            </Link>
+
+            </Link> 
         </div>
 
     )
