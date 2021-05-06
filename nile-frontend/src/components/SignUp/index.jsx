@@ -320,7 +320,7 @@ class SignUp extends Component {
                   variant="outlined"
                   required
                   fullWidth
-                  id="name"
+                  id="fname"
                   label="Full Name"
                   placeholder="Your full name"
                   autoFocus

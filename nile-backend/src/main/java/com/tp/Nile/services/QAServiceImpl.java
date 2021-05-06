@@ -11,6 +11,7 @@ import com.tp.Nile.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,18 +35,18 @@ public class QAServiceImpl implements QAService{
     public Question addQuestion(Question question, Integer productId) throws NullProductIdException, InvalidProductIdException {
         Product pro = pRepo.getProductById(productId);
         question.setProduct(pro);
+        question.setQuestion(question.getQuestion().toLowerCase(Locale.ROOT));
         return qRepo.saveAndFlush(question);
     }
 
     @Override
     public Answer addAnswer(Answer answer, Integer questionId, Integer userId) throws InvalidQAIdException, NullQAIdException, NullUserException, InvalidUserIdException, NullUserIdException {
         Question que = this.getQuestionById(questionId);
-        //TODO: validate user and catch exceptions
-        Long user = new Long(userId);
-        Optional<User> usuario = uRepo.findById(user);
-        answer.setUser(usuario.get());
-        //Todo: this
+//        Long user = new Long(userId);
+//        User usuario = this.getUserById(user);
+//        answer.setUser(usuario);
         answer.setQuestion(que);
+        answer.setAnswer(answer.getAnswer().toLowerCase(Locale.ROOT));
         return aRepo.saveAndFlush(answer);
 
     }
@@ -107,5 +108,28 @@ public class QAServiceImpl implements QAService{
         }else{
             throw new InvalidQAIdException("Question with that id does not exist");
         }
+    }
+
+    @Override
+    public User getUserById(Long userId) throws NullUserException, NullUserIdException, InvalidUserIdException {
+        if (userId == null)
+        {
+            throw new NullUserIdException("User id can not be null");
+        }
+
+        User retrieved = null;
+
+        Optional<User> user = uRepo.findById(userId);
+
+        if(user.isPresent()){
+            retrieved=user.get();
+            if (retrieved == null)
+                throw new NullUserException("All non nullable attributes must have value");
+            else
+                return retrieved;
+        }else{
+            throw new InvalidUserIdException("User with that id does not exist");
+        }
+
     }
 }
