@@ -17,7 +17,6 @@ export default function PopUp(props) {
             axios.post(`http://localhost:80/api/qa/addAnswer/${props.question.questionId}/${userId}`, { "answer": answer})
                 .then(res=>{        
             });
-            //props.refresh();
         }
 
         const answerInput = (event) => {

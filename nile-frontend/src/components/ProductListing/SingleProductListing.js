@@ -16,6 +16,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
+import Tag from '../ReviewTag/Tag';
+
 
 function SingleProductListing() {
 
@@ -30,8 +32,8 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId: Product.productId,
-                name: Product.name,
+                productId:Product.productId,
+                name:Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -57,16 +59,16 @@ function SingleProductListing() {
             })
     }, [])
 
-
+    
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
+            <ProductPhotos color={color}/>
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
 
-            <ProductPhotos color={color} />
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -76,6 +78,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
+           
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -84,10 +87,10 @@ function SingleProductListing() {
                     <small>Ships From </small>
                     <strong>Nile</strong>
                 </p>
-                <p className="ship">
+                {/* <p className="ship">
                     <small>Sold By </small>
                     <strong>{Product.vendor} </strong>
-                </p>
+                </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
@@ -109,7 +112,7 @@ function SingleProductListing() {
             <Reviews />
             <Link 
             to={`./all-product-reviews/${Product.productId}`} >
-                See all reviews
+                <p class="all-reviews-link">See all reviews </p>
             </Link>
         </div>
 

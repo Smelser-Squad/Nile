@@ -1,8 +1,8 @@
 import { Button, ClickAwayListener, Grow, makeStyles, MenuItem, MenuList, Paper, Popper } from "@material-ui/core";
+import { withSnackbar, useSnackbar } from "notistack";
 import React from 'react';
-import { ACCESS_TOKEN } from "../../constants";
-import { useStateValue } from "../../StateProvider";
 import { useHistory } from 'react-router';
+import { useStateValue } from "../../StateProvider";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function UserMenu(props) {
+function UserMenu() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const history = useHistory();
     const [{ isAuthenticated, currentUser }, dispatch] = useStateValue();
-    const wrapper = React.createRef();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -52,16 +52,21 @@ export default function UserMenu(props) {
         prevOpen.current = open;
     }, [open]);
 
-    function handleLogout() {
-        localStorage.removeItem(ACCESS_TOKEN);
+    function handleLogout(event) {
         dispatch({
             type: 'USER_SIGN_OUT',
         });
-        history.push('/');
+        enqueueSnackbar('You have been logged out.', {
+            "variant": "info",
+            "anchorOrigin": {
+                vertical: 'bottom', horizontal: 'center',
+            }
+        })
+        handleClose(event, "/");
     }
 
     return (
-        <div ref={wrapper}>
+        <>
             <Button
                 className={classes.button}
                 ref={anchorRef}
@@ -69,7 +74,7 @@ export default function UserMenu(props) {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-               Hello {isAuthenticated ? currentUser.username : 'Guest'}
+                Hello {isAuthenticated ? currentUser.username : 'Guest'}
             </Button>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
@@ -85,7 +90,7 @@ export default function UserMenu(props) {
                                         [
                                             <MenuItem onClick={handleClose} key='profile'>Profile</MenuItem>,
                                             <MenuItem onClick={handleClose} key='account'>My account</MenuItem>,
-                                            <MenuItem onClick={handleLogout} key='logout'>Logout</MenuItem>
+                                            <MenuItem onClick={e => handleLogout(e)} key='logout'>Logout</MenuItem>
                                         ]
                                         :
                                         [
@@ -99,6 +104,8 @@ export default function UserMenu(props) {
                     </Grow>
                 )}
             </Popper>
-        </div>
+        </>
     )
 }
+
+export default withSnackbar(UserMenu);

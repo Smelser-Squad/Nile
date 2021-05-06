@@ -5,13 +5,13 @@ import { useStateValue } from '../../../StateProvider';
 import '../CartProduct/CartProduct.css';
 
 
-function CartProduct({ productId, image, name, price, rating, key }) {
+function CartProduct({ productId, image, name, price, rating, key, setProductPrice}) {
     const [{ cart }, dispatch] = useStateValue();
 
     const [quantity, setQuantity] = useState(1);
     const [cartPrice, setTotalPrice] = useState(price);
-
-
+    
+    // console.log(quantity)
 
     const removeFromCart = () => {
         dispatch({
@@ -22,15 +22,20 @@ function CartProduct({ productId, image, name, price, rating, key }) {
         })
     };
 
-    function incrementQuentaty() {
-        const cartPrice = getCartTotal(cart);
-        setQuantity(prevQuantity => prevQuantity + 1);
-        setTotalPrice(price + cartPrice);
+    function incrementQuentaty(){
+        const cartPrice = getCartTotal(cart); 
+        setQuantity(prevQuantity=> prevQuantity + 1);
+        setTotalPrice(price+ cartPrice);
+        setProductPrice(price * (quantity + 1));
+        
     }
 
-    function decrementQuantity() {
-        setQuantity(prevQuantity => prevQuantity - 1);
+    function decrementQuantity(){
+        setQuantity(prevQuantity=> prevQuantity - 1);
+        setProductPrice(price * (quantity - 1));
     }
+
+  
 
     return (
         <div className='cartProduct'>

@@ -1,7 +1,8 @@
-import axios from 'axios'
 
-    async function getPhotos(productId, color){
-   
+import axios from 'axios';
+
+    async function getPhotos(productId,color){
+        
         const photos=await axios.get(`http://localhost:80/api/productPhotos/${productId}/${color}`)
         const data=photos.data;
         
@@ -16,6 +17,11 @@ import axios from 'axios'
         return(data);
         
     }
-    export {getPhotos, getListColors}
+
+    async function getReviewPhotosForProduct(productId) {
+        const res = await axios.get(`http://localhost:80/api/reviews/photosByProduct/${productId}`);
+        return res.data;
+    }
+    export {getPhotos, getListColors, getReviewPhotosForProduct}
 
 
