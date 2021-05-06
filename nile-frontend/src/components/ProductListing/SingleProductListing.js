@@ -104,7 +104,7 @@ function SingleProductListing() {
                 product={Product}
             />
             <MoreProducts /> */}
-            <QuestionAnswer /> 
+            <QuestionAnswer productId={productId}/> 
             {/* <ReviewSummary />
         
             <Reviews />
