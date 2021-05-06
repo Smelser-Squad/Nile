@@ -17,7 +17,6 @@ export default function PopUp(props) {
             axios.post(`http://localhost:80/api/qa/addAnswer/${props.question.questionId}/${userId}`, { "answer": answer})
                 .then(res=>{        
             });
-            //props.refresh();
         }
 
         const answerInput = (event) => {
@@ -30,7 +29,7 @@ export default function PopUp(props) {
                     <span className="close" onClick={handleClick}> &times;</span>
                     <h2>Question: {props.question.question}</h2>
                     <form>
-                        <textarea className="answerPost" name={answer} onChange={answerInput} placeholder="Type your answer here."></textarea>
+                        <textarea className="post" name={answer} onChange={answerInput} placeholder="Type your answer here."></textarea>
                         <button onClick={() => submitAnswer(props)} >Submit Answer</button>
                     </form>
                 </div>
