@@ -95,8 +95,31 @@
 }
 .addQuestionBtn{
     background-color: lightgrey;
-    height: 50px;
     width: 100%;
     border-radius: 10px;
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
 }
+
+.toggleQuestion{
+    color: rgb(0, 0, 0); 
+    font-size: 13px; 
+    line-height: 13px; 
+    padding: 8px;
+    border: 1px solid black; 
+    display: inline-block;
+    background-color:rgb(228, 226, 226);
+    margin-left: 10px;
+}
+.toggleQuestion:hover{
+    background-color:rgb(190, 188, 188);
+}
+
+.myButton {
+    color: rgb(0, 0, 0); font-size: 13px; line-height: 13px; padding: 8px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-east-asian: normal; font-variant-position: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 1px solid rgb(28, 110, 164); display: inline-block;}
+    .myButton:hover {
+    background: #1C6EA4; }
+    .myButton:active {
+    background: #144E75; }

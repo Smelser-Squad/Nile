@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './ProductPhotos.css';
 import {getPhotos} from '../../service/PhotoService'
 import { useParams } from 'react-router';
@@ -11,6 +11,8 @@ export function ProductPhotos({color}) {
     const [currColor, setCurrColor] = useState(color);
     
     const PhotoList = [];
+
+    useEffect(() => {
     if(data.length===0 || currColor !== color){
         getPhotos(productId, color).then((list)=>
         {
@@ -46,6 +48,7 @@ export function ProductPhotos({color}) {
         );
         
     }
+}, [color])
     
     return(
         <div className="PhotoContainer">
