@@ -4,6 +4,7 @@ import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.tp.Nile.controllers.Helper.ChargeRequest;
 import com.tp.Nile.exceptions.InvalidStripeException;
+import com.tp.Nile.repositories.CartRepository;
 import com.tp.Nile.repositories.ChargeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,9 @@ import java.util.Optional;
 public class StripeService {
     @Autowired
     ChargeRepository repo;
+
+    @Autowired
+    CartRepository cRepo;
 
     @Value("${stripe.keys.secret}")
     private String API_SECRET_KEY;
@@ -38,6 +42,8 @@ public class StripeService {
             Charge charge = Charge.create(chargeParams);
             id = charge.getId();
             repo.saveAndFlush(request);
+            request.getCart().setStatus("Ordered");
+            cRepo.saveAndFlush(request.getCart());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
