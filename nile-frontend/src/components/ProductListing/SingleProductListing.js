@@ -65,8 +65,8 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            {/* <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
+             <ProductPhotos color={color}/>
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> 
 
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
@@ -77,6 +77,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
+
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -100,16 +101,18 @@ function SingleProductListing() {
             <br />
             <br />
 
-            {/* <Comparison
+            <Comparison
                 product={Product}
             />
-            <MoreProducts /> */}
+            <MoreProducts /> 
+
             <QuestionAnswer productId={productId}/> 
-            {/* <ReviewSummary />
+
+             <ReviewSummary />
         
             <Reviews />
-            <Link 
-            to={`./all-product-reviews/${Product.productId}`} >
+            <Link
+                to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
             </Link> */}
         </div>
