@@ -4,7 +4,7 @@ import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import { getAverageReviewScore } from '../../service/ReviewService'
 import './Comparison.css'
 import Table from './Table'
-import { Refresh } from '@material-ui/icons';
+import { LocalConvenienceStoreOutlined, Refresh } from '@material-ui/icons';
 import PopUp from './PopUp';
 
 async function createTableData(products, specIds) {
@@ -27,7 +27,7 @@ async function createTableData(products, specIds) {
       columns: []
     }
     let currColumn = {
-      Header: products[i].name,
+      Header: <p id="product-name" onClick={() => { window.location.href = `/singleProductListing/${products[i].productId}` }} >{products[i].name}</p>,
       accessor: products[i].name
     }
     currImage.columns.push(currColumn);
@@ -76,6 +76,7 @@ function Comparison() {
 
   const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [ids, setIds] = useState([]);
   const [type, setType] = useState();
   const [tableData, setTableData] = useState({});
   const productId = document.URL.substring(43);
@@ -89,16 +90,20 @@ function Comparison() {
 
   useEffect(() => {
     const typeProducts = [];
+    const productIds = [];
     const allSpecIds = [];
     if (products.length === 0) {
       getProduct(productId).then(curr => {
         setType(curr.type.typeName);
         getTypeProducts(curr.type.typeName).then(res => {
           res.map(prod => {
+            productIds.push(prod.productId);
             typeProducts.push(prod);
           });
+          setIds(productIds);
           setProducts(typeProducts);
-          if (products.length <= 1) {
+          console.log("products = " + typeProducts);
+          if (typeProducts.length > 1) {
             for (let i = 0; i < typeProducts.length; i++) {
               for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
                 let currSpecId = typeProducts[i].productSpecs[j].id.specId;
@@ -109,9 +114,9 @@ function Comparison() {
             }
             createTableData(typeProducts, allSpecIds).then(res => {
               setTableData(res);
-              setLoading(false);
             });
           }
+          setLoading(false);
         })
       })
     }
@@ -134,8 +139,8 @@ function Comparison() {
 
   return (
     <div className="comparison">
-      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} /> : null}
-      <button className="comaprison_button" onClick={togglePop}>Compare Products</button>
+      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} ids={ids} /> : null}
+      <button onClick={togglePop}>Compare Products</button>
     </div>
   )
 }
