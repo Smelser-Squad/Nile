@@ -2,6 +2,7 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Review;
+import com.tp.Nile.models.ReviewPhoto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +29,7 @@ public interface ReviewService {
 
     boolean deleteReview(Integer reviewId)
             throws InvalidReviewIdException, NullReviewIdException, NullReviewAttributeException;
+
+    List<ReviewPhoto> getReviewPhotosByProductId(Integer productId) throws InvalidProductIdException, InvalidReviewIdException, NullProductIdException, NullReviewIdException, NullReviewAttributeException;
 
 }

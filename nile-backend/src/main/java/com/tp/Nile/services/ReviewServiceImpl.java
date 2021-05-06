@@ -2,10 +2,12 @@ package com.tp.Nile.services;
 
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Review;
+import com.tp.Nile.models.ReviewPhoto;
 import com.tp.Nile.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +16,9 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Autowired
     ReviewRepository repo;
+
+    @Autowired
+    ReviewPhotoServiceImpl photoService;
 
     @Override
     public List<Review> getAllReviews()
@@ -134,4 +139,20 @@ public class ReviewServiceImpl implements ReviewService{
             throw new InvalidReviewIdException("Review with that id does not exist");
         }
     }
+
+    @Override
+    public List<ReviewPhoto> getReviewPhotosByProductId(Integer productId)
+            throws InvalidProductIdException, InvalidReviewIdException,
+            NullProductIdException, NullReviewIdException, NullReviewAttributeException {
+        List<ReviewPhoto> toReturn = new ArrayList<>();
+        List<Review> reviews = getReviewsByProductId(productId);
+
+        for (Review r : reviews) {
+            List<ReviewPhoto> photos = photoService.getPhotosByReview(r.getReviewId());
+            if (photos != null) toReturn.addAll(photos);
+        }
+        return toReturn;
+    }
+
+
 }
