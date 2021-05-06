@@ -64,6 +64,8 @@ function SingleProductListing() {
             <h3>{Product.description}</h3>
             <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
+            {/* <ProductPhotos color={color}/>
+            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
 
             <ProductPhotos color={color} />
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
@@ -99,18 +101,18 @@ function SingleProductListing() {
             <br />
             <br />
 
-            <Comparison
+            {/* <Comparison
                 product={Product}
             />
-            <MoreProducts />
+            <MoreProducts /> */}
             <QuestionAnswer /> 
-            <ReviewSummary />
+            {/* <ReviewSummary />
         
             <Reviews />
             <Link 
             to={`./all-product-reviews/${Product.productId}`} >
-                See all reviews
-            </Link>
+                <p class="all-reviews-link">See all reviews </p>
+            </Link> */}
         </div>
 
     )
