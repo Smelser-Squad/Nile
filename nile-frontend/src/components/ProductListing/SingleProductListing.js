@@ -18,7 +18,6 @@ import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
 
-
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -69,6 +68,7 @@ function SingleProductListing() {
             <ProductPhotos color={color}/> 
             <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
 
+
             <div className="add_toCart">
                 <RadioGroup className="button_purchase">
                     <FormControlLabel control={<Radio />} label="One-time purchase:" />
@@ -105,9 +105,12 @@ function SingleProductListing() {
             <Comparison
                 product={Product}
             />
-            <MoreProducts />
-            <QuestionAnswer /> 
-            <ReviewSummary />
+
+            <MoreProducts /> 
+
+            <QuestionAnswer productId={productId}/> 
+
+             <ReviewSummary />
 
         
             <Reviews />
