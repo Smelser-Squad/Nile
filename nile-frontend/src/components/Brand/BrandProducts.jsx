@@ -2,28 +2,24 @@ import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { getBrandProducts } from '../../service/ProductService';
 import ReactStars from "react-rating-stars-component";
-import Pagination from '@material-ui/lab/Pagination';
-import { makeStyles } from '@material-ui/core/styles';
-import './BrandProducts.css'
+import Pagination from "./Pagination";
 
+import './BrandProducts.css';
 
-
+const ProductList=[];
 function BrandProducts(){
 
-   const useStyles = makeStyles((theme) => ({
-        root: {
-          '& > *': {
-            marginTop: theme.spacing(2),
-          },
-        },
-      }));
-    const classes = useStyles();
     const [Product, setProduct] = useState([]);
     const{brand}=useParams();
-    const[FilteredList,setList]=useState();
-    const ProductList =[];
+    const[FilteredList,setList]=useState([]);
+    const[itemsPerPage]=useState(3);
+    const[currPage, setCurrPage]=useState(1);
+    
 
-   
+
+    // const[page,setPage]=useState(1);
+    
+ 
       
     useEffect(() => {
 
@@ -32,8 +28,7 @@ function BrandProducts(){
             list.map((item) =>
             ProductList.push(item)
             );
-            setList(ProductList);
-            // console.log(ProductList.sort(compareValues('price')));
+           
 
             let cards = ProductList.map((product) =>
             <div className="BrandProduct">
@@ -57,17 +52,23 @@ function BrandProducts(){
             </div>
         </div>
             );
+        
       setProduct(cards);
-
+      setList(cards);
         }
         );
-        
+       
     }
     
 }, []);
+const indexOfLastProduct = currPage * itemsPerPage;
+const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+ const currentProducts = FilteredList.slice(indexOfFirstProduct, indexOfLastProduct);
+
+ const paginate = pageNumber =>{ setCurrPage(pageNumber)}
 
     function PrimeLogo(props) {
-        // console.log(ProductList)
+        
         const primeEligible = props.primeEligible;
         if (primeEligible) {
             return (
@@ -81,6 +82,7 @@ function BrandProducts(){
             return <div></div>
         }
     }
+    
     function calcRating(product)  {
         let sum = 0;
         for(let i = 0; i < product.reviews.length; i++) {
@@ -121,30 +123,31 @@ function BrandProducts(){
         list=FilterArray.sort(compareValues('price','desc'));
     }
 
-
-       let cards = list.map((product) =>
-            <div className="BrandProduct">
-            <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${product.productId}` }}>{product.name} - {product.photos[0].color} </h1>
-            <img id="product-image" src={product.photos[0].imageSrc} alt=""></img>
-            <div className="BrandProduct_info">
-            <div class="row">
-            <ReactStars
-                    count={5}
-                    edit={false}
-                    isHalf={true}
-                    value={calcRating(product)}
-                    activeColor="#FFA41C"
-                    size={15}
-                />
+       
+    //    let cards =list.map((product) =>
+    //         <div className="BrandProduct">
+    //         <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${product.productId}` }}>{product.name} - {product.photos[0].color} </h1>
+    //         <img id="product-image" src={product.photos[0].imageSrc} alt=""></img>
+    //         <div className="BrandProduct_info">
+    //         <div class="row">
+    //         <ReactStars
+    //                 count={5}
+    //                 edit={false}
+    //                 isHalf={true}
+    //                 value={calcRating(product)}
+    //                 activeColor="#FFA41C"
+    //                 size={15}
+    //             />
           
-            <p id="review-count">{product.reviews.length}</p>
-            </div>
-            <h2>${product.price}</h2>
-            <PrimeLogo primeEligible={product.primeEligible} productId={product.productId} />
-            </div>
-        </div>
-            );
-            setProduct(cards);
+    //         <p id="review-count">{product.reviews.length}</p>
+    //         </div>
+    //         <h2>${product.price}</h2>
+    //         <PrimeLogo primeEligible={product.primeEligible} productId={product.productId} />
+    //         </div>
+    //     </div>
+    //         );
+        
+    //         setProduct(cards);
    
 }
    
@@ -157,13 +160,19 @@ return(
         <option value="high to low">Price:High to Low</option>
         <option value="low to high"> Price:Low to High</option>
         </select>
-        
-    {Product}
-    <div id ="pages" className={classes.root}>
+
+         {currentProducts}
+
+            <Pagination 
+            postsPerPage={itemsPerPage} 
+            totalPosts={Product.length} 
+            paginate={paginate}></Pagination>
      
-      <Pagination count={6} defaultPage={1} boundaryCount={2} />
+    
+    
+      
     </div>
-    </div>
+    
 )
 }
 export default BrandProducts;

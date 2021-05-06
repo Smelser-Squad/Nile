@@ -88,7 +88,7 @@ function SingleProductListing() {
                 </p>
                 {/* <p className="ship">
                     <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
+                    <strong>{Product.vendor.vendor} </strong>
                 </p> */}
                 <small className="prime">
                     <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
@@ -101,11 +101,11 @@ function SingleProductListing() {
             <br />
             <br />
 
-            <Comparison
+            {/* <Comparison
                 product={Product}
-            />
+            /> */}
             <MoreProducts /> 
-            <QuestionAnswer /> 
+            {/* <QuestionAnswer />  */}
             <ReviewSummary />
         
             <Reviews />
