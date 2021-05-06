@@ -63,49 +63,59 @@ function SingleProductListing() {
     return (
         <div className="SingleProductListing">
 
-            <div className="right_div">
-                <ProductPhotos color={color} />
-                <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
-            </div>
+            <div className="box">
+                <div className="left_div">
+                    <ProductPhotos color={color} />
+                    <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                </div>
 
 
-            <div className="middle_div">
+                <div className="middle_div">
 
-            </div>
+                </div>
 
-            <div className="right_div">
-                <RadioGroup className="button_purchase">
-                    <FormControlLabel control={<Radio />} label="One-time purchase:" />
-                </RadioGroup>
-                <p id="price_tag">
-                    <small>$</small>
-                    <strong>{Product.price}</strong>
+                <div className="right_div">
+                    <RadioGroup className="button_purchase">
+                        <FormControlLabel control={<Radio />} label="One-time purchase:" />
+                    </RadioGroup>
+                    <p id="price_tag">
+                        <small>$</small>
+                        <strong>{Product.price}</strong>
 
-                </p>
+                    </p>
 
-                <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
-                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+                    <button onClick={addToCart} className="shop_button" >Add to Cart</button>
+                    <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
+                    <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
-                <p className="ship">
-                    <small>Ships From </small>
-                    <strong>Nile</strong>
-                </p>
-                <small className="prime">
-                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+                    <p className="ship">
+                        <small>Ships From </small>
+                        <strong>Nile</strong>
+                    </p>
+                    <small className="prime">
+                        <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
-                <small className="pro_gift">
-                    <input type="checkbox" />Add a gift receipt for easy returns
+                    <small className="pro_gift">
+                        <input type="checkbox" />Add a gift receipt for easy returns
             </small>
+                </div>
+
+
             </div>
+
+
+
 
 
             <br />
             <br />
 
-            <Comparison
-                product={Product}
-            />
+            <div className="comparison_div">
+                <Comparison
+                    product={Product}
+                />
+            </div>
+
             <br />
             <MoreProducts />
             <QuestionAnswer />

@@ -1,9 +1,7 @@
 .color_selector {
-  display: inline-block;
   margin-left: 20px;  
 }
 
 .color_selector_name{
   margin-left: 20px;
-  display: inline;
 } 

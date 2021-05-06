@@ -1,16 +1,29 @@
+.left_div{
+    float:left;
+    margin-top: 50px; 
+}
+
+
+.middle_div{
+
+}
+
 .right_div{
     height: 400px;
     width: 220px;
     border: 2px solid black;
     margin-left: 1200px;
+    margin-top: 50px; 
 }
 
-.middle_div{
-    
+.box{
+    display: inline;
 }
-.right_div{
 
+.comparison_div{
+        margin-top: 300px;
 }
+
 
 .button_purchase{
     margin-left: 10px;
