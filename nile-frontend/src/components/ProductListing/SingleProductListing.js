@@ -32,8 +32,8 @@ function SingleProductListing() {
         dispatch({
             type: "ADD_TO_CART",
             product: {
-                productId:Product.productId,
-                name:Product.name,
+                productId: Product.productId,
+                name: Product.name,
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
@@ -59,7 +59,7 @@ function SingleProductListing() {
             })
     }, [])
 
-    
+
     return (
         <div className="SingleProductListing">
             <h2>{Product.name}</h2>
@@ -78,7 +78,7 @@ function SingleProductListing() {
                     <strong>{Product.price}</strong>
 
                 </p>
-           
+
                 <button onClick={addToCart} className="shop_button" >Add to Cart</button>
                 <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
                 <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
@@ -106,12 +106,12 @@ function SingleProductListing() {
                 product={Product}
             />
             <MoreProducts /> */}
-            <QuestionAnswer /> 
+            <QuestionAnswer />
             {/* <ReviewSummary />
         
             <Reviews />
-            <Link 
-            to={`./all-product-reviews/${Product.productId}`} >
+            <Link
+                to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
             </Link> */}
         </div>
