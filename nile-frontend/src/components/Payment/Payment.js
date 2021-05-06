@@ -78,6 +78,7 @@ function Payment() {
                         price={product.price}
                         image={product.image}
                         rating={product.rating}
+                        quantity={product.quantity}
                     />
                     ))
                 } </div>

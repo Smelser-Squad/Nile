@@ -4,7 +4,7 @@ import { useStateValue } from "../../StateProvider";
 import './HomeProduct.css';
 
 
-function HomeProduct({ productId, image, name, price, rating, description}) {
+function HomeProduct({ productId, image, name, price, rating, description }) {
     const [{ cart }, dispatch] = useStateValue();
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -17,7 +17,8 @@ function HomeProduct({ productId, image, name, price, rating, description}) {
                 price: price,
                 rating: rating,
                 description: description,
-               
+                quantity: 1
+
             },
         });
     };
@@ -30,7 +31,7 @@ function HomeProduct({ productId, image, name, price, rating, description}) {
                 <p id="product_name" >{name}</p>
             </Link>
             <p id="product_description"> {description} </p>
-           
+
 
             <Link to={`/singleProductListing/${productId}`} style={{ textDecoration: 'none' }}>
                 <img id="product_image" src={image} alt="" />
@@ -52,7 +53,7 @@ function HomeProduct({ productId, image, name, price, rating, description}) {
                     size={15}
                 />
             </div>
-          
+
             <Link to={`/singleProductListing/${productId}`}>
                 <img id="prime-img" alt="prime" src="https://external-content.duckduckgo.com/iu/?u=https://curlydavenport.com/wp-content/uploads/2018/05/Amazon-Prime-Logo-Curly-D-Pink-Coco.png&f=1&nofb=1"></img>
             </Link>
