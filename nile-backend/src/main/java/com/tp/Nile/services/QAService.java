@@ -3,6 +3,7 @@ package com.tp.Nile.services;
 import com.tp.Nile.exceptions.*;
 import com.tp.Nile.models.Answer;
 import com.tp.Nile.models.Question;
+import com.tp.Nile.models.User;
 
 import java.util.Set;
 
@@ -22,4 +23,6 @@ public interface QAService{
     public Boolean deleteAnswer(Integer answerId) throws NullQAIdException, InvalidQAIdException;
 
     public Question getQuestionById(Integer questionId) throws InvalidQAIdException, NullQAIdException;
+
+    public User getUserById(Long userId) throws NullUserException, NullUserIdException, InvalidUserIdException;
 }
