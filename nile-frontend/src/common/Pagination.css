@@ -1,0 +1,16 @@
+.page-nav
+{
+    width: 25%;
+}
+.pagination
+{
+    width: 2%;
+}
+.page-item
+{
+    list-style: none;
+    display: inline;
+    margin: 90%;
+    width: 1%;
+
+}
