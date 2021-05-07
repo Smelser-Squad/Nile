@@ -44,7 +44,7 @@ function SingleProductListing(props) {
                 productId: Product.productId,
                 name: Product.name,
                 image: Product.photos[0].imageSrc,
-                price: Product.price * 0.9,
+                price: Product.price,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product),
                 quantity: 1
@@ -118,7 +118,7 @@ function SingleProductListing(props) {
                     </RadioGroup>
                     <p id="price_tag">
                         <small>$</small>
-                        <strong>{Product.price * 0.9}</strong>
+                        <strong>{Product.price}</strong>
                     </p>
                     <br />
 
