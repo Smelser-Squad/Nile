@@ -13,8 +13,8 @@ export default function Answers(props) {
                 answers.map((answer, index) => {
                     return(
                         <div>
-                            {answer.answer}<br></br>
-                            by {answer.userName} on 04/19/2020<br></br>
+                            <span className="answer">{answer.answer} </span><br></br>
+                            by Anon{/*answer.userName*/} on 0{answer.date}<br></br>
                             {/* {3>1 ? <button className="borderlessButton" onClick={expandAnswer}> See more answers</button> : null} */}
                             <br></br>
                         </div>
