@@ -18,7 +18,7 @@ function PrimeLogo(props) {
 }
 function BrandProduct({productId,name,price,rating,image,color, primeEligible, reviews}){
 
-    console.log(productId);
+  
     return(
 
             <div className="BrandProduct">
