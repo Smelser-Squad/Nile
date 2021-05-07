@@ -71,7 +71,7 @@ function SingleProductListing() {
 
 
                 <div className="middle_div">
-
+                    {Product.brand}
                 </div>
 
                 <div className="right_div">
