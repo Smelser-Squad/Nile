@@ -2,7 +2,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import BrandProducts from './components/Brand/BrandProducts';
+import AllBrandProducts from './components/Brand/AllBrandProducts';
 import Checkout from './components/Checkout/Checkout';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
@@ -30,7 +30,7 @@ function App() {
                         <SingleProductListing />
                     </Route>
                     <Route exact path="/products/brand/:brand">
-                        <BrandProducts />
+                        <AllBrandProducts />
                     </Route>
 
                     <Route exact path="/checkout">

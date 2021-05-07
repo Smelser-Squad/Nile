@@ -18,13 +18,25 @@ import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
 
+
 function SingleProductListing() {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
-    const [color, setProductColor] = useState(defaultColor);
+    const [color, setProductColor] = useState('Black');
+
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 2,
+                width: 300
+            }}
+        />
+    );
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -36,7 +48,8 @@ function SingleProductListing() {
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product)
+                rating: calcRating(Product),
+                quantity: 1
             },
         });
     };
@@ -58,63 +71,102 @@ function SingleProductListing() {
             })
     }, [])
 
+    console.log(Product)
+
+    const numQuestions = 0;
+    const numReviews = 0;
+
 
     return (
+
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2>
-            <h3>{Product.description}</h3>
-            <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            {/* <ProductPhotos color={color}/>
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/> */}
+            <div className="box">
+                <div className="left_div">
+                    <ProductPhotos color={color} />
+                    {/* <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} /> */}
+                </div>
 
-            <div className="add_toCart">
-                <RadioGroup className="button_purchase">
-                    <FormControlLabel control={<Radio />} label="One-time purchase:" />
-                </RadioGroup>
-                <p id="price_tag">
-                    <small>$</small>
-                    <strong>{Product.price}</strong>
 
-                </p>
-                <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
-                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+                <div className="middle_div">
+                    <div className="right_item_description">
+                        <p className="right_name">Product.name</p>
+                        {/* <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link> */}
+                        <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
+                        <ColoredLine color="black" />
+                        <p className="item_price">List Price: $Product.price</p>
+                        <p className="green_text">In Stock.</p>
+                        <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
+                        <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                        <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
+                        <p >Offer Type: <b>With Special Offers</b></p>
+                        <button ><b>With Special Offers</b></button> | <button><b>Without Special Offers</b></button>
+                        <ColoredLine color="black" />
+                        <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                        {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
+                        <ul>
+                            <li>Product.category.name</li>
+                            <li>Product.type.typeName</li>
+                            <li>Product.description</li>
+                        </ul>
 
-                <p className="ship">
-                    <small>Ships From </small>
-                    <strong>Nile</strong>
-                </p>
-                {/* <p className="ship">
-                    <small>Sold By </small>
-                    <strong>{Product.vendor} </strong>
-                </p> */}
-                <small className="prime">
-                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+                    </div>
+                </div>
+
+                <div className="right_div">
+                    <RadioGroup className="button_purchase">
+                        <FormControlLabel control={<Radio />} label="One-time purchase:" />
+                    </RadioGroup>
+                    <p id="price_tag">
+                        <small>$</small>
+                        <strong>{Product.price}</strong>
+
+                    </p>
+
+                    <button onClick={addToCart} className="shop_button" >Add to Cart</button>
+                    <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
+                    <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+
+                    <p className="ship">
+                        <small>Ships From </small>
+                        <strong>Nile</strong>
+                    </p>
+                    <small className="prime">
+                        <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
-                <small className="pro_gift">
-                    <input type="checkbox" />Add a gift receipt for easy returns
+                    <small className="pro_gift">
+                        <input type="checkbox" />Add a gift receipt for easy returns
             </small>
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <br />
+            <br />
+
+            <div className="comparison_div">
+                <Comparison
+                    product={Product}
+                />
             </div>
 
             <br />
-            <br />
+            <MoreProducts />
+            <QuestionAnswer productId={productId} />            <ReviewSummary />
 
-            {/* <Comparison
-                product={Product}
-            />
-            <MoreProducts /> */}
-            <QuestionAnswer productId={productId}/> 
-            {/* <ReviewSummary />
-        
             <Reviews />
-            <Link 
-            to={`./all-product-reviews/${Product.productId}`} >
+            <Link
+                to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-            </Link> */}
-        </div>
+            </Link>
+        </div >
 
     )
 }
 
-export default SingleProductListing
+export default SingleProductListing;

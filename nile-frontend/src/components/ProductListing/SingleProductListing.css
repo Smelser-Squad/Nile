@@ -1,9 +1,30 @@
-.add_toCart{
+.left_div{
+    float:left;
+    margin-top: 50px; 
+}
+
+
+.middle_div{
+
+}
+
+.right_div{
     height: 400px;
     width: 220px;
     border: 2px solid black;
     margin-left: 1200px;
+    margin-top: 50px; 
 }
+
+.box{
+    display: inline;
+}
+
+.comparison_div{
+        margin-top: 300px;
+}
+
+
 .button_purchase{
     margin-left: 10px;
     font: bold;
@@ -77,4 +98,59 @@
 {
     margin-bottom: 5%;
     margin-left: 25%;
+}
+
+.left_item_description{
+    width: 15%;
+    height: 200px;
+    float: left;
+
+}
+
+.right_item_description{
+    margin-left: 40%;
+    height: 200px;
+}
+
+.right_name{
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 30px;
+    }
+  .right_price{
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .item_price{
+      font-weight: bold;
+      font-size: 15px
+  }
+
+  .green_text{
+      color: rgb(46, 226, 46);
+  }
+
+  .blue_text{
+      color: rgb(49, 163, 230);
+  }
+
+    h3{
+    display: inline-block; /* display on the same line */
+
+    opacity: 1.0;
+}
+
+h5{
+    display: inline-block; /* display on the same line */
+}
+
+b{
+    display: inline-block; /* display on the same line */
+}
+
+
+.opaque_text{
+    font-size: 15px;
+    opacity: 0.3;
 }

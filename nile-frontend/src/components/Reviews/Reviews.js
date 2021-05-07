@@ -45,7 +45,7 @@ function Reviews() {
         setReviews(reviews)
         for(let i = 0; i < reviews.length;i++)
         {
-            if(tag!=="clearSelection" && reviews[i].props.summary.includes(tag))
+            if(tag!=="clearSelection" && (reviews[i].props.summary.includes(tag)|| reviews[i].props.summary.includes(capitalizeFirstLetter(tag)) ))
             {
                 reviewList.push(reviews[i].props)
                 const filtered = reviewList.map((review)=>
@@ -79,4 +79,12 @@ function Reviews() {
     )
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+
 export default Reviews;
+
+
+

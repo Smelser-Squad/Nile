@@ -1,65 +1,67 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import './ProductPhotos.css';
-import {getPhotos} from '../../service/PhotoService'
+import { getPhotos } from '../../service/PhotoService'
 import { useParams } from 'react-router';
-import  {SideBySideMagnifier} from "react-image-magnifiers";
+import { SideBySideMagnifier } from "react-image-magnifiers";
 
-export function ProductPhotos({color}) {
+export function ProductPhotos({ color }) {
     const [data, setData] = useState([]);
     const [magnifier, setMag] = useState([])
     const { productId } = useParams();
     const [currColor, setCurrColor] = useState(color);
-    
+
     const PhotoList = [];
-    if(data.length===0 || currColor !== color){
-        getPhotos(productId, color).then((list)=>
-        {
-            list.map((item)=>
-                PhotoList.push(item),
+
+    useEffect(() => {
+        if (data.length === 0 || currColor !== color) {
+            getPhotos(productId, color).then((list) => {
+                list.map((item) =>
+                    PhotoList.push(item),
+                );
+
+                const data = PhotoList.map((photo) =>
+                    <li className="listedPhoto"
+                        onClick={() => updatePhoto(photo.imageSrc)}>
+                        <img
+                            className="altPhoto"
+                            id={photo.photoId}
+                            alt=""
+                            src={photo.imageSrc} >
+                        </img>
+                    </li>
+                );
+
+                const magnifier = PhotoList.map((photo) =>
+                    <SideBySideMagnifier
+                        className="mag"
+                        style={{ height: "500px", width: "500px", display: "inline-block" }}
+                        imageSrc={photo.imageSrc}
+                        fillAvailableSpace={false} />
+                )
+
+                setData(data);
+                setCurrColor(color);
+                setMag(magnifier);
+                setCurrColor(color);
+            }
             );
 
-            const data = PhotoList.map((photo) =>
-                <li className="listedPhoto"
-                    onClick={() => updatePhoto(photo.imageSrc)}>
-                    <img
-                        className="altPhoto"
-                        id= {photo.photoId}
-                        alt=""
-                        src={photo.imageSrc} >
-                    </img>
-                </li>
-            );
-        
-            const magnifier = PhotoList.map((photo) =>
-                <SideBySideMagnifier 
-                className="mag" 
-                style={{ height: "500px", width: "500px", display: "inline-block" }} 
-                imageSrc={photo.imageSrc} 
-                fillAvailableSpace={false}/>
-            )
-
-            setData(data);
-            setCurrColor(color);
-            setMag(magnifier);
-            setCurrColor(color);
         }
-        );
-        
-    }
-    
-    return(
+    }, [color])
+
+    return (
         <div className="PhotoContainer">
-            <div>
+            <div className="Photo_container_div">
                 <ul className="altPhotoList">
-                {data}
+                    {data}
                 </ul>
                 {magnifier[0]}
             </div>
         </div>
     );
     function updatePhoto(newSrc) {
-       document.getElementsByClassName("mag")[0].getElementsByTagName("img")[0].setAttribute("src", newSrc);
-       document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
+        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[0].setAttribute("src", newSrc);
+        document.getElementsByClassName("mag")[0].getElementsByTagName("img")[1].setAttribute("src", newSrc);
     }
 }
 export default ProductPhotos;

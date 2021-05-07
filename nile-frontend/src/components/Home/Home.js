@@ -16,7 +16,7 @@ function Home() {
                     ProductList.push(item)
                 );
                 const cards = ProductList.map((product) =>
-    
+
                     <HomeProduct
                         key={product.productId}
                         productId={product.productId}
@@ -25,14 +25,15 @@ function Home() {
                         rating={calcRating(product)}
                         image={product.photos[0].imageSrc}
                         description={product.description}
-                  
+                        quantity={1}
+
                     />
                 );
                 setCards(cards);
             }
-        );
-    }
-}, []);
+            );
+        }
+    }, []);
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {
@@ -46,11 +47,18 @@ function Home() {
     return (
         <div className='home' >
             <div className="home_container">
-                <img
-                    className="home_image"
-                    alt="Find the perfect gift for Mother's Day"
-                    src="https://images-na.ssl-images-amazon.com/images/G/01/US-hq/2021/img/Events/MothersDay/Homepage/T3_2021_MothersDay_GW_HomepageHero_Desktop_Gifting_2x_3000x1200._CB658614325_.jpg">
-                </img>
+
+                <div class="home_image_div">
+                    <img
+                        className="home_image"
+                        alt=""
+                        src="https://africa-facts.org/wp-content/uploads/2014/12/Giraffe-at-Nile-River.jpeg"
+                    >
+                    </img>
+
+                    <h1 className="image_text">Journey Down the Nile</h1>
+
+                </div>
                 <div className="home_row">
                     {cards.slice(0, 2)}
                 </div>
@@ -60,11 +68,11 @@ function Home() {
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(5, 9)}
+                    {cards.slice(5, 7)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(9, 15)}
+                    {cards.slice(7, 15)}
                 </div>
             </div >
         </div>
