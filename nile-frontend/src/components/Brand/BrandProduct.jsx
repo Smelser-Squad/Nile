@@ -16,12 +16,14 @@ function PrimeLogo(props) {
         return <div></div>
     }
 }
-function BrandProduct({key,name,price,rating,image,color, primeEligible, reviews}){
+function BrandProduct({productId,name,price,rating,image,color, primeEligible, reviews}){
+
+  
     return(
 
             <div className="BrandProduct">
-            <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${key}` }}>{name} - {color} </h1>
-            <img id="product-image" src={image} alt=""></img>
+            <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${productId}` }}>{name} - {color} </h1>
+            <img id="product-image" src={image} alt="" onClick={() => { window.location.href = `/singleProductListing/${productId}` }}></img>
              <div className="BrandProduct_info">
              <div class="row">
             <ReactStars
@@ -37,7 +39,7 @@ function BrandProduct({key,name,price,rating,image,color, primeEligible, reviews
             <p id="review-count">{reviews}</p>
              </div>
             <h2>${price}</h2>
-             <PrimeLogo primeEligible={primeEligible} productId={key} />
+             <PrimeLogo primeEligible={primeEligible} productId={productId} />
              </div>
        </div>
         

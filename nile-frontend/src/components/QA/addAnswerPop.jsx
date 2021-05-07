@@ -6,7 +6,8 @@ import { useState } from 'react';
 export default function PopUp(props) {
         const productId = 1;
         const [answer, setAnswer] = useState("");
-
+        const currDate = new Date();
+        const sendAbleDate = currDate.getDay() + "/" + currDate.getUTCDate() + "/" + currDate.getFullYear();
         const handleClick = () => {
             props.toggle();
         }
@@ -14,7 +15,7 @@ export default function PopUp(props) {
         function submitAnswer(props){
             var userId = 1;
             console.log(answer)
-            axios.post(`http://localhost:80/api/qa/addAnswer/${props.question.questionId}/${userId}`, { "answer": answer})
+            axios.post(`http://localhost:80/api/qa/addAnswer/${props.question.questionId}/${userId}`, { "answer": answer, "date": sendAbleDate})
                 .then(res=>{        
             });
         }
@@ -27,10 +28,10 @@ export default function PopUp(props) {
             <div className="modal">
                 <div className="modal_content">
                     <span className="close" onClick={handleClick}> &times;</span>
-                    <h2>Question: {props.question.question}</h2>
+                    <h2 className="answer">Question: {props.question.question}</h2>
                     <form>
                         <textarea className="post" name={answer} onChange={answerInput} placeholder="Type your answer here."></textarea>
-                        <button onClick={() => submitAnswer(props)} >Submit Answer</button>
+                        <button className="subPost" onClick={() => submitAnswer(props)} >Submit Answer</button>
                     </form>
                 </div>
             </div>
