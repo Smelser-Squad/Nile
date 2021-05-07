@@ -195,6 +195,7 @@ function ShowAllReviews (){
                 <h3 >Filtered By</h3>
                 <span>Containing "{filterText}"</span>
                 <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button>
+                {filteredReviews}
                 </div>
                 }
             {currentPosts}
