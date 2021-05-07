@@ -5,8 +5,35 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import UserMenu from '../UserMenu';
 import './Header.css';
+import { useState } from 'react';
+
 function Header() {
     const [{ cart }] = useStateValue();
+    // const [search, setSearch] = useState("");
+    // const [searchResults, setSearchResults] = useState('');
+
+    // useEffect(() => {
+    //     const ProductList = [];
+    //         getProducts().then((list) => {
+    //             list.map((item) =>
+    //                 ProductList.push(item)
+    //             );
+
+    //         }
+    //         );
+    // }, []);
+
+
+
+
+    // const searchInput = (event) => {
+    //     setSearch(event.target.value.toLowerCase());
+    //     searchThrough(event.target.value.toLowerCase());
+    // }
+
+
+
+
     return (
         <div className='nav_header' >
             <Link to="/">
@@ -15,7 +42,10 @@ function Header() {
 
             </Link>
             <div className="header_search" >
-                <input className="hearder_searchInput" type="text" />
+                {/* <input className="hearder_searchInput" type="text" /> */}
+                <input className="hearder_searchInput" type="text" onChange={this.onChange} />
+
+
                 <SearchIcon className="hearder_searchIcon" />
             </div>
             <div className="header_nav" >

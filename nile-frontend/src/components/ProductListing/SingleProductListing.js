@@ -5,7 +5,6 @@ import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
-import ShowAllReviews from '../Reviews/ShowAllReviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import Comparison from '../Comparison/Comparison';
@@ -16,8 +15,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
-import Tag from '../ReviewTag/Tag';
-
 
 function SingleProductListing(props) {
     const { productId } = useParams()
@@ -110,7 +107,6 @@ function SingleProductListing(props) {
             </small>
                 </div>
             </div>
-
             <br />
             <br />
 
