@@ -27,6 +27,9 @@ public class Answer implements Serializable {
     @Column(name = "answer")
     private String answer;
 
+    @Column(name="timePosted")
+    private String date;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
 
