@@ -63,24 +63,24 @@ const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduc
    
    function Sort(){
 
-    // var selected=document.getElementById("sort").value
-    // for(let i = 0; i < allProducts.length;i++)
-    // {
-    //     setallProducts(allProducts)
+    var selected=document.getElementById("sort").value
+    for(let i = 0; i < allProducts.length;i++)
+    {
+        setallProducts(allProducts)
         
       
-    //         ProductList.push(allProducts[i].props)}
+            ProductList.push(allProducts[i].props)}
 
-    //         console.log(ProductList);
+           
     
    
-    //     if(selected==="low to high"){
+        if(selected==="low to high"){
 
-    //         console.log(ProductList.sort((a,b)=>{return a.price - b.price}));
-    //     }
-    //     else if(selected==="high to low"){
-    //         console.log(ProductList.sort((a,b)=>{return b.price - a.price}));
-    //     }
+            console.log(ProductList.sort((a,b)=>{return a.price - b.price}));
+        }
+        else if(selected==="high to low"){
+            console.log(ProductList.sort((a,b)=>{return b.price - a.price}));
+        }
 
 
     //   const filtered = ProductList.map((product)=>
@@ -98,19 +98,19 @@ const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduc
     //         );
     //         setallProducts(filtered);
     //         setSortedProducts(filtered)
-    // }
+    }
     
-   }  
+   
    
 return(
     <div>
         <h1>{allProducts.length} results for "{brand}"</h1>
 
-        {/* <select id="sort" onChange={()=>Sort()}>
+        <select id="sort" onChange={()=>Sort()}>
         <option selected disabled hidden >Sort By</option>
         <option value="high to low">Price:High to Low</option>
         <option value="low to high"> Price:Low to High</option>
-        </select> */}
+        </select>
 
          {currentProducts}
 
