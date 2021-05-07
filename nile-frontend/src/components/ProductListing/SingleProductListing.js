@@ -89,12 +89,12 @@ function SingleProductListing(props) {
                         <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
                         {/* <p className="blue_text"> {Product.reviews.length} Reviews | {Product.questions.length} Questions Answered!</p> */}
                         <ColoredLine color="black" />
-                        <p className="item_price_strike">List Price: ${Product.price}</p>
-                        <p>With Deal: <h4>${Product.price * 0.9}</h4><b>&nbsp; & FREE SHIPPING</b></p>
-                        <p>You Save: <h4>${Product.price * 0.1} (10%)</h4> </p>
+                        <p className="item_price_strike">List Price: ${Product.price * 1.05}</p>
+                        <p>With Deal: <h4>${Product.price}</h4><b>&nbsp; & FREE SHIPPING</b></p>
+                        <p>You Save: <h4>${Product.price * 0.05} (5%)</h4> </p>
                         <p className="green_text">In Stock.</p>
-                        <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
-                        <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                        <p>Arrives: <h3>Friday, May 14 2021</h3></p>
+                        <p>Fastest Delivery: <h3>Thursday, May 13 2021</h3></p>
                         <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
                         <p >Offer Type: <b>With Special Offers</b></p>
                         <button ><b>With Special Offers</b></button> | <button><b>Without Special Offers</b></button>
