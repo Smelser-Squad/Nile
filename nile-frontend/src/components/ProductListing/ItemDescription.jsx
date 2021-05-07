@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 
-export function ItemDescription(productId) {
+function ItemDescription(productId) {
     const [Product, setProduct] = useState([]);
 
     useEffect(() => {
