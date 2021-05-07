@@ -20,15 +20,11 @@ import Tag from '../ReviewTag/Tag';
 
 
 function SingleProductListing(props) {
-
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState('Black');
-
-    const [qty, setQty] = useState(1);
-
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -44,10 +40,6 @@ function SingleProductListing(props) {
             },
         });
     };
-
-    const handleAddToCart = () => {
-        props.history.push("/checkout" + props.match.params.productId + "?qty=" + qty);
-    }
 
     function calcRating(product) {
         let sum = 0;
