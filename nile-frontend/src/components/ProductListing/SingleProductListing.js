@@ -91,7 +91,9 @@ function SingleProductListing() {
                         <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
                         {/* <p className="blue_text"> {Product.reviews.length} Reviews | {Product.questions.length} Questions Answered!</p> */}
                         <ColoredLine color="black" />
-                        <p className="item_price">List Price: ${Product.price}</p>
+                        <p className="item_price_strike">List Price: ${Product.price}</p>
+                        <p>With Deal: <h4>${Product.price * 0.9}</h4><b>&nbsp; & FREE SHIPPING</b></p>
+                        <p>You Save: <h4>${Product.price * 0.1} (10%)</h4> </p>
                         <p className="green_text">In Stock.</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>

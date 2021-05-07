@@ -17,6 +17,10 @@
       
 }
 
+.strike{
+    text-decoration: line-through;
+}
+
 .right_div{
     height: 400px;
     width: 220px;
@@ -133,8 +137,15 @@
 
   .item_price{
       font-weight: bold;
-      font-size: 15px
+      font-size: 15px;
+      color: rgb(231, 39, 39);
   }
+
+  .item_price_strike{
+    font-weight: bold;
+    text-decoration: line-through;
+    font-size: 15px
+}
 
   .green_text{
       color: rgb(46, 226, 46);
@@ -150,8 +161,9 @@
     opacity: 1.0;
 }
 
-h5{
+h4{
     display: inline-block; /* display on the same line */
+    color: rgba(218, 22, 22, 0.651);
 }
 
 b{
