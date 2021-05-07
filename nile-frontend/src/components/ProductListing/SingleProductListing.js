@@ -90,11 +90,11 @@ function SingleProductListing() {
 
                 <div className="middle_div">
                     <div className="right_item_description">
-                        <p className="right_name">{Product.name}</p>
-                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        <p className="right_name">Product.name</p>
+                        {/* <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link> */}
                         <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
                         <ColoredLine color="black" />
-                        <p className="item_price">List Price: ${Product.price}</p>
+                        <p className="item_price">List Price: $Product.price</p>
                         <p className="green_text">In Stock.</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
@@ -105,9 +105,9 @@ function SingleProductListing() {
                         <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
                         {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
                         <ul>
-                            <li>{Product.category.name}</li>
-                            <li>{Product.type.typeName}</li>
-                            <li>{Product.description}</li>
+                            <li>Product.category.name</li>
+                            <li>Product.type.typeName</li>
+                            <li>Product.description</li>
                         </ul>
 
                     </div>
