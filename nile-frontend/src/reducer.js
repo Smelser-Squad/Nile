@@ -4,10 +4,24 @@ export const initialState = {
     cart: [],
     currentUser: null,
     isAuthenticated: false,
+    products: [],
+    filteredProducts: []
+
+
 };
+
 
 export const getCartTotal = (cart) =>
     cart?.reduce((amount, product) => product.price + amount, 0);
+
+export const filterProductByName = (search, products) => {
+    const productsCopy = [...products]
+    return productsCopy.filter(product => {
+        return product.name.toLowerCase().includes(search);
+    })
+
+
+}
 
 
 
@@ -52,6 +66,17 @@ const reducer = (state, action) => {
                 ...state,
                 currentUser: null,
                 isAuthenticated: false
+            };
+        case "FILTER_PRODUCT":
+            return {
+                ...state,
+                filteredProducts: action.filteredProducts
+            }
+        case "GET_PRODUCTS":
+            return {
+                ...state,
+                products: action.products,
+                filteredProducts: action.products
             }
         default:
             return state;
