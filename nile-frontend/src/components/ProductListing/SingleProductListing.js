@@ -17,7 +17,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
-
+import { ItemDescription } from './ItemDescription';
 
 function SingleProductListing() {
 
@@ -71,11 +71,8 @@ function SingleProductListing() {
             })
     }, [])
 
-    console.log(Product)
 
-    const numQuestions = 0;
-    const numReviews = 0;
-
+    console.log(Product);
 
     return (
 
@@ -90,11 +87,11 @@ function SingleProductListing() {
 
                 <div className="middle_div">
                     <div className="right_item_description">
-                        <p className="right_name">Product.name</p>
-                        {/* <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link> */}
-                        <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
+                        <p className="right_name">{Product.name}</p>
+                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        {/* <p className="blue_text"> {Product.reviews.length} Reviews | {Product.questions.length} Questions Answered!</p> */}
                         <ColoredLine color="black" />
-                        <p className="item_price">List Price: $Product.price</p>
+                        <p className="item_price">List Price: ${Product.price}</p>
                         <p className="green_text">In Stock.</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
@@ -105,9 +102,7 @@ function SingleProductListing() {
                         <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
                         {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
                         <ul>
-                            <li>Product.category.name</li>
-                            <li>Product.type.typeName</li>
-                            <li>Product.description</li>
+                            <li className="description_wrap"><p style={{ flexShrink: 1 }}>{Product.description}</p></li>
                         </ul>
 
                     </div>
