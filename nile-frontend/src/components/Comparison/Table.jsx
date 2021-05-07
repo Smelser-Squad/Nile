@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { useTable } from 'react-table';
 import './Table.css'
 
-export default function Table({ columns, data, numReviews }) {
+export default function Table({ columns, data, numReviews, ids }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -11,10 +11,9 @@ export default function Table({ columns, data, numReviews }) {
     prepareRow
   } = useTable({ columns, data });
 
-  console.log("Columns: " + JSON.stringify(columns));
-
   const ReactStars = React.lazy(() => import('react-rating-stars-component'));
 
+  let idCount = 0;
   let reviewCount = 0;
 
   return (
@@ -52,19 +51,18 @@ export default function Table({ columns, data, numReviews }) {
                     reviewCount++;
                     return <td {...cell.getCellProps()}>
                       <div class="stars">
-                      <ReactStars
-                          count={5}
-                          edit={false}
-                          value={parseInt(cell.value)}
-                          activeColor="#FFA41C"
-                          size={15}
-                          isHalf={true}
-                      />
-                      <span class="numReviews">
-                        ({currNumReviews})
-                      </span>
+                        <ReactStars
+                            count={5}
+                            edit={false}
+                            value={parseInt(cell.value)}
+                            activeColor="#FFA41C"
+                            size={15}
+                            isHalf={true}
+                        />
+                        <span class="numReviews">
+                          ({currNumReviews})
+                        </span>
                       </div>
-                      
                     </td>
                   }
                 })}

@@ -16,8 +16,22 @@
 .home_image{
     width: 100%;
     z-index: -1;
-    margin-bottom: -150px;
+    margin-bottom: -100px;
+    margin-top: -200px;
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
     top: 0;
     left: 0;
+    position: absolute;
+    
+}
+
+.home_image_div{
+    position: relative;
+    height: 500px;
+}
+
+.image_text{
+    position: absolute;
+    margin-left: 40%;
+    margin-top: 10%;
 }
