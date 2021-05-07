@@ -68,6 +68,12 @@
     margin-left: 30px;
     font-size: 18px;
 }
+.stock{
+    margin-top: 10px;
+    font-size: 18px;
+    color: rgb(10, 94, 10);
+
+}
 
 .prime{
     margin-top: 20px;

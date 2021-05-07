@@ -121,7 +121,7 @@ function SingleProductListing(props) {
 
                     <p className="ship">
                         <small>Status </small>
-                        <strong>
+                        <strong className="stock">
 
                             {Product.stock > 0 ? (
                                 <span className="success">In Stock</span>
