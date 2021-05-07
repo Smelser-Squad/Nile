@@ -88,6 +88,7 @@ function CreateReview(){
                         count={5}
                         edit={true}
                         value={0}
+                        name="overallRating"
                         activeColor="#FFA41C"
                         size={40}
                     />
