@@ -382,6 +382,7 @@ class SignUp extends Component {
               type="submit"
               fullWidth
               variant="contained"
+              id="submitButton"
               color="primary"
               className={classes.submit}
               disabled={this.isFormInvalid()}
