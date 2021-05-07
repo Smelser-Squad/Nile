@@ -122,6 +122,11 @@
     font-size: 15px;
   }
 
+  .item_price{
+      font-weight: bold;
+      font-size: 15px
+  }
+
   .green_text{
       color: rgb(46, 226, 46);
   }
@@ -132,9 +137,15 @@
 
     h3{
     display: inline-block; /* display on the same line */
+
+    opacity: 1.0;
 }
 
 h5{
+    display: inline-block; /* display on the same line */
+}
+
+b{
     display: inline-block; /* display on the same line */
 }
 

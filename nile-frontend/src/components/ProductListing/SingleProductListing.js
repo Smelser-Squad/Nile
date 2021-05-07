@@ -73,13 +73,18 @@ function SingleProductListing() {
 
     console.log(Product)
 
+    const numQuestions = 0;
+    const numReviews = 0;
+
+
     return (
+
         <div className="SingleProductListing">
 
             <div className="box">
                 <div className="left_div">
                     <ProductPhotos color={color} />
-                    <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                    {/* <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} /> */}
                 </div>
 
 
@@ -87,13 +92,24 @@ function SingleProductListing() {
                     <div className="right_item_description">
                         <p className="right_name">{Product.name}</p>
                         <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
-                        <p className="blue_text"> Reviews |  Questions Answered!</p>
-                        <p className="green_text">In Stock.</p>
+                        <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
                         <ColoredLine color="black" />
+                        <p className="item_price">List Price: ${Product.price}</p>
+                        <p className="green_text">In Stock.</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
                         <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
-                        <p className="opaque_text">Offer Type:</p> <h5>With Special Offers</h5>
+                        <p >Offer Type: <b>With Special Offers</b></p>
+                        <button ><b>With Special Offers</b></button> | <button><b>Without Special Offers</b></button>
+                        <ColoredLine color="black" />
+                        <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                        {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
+                        <ul>
+                            <li>{Product.category.name}</li>
+                            <li>{Product.type.typeName}</li>
+                            <li>{Product.description}</li>
+                        </ul>
+
                     </div>
                 </div>
 
