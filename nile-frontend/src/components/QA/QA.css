@@ -1,6 +1,6 @@
 .section{
     width: 90%;
-    height: 500px;
+    height: auto;
     margin-left: 30px;
 }
 .search{
@@ -65,11 +65,12 @@
 .modal_content {
     background-color: white;
     position: absolute;
-    width: 50%;
-    height: 40%;
+    width: 40%;
+    height: 35%;
     align-content: center;
-    margin-left: 300px;
-    padding: 2%;
+    margin-left: 28%;
+    padding: 2.2%;
+    border-radius: 5px;
 }
 
 .close{
@@ -88,19 +89,24 @@
 .btnLink{
     color: #007185;
     text-decoration: none;
+    text-transform: capitalize;
 }
 .btnLink:hover{
     color: lightcoral;
     cursor: pointer;
 }
+.answer{
+    text-transform: capitalize;
+}
 .addQuestionBtn{
     background-color: lightgrey;
-    width: 100%;
+    width: 60%;
     border-radius: 10px;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .toggleQuestion{
@@ -112,14 +118,24 @@
     display: inline-block;
     background-color:rgb(228, 226, 226);
     margin-left: 10px;
+    border-radius: 5px;
 }
 .toggleQuestion:hover{
     background-color:rgb(190, 188, 188);
 }
 
-.myButton {
-    color: rgb(0, 0, 0); font-size: 13px; line-height: 13px; padding: 8px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-east-asian: normal; font-variant-position: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 1px solid rgb(28, 110, 164); display: inline-block;}
-    .myButton:hover {
-    background: #1C6EA4; }
-    .myButton:active {
-    background: #144E75; }
+.subPost{
+    border: 1px solid black; 
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+    padding: 8px;
+    margin-left: 8px;
+    background-color: #f0c14b;
+    border-radius: 5px;
+}
+
+.subPost:hover{
+    background-color: #ecbb3d;
+}
+
