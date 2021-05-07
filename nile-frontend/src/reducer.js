@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from './constants';
 export const initialState = {
     cart: [],
     currentUser: null,
-    isAuthenticated: false
+    isAuthenticated: false,
 };
 
 export const getCartTotal = (cart) =>
@@ -39,7 +39,6 @@ const reducer = (state, action) => {
                 ...state,
                 cart: []
             };
-
         case "USER_SIGN_IN":
             return {
                 ...state,

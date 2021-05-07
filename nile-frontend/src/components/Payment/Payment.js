@@ -102,7 +102,7 @@ function Payment() {
                             prefix={"$"}
                         /> </div> <StripeCheckout stripeKey={publishableStripeKey}
                             amount={totalCartPrice}
-                            // billingAddress shippingAddress
+                            billingAddress shippingAddress
                             token={handleToken}
                             currency="USD"
                             label="Pay Now"

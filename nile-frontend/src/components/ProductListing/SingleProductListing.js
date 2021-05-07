@@ -18,6 +18,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
 
+
 function SingleProductListing() {
 
     const { productId } = useParams()
@@ -25,6 +26,17 @@ function SingleProductListing() {
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState('Black');
+
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 2,
+                width: 300
+            }}
+        />
+    );
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -64,78 +76,81 @@ function SingleProductListing() {
     return (
         <div className="SingleProductListing">
 
+            <div className="box">
+                <div className="left_div">
+                    <ProductPhotos color={color} />
+                    <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                </div>
 
 
-            <ProductPhotos color={color} />
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                <div className="middle_div">
+                    <div className="right_item_description">
+                        <p className="right_name">{Product.name}</p>
+                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        <p className="blue_text"> Reviews |  Questions Answered!</p>
+                        <p className="green_text">In Stock.</p>
+                        <ColoredLine color="black" />
+                        <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
+                        <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                        <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
+                        <p className="opaque_text">Offer Type:</p> <h5>With Special Offers</h5>
+                    </div>
+                </div>
 
-            <div className="right_item_description">
-                <p className="right_name">{Product.name}</p>
-                <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
-                <p className="blue_text"> Reviews |  Questions Answered!</p>
-                <p className="green_text">In Stock.</p>
-                <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
-                <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
-                <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
-                <p className="opaque_text">Offer Type:</p>
+                <div className="right_div">
+                    <RadioGroup className="button_purchase">
+                        <FormControlLabel control={<Radio />} label="One-time purchase:" />
+                    </RadioGroup>
+                    <p id="price_tag">
+                        <small>$</small>
+                        <strong>{Product.price}</strong>
+
+                    </p>
+
+                    <button onClick={addToCart} className="shop_button" >Add to Cart</button>
+                    <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
+                    <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+
+                    <p className="ship">
+                        <small>Ships From </small>
+                        <strong>Nile</strong>
+                    </p>
+                    <small className="prime">
+                        <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+            </small>
+                    <small className="pro_gift">
+                        <input type="checkbox" />Add a gift receipt for easy returns
+            </small>
+                </div>
 
 
             </div>
 
 
-            <div className="add_toCart">
-                <RadioGroup className="button_purchase">
-                    <FormControlLabel control={<Radio />} label="One-time purchase:" />
-                </RadioGroup>
-                <p id="price_tag">
-                    <small>$</small>
-                    <strong>{Product.price}</strong>
 
-                </p>
 
-                <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
-                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
 
-                <p className="ship">
-                    <small>Ships From </small>
-                    <strong>Nile</strong>
-                </p>
-                {/* <p className="ship">
-                    <small>Sold By </small>
-                    <strong>{Product.vendor.vendor} </strong>
-                </p> */}
-                <small className="prime">
-                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
-            </small>
-                <small className="pro_gift">
-                    <input type="checkbox" />Add a gift receipt for easy returns
-            </small>
+            <br />
+            <br />
+
+            <div className="comparison_div">
+                <Comparison
+                    product={Product}
+                />
             </div>
 
             <br />
-            <br />
-
-            <Comparison
-                product={Product}
-            />
-
             <MoreProducts />
-
-            <QuestionAnswer productId={productId} />
-
-            <ReviewSummary />
-
+            <QuestionAnswer productId={productId} />            <ReviewSummary />
 
             <Reviews />
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-
             </Link>
-        </div>
+        </div >
 
     )
 }
 
-export default SingleProductListing
+export default SingleProductListing;
