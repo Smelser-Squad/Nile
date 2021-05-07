@@ -56,8 +56,7 @@ function Home() {
                     >
                     </img>
 
-                    <h1 className="image_text">Journey Down the Nile</h1>
-
+                    <h1 className="image_text">Find Your Treasure on the Nile</h1>
                 </div>
                 <div className="home_row">
                     {cards.slice(0, 2)}

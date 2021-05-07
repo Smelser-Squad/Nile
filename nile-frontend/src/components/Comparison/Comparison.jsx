@@ -139,8 +139,8 @@ function Comparison() {
 
   return (
     <div className="comparison">
-      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} ids={ids} /> : null}
-      <button onClick={togglePop}>Compare Products</button>
+      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} /> : null}
+      <button className="comaprison_button" onClick={togglePop}>Compare Products</button>
     </div>
   )
 }
