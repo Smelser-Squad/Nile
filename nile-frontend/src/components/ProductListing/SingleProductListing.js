@@ -19,13 +19,16 @@ import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
 
 
-function SingleProductListing() {
+function SingleProductListing(props) {
 
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState('Black');
+
+    const [qty, setQty] = useState(1);
+
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -42,6 +45,9 @@ function SingleProductListing() {
         });
     };
 
+    const handleAddToCart = () => {
+        props.history.push("/checkout" + props.match.params.productId + "?qty=" + qty);
+    }
 
     function calcRating(product) {
         let sum = 0;
@@ -56,9 +62,9 @@ function SingleProductListing() {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
+
             })
     }, [])
-
 
     return (
         <div className="SingleProductListing">
@@ -81,7 +87,19 @@ function SingleProductListing() {
                     <p id="price_tag">
                         <small>$</small>
                         <strong>{Product.price}</strong>
+                    </p>
+                    <br />
 
+                    <p className="ship">
+                        <small>Status </small>
+                        <strong>
+
+                            {Product.stock > 0 ? (
+                                <span className="success">In Stock</span>
+                            ) : (
+                                <span className="danger">Unavailable</span>
+                            )}
+                        </strong>
                     </p>
 
                     <button onClick={addToCart} className="shop_button" >Add to Cart</button>
@@ -99,13 +117,7 @@ function SingleProductListing() {
                         <input type="checkbox" />Add a gift receipt for easy returns
             </small>
                 </div>
-
-
             </div>
-
-
-
-
 
             <br />
             <br />
@@ -118,8 +130,8 @@ function SingleProductListing() {
 
             <br />
             <MoreProducts />
-            <QuestionAnswer productId={productId} />            <ReviewSummary />
-
+            <QuestionAnswer productId={productId} />
+            <ReviewSummary />
             <Reviews />
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >

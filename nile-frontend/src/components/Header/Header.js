@@ -14,19 +14,12 @@ function Header() {
                     src="https://cdn10.bigcommerce.com/s-yhxhf/products/20469/images/75383/STMTD028_4x4__62255.1535837059.1080.1080.jpg?c=2" />
 
             </Link>
-
-
             <div className="header_search" >
                 <input className="hearder_searchInput" type="text" />
                 <SearchIcon className="hearder_searchIcon" />
-
             </div>
-
             <div className="header_nav" >
-
-
                 <UserMenu />
-
                 <Link to="/Orders">
 
                     <div className="header_option" >
