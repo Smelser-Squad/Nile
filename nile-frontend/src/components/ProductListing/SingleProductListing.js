@@ -44,7 +44,7 @@ function SingleProductListing(props) {
                 productId: Product.productId,
                 name: Product.name,
                 image: Product.photos[0].imageSrc,
-                price: Product.price,
+                price: Product.price * 0.9,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product),
                 quantity: 1
@@ -92,7 +92,12 @@ function SingleProductListing(props) {
                         <p className="item_price_strike">List Price: ${Product.price}</p>
                         <p>With Deal: <h4>${Product.price * 0.9}</h4><b>&nbsp; & FREE SHIPPING</b></p>
                         <p>You Save: <h4>${Product.price * 0.1} (10%)</h4> </p>
-                        <p className="green_text">In Stock.</p>
+                        <p className="green_text">
+                            {Product.stock > 0 ? (
+                                <span className="success">In Stock</span>
+                            ) : (
+                                <span className="danger">Unavailable</span>
+                            )}</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
                         <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
@@ -104,7 +109,6 @@ function SingleProductListing(props) {
                         <ul>
                             <li className="description_wrap"><p style={{ flexShrink: 1 }}>{Product.description}</p></li>
                         </ul>
-
                     </div>
                 </div>
 
@@ -114,7 +118,7 @@ function SingleProductListing(props) {
                     </RadioGroup>
                     <p id="price_tag">
                         <small>$</small>
-                        <strong>{Product.price}</strong>
+                        <strong>{Product.price * 0.9}</strong>
                     </p>
                     <br />
 
