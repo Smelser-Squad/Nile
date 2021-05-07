@@ -29,7 +29,7 @@ export default function PopUp(props) {
                     <form>
                         <textarea className="post" name={question} onChange={QuestionInput} placeholder="Type your question here."></textarea><br></br>
                         Your question might be answered by sellers, manufacturers, or customers who bought this product.
-                        <button onClick={() => submitQuestion(props)} >Post</button>
+                        <button className="subPost" onClick={() => submitQuestion(props)} >Post</button>
                     </form>
                 </div>
             </div>
