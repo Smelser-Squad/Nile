@@ -72,7 +72,6 @@ public class StripeService {
                 CartProduct cartProduct = new CartProduct();
                 cartProduct.setCart(cart);
                 cartProduct.setProduct(product.get());
-//                cartProduct = cpRepo.saveAndFlush(cartProduct);
                 cart.getCartProducts().add(cartProduct);
             }
         }

@@ -5,25 +5,25 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import UserMenu from '../UserMenu';
 import './Header.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Header() {
     const [{ cart }] = useStateValue();
-    // const [search, setSearch] = useState("");
-    // const [searchResults, setSearchResults] = useState('');
+    const [search, setSearch] = useState("");
+    const [searchResults, setSearchResults] = useState('');
 
-    // useEffect(() => {
-    //     const ProductList = [];
-    //         getProducts().then((list) => {
-    //             list.map((item) =>
-    //                 ProductList.push(item)
-    //             );
+    const [names, getProductNames] = useState('');
 
-    //         }
-    //         );
-    // }, []);
+    useEffect(() => {
+        axios.get(`http://localhost:80/api/products`)
+            .then(res => {
+                const productsName = res.data.map(obj => ({ name: obj.name }));
+                getProductNames(productsName);
+            });
+    }, []);
 
-
+    console.log(names)
 
 
     // const searchInput = (event) => {
@@ -42,8 +42,8 @@ function Header() {
 
             </Link>
             <div className="header_search" >
-                {/* <input className="hearder_searchInput" type="text" /> */}
-                <input className="hearder_searchInput" type="text" onChange={this.onChange} />
+                <input className="hearder_searchInput" type="text" />
+                {/* <input className="hearder_searchInput" type="text" onChange={this.onChange} /> */}
 
 
                 <SearchIcon className="hearder_searchIcon" />
