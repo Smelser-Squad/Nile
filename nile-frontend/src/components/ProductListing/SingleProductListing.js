@@ -27,6 +27,17 @@ function SingleProductListing() {
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState('Black');
 
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 2,
+                width: 300
+            }}
+        />
+    );
+
     const addToCart = () => {
         // dispatch the item into the data layer
         dispatch({
@@ -37,7 +48,8 @@ function SingleProductListing() {
                 image: Product.photos[0].imageSrc,
                 price: Product.price,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product)
+                rating: calcRating(Product),
+                quantity: 1
             },
         });
     };
@@ -59,18 +71,46 @@ function SingleProductListing() {
             })
     }, [])
 
+    console.log(Product)
+
+    const numQuestions = 0;
+    const numReviews = 0;
+
 
     return (
+
         <div className="SingleProductListing">
 
             <div className="box">
                 <div className="left_div">
                     <ProductPhotos color={color} />
-                    <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                    {/* <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} /> */}
                 </div>
 
 
                 <div className="middle_div">
+                    <div className="right_item_description">
+                        <p className="right_name">{Product.name}</p>
+                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
+                        <ColoredLine color="black" />
+                        <p className="item_price">List Price: ${Product.price}</p>
+                        <p className="green_text">In Stock.</p>
+                        <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
+                        <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                        <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
+                        <p >Offer Type: <b>With Special Offers</b></p>
+                        <button ><b>With Special Offers</b></button> | <button><b>Without Special Offers</b></button>
+                        <ColoredLine color="black" />
+                        <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                        {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
+                        <ul>
+                            <li>{Product.category.name}</li>
+                            <li>{Product.type.typeName}</li>
+                            <li>{Product.description}</li>
+                        </ul>
+
+                    </div>
                 </div>
 
                 <div className="right_div">
