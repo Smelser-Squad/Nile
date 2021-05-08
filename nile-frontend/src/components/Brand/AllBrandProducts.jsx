@@ -78,25 +78,27 @@ const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduc
    function Sort(){
 
     var selected=document.getElementById("sort").value
+    
     for(let i = 0; i < allProducts.length;i++)
     {
         setallProducts(allProducts)
         
-      
-            ProductList.push(allProducts[i].props)}
+     
+            ProductList.push(allProducts[i].props)
 
            
-    
+    }
    
         if(selected==="low to high"){
 
-            console.log(ProductList.sort((a,b)=>{return a.price - b.price}));
+            ProductList.sort((a,b)=>{return a.price - b.price});
+            
         }
         else if(selected==="high to low"){
-            console.log(ProductList.sort((a,b)=>{return b.price - a.price}));
+            ProductList.sort((a,b)=>{return b.price - a.price});
+        
         }
-
-
+       
       const filtered = ProductList.map((product)=>
 
       <div className="BrandProduct">

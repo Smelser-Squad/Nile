@@ -29,7 +29,7 @@ function BrandProduct({productId,name,price,rating,image,color, primeEligible, r
             <ReactStars
                     count={5}
                     edit={false}
-                     isHalf={true}
+                    isHalf={true}
                     value={rating}
                     activeColor="#FFA41C"
                     size={15}

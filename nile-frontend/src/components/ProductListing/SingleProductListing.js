@@ -60,6 +60,7 @@ function SingleProductListing(props) {
     }
 
     useEffect(() => {
+
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
@@ -67,7 +68,7 @@ function SingleProductListing(props) {
             })
     }, [])
 
-    console.log(Product)
+   
 
     const numQuestions = 0;
     const numReviews = 0;
@@ -86,11 +87,11 @@ function SingleProductListing(props) {
 
                 <div className="middle_div">
                     <div className="right_item_description">
-                        <p className="right_name">Product.name</p>
-                        {/* <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link> */}
-                        <p className="blue_text"> {numReviews} Reviews | {numQuestions} Questions Answered!</p>
+                        <p className="right_name">{Product.name}</p>
+                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        {/* <p className="blue_text"> {Product.reviews.length} Reviews |  Questions Answered!</p> */}
                         <ColoredLine color="black" />
-                        <p className="item_price">List Price: $Product.price</p>
+                        <p className="item_price">List Price: ${Product.price}</p>
                         <p className="green_text">In Stock.</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
@@ -100,11 +101,11 @@ function SingleProductListing(props) {
                         <ColoredLine color="black" />
                         <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
                         {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
-                        <ul>
+                        {/* {/* <ul>
                             <li>Product.category.name</li>
                             <li>Product.type.typeName</li>
-                            <li>Product.description</li>
-                        </ul>
+                            <li>{Product.description<}/li>
+                        </ul> */}
 
                     </div>
                 </div>
