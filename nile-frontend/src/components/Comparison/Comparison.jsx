@@ -102,7 +102,6 @@ function Comparison() {
           });
           setIds(productIds);
           setProducts(typeProducts);
-          console.log("products = " + typeProducts);
           if (typeProducts.length > 1) {
             for (let i = 0; i < typeProducts.length; i++) {
               for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
@@ -115,6 +114,7 @@ function Comparison() {
             createTableData(typeProducts, allSpecIds).then(res => {
               setTableData(res);
             });
+          } else {
           }
           setLoading(false);
         })
@@ -139,7 +139,7 @@ function Comparison() {
 
   return (
     <div className="comparison">
-      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} /> : null}
+      {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} ids={ids} /> : null}
       <button className="comaprison_button" onClick={togglePop}>Compare Products</button>
     </div>
   )
