@@ -5,18 +5,7 @@
 
 
 .middle_div{
-    word-wrap: break-word;
-    white-space: pre-line;
-}
 
-.description_wrap{
-    width: 500px;
-    height: 100px;
-      
-}
-
-.strike{
-    text-decoration: line-through;
 }
 
 .right_div{
@@ -24,7 +13,7 @@
     width: 220px;
     border: 2px solid black;
     margin-left: 1200px;
-    margin-top: -150px; 
+    margin-top: 50px; 
 }
 
 .box{
@@ -32,7 +21,7 @@
 }
 
 .comparison_div{
-    margin-top: 200px;
+        margin-top: 300px;
 }
 
 
@@ -79,12 +68,6 @@
     margin-left: 30px;
     font-size: 18px;
 }
-.stock{
-    margin-top: 10px;
-    font-size: 18px;
-    color: rgb(10, 94, 10);
-
-}
 
 .prime{
     margin-top: 20px;
@@ -125,7 +108,7 @@
 }
 
 .right_item_description{
-    margin-left: 45%;
+    margin-left: 40%;
     height: 200px;
 }
 
@@ -141,15 +124,8 @@
 
   .item_price{
       font-weight: bold;
-      font-size: 15px;
-      color: rgb(231, 39, 39);
+      font-size: 15px
   }
-
-  .item_price_strike{
-    font-weight: bold;
-    text-decoration: line-through;
-    font-size: 15px
-}
 
   .green_text{
       color: rgb(46, 226, 46);
@@ -159,20 +135,14 @@
       color: rgb(49, 163, 230);
   }
 
-  .blue_text_line{
-    display: inline-block; /* display on the same line */
-    color: rgb(49, 163, 230);
-}
-
     h3{
     display: inline-block; /* display on the same line */
 
     opacity: 1.0;
 }
 
-h4{
+h5{
     display: inline-block; /* display on the same line */
-    color: rgba(218, 22, 22, 0.651);
 }
 
 b{

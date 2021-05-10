@@ -23,13 +23,15 @@ function BrandProduct({productId,name,price,rating,image,color, primeEligible, r
 
             <div className="BrandProduct">
             <h1 id="name"  onClick={() => { window.location.href = `/singleProductListing/${productId}` }}>{name} - {color} </h1>
+       
             <img id="product-image" src={image} alt="" onClick={() => { window.location.href = `/singleProductListing/${productId}` }}></img>
+  
              <div className="BrandProduct_info">
              <div class="row">
             <ReactStars
                     count={5}
                     edit={false}
-                     isHalf={true}
+                    isHalf={true}
                     value={rating}
                     activeColor="#FFA41C"
                     size={15}

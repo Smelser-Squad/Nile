@@ -14,13 +14,28 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ShowAllReviews from './components/Reviews/ShowAllReviews';
 import Orders from './components/Order/Orders'
+import { useEffect } from 'react';
+import { useStateValue } from './StateProvider'
+import { getProducts } from './service/ProductService';
+
 
 const stripekey = loadStripe('pk_test_51IiMSjC3X35blG5onbHeR4PRYxKLDXpSIYunN4jmZKM3Z5lXDrZ5P9v1pS9rzwH4JUokfAnOl3gojKJtd6fFsEKE00CYlgul7y');
 
 function App() {
+    const [{ products }, dispatch] = useStateValue();
+
+    useEffect(() => {
+        getProducts().then(product => {
+            dispatch({
+                type: "GET_PRODUCTS",
+                products: product
+            })
+        })
+    }, [])
+
+
 
     return (
-        // eslint-disable-next-line
         <Router>
             <div className="App" >
                 <Header />
