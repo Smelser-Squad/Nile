@@ -43,8 +43,6 @@ function AllBrandProducts(){
  
 },[]);
 
-
-
 const indexOfLastProduct = currPage * itemsPerPage;
 const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
 const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -90,11 +88,12 @@ const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduc
     }
    
         if(selected==="low to high"){
-
+            
             ProductList.sort((a,b)=>{return a.price - b.price});
             
         }
         else if(selected==="high to low"){
+            
             ProductList.sort((a,b)=>{return b.price - a.price});
         
         }
@@ -140,13 +139,13 @@ return(
         </select>
 
          {currentProducts}
-
-            <Pagination 
+        <div id="pages">
+            <Pagination
             postsPerPage={itemsPerPage} 
             totalPosts={allProducts.length} 
             paginate={paginate}></Pagination>
      
-    
+     </div>
     
       
     </div>

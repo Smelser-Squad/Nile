@@ -15,6 +15,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
+import Tag from '../ReviewTag/Tag';
+
 
 function SingleProductListing(props) {
     const { productId } = useParams()
@@ -42,7 +44,7 @@ function SingleProductListing(props) {
                 productId: Product.productId,
                 name: Product.name,
                 image: Product.photos[0].imageSrc,
-                price: Product.price,
+                price: Product.price * 0.9,
                 reviewCount: Product.reviews.length,
                 rating: calcRating(Product),
                 quantity: 1
@@ -68,11 +70,8 @@ function SingleProductListing(props) {
             })
     }, [])
 
-   
 
-    const numQuestions = 0;
-    const numReviews = 0;
-
+    console.log(Product);
 
     return (
 
@@ -89,10 +88,17 @@ function SingleProductListing(props) {
                     <div className="right_item_description">
                         <p className="right_name">{Product.name}</p>
                         <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
-                        {/* <p className="blue_text"> {Product.reviews.length} Reviews |  Questions Answered!</p> */}
+                        {/* <p className="blue_text"> {Product.reviews.length} Reviews | {Product.questions.length} Questions Answered!</p> */}
                         <ColoredLine color="black" />
-                        <p className="item_price">List Price: ${Product.price}</p>
-                        <p className="green_text">In Stock.</p>
+                        <p className="item_price_strike">List Price: ${Product.price}</p>
+                        <p>With Deal: <h4>${Product.price * 0.9}</h4><b>&nbsp; & FREE SHIPPING</b></p>
+                        <p>You Save: <h4>${Product.price * 0.1} (10%)</h4> </p>
+                        <p className="green_text">
+                            {Product.stock > 0 ? (
+                                <span className="success">In Stock</span>
+                            ) : (
+                                <span className="danger">Unavailable</span>
+                            )}</p>
                         <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
                         <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
                         <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
@@ -101,12 +107,9 @@ function SingleProductListing(props) {
                         <ColoredLine color="black" />
                         <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
                         {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
-                        {/* {/* <ul>
-                            <li>Product.category.name</li>
-                            <li>Product.type.typeName</li>
-                            <li>{Product.description<}/li>
-                        </ul> */}
-
+                        <ul>
+                            <li className="description_wrap"><p style={{ flexShrink: 1 }}>{Product.description}</p></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -116,13 +119,13 @@ function SingleProductListing(props) {
                     </RadioGroup>
                     <p id="price_tag">
                         <small>$</small>
-                        <strong>{Product.price}</strong>
+                        <strong>{Product.price * 0.9}</strong>
                     </p>
                     <br />
 
                     <p className="ship">
                         <small>Status </small>
-                        <strong>
+                        <strong className="stock">
 
                             {Product.stock > 0 ? (
                                 <span className="success">In Stock</span>
@@ -170,5 +173,6 @@ function SingleProductListing(props) {
 
     )
 }
+
 
 export default SingleProductListing;
