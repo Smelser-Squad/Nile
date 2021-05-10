@@ -62,6 +62,7 @@ function SingleProductListing(props) {
     }
 
     useEffect(() => {
+
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
