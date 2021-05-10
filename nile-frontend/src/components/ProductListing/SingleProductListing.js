@@ -153,11 +153,11 @@ function SingleProductListing(props) {
             </div>
             <br />
             <br />
-
+            <div className="comparison_div">
             <Comparison
                 product={Product}
             />
-
+            </div>
             <MoreProducts /> 
 
             <QuestionAnswer productId={productId}/> 
