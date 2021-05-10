@@ -192,9 +192,10 @@ function ShowAllReviews (){
                 Search</Button>
                 {filtered === true &&
                 <div class="header-container">
-                <h3 >Filtered By</h3>
+                <h3 >Filtered By</h3> <br/>
                 <span>Containing "{filterText}"</span>
-                <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button>
+                <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button> <br/>
+                {filteredReviews}
                 </div>
                 }
             {currentPosts}

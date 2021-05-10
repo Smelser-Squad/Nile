@@ -5,28 +5,40 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import UserMenu from '../UserMenu';
 import './Header.css';
+import { useState } from 'react';
+import { filterProductByName } from '../../reducer';
+
 function Header() {
-    const [{ cart }] = useStateValue();
+    const [{ cart, products }, dispatch] = useStateValue();
+    const [search, setSearch] = useState("");
+
+    const handleClick = () => {
+        const filtername = filterProductByName(search, products);
+        dispatch({
+            type: "FILTER_PRODUCT",
+            filteredProducts: filtername
+        })
+    }
+
+
+    const handleChange = (event) => {
+        setSearch(event.target.value.toLowerCase());
+    }
+
+
     return (
         <div className='nav_header' >
-            <Link to="/">
+            <Link onClick={() => window.location.href = "/"}>
                 <img className="header_logo" alt="logo"
                     src="https://cdn10.bigcommerce.com/s-yhxhf/products/20469/images/75383/STMTD028_4x4__62255.1535837059.1080.1080.jpg?c=2" />
 
             </Link>
-
-
             <div className="header_search" >
-                <input className="hearder_searchInput" type="text" />
-                <SearchIcon className="hearder_searchIcon" />
-
+                <input className="hearder_searchInput" type="text" onChange={handleChange} />
+                <SearchIcon className="hearder_searchIcon" onClick={handleClick} />
             </div>
-
             <div className="header_nav" >
-
-
                 <UserMenu />
-
                 <Link to="/Orders">
 
                     <div className="header_option" >

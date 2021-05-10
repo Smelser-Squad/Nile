@@ -1,38 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts } from '../../service/ProductService';
 import './Home.css';
 import HomeProduct from './HomeProduct';
-
+import { useStateValue } from "../../StateProvider";
 
 function Home() {
-
     const [cards, setCards] = useState([]);
+    const [{ filteredProducts }, dispatch] = useStateValue();
 
     useEffect(() => {
         const ProductList = [];
-        if (cards.length === 0) {
-            getProducts().then((list) => {
-                list.map((item) =>
-                    ProductList.push(item)
-                );
-                const cards = ProductList.map((product) =>
+        filteredProducts.map((item) =>
+            ProductList.push(item)
+        );
+        const cards = ProductList.map((product) =>
 
-                    <HomeProduct
-                        key={product.productId}
-                        productId={product.productId}
-                        name={product.name}
-                        price={product.price}
-                        rating={calcRating(product)}
-                        image={product.photos[0].imageSrc}
-                        description={product.description}
-                  
-                    />
-                );
-                setCards(cards);
-            }
-            );
-        }
-    }, []);
+            <HomeProduct
+                key={product.productId}
+                productId={product.productId}
+                name={product.name}
+                price={product.price}
+                rating={calcRating(product)}
+                image={product.photos[0].imageSrc}
+                description={product.description}
+                quantity={1}
+
+            />
+        );
+        setCards(cards);
+    }
+        , [filteredProducts]);
     function calcRating(product) {
         let sum = 0;
         for (let i = 0; i < product.reviews.length; i++) {
@@ -46,11 +42,10 @@ function Home() {
     return (
         <div className='home' >
             <div className="home_container">
-                <img
-                    className="home_image"
-                    alt="Find the perfect gift for Mother's Day"
-                    src="https://images-na.ssl-images-amazon.com/images/G/01/US-hq/2021/img/Events/MothersDay/Homepage/T3_2021_MothersDay_GW_HomepageHero_Desktop_Gifting_2x_3000x1200._CB658614325_.jpg">
-                </img>
+
+                <div class="home_image_div">
+                    <h1 className="image_text">Find Your Treasure on the Nile</h1>
+                </div>
                 <div className="home_row">
                     {cards.slice(0, 2)}
                 </div>
@@ -60,11 +55,11 @@ function Home() {
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(5, 9)}
+                    {cards.slice(5, 7)}
                 </div>
 
                 <div className="home_row">
-                    {cards.slice(9, 15)}
+                    {cards.slice(7, 15)}
                 </div>
             </div >
         </div>

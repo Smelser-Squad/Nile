@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { getProduct, getTypeProducts } from '../../service/ProductService'
 import { getProductSpecsById, getSpecById } from '../../service/SpecService'
 import { getAverageReviewScore } from '../../service/ReviewService'
@@ -37,7 +37,7 @@ async function createTableData(products, specIds) {
   let priceRow = {};
   priceRow["spec"] = "Price";
   for (let i = 0; i < products.length; i++) {
-    priceRow[products[i].name] = "From $"+products[i].price.toFixed(2);
+    priceRow[products[i].name] = "From $" + products[i].price.toFixed(2);
   }
   data.push(priceRow);
 
@@ -65,7 +65,7 @@ async function createTableData(products, specIds) {
     }
     data.push(currRow);
   }
-  
+
   tableData["data"] = data;
   tableData["columns"] = columns;
   tableData["numReviews"] = numReviews;
@@ -80,9 +80,9 @@ function Comparison() {
   const [type, setType] = useState();
   const [tableData, setTableData] = useState({});
   const productId = document.URL.substring(43);
-  const [seen, setSeen] = useState(false);  
+  const [seen, setSeen] = useState(false);
 
-  function useForceUpdate(){
+  function useForceUpdate() {
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
   }
@@ -102,7 +102,6 @@ function Comparison() {
           });
           setIds(productIds);
           setProducts(typeProducts);
-          console.log("products = " + typeProducts);
           if (typeProducts.length > 1) {
             for (let i = 0; i < typeProducts.length; i++) {
               for (let j = 0; j < typeProducts[i].productSpecs.length; j++) {
@@ -115,6 +114,7 @@ function Comparison() {
             createTableData(typeProducts, allSpecIds).then(res => {
               setTableData(res);
             });
+          } else {
           }
           setLoading(false);
         })
@@ -140,7 +140,7 @@ function Comparison() {
   return (
     <div className="comparison">
       {seen ? <PopUp toggle={togglePop} columns={tableData["columns"]} data={tableData["data"]} numReviews={tableData["numReviews"]} type={type} ids={ids} /> : null}
-      <button onClick={togglePop}>Compare Products</button>
+      <button className="comaprison_button" onClick={togglePop}>Compare Products</button>
     </div>
   )
 }

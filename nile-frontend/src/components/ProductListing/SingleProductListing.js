@@ -5,7 +5,6 @@ import MoreProducts from '../MoreProducts/MoreProducts';
 import ProductPhotos from '../ProductPhotos/ProductPhotos.jsx';
 import QuestionAnswer from '../QA/QA.jsx';
 import Reviews from '../Reviews/Reviews.js';
-import ShowAllReviews from '../Reviews/ShowAllReviews.js';
 import { ProductColorSelector } from '../ProductColorSelector/ProductColorSelector';
 import ReviewSummary from '../ReviewSummary/ReviewSummary';
 import Comparison from '../Comparison/Comparison';
@@ -18,13 +17,24 @@ import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom'
 import Tag from '../ReviewTag/Tag';
 
-function SingleProductListing() {
 
+function SingleProductListing(props) {
     const { productId } = useParams()
     const [Product, setProduct] = useState([]);
     const [{ cart }, dispatch] = useStateValue();
     const [defaultColor, setDefaultColor] = useState('')
     const [color, setProductColor] = useState('Black');
+
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 2,
+                width: 300
+            }}
+        />
+    );
 
     const addToCart = () => {
         // dispatch the item into the data layer
@@ -34,13 +44,13 @@ function SingleProductListing() {
                 productId: Product.productId,
                 name: Product.name,
                 image: Product.photos[0].imageSrc,
-                price: Product.price,
+                price: Product.price * 0.9,
                 reviewCount: Product.reviews.length,
-                rating: calcRating(Product)
+                rating: calcRating(Product),
+                quantity: 1
             },
         });
     };
-
 
     function calcRating(product) {
         let sum = 0;
@@ -55,73 +65,113 @@ function SingleProductListing() {
         axios.get(`http://localhost:80/api/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
+
             })
     }, [])
 
 
+    console.log(Product);
+
     return (
+
         <div className="SingleProductListing">
-            <h2>{Product.name}</h2>
-            <h3>{Product.description}</h3>
-            <Link to={`/products/brand/${Product.brand}`}> Brand: {Product.brand}</Link>
 
-            <ProductPhotos color={color}/> 
-            <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor}/>
+            <div className="box">
+                <div className="left_div">
+                    <ProductPhotos color={color} />
+                    {/* <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} /> */}
+                </div>
 
 
-            <div className="add_toCart">
-                <RadioGroup className="button_purchase">
-                    <FormControlLabel control={<Radio />} label="One-time purchase:" />
-                </RadioGroup>
-                <p id="price_tag">
-                    <small>$</small>
-                    <strong>{Product.price}</strong>
+                <div className="middle_div">
+                    <div className="right_item_description">
+                        <p className="right_name">{Product.name}</p>
+                        <Link to={`/products/brand/${Product.brand}`}><p className="blue_text"> Brand: {Product.brand}</p></Link>
+                        {/* <p className="blue_text"> {Product.reviews.length} Reviews | {Product.questions.length} Questions Answered!</p> */}
+                        <ColoredLine color="black" />
+                        <p className="item_price_strike">List Price: ${Product.price}</p>
+                        <p>With Deal: <h4>${Product.price * 0.9}</h4><b>&nbsp; & FREE SHIPPING</b></p>
+                        <p>You Save: <h4>${Product.price * 0.1} (10%)</h4> </p>
+                        <p className="green_text">
+                            {Product.stock > 0 ? (
+                                <span className="success">In Stock</span>
+                            ) : (
+                                <span className="danger">Unavailable</span>
+                            )}</p>
+                        <p>Arrives: <h3>Wednesday, May 5 2021</h3></p>
+                        <p>Fastest Delivery: <h3>Tuesday, May 4 2021</h3></p>
+                        <p className="opaque_text"> Order Within: 11hr 15min 30sec</p>
+                        <p >Offer Type: <b>With Special Offers</b></p>
+                        <button ><b>With Special Offers</b></button> | <button><b>Without Special Offers</b></button>
+                        <ColoredLine color="black" />
+                        <ProductColorSelector setProductColor={setProductColor} setDefaultColor={setDefaultColor} />
+                        {/* <p className="opaque_text">Style: <h3>{Product.type.typeName}</h3></p> */}
+                        <ul>
+                            <li className="description_wrap"><p style={{ flexShrink: 1 }}>{Product.description}</p></li>
+                        </ul>
+                    </div>
+                </div>
 
-                </p>
+                <div className="right_div">
+                    <RadioGroup className="button_purchase">
+                        <FormControlLabel control={<Radio />} label="One-time purchase:" />
+                    </RadioGroup>
+                    <p id="price_tag">
+                        <small>$</small>
+                        <strong>{Product.price * 0.9}</strong>
+                    </p>
+                    <br />
 
-                <button onClick={addToCart} className="shop_button" >Add to Cart</button>
-                <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
-                <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+                    <p className="ship">
+                        <small>Status </small>
+                        <strong className="stock">
 
-                <p className="ship">
-                    <small>Ships From </small>
-                    <strong>Nile</strong>
-                </p>
-                {/* <p className="ship">
-                    <small>Sold By </small>
-                    <strong>{Product.vendor.vendor} </strong>
-                </p> */}
-                <small className="prime">
-                    <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
+                            {Product.stock > 0 ? (
+                                <span className="success">In Stock</span>
+                            ) : (
+                                <span className="danger">Unavailable</span>
+                            )}
+                        </strong>
+                    </p>
+
+                    <button onClick={addToCart} className="shop_button" >Add to Cart</button>
+                    <Link to='/payment' ><button className="shop_button ">Shop Now</button></Link>
+                    <p className="secure"> <LockIcon className="lock_icon" />Secure transaction</p>
+
+                    <p className="ship">
+                        <small>Ships From </small>
+                        <strong>Nile</strong>
+                    </p>
+                    <small className="prime">
+                        <input type="checkbox" />Yes, I want FREE delivery, as fast as today with Prime
             </small>
-                <small className="pro_gift">
-                    <input type="checkbox" />Add a gift receipt for easy returns
+                    <small className="pro_gift">
+                        <input type="checkbox" />Add a gift receipt for easy returns
             </small>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div className="comparison_div">
+                <Comparison
+                    product={Product}
+                />
             </div>
 
             <br />
-            <br />
-
-            <Comparison
-                product={Product}
-            />
-
-            <MoreProducts /> 
-
-            <QuestionAnswer productId={productId}/> 
-
-             <ReviewSummary />
-
-        
+            <MoreProducts />
+            <QuestionAnswer productId={productId} />
+            <ReviewSummary />
             <Reviews />
             <Link
                 to={`./all-product-reviews/${Product.productId}`} >
                 <p class="all-reviews-link">See all reviews </p>
-
-            </Link> 
-        </div>
+            </Link>
+        </div >
 
     )
 }
 
-export default SingleProductListing
+
+export default SingleProductListing;
