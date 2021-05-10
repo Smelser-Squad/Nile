@@ -159,6 +159,11 @@
       color: rgb(49, 163, 230);
   }
 
+  .blue_text_line{
+    display: inline-block; /* display on the same line */
+    color: rgb(49, 163, 230);
+}
+
     h3{
     display: inline-block; /* display on the same line */
 
