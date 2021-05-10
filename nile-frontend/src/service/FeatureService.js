@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 export async function getFeatures(productId){
-    const reviews=await axios.get(`http://localhost:80/api/features/byproduct/${productId}`)
+    const reviews=await axios.get(`http://54.82.100.75/api/features/byproduct/${productId}`)
     const data=reviews.data;
     return data;
 
@@ -12,5 +12,5 @@ export async function getFeatures(productId){
 //product_id[OBJ], feature_id[OBJ], rating[INT]
 //all inside featureRating object
 export function addFeatureRating(featureRating){
-    axios.post(`http://localhost:80/api/featureRating`,featureRating);
+    axios.post(`http://54.82.100.75/api/featureRating`,featureRating);
 }

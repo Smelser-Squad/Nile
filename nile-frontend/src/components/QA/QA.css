@@ -1,6 +1,6 @@
 .section{
     width: 90%;
-    height: 500px;
+    height: auto;
     margin-left: 30px;
 }
 .search{
@@ -65,11 +65,12 @@
 .modal_content {
     background-color: white;
     position: absolute;
-    width: 50%;
-    height: 40%;
+    width: 40%;
+    height: auto;
     align-content: center;
-    margin-left: 300px;
-    padding: 2%;
+    margin-left: 28%;
+    padding: 2.2%;
+    border-radius: 5px;
 }
 
 .close{
@@ -88,15 +89,53 @@
 .btnLink{
     color: #007185;
     text-decoration: none;
+    text-transform: capitalize;
 }
 .btnLink:hover{
     color: lightcoral;
     cursor: pointer;
 }
+.answer{
+    text-transform: capitalize;
+}
 .addQuestionBtn{
     background-color: lightgrey;
-    height: 50px;
-    width: 100%;
+    width: 60%;
     border-radius: 10px;
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
+
+.toggleQuestion{
+    color: rgb(0, 0, 0); 
+    font-size: 13px; 
+    line-height: 13px; 
+    padding: 8px;
+    border: 1px solid black; 
+    display: inline-block;
+    background-color:rgb(228, 226, 226);
+    margin-left: 10px;
+    border-radius: 5px;
+}
+.toggleQuestion:hover{
+    background-color:rgb(190, 188, 188);
+}
+
+.subPost{
+    border: 1px solid black; 
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+    padding: 8px;
+    margin-left: 8px;
+    background-color: #f0c14b;
+    border-radius: 5px;
+}
+
+.subPost:hover{
+    background-color: #ecbb3d;
+}
+

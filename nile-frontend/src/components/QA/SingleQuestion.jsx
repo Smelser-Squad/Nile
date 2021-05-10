@@ -18,7 +18,7 @@ export default function Question(props) {
 
     function upVote(props){
         props.question.votes++;
-        axios.post(`http://localhost:80/api/qa/updateVotes/${props.question.questionId}/${props.question.votes}`, {})
+        axios.post(`http://54.82.100.75/api/qa/updateVotes/${props.question.questionId}/${props.question.votes}`, {})
             .then(res=>{        
         });
         refresh();
@@ -26,7 +26,7 @@ export default function Question(props) {
 
     function downVote(props){
         props.question.votes--;
-        axios.post(`http://localhost:80/api/qa/updateVotes/${props.question.questionId}/${props.question.votes}`, {})
+        axios.post(`http://54.82.100.75/api/qa/updateVotes/${props.question.questionId}/${props.question.votes}`, {})
             .then(res=>{        
         });
         refresh();

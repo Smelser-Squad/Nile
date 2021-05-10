@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/features")
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class FeatureController {
 
     @Autowired

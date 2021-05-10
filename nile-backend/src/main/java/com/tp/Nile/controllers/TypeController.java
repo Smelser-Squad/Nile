@@ -15,7 +15,7 @@ import javax.lang.model.type.NullType;
 
 @RequestMapping("/api/types")
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class TypeController {
 
     @Autowired

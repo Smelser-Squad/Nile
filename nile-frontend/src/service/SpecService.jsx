@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 async function getProductSpecsById(productId, specId) {
-  const specs=await axios.get('http://localhost:80/api/productspecs/product/'+productId+'/spec/'+specId)
+  const specs=await axios.get('http://54.82.100.75/api/productspecs/product/'+productId+'/spec/'+specId)
     .catch(() => {
       return null;
     })
@@ -11,7 +11,7 @@ async function getProductSpecsById(productId, specId) {
 }
 
 async function getSpecById(specId) {
-  const specs=await axios.get('http://localhost:80/api/specs/'+specId)
+  const specs=await axios.get('http://54.82.100.75/api/specs/'+specId)
     .catch(() => {
       return null;
     })

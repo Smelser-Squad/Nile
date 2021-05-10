@@ -57,7 +57,7 @@ function ReviewSummary() {
     let numOneStar = 0;
 
     const getFeaturesByProductId = async () => {
-        await axios.get(`http://localhost:80/api/features/byproduct/${productId}`)
+        await axios.get(`http://54.82.100.75/api/features/byproduct/${productId}`)
             .then(res => {
                 for (let i in res.data) {
                     if (parseInt(i) === 0) {
@@ -125,7 +125,7 @@ function ReviewSummary() {
     }
 
     const getAllReviewsByProductId = async () => {
-        await axios.get(`http://localhost:80/api/reviews/byproduct/${productId}`)
+        await axios.get(`http://54.82.100.75/api/reviews/byproduct/${productId}`)
             .then(res => {
                 for (let i in res.data) {
                     if (res.data[i].rating === 5) {

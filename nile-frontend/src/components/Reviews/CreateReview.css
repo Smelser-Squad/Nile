@@ -5,9 +5,6 @@
   align-items: center;
 }
 
-.sizeReview {
-}
-
 #overall-rating {
   width: 50%;
 }
@@ -47,9 +44,6 @@
   justify-content: space-between;
 }
 
-#product-name-review {
-}
-
 #product-info-review {
   display: flex;
   margin-top: 50px;
@@ -87,9 +81,6 @@
   font-size: 12px;
 }
 
-#product-name-review {
-}
-
 #product-info-review {
   display: flex;
   justify-content: center;
@@ -101,9 +92,12 @@
 }
 
 #submit-review {
-  background: linear-gradient(to bottom left, #ffcc00 0%, #ff9900 100%);
+  background: #f0c14b;
+  border-color: #a88734 #9c7e31 #846a29;
+  border: 1px solid; 
+
   border-radius: 3px;
-  border-color: grey;
+  border-color: black;
   border-style: solid;
   border-width: 1px;
   cursor: pointer;

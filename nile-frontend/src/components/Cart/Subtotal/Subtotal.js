@@ -5,13 +5,13 @@ import { getCartTotal } from '../../../reducer';
 import { useStateValue } from "../.././../StateProvider";
 import './Subtotal.css';
 
-function Subtotal({SingleProductPrice}) {
+function Subtotal() {
     const [{ cart }] = useStateValue();
     const history = useHistory();
 
-function getTotal(){
-   
-}
+    function getTotal() {
+
+    }
     return (
         <div className='subtotal' >
 

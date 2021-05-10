@@ -6,6 +6,7 @@ import SingleReview from './SingleReview';
 import { Button, TextField,InputAdornment } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
+import Pagination from "../../common/Pagination";
 
 
 
@@ -18,10 +19,15 @@ function ShowAllReviews (){
     const[filterText, setFilterText] = useState("");
     const[mostPositive, setPositive]= useState();
     const[mostNegative, setNegative]=useState();
+    
+    const[currPage, setCurrPage]=useState(1);
+    const[postsPerPage, setPostsPerPage]=useState(10);
 
     const { productId } = useParams();
 
     const reviewsList =[];
+
+
 
     useEffect(()=>
     {
@@ -66,6 +72,9 @@ function ShowAllReviews (){
         }
     },[allReviews,mostNegative,mostPositive]);
 
+    const indexOfLastPost = currPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = allReviews.slice(indexOfFirstPost, indexOfLastPost);
 
     const useInputStyles = makeStyles({
         root:{
@@ -139,6 +148,9 @@ function ShowAllReviews (){
         setFiltered(false)
     }
 
+    const paginate = pageNumber =>{ setCurrPage(pageNumber)}
+
+
     return(
         <div class="all-reviews-container">
             <div class="top-reviews">
@@ -183,11 +195,14 @@ function ShowAllReviews (){
                 <h3 >Filtered By</h3>
                 <span>Containing "{filterText}"</span>
                 <button id="clearButton" onClick={()=>{clearFilter()}}>Clear filter</button>
+                {filteredReviews}
                 </div>
                 }
-
-            {filteredReviews}
-
+            {currentPosts}
+            <Pagination 
+            postsPerPage={postsPerPage} 
+            totalPosts={allReviews.length} 
+            paginate={paginate}></Pagination>
         </div>
     )
 
