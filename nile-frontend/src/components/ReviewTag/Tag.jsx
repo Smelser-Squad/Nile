@@ -96,7 +96,7 @@ const classes = useStyles();
 
       return (
         <div class= "tag-container">
-            <h3 id="tag-header">Read reviews that mention</h3> 
+            <h3 id="tag-header">Read reviews that mention</h3> <br/>
             <ToggleButtonGroup
             classes={{
                 groupedHorizontal: classes.groupedHorizontal,
