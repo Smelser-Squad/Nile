@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;  
-    margin-right: 400px;
+    margin-right: inherit;
    
 }
 #name {
@@ -38,7 +38,7 @@
     height: 100px;
     margin-bottom: -90px;
     font-size: 30px;
-    margin-right: 300px;
+    margin-right: inherit;
     margin-top: 70px;
    
 }
